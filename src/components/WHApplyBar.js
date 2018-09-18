@@ -12,7 +12,7 @@ class WHApplyBar extends React.Component {
         <View style={styles.headerHWApply}>
           <Text style={styles.headerText}>ワーキングホリデー申請</Text>
         </View>
-        
+
         <Image
           style={styles.headerImage}
           source={require('../../assets/images/headerLogo.png')}
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    backgroundColor: '#fff',
+    //backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
