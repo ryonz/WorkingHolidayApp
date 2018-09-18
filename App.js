@@ -1,16 +1,13 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import WHApplyBar from './src/components/WHApplyBar';
-import WHApplyIndexBar from './src/elements/WHApplyIndexBar';
-
+import WHApply from './src/screens/WHApply';
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <WHApplyBar />
-        <WHApplyIndexBar />
+        <WHApply />
       </View>
     );
   }
@@ -18,7 +15,7 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    //flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'flex-start',

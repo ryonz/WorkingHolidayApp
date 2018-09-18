@@ -25,10 +25,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     height: 22,
+    top: 97,
   },
   indexTitle: {
-    fontSize: 14,
-
+    fontSize: 15,
+    fontWeight: '900',
+    color: '#fff',
   },
 
 });

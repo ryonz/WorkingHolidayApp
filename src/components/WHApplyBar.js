@@ -27,14 +27,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    //backgroundColor: '#fff',
+    backgroundColor: 'blue',
     alignItems: 'center',
     justifyContent: 'center',
   },
   headerHWApply: {
     position: 'absolute',
     backgroundColor: '#F0F0F0',
-    width: 375,
+    width: '100%',
     height: 96,
     justifyContent: 'center',
     alignItems: 'center',
