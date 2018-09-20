@@ -8,6 +8,7 @@ import HWApplyList from '../components/HWApplyList';
 import SubmitButton from '../components/SubmitButton';
 import Copyrights from '../elements/Copyrights';
 import Agreement from '../components/Agreement';
+import Logout from '../components/Logout';
 
 class WHApply extends React.Component {
   render() {
@@ -19,6 +20,7 @@ class WHApply extends React.Component {
         <HWApplyList />
         <Agreement />
         <SubmitButton />
+        <Logout />
         <Copyrights />
       </View>
     );

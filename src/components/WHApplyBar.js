@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  StyleSheet, Text, View, Image,
+  StyleSheet, Text, View, Image, Platform,
 }
   from 'react-native';
 
@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     paddingTop: 30,
     fontWeight: 'bold',
+    color: '#626262',
   },
   headerImage: {
     position: 'absolute',

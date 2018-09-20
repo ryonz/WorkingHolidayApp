@@ -12,6 +12,7 @@ const Copyrights = (props) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    marginTop: 20,
   },
   copyright: {
     fontSize: 10,
