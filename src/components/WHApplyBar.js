@@ -25,20 +25,16 @@ class WHApplyBar extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     width: '100%',
-    backgroundColor: 'blue',
-    alignItems: 'center',
-    justifyContent: 'center',
+    zIndex: 10,
   },
   headerHWApply: {
-    position: 'absolute',
     backgroundColor: '#F0F0F0',
     width: '100%',
     height: 96,
+    top: 0,
     justifyContent: 'center',
     alignItems: 'center',
-    top: 0,
     shadowColor: '#000000',
     shadowOffset: {
       width: 0,
@@ -54,7 +50,6 @@ const styles = StyleSheet.create({
   },
   headerImage: {
     position: 'absolute',
-    alignItems: 'center',
     width: 48,
     height: 48,
     top: 40,
