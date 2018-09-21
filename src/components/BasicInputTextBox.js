@@ -6,8 +6,9 @@ import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
 class BasicInputTextBox extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { text: '例：留学太郎' };
+    this.state = { text : '' }
   }
+
 
   render() {
     return (

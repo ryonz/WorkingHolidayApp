@@ -1,11 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
 
-import BasicInputTextBox from './BasicInputTextBox';
+// import BasicInputTextBox from './BasicInputTextBox';
 
 class QuestionTextSet extends React.Component {
-
-
 
   render() {
     return (
@@ -15,7 +14,14 @@ class QuestionTextSet extends React.Component {
             {this.props.children}
           </Text>
         </View>
-        <BasicInputTextBox />
+
+        <View style={styles.textInputBox}>
+
+          <AutoGrowingTextInput
+            style={styles.textInput}
+            placeholder={this.props.placeholder}
+          />
+        </View>
       </View>
     );
   }
@@ -24,6 +30,9 @@ class QuestionTextSet extends React.Component {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+    alignItems: 'center',
+    marginTop: 4,
+    marginBottom: 18,
   },
   questionTextBox: {
     width: '100%',
@@ -32,6 +41,20 @@ const styles = StyleSheet.create({
   questionText: {
     width: '83%',
     fontSize: 13,
+  },
+  textInputBox: {
+    width: '83%',
+    height: 30,
+    backgroundColor: '#F4F4F4',
+    borderWidth: 1,
+    borderRadius: 6,
+    borderColor: '#707070',
+  },
+  textInput: {
+    fontSize: 13,
+    color: '#B5B5B5',
+    paddingTop: 6,
+    left: 18,
   },
 });
 
