@@ -4,6 +4,7 @@ import { StyleSheet, ScrollView } from 'react-native';
 import InfoHeader from '../components/InfoHeader';
 import Notes from '../elements/Notes';
 import QuestionTextSet from '../components/QuestionTextSet';
+import QuestionTextBoxDate from '../components/QuestionTextBoxDate';
 import SubmitButton from '../components/SubmitButton';
 import Copyrights from '../elements/Copyrights';
 
@@ -22,12 +23,12 @@ class PersonalInfo1 extends React.Component {
         <QuestionTextSet placeholder={'例：日本'}>出生地（国名）</QuestionTextSet>
         <QuestionTextSet placeholder={'例：日本'}>国籍</QuestionTextSet>
         <QuestionTextSet placeholder={'例：未婚、既婚、離婚、別居、死別等'}>婚姻の形態</QuestionTextSet>
-        <QuestionTextSet>婚姻期間（上記で既婚・離婚と答えた方</QuestionTextSet>
+        <QuestionTextBoxDate>婚姻期間（上記で既婚・離婚と答えた方</QuestionTextBoxDate>
         <QuestionTextSet placeholder={'例：Michiko Ryugaku'}>配偶者の氏名（上記で既婚・離婚と答えた方）{'\n'}パスポート表記通りローマ字で記入</QuestionTextSet>
-        <QuestionTextSet>配偶者の生年月日（西暦で）</QuestionTextSet>
-        <QuestionTextSet>上記で回答した婚姻期間以外に、過去に婚姻歴の）{'\n'}ある方はその婚姻期間</QuestionTextSet>
+        <QuestionTextBoxDate>配偶者の生年月日（西暦で）</QuestionTextBoxDate>
+        <QuestionTextBoxDate>上記で回答した婚姻期間以外に、過去に婚姻歴の）{'\n'}ある方はその婚姻期間</QuestionTextBoxDate>
         <QuestionTextSet placeholder={'例：Hanako Ryuzaki'}>上記で過去の婚姻歴があると回答した方は、その{'\n'}配偶者の氏名をパスポート表記通りローマ字で記入</QuestionTextSet>
-        <QuestionTextSet>上記の配偶者の生年月日（西暦で）</QuestionTextSet>
+        <QuestionTextBoxDate>上記の配偶者の生年月日（西暦で）</QuestionTextBoxDate>
 
         <SubmitButton style={styles.saveButton}>保存</SubmitButton>
 

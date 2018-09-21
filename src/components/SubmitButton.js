@@ -20,14 +20,17 @@ class SubmitButton extends React.Component {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    marginBottom: 50,
-    marginTop: 18,
+    marginBottom: 0,
+    marginTop: 50,
+    height: 68,
+    backgroundColor: '#F0F0F0',
   },
   button: {
     alignItems: 'center',
     width: 179,
     height: 46,
     paddingTop: 12,
+    marginTop: 11,
     backgroundColor: '#F0F0F0',
     borderRadius: 23,
     borderColor: '#707070',

@@ -12,11 +12,11 @@ const Copyrights = (props) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    marginTop: 20,
+    height: 53,
   },
   copyright: {
     fontSize: 10,
-    paddingBottom: 10,
+    paddingTop: 19,
     alignSelf: 'center',
   },
 });
