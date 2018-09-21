@@ -4,6 +4,7 @@ import {
 }
   from 'react-native';
 
+
 class WHApplyBar extends React.Component {
   render() {
     return (

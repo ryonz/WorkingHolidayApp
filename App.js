@@ -1,13 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 
-import WHApply from './src/screens/WHApply';
+import PersonalInfo1 from './src/screens/PersonalInfo1';
 
 export default class App extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <WHApply />
+        <PersonalInfo1 />
       </ScrollView>
     );
   }
@@ -16,8 +16,5 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //backgroundColor: '#fff',
-    //alignItems: 'center',
-    //justifyContent: 'flex-start',
   },
 });

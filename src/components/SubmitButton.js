@@ -3,11 +3,12 @@ import { StyleSheet, View, Text } from 'react-native';
 
 class SubmitButton extends React.Component {
   render() {
+    const { style } = this.props;
     return (
       <View style={styles.container}>
 
-        <View style={styles.button}>
-          <Text style={styles.buttonText}>送信</Text>
+        <View style={[styles.button, style]}>
+          <Text style={styles.buttonText}>{this.props.children}</Text>
         </View>
 
       </View>
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 20,
     fontWeight: '900',
-
+    color: '#626262',
   },
 
 });

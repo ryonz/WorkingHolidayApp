@@ -19,7 +19,7 @@ class WHApply extends React.Component {
         <HWApplyMailBar />
         <HWApplyList />
         <Agreement />
-        <SubmitButton />
+        <SubmitButton>同意して送信</SubmitButton>
         <Logout />
         <Copyrights />
       </View>
