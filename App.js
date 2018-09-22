@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
 
-import PersonalInfo1 from './src/screens/PersonalInfo1';
+import WHApplyNotification1 from './src/screens/WHApplyNotification1';
 
 export default class App extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <PersonalInfo1 />
+        <WHApplyNotification1 />
       </ScrollView>
     );
   }
@@ -19,5 +19,6 @@ const styles = StyleSheet.create({
   },
 });
 
-//
-//
+//import PersonalInfo1 from './src/screens/PersonalInfo1';
+
+//  <PersonalInfo1 />

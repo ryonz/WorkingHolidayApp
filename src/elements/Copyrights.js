@@ -11,8 +11,10 @@ const Copyrights = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
+    width: '100%',
+    //alignItems: 'center',
     height: 53,
+    bottom: 0,
   },
   copyright: {
     fontSize: 10,
