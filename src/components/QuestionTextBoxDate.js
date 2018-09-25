@@ -23,12 +23,14 @@ class QuestionTextBoxDate extends React.Component {
           style={styles.datePicker}
           date={this.state.date}
           mode="date"
-          placeholder="年（西暦）月日を入力してください"
-          format="YYYY-MM-DD"
-          minDate="2016-05-01"
-          maxDate="2016-06-01"
+          locale="ja"
+          placeholder="年月日を入力"
+          format="YYYY年MM月DD日"
+          minDate="1984-01-01"
+          maxDate="2020-01-01"
           confirmBtnText="確定"
           cancelBtnText="閉じる"
+
           customStyles={{
             dateInput: {
               height: 30,
@@ -41,7 +43,7 @@ class QuestionTextBoxDate extends React.Component {
             // ... You can check the source to find the other keys.
           }}
           showIcon={false}
-          onDateChange={(date) => {this.setState({date: date})}}
+          onDateChange={(date) => { this.setState({ date }); }}
         />
       </View>
     );
@@ -52,17 +54,16 @@ class QuestionTextBoxDate extends React.Component {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    alignItems: 'center',
+    paddingLeft: '8.5%',
   },
   questionTextBox: {
     width: '100%',
-    alignItems: 'center',
   },
   questionText: {
     width: '83%',
   },
   datePicker: {
-    width: '83%',
+    width: '41.5%',
   },
 });
 

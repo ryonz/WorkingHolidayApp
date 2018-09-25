@@ -19,10 +19,10 @@ class WHApplyNotification1 extends React.Component {
 
         <View style={styles.textBox}>
           <Text style={styles.textBoxText}>
-            2019年のワーキングホリデー申請は、
-            カナダ政府の「申請者希望者リスト(Pool) 」
-            へ登録をすることから始ま
-            ります。その後、政府が Pool よりラ
+            2019年のワーキングホリデー申請は、カ
+            ナダ政府の「申請者希望者リスト(Pool)
+            」へ登録をすることから始まります。
+            その後、政府が Pool よりラ
             ンダムに選考を行い、Pool から晴れ
             て選ばれますと「正式に」申請を進め
             られることとなります。申請が進めら
@@ -30,8 +30,7 @@ class WHApplyNotification1 extends React.Component {
             <Text style={{ color: '#FF0000' }}>
             「政府次第」
             </Text>
-            となりますことを予めご了承くださ
-            いませ。
+            となりますことを予めご了承くださいませ。
           </Text>
         </View>
 
@@ -80,7 +79,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     paddingTop: 27,
     paddingLeft: 31,
-    paddingBottom: 27,
+    paddingBottom: 0,
     paddingRight: 31,
     lineHeight: 25,
   },

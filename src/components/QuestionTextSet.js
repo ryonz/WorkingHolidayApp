@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     fontSize: 13,
-    color: '#B5B5B5',
+    color: '#000000',
     paddingTop: 6,
     left: 18,
   },
