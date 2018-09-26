@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet, Text, View, Image, Platform,
-}
-  from 'react-native';
-
+import { StyleSheet, Text, View, Image, TouchableHighlight } from 'react-native';
 
 class WHApplyBar extends React.Component {
   render() {
@@ -18,6 +14,10 @@ class WHApplyBar extends React.Component {
           style={styles.headerImage}
           source={require('../../assets/images/headerLogo.png')}
         />
+
+        <TouchableHighlight style={styles.backbutton} onPress={() => { this.props.navigation.goBack(); }} underlayColor="#F0F0F0">
+          <Image style={styles.backbuttonImage} source={require('../../assets/images/left-arrow.png')} />
+        </TouchableHighlight>
 
       </View>
     );
@@ -56,6 +56,17 @@ const styles = StyleSheet.create({
     height: 48,
     top: 40,
     right: 18,
+  },
+  backbutton: {
+    position: 'absolute',
+    top: 50,
+    left: 18,
+    width: 20,
+    height: 20,
+  },
+  backbuttonImage: {
+    width: 20,
+    height: 20,
   },
 });
 

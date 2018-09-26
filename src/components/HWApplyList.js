@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import { Font } from 'expo';
 import fontAwesome from '../../assets/fonts/fa-solid-900.ttf';
 
@@ -21,121 +21,132 @@ class HWApplyList extends React.Component {
 
       <View style={styles.container}>
 
-        <View style={styles.listBox}>
-          <Text style={styles.listBoxText}>
-              申請者情報①
-          </Text>
-          <View style={styles.inputBotton}>
-            <Text style={styles.inputBottonText}>未入力</Text>
-          </View>
+        <TouchableHighlight onPress={() => { this.props.navigation.navigate('PersonalInfo1'); }} underlayColor="#F0F0F0">
+          <View style={styles.listBox}>
+            <Text style={styles.listBoxText}>
+                申請者情報①
+            </Text>
+            <View style={styles.inputBotton}>
+              <Text style={styles.inputBottonText}>未入力</Text>
+            </View>
 
-          <View style={{ flex: 1, justifyContent: 'center' }}>
-            {
-              this.state.fontLoaded ? (
-                <View style={styles.navigationButton}>
-                  <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                </View>
-              ) : null
-           }
+            <View style={{ flex: 1, justifyContent: 'center' }}>
+              {
+                this.state.fontLoaded ? (
+                  <View style={styles.navigationButton}>
+                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                  </View>
+                ) : null
+             }
+            </View>
           </View>
+        </TouchableHighlight>
 
-        </View>
+        <TouchableHighlight>
+          <View style={styles.listBox}>
+            <Text style={styles.listBoxText}>
+                申請者情報②
+            </Text>
+            <View style={styles.inputBotton}>
+              <Text style={styles.inputBottonText}>未入力</Text>
+            </View>
 
-        <View style={styles.listBox}>
-          <Text style={styles.listBoxText}>
-              申請者情報②
-          </Text>
-          <View style={styles.inputBotton}>
-            <Text style={styles.inputBottonText}>未入力</Text>
+            <View style={{ flex: 1, justifyContent: 'center' }}>
+              {
+                this.state.fontLoaded ? (
+                  <View style={styles.navigationButton}>
+                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                  </View>
+                ) : null
+             }
+            </View>
           </View>
+        </TouchableHighlight>
 
-          <View style={{ flex: 1, justifyContent: 'center' }}>
-            {
-              this.state.fontLoaded ? (
-                <View style={styles.navigationButton}>
-                  <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                </View>
-              ) : null
-           }
-          </View>
-        </View>
+        <TouchableHighlight>
+          <View style={styles.listBox}>
+            <Text style={styles.listBoxText}>
+              家族情報①
+            </Text>
+            <View style={styles.inputBotton}>
+              <Text style={styles.inputBottonText}>未入力</Text>
+            </View>
 
-        <View style={styles.listBox}>
-          <Text style={styles.listBoxText}>
-            家族情報①
-          </Text>
-          <View style={styles.inputBotton}>
-            <Text style={styles.inputBottonText}>未入力</Text>
+            <View style={{ flex: 1, justifyContent: 'center' }}>
+              {
+                this.state.fontLoaded ? (
+                  <View style={styles.navigationButton}>
+                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                  </View>
+                ) : null
+             }
+            </View>
           </View>
+        </TouchableHighlight>
 
-          <View style={{ flex: 1, justifyContent: 'center' }}>
-            {
-              this.state.fontLoaded ? (
-                <View style={styles.navigationButton}>
-                  <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                </View>
-              ) : null
-           }
-          </View>
-        </View>
+        <TouchableHighlight>
+          <View style={styles.listBox}>
+            <Text style={styles.listBoxText}>
+              家族情報②
+            </Text>
+            <View style={styles.inputBotton}>
+              <Text style={styles.inputBottonText}>未入力</Text>
+            </View>
 
-        <View style={styles.listBox}>
-          <Text style={styles.listBoxText}>
-            家族情報②
-          </Text>
-          <View style={styles.inputBotton}>
-            <Text style={styles.inputBottonText}>未入力</Text>
+            <View style={{ flex: 1, justifyContent: 'center' }}>
+              {
+                this.state.fontLoaded ? (
+                  <View style={styles.navigationButton}>
+                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                  </View>
+                ) : null
+             }
+            </View>
           </View>
+        </TouchableHighlight>
 
-          <View style={{ flex: 1, justifyContent: 'center' }}>
-            {
-              this.state.fontLoaded ? (
-                <View style={styles.navigationButton}>
-                  <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                </View>
-              ) : null
-           }
-          </View>
-        </View>
+        <TouchableHighlight>
+          <View style={styles.listBox}>
+            <Text style={styles.listBoxText}>
+              個人情報・同意事項
+            </Text>
+            <View style={styles.inputBotton}>
+              <Text style={styles.inputBottonText}>未入力</Text>
+            </View>
 
-        <View style={styles.listBox}>
-          <Text style={styles.listBoxText}>
-            個人情報・同意事項
-          </Text>
-          <View style={styles.inputBotton}>
-            <Text style={styles.inputBottonText}>未入力</Text>
+            <View style={{ flex: 1, justifyContent: 'center' }}>
+              {
+                this.state.fontLoaded ? (
+                  <View style={styles.navigationButton}>
+                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                  </View>
+                ) : null
+             }
+            </View>
           </View>
+        </TouchableHighlight>
 
-          <View style={{ flex: 1, justifyContent: 'center' }}>
-            {
-              this.state.fontLoaded ? (
-                <View style={styles.navigationButton}>
-                  <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                </View>
-              ) : null
-           }
+        <TouchableHighlight>
+          <View style={styles.listBox}>
+            <Text style={styles.privacyPolicyCA}>
+              カナダ外務・国際貿易省からの「個人情報取扱い
+              {'\n'}
+              について/個人情報保護に関する声明
+            </Text>
+            <View style={styles.inputBotton}>
+              <Text style={styles.inputBottonText}>未入力</Text>
+            </View>
+            <View style={{ flex: 1, justifyContent: 'center' }}>
+              {
+                this.state.fontLoaded ? (
+                  <View style={styles.navigationButton}>
+                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                  </View>
+                ) : null
+             }
+            </View>
           </View>
-        </View>
-
-        <View style={styles.listBox}>
-          <Text style={styles.privacyPolicyCA}>
-            カナダ外務・国際貿易省からの「個人情報取扱い
-            {'\n'}
-            について/個人情報保護に関する声明
-          </Text>
-          <View style={styles.inputBotton}>
-            <Text style={styles.inputBottonText}>未入力</Text>
-          </View>
-          <View style={{ flex: 1, justifyContent: 'center' }}>
-            {
-              this.state.fontLoaded ? (
-                <View style={styles.navigationButton}>
-                  <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                </View>
-              ) : null
-           }
-          </View>
-        </View>
+        </TouchableHighlight>
       </View>
     );
   }

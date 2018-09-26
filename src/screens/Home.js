@@ -26,7 +26,7 @@ class Home extends React.Component {
         </View>
 
         <View style={styles.buttonBox}>
-          <TouchableHighlight style={styles.startApplyButton}>
+          <TouchableHighlight style={styles.startApplyButton} onPress={() => { this.props.navigation.navigate('WHApply'); }} underlayColor="#F0F0F0">
             <View>
               <Image style={styles.applyImage} source={require('../../assets/images/new-file.png')} />
               <Text style={styles.buttonText} onPress={this.onPress}>ワーホリ申請開始</Text>
@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
+    backgroundColor: '#fff',
   },
   HomeHeaderLogo: {
     alignItems: 'center',

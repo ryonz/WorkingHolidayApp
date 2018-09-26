@@ -1,26 +1,21 @@
-import React from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
 
 import Home from './src/screens/Home';
+import PersonalInfo1 from './src/screens/PersonalInfo1';
+import WHApplyNotification1 from './src/screens/WHApplyNotification1';
+import WHApply from './src/screens/WHApply';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <ScrollView style={styles.container}>
-        <Home />
-      </ScrollView>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+const App = createStackNavigator({
+  Home:                 { screen: Home },
+  WHApply:              { screen: WHApply },
+  PersonalInfo1:        { screen: PersonalInfo1 },
+  WHApplyNotification1: { screen: WHApplyNotification1 },
+}, {
+  headerMode: 'none',
+  navigationOptions:{
+    headerVisble: false,
   },
 });
 
-//import WHApplyNotification1 from './src/screens/WHApplyNotification1';
-//import PersonalInfo1 from './src/screens/PersonalInfo1';
 
-
-// <WHApplyNotification1 />
+export default App;

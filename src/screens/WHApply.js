@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 
 import WHApplyBar from '../components/WHApplyBar';
 import WHApplyIndexBar from '../elements/WHApplyIndexBar';
@@ -13,16 +13,16 @@ import Logout from '../components/Logout';
 class WHApply extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <WHApplyBar />
+      <ScrollView style={styles.container}>
+        <WHApplyBar navigation={this.props.navigation} />
         <WHApplyIndexBar />
         <HWApplyMailBar />
-        <HWApplyList />
+        <HWApplyList navigation={this.props.navigation} />
         <Agreement />
         <SubmitButton>同意して送信</SubmitButton>
         <Logout />
         <Copyrights />
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
+    backgroundColor: '#fff',
   },
 });
 
