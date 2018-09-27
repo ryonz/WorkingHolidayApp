@@ -7,7 +7,7 @@ class InfoHeader extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.headerTitle}>申請者情報①</Text>
+        <Text style={styles.headerTitle}>{this.props.children}</Text>
 
         <TouchableHighlight style={styles.backbutton} onPress={() => { this.props.navigation.goBack(); }} underlayColor="#F0F0F0">
           <Image style={styles.backbuttonImage} source={require('../../assets/images/left-arrow.png')} />

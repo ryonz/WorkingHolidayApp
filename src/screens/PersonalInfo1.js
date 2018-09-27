@@ -13,7 +13,7 @@ class PersonalInfo1 extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <InfoHeader navigation={this.props.navigation} />
+        <InfoHeader navigation={this.props.navigation}>申請者情報１</InfoHeader>
         <Notes />
 
         <QuestionTextSet placeholder={'例：留学太郎'}>姓名（漢字表記）</QuestionTextSet>

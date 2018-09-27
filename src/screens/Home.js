@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, TouchableHighlight } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import Copyrights from '../elements/Copyrights';
 
 class Home extends React.Component {
@@ -14,30 +14,30 @@ class Home extends React.Component {
         </View>
 
         <View style={styles.buttonBox}>
-          <TouchableHighlight style={styles.button} onPress={this.onPress}>
+          <TouchableOpacity style={styles.button} onPress={this.onPress}>
             <Text style={styles.buttonText}>JPCANADAについて</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.buttonBox}>
-          <TouchableHighlight style={styles.button} onPress={this.onPress}>
+          <TouchableOpacity style={styles.button} onPress={this.onPress}>
             <Text style={styles.buttonText}>ワーホリ申請について</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.buttonBox}>
-          <TouchableHighlight style={styles.startApplyButton} onPress={() => { this.props.navigation.navigate('WHApply'); }} underlayColor="#F0F0F0">
+          <TouchableOpacity style={styles.startApplyButton} onPress={() => { this.props.navigation.navigate('Login'); }} underlayColor="#F0F0F0">
             <View>
               <Image style={styles.applyImage} source={require('../../assets/images/new-file.png')} />
-              <Text style={styles.buttonText} onPress={this.onPress}>ワーホリ申請開始</Text>
+              <Text style={styles.buttonText}>ワーホリ申請開始</Text>
             </View>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.buttonBox}>
-          <TouchableHighlight style={styles.linkOfHelp}>
+          <TouchableOpacity style={styles.linkOfHelp}>
             <Text>ヘルプ</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.vanquBox}>
