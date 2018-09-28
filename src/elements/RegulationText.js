@@ -11,7 +11,7 @@ class RegulationText extends React.Component {
 
         <View style={styles.regulationScrollTextBox}>
           <ScrollView>
-            <Text>
+            <Text style={styles.regulationInsideText}>
               規約だよ。{'\n'}
               守らないと困っちゃうぞ。{'\n'}
               Jpcanadaの規約だぞ。{'\n'}
@@ -48,6 +48,9 @@ const styles = StyleSheet.create({
     marginBottom: 27,
     borderWidth: 1,
     borderColor: '#707070',
+  },
+  regulationInsideText: {
+    paddingLeft: 5,
   },
 
 });
