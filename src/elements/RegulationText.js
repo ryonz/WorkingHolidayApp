@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     borderColor: '#707070',
   },
   regulationInsideText: {
-    paddingLeft: 5,
+    paddingLeft: 10,
   },
 
 });

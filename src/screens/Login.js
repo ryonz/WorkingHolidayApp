@@ -52,7 +52,7 @@ class Login extends React.Component {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => { this.props.navigation.navigate('Signup'); }}>
           <Text style={styles.forgetPasswordText}>登録がまだの方はこちら</Text>
         </TouchableOpacity>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
 
 import WHApplyBar from '../components/WHApplyBar';
 import SubmitButton from '../components/SubmitButton';
@@ -9,9 +9,10 @@ import Copyrights from '../elements/Copyrights';
 class WHApplyNotification1 extends React.Component {
   render() {
     return (
+
       <View style={styles.container}>
 
-        <WHApplyBar />
+        <WHApplyBar navigation={this.props.navigation} />
 
         <View style={styles.title}>
           <Text style={styles.titleText}>申請の前に</Text>
@@ -19,36 +20,38 @@ class WHApplyNotification1 extends React.Component {
 
         <View style={styles.textBox}>
           <Text style={styles.textBoxText}>
-            2019年のワーキングホリデー申請は、カ
-            ナダ政府の「申請者希望者リスト(Pool)
-            」へ登録をすることから始まります。
-            その後、政府が Pool よりラ
-            ンダムに選考を行い、Pool から晴れ
-            て選ばれますと「正式に」申請を進め
-            られることとなります。申請が進めら
-            れるかどうかは
+                      2019年のワーキングホリデー申請は、カ
+                      ナダ政府の「申請者希望者リスト(Pool)
+                      」へ登録をすることから始まります。
+                      その後、政府が Pool よりラ
+                      ンダムに選考を行い、Pool から晴れ
+                      て選ばれますと「正式に」申請を進め
+                      られることとなります。申請が進めら
+                      れるかどうかは
             <Text style={{ color: '#FF0000' }}>
-            「政府次第」
+                      「政府次第」
             </Text>
-            となりますことを予めご了承くださいませ。
+                      となりますことを予めご了承くださいませ。
           </Text>
         </View>
 
+        <SubmitButton onPress={() => { this.props.navigation.navigate('WHApplyNotification2'); }}>次へ</SubmitButton>
 
-        <SubmitButton>次へ</SubmitButton>
-
-
-        <Copyrights />
-
+        <View style={styles.copyrights}>
+          <Copyrights />
+        </View>
       </View>
+
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     width: '100%',
     alignItems: 'center',
+    backgroundColor: '#fff',
   },
   title: {
     width: '33%',
@@ -79,10 +82,17 @@ const styles = StyleSheet.create({
     fontSize: 14,
     paddingTop: 27,
     paddingLeft: 31,
-    paddingBottom: 0,
+    paddingBottom: 27,
     paddingRight: 31,
     lineHeight: 25,
+  },
+  copyrights:{
+    position: 'absolute',
+    width: '100%',
+    bottom: 0,
   },
 });
 
 export default WHApplyNotification1;
+
+//

@@ -90,7 +90,7 @@ class Signup extends React.Component {
 
         <RegulationText />
 
-        <TouchableOpacity style={styles.loginButtonBox} onPress={() => { this.props.navigation.navigate('WHApply'); }}>
+        <TouchableOpacity style={styles.loginButtonBox} onPress={() => { this.props.navigation.navigate('WHApplyNotification1'); }}>
           <View style={styles.loginButton}>
             <Text style={styles.loginButtonText}>同意して登録</Text>
           </View>
@@ -254,6 +254,7 @@ const styles = StyleSheet.create({
   },
   modal: {
     backgroundColor: '#fff',
+    opacity: 0.9,
     width: '87%',
     height: 250,
     alignSelf: 'center',

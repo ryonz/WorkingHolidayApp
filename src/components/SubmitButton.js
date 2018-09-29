@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 class SubmitButton extends React.Component {
   render() {
@@ -7,9 +7,12 @@ class SubmitButton extends React.Component {
     return (
       <View style={styles.container}>
 
-        <View style={[styles.button, style]}>
+        <TouchableOpacity
+          style={[styles.button, style]}
+          onPress={() => { this.props.onPress(); }}
+        >
           <Text style={styles.buttonText}>{this.props.children}</Text>
-        </View>
+        </TouchableOpacity>
 
       </View>
     );
@@ -34,7 +37,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F0F0F0',
     borderRadius: 23,
     borderColor: '#707070',
-    borderWidth: 1,
+    borderWidth: 0.4,
     shadowColor: '#000000',
     shadowOffset: {
       width: 0,

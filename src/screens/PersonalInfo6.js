@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 
 import InfoHeader from '../components/InfoHeader';
 import QuestionTextSet from '../components/QuestionTextSet';
@@ -51,15 +51,63 @@ class PersonalInfo6 extends React.Component {
           <QuestionTextSet placeholder={'例：願書作成、請求書発行、書類送付'}>主な(仕事)内容*</QuestionTextSet>
         </View>
 
+        <View style={styles.line} />
 
+        <View style={styles.questionSetBox}>
+          <View style={styles.questionTextBoxDateMargin}>
+            <QuestionTextBoxDate>開始日(入社日)*</QuestionTextBoxDate>
+            <QuestionTextBoxDate>終了日(退社日)*</QuestionTextBoxDate>
+          </View>
 
-        <View>
-          <TouchableOpacity >
-            <Text>追加</Text>
-          </TouchableOpacity>
+          <QuestionTextSet placeholder={'例：株式会社加奈陀(かぶしきがいしゃ かなだ)'}>会社名(ふりがな)</QuestionTextSet>
+
+          <QuestionTextSet placeholder={'例：東京都千代田区'}>所在地</QuestionTextSet>
+
+          <QuestionTextSet placeholder={'例：留学カウンセラー'}>職業</QuestionTextSet>
+          <QuestionTextSet placeholder={'例：係長'}>役職(ポジション)</QuestionTextSet>
+          <QuestionTextSet placeholder={'例：願書作成、請求書発行、書類送付'}>主な(仕事)内容*</QuestionTextSet>
         </View>
 
-        <SubmitButton style={styles.saveButton}>保存</SubmitButton>
+        <View style={styles.line} />
+
+        <View style={styles.questionSetBox}>
+          <View style={styles.questionTextBoxDateMargin}>
+            <QuestionTextBoxDate>開始日(入社日)*</QuestionTextBoxDate>
+            <QuestionTextBoxDate>終了日(退社日)*</QuestionTextBoxDate>
+          </View>
+
+          <QuestionTextSet placeholder={'例：株式会社加奈陀(かぶしきがいしゃ かなだ)'}>会社名(ふりがな)</QuestionTextSet>
+
+          <QuestionTextSet placeholder={'例：東京都千代田区'}>所在地</QuestionTextSet>
+
+          <QuestionTextSet placeholder={'例：留学カウンセラー'}>職業</QuestionTextSet>
+          <QuestionTextSet placeholder={'例：係長'}>役職(ポジション)</QuestionTextSet>
+          <QuestionTextSet placeholder={'例：願書作成、請求書発行、書類送付'}>主な(仕事)内容*</QuestionTextSet>
+        </View>
+
+        <View style={styles.line} />
+
+        <Text style={styles.textInputTitle}>
+          4つ目以降はこちらに記入してください。{'\n'}
+          *印は必須項目です。{'\n'}
+          {'\n'}
+          ［書き方］{'\n'}
+          ①開始日(入社日)*、終了日(退社日)*、会社名(ふりがな)、所在地、職業、役職(ポジション)、
+          主な(仕事)内容*{'\n'}
+          ②開始日(入社日)*、終了日(退社日)*、会社名(ふりがな)、所在地、職業、役職(ポジション)、
+          主な(仕事)内容*
+        </Text>
+
+        <View style={styles.textInputBox}>
+          <TextInput
+            style={styles.textInput}
+            multiline={true}
+            placeholder={`開始日(入社日)、終了日(退社日)、会社名(ふりがな)、所在地、職業、役職(ポジション)、
+            主な(仕事)内容`}
+          />
+        </View>
+
+        <SubmitButton style={styles.saveButton} onPress={() => {}}>保存</SubmitButton>
 
         <Copyrights />
       </ScrollView>
@@ -96,6 +144,35 @@ const styles = StyleSheet.create({
   questionTextBoxDateMargin2Line: {
     marginTop: 20,
     marginBottom: 20,
+  },
+  line: {
+    width: '100%',
+    backgroundColor: '#000000',
+    height: 0.5,
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  textInputTitle: {
+    alignSelf: 'center',
+    width: '83%',
+    lineHeight: 20,
+  },
+  textInputBox: {
+    width: '100%',
+    height: 230,
+    marginTop: 20,
+  },
+  textInput: {
+    alignSelf: 'center',
+    width: '83%',
+    height: 230,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 20,
+    paddingBottom: 20,
+    backgroundColor: '#F4F4F4',
+    borderWidth: 0.5,
+    borderRadius: 10,
   },
 })
 
