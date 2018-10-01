@@ -1,4 +1,6 @@
 import { createStackNavigator } from 'react-navigation';
+import firebase from 'firebase';
+import ENV from './env.json';
 
 import Home from './src/screens/Home';
 import WHApply from './src/screens/WHApply';
@@ -11,6 +13,18 @@ import WHApplyNotification2 from './src/screens/WHApplyNotification2';
 import SplashScreen from './src/screens/SplashScreen';
 import Login from './src/screens/Login';
 import Signup from './src/screens/Signup';
+
+// firebaseの認証用config
+const config = {
+  apiKey: ENV.FIREBASE_API_KEY,
+  authDomain: ENV.FIREBASE_AUTH_DOMAIN,
+  databaseURL: ENV.FIREBASE_DATABASE_URL,
+  projectId: ENV.FIREBASE_PROJECT_ID,
+  storageBucket: ENV.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: ENV.FIREBASE_MESSAGING_SENDER_ID
+};
+firebase.initializeApp(config);
+
 
 const App = createStackNavigator({
   Home:                 { screen: Home },

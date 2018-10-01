@@ -9,6 +9,12 @@ class Login extends React.Component {
     password: '',
   }
 
+  handleLogin() {
+    console.log('handleLogin');
+  }
+
+//() => { this.props.navigation.navigate('WHApply'); }
+
   render() {
     return (
       <View style={styles.container}>
@@ -51,7 +57,10 @@ class Login extends React.Component {
           <Text style={styles.forgetPasswordText}>パスワードを忘れた場合</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.loginButtonBox} onPress={() => { this.props.navigation.navigate('WHApply'); }}>
+        <TouchableOpacity
+          style={styles.loginButtonBox}
+          onPress={this.handleLogin.bind(this)}
+        >
           <View style={styles.loginButton}>
             <Text style={styles.loginButtonText}>ログイン</Text>
           </View>
