@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from 'firebase';
 import { StyleSheet, View, Text, TouchableOpacity, TextInput, Image, Modal } from 'react-native';
 import Copyrights from '../elements/Copyrights';
 import RegulationText from '../elements/RegulationText';
@@ -12,6 +13,19 @@ class Signup extends React.Component {
     modalMailVisible: false,
     modalPasswordVisible: false,
 };
+
+//() => { this.props.navigation.navigate('WHApplyNotification1');
+
+  handleSignup() {
+    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .then((user) => {
+        console.log('success', user);
+        this.props.navigation.navigate('WHApplyNotification1');
+
+      }).catch((error) => {
+        console.log(error);
+      });
+  }
 
   openMailModal() {
     this.setState({ modalMailVisible: true })
@@ -95,7 +109,7 @@ class Signup extends React.Component {
 
         <RegulationText />
 
-        <TouchableOpacity style={styles.loginButtonBox} onPress={() => { this.props.navigation.navigate('WHApplyNotification1'); }}>
+        <TouchableOpacity style={styles.loginButtonBox} onPress={this.handleSignup.bind(this)}>
           <View style={styles.loginButton}>
             <Text style={styles.loginButtonText}>同意して登録</Text>
           </View>

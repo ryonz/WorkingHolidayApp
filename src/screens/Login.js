@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from 'firebase';
 import { StyleSheet, View, Text, TouchableOpacity, TextInput, Image } from 'react-native';
 import Copyrights from '../elements/Copyrights';
 
@@ -10,7 +11,13 @@ class Login extends React.Component {
   }
 
   handleLogin() {
-    console.log('handleLogin');
+    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then((user) => {
+        console.log('success', user);
+        this.props.navigation.navigate('WHApply');
+      }).catch((error) => {
+        console.log(error);
+      });
   }
 
 //() => { this.props.navigation.navigate('WHApply'); }
