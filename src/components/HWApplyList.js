@@ -63,7 +63,7 @@ class HWApplyList extends React.Component {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => { this.props.navigation.navigate('PersonalInfo3'); }}>
           <View style={styles.listBox}>
             <Text style={styles.listBoxText}>
                 申請者情報３

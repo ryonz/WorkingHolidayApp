@@ -24,7 +24,9 @@ class Login extends React.Component {
           <Text style={styles.textInputTitle}>メールアドレス</Text>
           <TextInput
             value={this.state.email}
-            onChangeText={(text) => { this.setState({ email: text });}}
+            onChangeText={(text) => { this.setState({ email: text }); }}
+            autoCapitalize="none"
+            autoCorrect={false}
             style={styles.textInput}
             editable
             placeholder={'ryugaku-taro@exapmple.com'}
@@ -35,7 +37,10 @@ class Login extends React.Component {
           <Text style={styles.textInputTitle}>パスワード(任意)</Text>
           <TextInput
             value={this.state.password}
-            onChangeText={(text) => { this.setSate({ password: text });}}
+            onChangeText={(text) => { this.setState({ password: text }); }}
+            autoCapitalize="none"
+            autoCorrect={false}
+            secureTextEntry
             style={styles.textInput}
             editable
             placeholder={'0文字以上16以内'}

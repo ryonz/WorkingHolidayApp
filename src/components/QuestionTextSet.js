@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   textInputBox: {
     width: '83%',
     height: 30,
+    marginTop: 5,
     backgroundColor: '#F4F4F4',
     borderWidth: 1,
     borderRadius: 6,

@@ -13,13 +13,13 @@ import Login from './src/screens/Login';
 import Signup from './src/screens/Signup';
 
 const App = createStackNavigator({
-  PersonalInfo3:        { screen: PersonalInfo3 },
   Home:                 { screen: Home },
   Splash:               { screen: SplashScreen },
   Login:                { screen: Login },
   Signup:               { screen: Signup },
   WHApplyNotification1: { screen: WHApplyNotification1 },
   WHApplyNotification2: { screen: WHApplyNotification2 },
+  PersonalInfo3:        { screen: PersonalInfo3 },
   PersonalInfo6:        { screen: PersonalInfo6 },
   WHApply:              { screen: WHApply },
   PersonalInfo1:        { screen: PersonalInfo1 },

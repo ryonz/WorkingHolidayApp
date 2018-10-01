@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
   },
   questionText: {
     width: '83%',
+    fontSize: 13,
   },
   datePicker: {
     width: '41.5%',

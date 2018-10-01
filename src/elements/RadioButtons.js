@@ -1,27 +1,22 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-import {RadioGroup, RadioButton} from 'react-native-flexi-radio-button'
+import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 
-class CheckBoxes extends React.Component {
-  onSelect(index, value) {
-    this.setState({
-      text: `Selected index: ${index} , value: ${value}`
-    })
-  }
+class RadioButtons extends React.Component {
+
 
   render() {
     return (
       <View style={styles.container}>
-        <RadioGroup
-          onSelect={(index, value) => this.onSelect(index, value)}
-        >
-          <RadioButton value={'item1'}>
-            <Text>This is item #1</Text>
+        <RadioGroup>
+
+          <RadioButton value={'yes'}>
+            <Text>はい</Text>
           </RadioButton>
 
-          <RadioButton value={'item1'}>
-            <Text>This is item #2</Text>
+          <RadioButton value={'no'}>
+            <Text>いいえ</Text>
           </RadioButton>
 
         </RadioGroup>
@@ -52,7 +47,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CheckBoxes;
+export default RadioButtons;
 
 
 // <View style={styles.yesButton} />
