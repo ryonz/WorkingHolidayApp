@@ -1,23 +1,16 @@
 import React from 'react';
-import firebase from 'firebase';
 import { StyleSheet, View, Text, TouchableOpacity, TextInput, Image } from 'react-native';
 import Copyrights from '../elements/Copyrights';
 
 class Login extends React.Component {
 
   state = {
-    email: 'user000@example.com',
-    password: 'password',
+    email: '',
+    password: '',
   }
 
   handleLogin() {
-    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then((user) => {
-        console.log('success', user);
-        this.props.navigation.navigate('WHApply', { currentUser: user });
-      }).catch((error) => {
-        console.log(error);
-      });
+    this.props.navigation.navigate('WHApply');
   }
 
   render() {

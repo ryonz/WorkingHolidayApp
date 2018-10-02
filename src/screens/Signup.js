@@ -122,7 +122,7 @@ class Signup extends React.Component {
           style={styles.modalBox}
           visible={this.state.modalMailVisible}
           animationType={'fade'}
-          transparent={true}
+          transparent
         >
           <View style={styles.modal}>
             <Text style={styles.modalTitle}>メールアドレスについて</Text>
