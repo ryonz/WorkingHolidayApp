@@ -10,8 +10,12 @@ import Copyrights from '../elements/Copyrights';
 import Agreement from '../components/Agreement';
 import Logout from '../components/Logout';
 
+
+
 class WHApply extends React.Component {
   render() {
+    const { params } = this.props.navigation.state;
+    console.log(params);
     return (
       <ScrollView style={styles.container}>
         <WHApplyBar navigation={this.props.navigation} />

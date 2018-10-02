@@ -7,12 +7,16 @@ import WHApply from './src/screens/WHApply';
 import PersonalInfo1 from './src/screens/PersonalInfo1';
 import PersonalInfo2 from './src/screens/PersonalInfo2';
 import PersonalInfo3 from './src/screens/PersonalInfo3';
+import PersonalInfo4 from './src/screens/PersonalInfo4';
+import PersonalInfo5 from './src/screens/PersonalInfo5';
 import PersonalInfo6 from './src/screens/PersonalInfo6';
 import WHApplyNotification1 from './src/screens/WHApplyNotification1';
 import WHApplyNotification2 from './src/screens/WHApplyNotification2';
 import SplashScreen from './src/screens/SplashScreen';
 import Login from './src/screens/Login';
 import Signup from './src/screens/Signup';
+
+require('firebase/firestore');
 
 // firebaseの認証用config
 const config = {
@@ -34,6 +38,8 @@ const App = createStackNavigator({
   WHApplyNotification1: { screen: WHApplyNotification1 },
   WHApplyNotification2: { screen: WHApplyNotification2 },
   PersonalInfo3:        { screen: PersonalInfo3 },
+  PersonalInfo4:        { screen: PersonalInfo4 },
+  PersonalInfo5:        { screen: PersonalInfo5 },
   PersonalInfo6:        { screen: PersonalInfo6 },
   WHApply:              { screen: WHApply },
   PersonalInfo1:        { screen: PersonalInfo1 },

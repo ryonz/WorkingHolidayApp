@@ -14,18 +14,17 @@ class Signup extends React.Component {
     modalPasswordVisible: false,
 };
 
-//() => { this.props.navigation.navigate('WHApplyNotification1');
+//
 
   handleSignup() {
     firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((user) => {
         console.log('success', user);
         this.props.navigation.navigate('WHApplyNotification1');
-
       }).catch((error) => {
         console.log(error);
       });
-  }
+}
 
   openMailModal() {
     this.setState({ modalMailVisible: true })

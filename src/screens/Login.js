@@ -6,21 +6,19 @@ import Copyrights from '../elements/Copyrights';
 class Login extends React.Component {
 
   state = {
-    email: '',
-    password: '',
+    email: 'user000@example.com',
+    password: 'password',
   }
 
   handleLogin() {
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then((user) => {
         console.log('success', user);
-        this.props.navigation.navigate('WHApply');
+        this.props.navigation.navigate('WHApply', { currentUser: user });
       }).catch((error) => {
         console.log(error);
       });
   }
-
-//() => { this.props.navigation.navigate('WHApply'); }
 
   render() {
     return (
