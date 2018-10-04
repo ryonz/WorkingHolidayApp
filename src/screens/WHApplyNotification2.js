@@ -38,7 +38,7 @@ class WHApplyNotification2 extends React.Component {
           </Text>
         </View>
 
-        <SubmitButton style={styles.button} onPress={() => { this.props.navigation.navigate('WHApply'); }}>申請へ</SubmitButton>
+        <SubmitButton style={styles.button} onPress={() => { this.props.navigation.navigate('InputEmail'); }}>申請へ</SubmitButton>
 
         <View style={styles.copyrights}>
           <Copyrights />

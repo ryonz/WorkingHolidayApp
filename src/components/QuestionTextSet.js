@@ -5,7 +5,6 @@ import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
 // import BasicInputTextBox from './BasicInputTextBox';
 
 class QuestionTextSet extends React.Component {
-
   render() {
     return (
       <View style={styles.container}>
@@ -20,6 +19,7 @@ class QuestionTextSet extends React.Component {
           <AutoGrowingTextInput
             style={styles.textInput}
             placeholder={this.props.placeholder}
+            onChangeText={this.props.onChangeText}
           />
         </View>
       </View>
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     borderColor: '#707070',
   },
   textInput: {
+    width: '88%',
     fontSize: 13,
     color: '#000000',
     paddingTop: 6,

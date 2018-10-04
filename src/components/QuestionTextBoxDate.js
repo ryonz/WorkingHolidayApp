@@ -1,13 +1,14 @@
 import React from 'react';
-import { StyleSheet, View, Text, Picker } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 
 class QuestionTextBoxDate extends React.Component {
+
   constructor(props) {
     super(props)
     this.state = {
-      date :'',
-    }
+      date : '',
+    };
   }
 
   render() {
@@ -26,7 +27,7 @@ class QuestionTextBoxDate extends React.Component {
           locale="ja"
           placeholder="年月日を入力"
           format="YYYY年MM月DD日"
-          minDate="1984-01-01"
+          minDate="1900-01-01"
           maxDate="2020-01-01"
           confirmBtnText="確定"
           cancelBtnText="閉じる"
@@ -43,12 +44,14 @@ class QuestionTextBoxDate extends React.Component {
             // ... You can check the source to find the other keys.
           }}
           showIcon={false}
-          onDateChange={(date) => { this.setState({ date }); }}
+          onDateChange={(date) => { this.props.onDateChange(date); this.setState({ date }); }}
         />
       </View>
     );
   }
 }
+
+//          onDateChange={(date) => { this.setSate({ date }); }}
 
 
 const styles = StyleSheet.create({

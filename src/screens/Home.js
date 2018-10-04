@@ -5,7 +5,8 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  Modal
+  Modal,
+  AsyncStorage
 } from 'react-native';
 import firebase from 'firebase';
 import Copyrights from '../elements/Copyrights';
@@ -13,12 +14,48 @@ import Copyrights from '../elements/Copyrights';
 
 class Home extends React.Component {
   state = {
-    modal1Visible: true,
+    modal1Visible: false,
     modal2Visible: false,
     modal3Visible: false,
     modal4Visible: false,
 
   };
+
+
+  componentWillMount() {
+    this.checkIfNeedOpenModal();
+    console.log('check first')
+  }
+
+  setModalVisible(visible) {
+    this.setState({ modal1Visible: visible });
+  }
+
+  checkIfNeedOpenModal = async () => {
+    try {
+      const isFirstOpen = await AsyncStorage.getItem('IS_FIRST_OPEN');
+      if (!isFirstOpen || isFirstOpen !== 'true') {
+        console.log('Is first open');
+        this.setModalVisible(true);
+      } else {
+        console.log('Is not First Open')
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  saveModalOpen = async () => {
+    try {
+      await AsyncStorage.setItem('IS_FIRST_OPEN', 'true');
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  onModalShow = () => {
+    this.saveModalOpen();
+  }
 
   nextModal(num) {
     if (num === 1) {
@@ -35,15 +72,18 @@ class Home extends React.Component {
     }
   }
 
+
   handleOnpress() {
     firebase.auth().signInAnonymously()
       .then(() => {
         console.log('Anonymous Login Complete!');
-        this.props.navigation.navigate('WHApply');
+        this.props.navigation.navigate('WHApplyNotification1');
       }).catch((error) => {
         console.log(error);
       });
   }
+
+
 
   render() {
     return (
@@ -95,8 +135,9 @@ class Home extends React.Component {
 
         <Modal
           visible={this.state.modal1Visible}
-          animationType={'fade'}
+          animationType={'none'}
           transparent
+          onShow={this.onModalShow}
         >
           <View style={styles.modal}>
             <View style={styles.modalTitleBox}>
@@ -121,7 +162,7 @@ class Home extends React.Component {
 
         <Modal
           visible={this.state.modal2Visible}
-          animationType={'fade'}
+          animationType={'none'}
           transparent
         >
           <View style={styles.modal}>
@@ -150,7 +191,7 @@ class Home extends React.Component {
 
         <Modal
           visible={this.state.modal3Visible}
-          animationType={'fade'}
+          animationType={'none'}
           transparent
         >
           <View style={styles.modal}>
@@ -178,7 +219,7 @@ class Home extends React.Component {
 
         <Modal
           visible={this.state.modal4Visible}
-          animationType={'fade'}
+          animationType={'none'}
           transparent
         >
           <View style={styles.modal}>
