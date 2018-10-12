@@ -21,11 +21,11 @@ class Home extends React.Component {
 
   };
 
-
-  componentWillMount() {
+  componentDidMount() {
     this.checkIfNeedOpenModal();
     console.log('check first')
   }
+
 
   setModalVisible(visible) {
     this.setState({ modal1Visible: visible });
@@ -57,6 +57,7 @@ class Home extends React.Component {
     this.saveModalOpen();
   }
 
+
   nextModal(num) {
     if (num === 1) {
       this.setState({ modal1Visible: false });
@@ -74,16 +75,18 @@ class Home extends React.Component {
 
 
   handleOnpress() {
-    firebase.auth().signInAnonymously()
-      .then(() => {
-        console.log('Anonymous Login Complete!');
-        this.props.navigation.navigate('WHApplyNotification1');
-      }).catch((error) => {
-        console.log(error);
-      });
+    this.props.navigation.navigate('WHApplyNotification1');
   }
 
-
+  // handleOnpress() {
+  //   firebase.auth().signInAnonymously()
+  //     .then(() => {
+  //       console.log('Anonymous Login Complete!');
+  //       this.props.navigation.navigate('WHApplyNotification1');
+  //     }).catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
 
   render() {
     return (
@@ -120,7 +123,7 @@ class Home extends React.Component {
         </View>
 
         <View style={styles.buttonBox}>
-          <TouchableOpacity style={styles.linkOfHelp}>
+          <TouchableOpacity style={styles.linkOfHelp} onPress={() => { this.props.navigation.navigate('Help'); }}>
             <Text>ヘルプ</Text>
           </TouchableOpacity>
         </View>
@@ -137,7 +140,7 @@ class Home extends React.Component {
           visible={this.state.modal1Visible}
           animationType={'none'}
           transparent
-          onShow={this.onModalShow}
+
         >
           <View style={styles.modal}>
             <View style={styles.modalTitleBox}>
@@ -221,6 +224,7 @@ class Home extends React.Component {
           visible={this.state.modal4Visible}
           animationType={'none'}
           transparent
+          onShow={this.onModalShow}
         >
           <View style={styles.modal}>
             <View style={styles.modalTitleBox}>

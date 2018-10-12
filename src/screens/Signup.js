@@ -1,46 +1,51 @@
 import React from 'react';
 import firebase from 'firebase';
-import { StyleSheet, View, Text, TouchableOpacity, TextInput, Image, Modal } from 'react-native';
+import { StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  Image,
+  Modal,
+  AsyncStorage,
+} from 'react-native';
 import Copyrights from '../elements/Copyrights';
 import RegulationText from '../elements/RegulationText';
 
 
 class Signup extends React.Component {
-
   state = {
     email: '',
-    password: '',
+    password: 'password',
     modalMailVisible: false,
     modalPasswordVisible: false,
 };
-
-//
 
   handleSignup() {
     firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((user) => {
         console.log('success', user);
-        this.props.navigation.navigate('WHApplyNotification1');
+        this.props.navigation.navigate('WHApply');
       }).catch((error) => {
         console.log(error);
       });
-}
+  }
 
   openMailModal() {
     this.setState({ modalMailVisible: true })
-}
+  }
 
   closeMailModal() {
     this.setState({ modalMailVisible: false })
-}
+  }
 
   openPasswordModal() {
     this.setState({ modalPasswordVisible: true })
-}
+  }
 
   closePasswordModal() {
     this.setState({ modalPasswordVisible: false })
-}
+  }
 
 
   render() {
@@ -72,7 +77,7 @@ class Signup extends React.Component {
           </Text>
           <TextInput
             value={this.state.email}
-            onChangeText={(text) => { this.setState({ email: text });}}
+            onChangeText={(text) => { this.setState({ email: text }); }}
             autoCapitalize="none"
             autoCorrect={false}
             style={styles.textInput}
@@ -96,7 +101,7 @@ class Signup extends React.Component {
           </Text>
           <TextInput
             value={this.state.password}
-            onChangeText={(text) => { this.setState({ password: text });}}
+            onChangeText={(text) => { this.setState({ password: text }); }}
             autoCapitalize="none"
             autoCorrect={false}
             secureTextEntry

@@ -7,14 +7,20 @@ import RegulationText from '../elements/RegulationText';
 
 class InputEmail extends React.Component {
   state = {
-    email: '',
+    email: 'userunKnow@example.com',
     modalMailVisible: false,
 };
 
   handlePress() {
     if (this.state.email === '') {
+      alert('メールアドレスを入力してください。')
       console.log('error');
     } else {
+      const { currentUser } = firebase.auth();
+      const db = firebase.firestore();
+      db.collection(`users/${currentUser.uid}/email`).add({
+        email: this.state.email,
+      })
       this.props.navigation.navigate('WHApply');
     }
   }
@@ -36,7 +42,8 @@ class InputEmail extends React.Component {
           <TouchableOpacity
             style={styles.backbutton}
             onPress={() => { this.props.navigation.goBack(); }}
-            underlayColor="#F0F0F0">
+            underlayColor="#F0F0F0"
+          >
             <Image style={styles.backbuttonImage} source={require('../../assets/images/left-arrow.png')} />
           </TouchableOpacity>
         </View>
@@ -60,8 +67,9 @@ class InputEmail extends React.Component {
             autoCapitalize="none"
             autoCorrect={false}
             style={styles.textInput}
-            editable
             placeholder={'ryugaku-taro@exapmple.com'}
+            autoCorrect={false}
+            keyboardType={'email-address'}
           />
         </View>
 

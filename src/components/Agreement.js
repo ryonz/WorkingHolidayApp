@@ -40,7 +40,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 11,
     borderWidth: 1,
-    width: '90%'
+    width: '90%',
+    paddingLeft: 18,
   },
   agreementTitle: {
     fontWeight: 'bold',

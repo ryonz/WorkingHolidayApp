@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ScrollView, View } from 'react-native';
+import { StyleSheet, ScrollView, AsyncStorage } from 'react-native';
 
 import InfoHeader from '../components/InfoHeader';
 import Notes from '../elements/Notes';
@@ -9,14 +9,40 @@ import SubmitButton from '../components/SubmitButton';
 import Copyrights from '../elements/Copyrights';
 
 class PersonalInfo2 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      addressOfCnad: '',
+    };
+  }
+
+  componentDidMount() {
+    AsyncStorage.getItem('addressOfCnad')
+      .then((text) => {
+        if (text !== null) {
+          this.setState({ addressOfCnad: text });
+        }
+      });
+  }
+
+  handleOnpress() {
+    this.props.navigation.goBack();
+  }
 
   render() {
     return (
       <ScrollView style={styles.container}>
         <InfoHeader navigation={this.props.navigation}>申請者情報２</InfoHeader>
         <Notes />
-
-        <QuestionTextSet>現住所(カナダにいらっしゃる方はカナダのご住所で)</QuestionTextSet>
+        <QuestionTextSet
+          onChangeText={(text) => {
+            AsyncStorage.setItem('addressOfCnad', text);
+            this.setState({ addressOfCnad: text });
+          }}
+          value={this.state.addressOfCnad}
+        >
+          現住所(カナダにいらっしゃる方はカナダのご住所で)
+        </QuestionTextSet>
         <QuestionTextSet>現住所ふりがな{'\n'}(カナダのご住所をご回答頂いた方は不要です)</QuestionTextSet>
         <QuestionTextSet>現住所の郵便番号</QuestionTextSet>
         <QuestionTextBoxDate>現住所にご自身が住み始めた日</QuestionTextBoxDate>
@@ -27,7 +53,12 @@ class PersonalInfo2 extends React.Component {
         <QuestionTextSet>携帯番号（もしくはご自宅）の番号</QuestionTextSet>
         <QuestionTextSet>FAX番号（もしあれば）</QuestionTextSet>
 
-        <SubmitButton style={styles.saveButton}>保存</SubmitButton>
+        <SubmitButton
+          style={styles.saveButton}
+          onPress={this.handleOnpress.bind(this)}
+        >
+          入力完了
+        </SubmitButton>
 
         <Copyrights />
 

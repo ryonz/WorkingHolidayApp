@@ -20,6 +20,8 @@ class QuestionTextSet extends React.Component {
             style={styles.textInput}
             placeholder={this.props.placeholder}
             onChangeText={this.props.onChangeText}
+            value={this.props.value}
+            editable={this.props.editable}
           />
         </View>
       </View>

@@ -49,7 +49,7 @@ class PersonalInfo4 extends React.Component {
           <QuestionTextBoxDate>から</QuestionTextBoxDate>
         </View>
 
-        <SubmitButton style={styles.saveButton}>保存</SubmitButton>
+        <SubmitButton style={styles.saveButton}>入力完了</SubmitButton>
 
 
         <Copyrights />

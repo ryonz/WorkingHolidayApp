@@ -16,6 +16,7 @@ import InputEmail from './src/screens/InputEmail';
 import SplashScreen from './src/screens/SplashScreen';
 import Login from './src/screens/Login';
 import Signup from './src/screens/Signup';
+import Help from './src/screens/Help';
 
 require('firebase/firestore');
 
@@ -32,6 +33,7 @@ firebase.initializeApp(config);
 
 
 const App = createStackNavigator({
+
   Home:                 { screen: Home },
   Splash:               { screen: SplashScreen },
   Login:                { screen: Login },
@@ -46,6 +48,8 @@ const App = createStackNavigator({
   PersonalInfo5:        { screen: PersonalInfo5 },
   PersonalInfo6:        { screen: PersonalInfo6 },
   WHApply:              { screen: WHApply },
+  Help:                 { screen: Help },
+
 
 }, {
   headerMode: 'none',

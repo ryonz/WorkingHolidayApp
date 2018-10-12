@@ -4,12 +4,12 @@ import DatePicker from 'react-native-datepicker';
 
 class QuestionTextBoxDate extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      date : '',
-    };
-  }
+  // constructor(props) {
+  //   super(props)
+  //   this.state = {
+  //     date : '',
+  //   };
+  // }
 
   render() {
     return (
@@ -22,7 +22,7 @@ class QuestionTextBoxDate extends React.Component {
 
         <DatePicker
           style={styles.datePicker}
-          date={this.state.date}
+          date={this.props.value}
           mode="date"
           locale="ja"
           placeholder="年月日を入力"
@@ -43,15 +43,17 @@ class QuestionTextBoxDate extends React.Component {
             }
             // ... You can check the source to find the other keys.
           }}
+          onDateChange={this.props.onDateChange}
           showIcon={false}
-          onDateChange={(date) => { this.props.onDateChange(date); this.setState({ date }); }}
+          value={this.props.value}
         />
       </View>
     );
   }
 }
+//    date={this.state.date}
+//    onDateChange={(date) => { this.props.onDateChange(date); this.setState({ date }); }}
 
-//          onDateChange={(date) => { this.setSate({ date }); }}
 
 
 const styles = StyleSheet.create({

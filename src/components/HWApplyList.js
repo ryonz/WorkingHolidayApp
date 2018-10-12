@@ -6,6 +6,7 @@ import fontAwesome from '../../assets/fonts/fa-solid-900.ttf';
 class HWApplyList extends React.Component {
   state = {
     fontLoaded: false,
+    stateOfEdit: '未入力',
   }
 
   async componentWillMount() {
@@ -16,12 +17,14 @@ class HWApplyList extends React.Component {
     this.setState({ fontLoaded: true });
   }
 
+
+
   render() {
     return (
 
       <View style={styles.container}>
 
-        <TouchableOpacity onPress={() => { this.props.navigation.navigate('PersonalInfo1'); }} >
+        <TouchableOpacity onPress={() => { this.props.navigation.navigate('PersonalInfo1'); }}>
           <View style={styles.listBox}>
             <Text style={styles.listBoxText}>
                 申請者情報１
@@ -48,7 +51,7 @@ class HWApplyList extends React.Component {
                 申請者情報２
             </Text>
             <View style={styles.inputBotton}>
-              <Text style={styles.inputBottonText}>未入力</Text>
+              <Text style={styles.inputBottonText}>{this.state.stateOfEdit}</Text>
             </View>
 
             <View style={{ flex: 1, justifyContent: 'center' }}>

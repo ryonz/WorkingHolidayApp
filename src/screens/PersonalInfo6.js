@@ -107,7 +107,7 @@ class PersonalInfo6 extends React.Component {
           />
         </View>
 
-        <SubmitButton style={styles.saveButton} onPress={() => {}}>保存</SubmitButton>
+        <SubmitButton style={styles.saveButton} onPress={() => {}}>入力完了</SubmitButton>
 
         <Copyrights />
       </ScrollView>

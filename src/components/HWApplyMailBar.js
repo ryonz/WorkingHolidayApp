@@ -1,12 +1,25 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import firebase from 'firebase';
 
 class HWApplyMailBar extends React.Component {
+  state = {
+    email: '',
+  }
+
+  componentWillMount() {
+    const { currentUser } = firebase.auth();
+    const userEmail = currentUser.email;
+    if (currentUser) {
+      this.setState({ email: userEmail });
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.mailBar}>
-          <Text style={styles.mailBarText}>登録メールアドレス:</Text>
+          <Text style={styles.mailBarText}>登録メールアドレス:{this.state.email}</Text>
         </View>
       </View>
 

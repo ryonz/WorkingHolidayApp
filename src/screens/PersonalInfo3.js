@@ -47,7 +47,7 @@ class PersonalInfo3 extends React.Component {
 
         <QuestionTextSet placeholder={'例：バンクーバー,ビクトリア,トロントなど'}>カナダのどの州に滞在する予定ですか</QuestionTextSet>
 
-        <SubmitButton style={styles.saveButton}>保存</SubmitButton>
+        <SubmitButton style={styles.saveButton}>入力完了</SubmitButton>
 
 
         <Copyrights />
