@@ -20,7 +20,7 @@ class WHApply extends React.Component {
         <HWApplyList navigation={this.props.navigation} />
         <Agreement />
         <SubmitButton>同意して送信</SubmitButton>
-        <Logout />
+        <Logout navigation={this.props.navigation} />
         <Copyrights />
       </ScrollView>
     );

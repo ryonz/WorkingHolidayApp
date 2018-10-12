@@ -15,6 +15,7 @@ class Login extends React.Component {
         this.props.navigation.navigate('WHApply');
       })
       .catch((error) => {
+        alert('メールアドレスまたはパスワードが違います。');
         console.log(error);
       })
   }
