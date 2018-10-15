@@ -17,6 +17,7 @@ import SplashScreen from './src/screens/SplashScreen';
 import Login from './src/screens/Login';
 import Signup from './src/screens/Signup';
 import Help from './src/screens/Help';
+import UpdatePassword from './src/screens/UpdatePassword';
 
 require('firebase/firestore');
 
@@ -27,16 +28,16 @@ const config = {
   databaseURL: ENV.FIREBASE_DATABASE_URL,
   projectId: ENV.FIREBASE_PROJECT_ID,
   storageBucket: ENV.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: ENV.FIREBASE_MESSAGING_SENDER_ID
+  messagingSenderId: ENV.FIREBASE_MESSAGING_SENDER_ID,
 };
 firebase.initializeApp(config);
 
 
 const App = createStackNavigator({
-
+  UpdatePassword:       { screen: UpdatePassword },
+  Login:                { screen: Login },
   Home:                 { screen: Home },
   Splash:               { screen: SplashScreen },
-  Login:                { screen: Login },
   Signup:               { screen: Signup },
   WHApplyNotification1: { screen: WHApplyNotification1 },
   WHApplyNotification2: { screen: WHApplyNotification2 },

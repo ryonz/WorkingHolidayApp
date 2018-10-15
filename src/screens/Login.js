@@ -1,5 +1,12 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, TextInput, Image } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  Image,
+} from 'react-native';
 import firebase from 'firebase';
 import Copyrights from '../elements/Copyrights';
 
@@ -45,7 +52,7 @@ class Login extends React.Component {
         </View>
 
         <View style={styles.textInputBox}>
-          <Text style={styles.textInputTitle}>パスワード(任意)</Text>
+          <Text style={styles.textInputTitle}>パスワード　　</Text>
           <TextInput
             value={this.state.password}
             onChangeText={(text) => { this.setState({ password: text }); }}
@@ -58,7 +65,9 @@ class Login extends React.Component {
           />
         </View>
 
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => { this.props.navigation.navigate('UpdatePassword'); }}
+        >
           <Text style={styles.forgetPasswordText}>パスワードを忘れた場合</Text>
         </TouchableOpacity>
 
@@ -80,6 +89,7 @@ class Login extends React.Component {
         <View style={styles.copyrights}>
           <Copyrights />
         </View>
+
 
       </View>
     );
@@ -184,6 +194,8 @@ const styles = StyleSheet.create({
     bottom: 0,
 
   },
+
+
 });
 
 export default Login;

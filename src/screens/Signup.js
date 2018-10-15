@@ -7,7 +7,6 @@ import { StyleSheet,
   TextInput,
   Image,
   Modal,
-  AsyncStorage,
 } from 'react-native';
 import Copyrights from '../elements/Copyrights';
 import RegulationText from '../elements/RegulationText';
@@ -25,11 +24,26 @@ class Signup extends React.Component {
     firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((user) => {
         console.log('success', user);
+        this.handleVerifyEmailAddress();
         this.props.navigation.navigate('WHApply');
+
       }).catch((error) => {
+        alert('既に使用されているメールアドレスです。別のメールアドレスを入力してください。')
         console.log(error);
       });
   }
+
+  handleVerifyEmailAddress() {
+    const { currentUser } = firebase.auth();
+    currentUser.sendEmailVerification()
+      .then(() => {
+        console.log('succes send Vertification Email');
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
 
   openMailModal() {
     this.setState({ modalMailVisible: true })
@@ -88,7 +102,7 @@ class Signup extends React.Component {
 
         <View style={styles.textInputBox}>
           <Text style={styles.textInputTitle}>
-            パスワード(任意)
+            パスワード
             <TouchableOpacity
               style={styles.questionMarkBox}
               onPress={() => { this.openPasswordModal(); }}
