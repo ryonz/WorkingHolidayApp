@@ -21,18 +21,18 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#F0F0F0',
     width: '100%',
-    height: 58,
+    height: 96,
     alignItems: 'center',
   },
   headerTitle: {
     fontSize: 20,
     fontWeight: '900',
     color: '#626262',
-    paddingTop: 22,
+    paddingTop: 50,
   },
   backbutton: {
     position: 'absolute',
-    top: 25,
+    top: 49,
     left: 18,
     width: 20,
     height: 20,
