@@ -18,6 +18,7 @@ import Login from './src/screens/Login';
 import Signup from './src/screens/Signup';
 import Help from './src/screens/Help';
 import UpdatePassword from './src/screens/UpdatePassword';
+import DeleteAll from './src/screens/DeleteAll';
 
 require('firebase/firestore');
 
@@ -50,6 +51,8 @@ const App = createStackNavigator({
   WHApply:              { screen: WHApply },
   UpdatePassword:       { screen: UpdatePassword },
   Help:                 { screen: Help },
+  DeleteAll:            { screen: DeleteAll },
+
 
 
 }, {

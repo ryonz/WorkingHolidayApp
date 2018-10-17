@@ -165,7 +165,6 @@ class Signup extends React.Component {
         </Modal>
 
         <Modal
-          style={styles.modalBox}
           visible={this.state.modalPasswordVisible}
           animationType={'fade'}
           transparent={true}

@@ -73,20 +73,21 @@ class Home extends React.Component {
     }
   }
 
+  // handleOnpress() {
+  //   this.props.navigation.navigate('WHApplyNotification1');
+  //
+  // }
 
   handleOnpress() {
-    this.props.navigation.navigate('WHApplyNotification1');
+    const user = firebase.auth().currentUser;
+    if (user !== null) {
+      console.log(user.uid);
+      this.props.navigation.navigate('WHApply');
+    } else {
+      this.props.navigation.navigate('WHApplyNotification1');
+      console.log('No Login');
+    }
   }
-
-  // handleOnpress() {
-  //   firebase.auth().signInAnonymously()
-  //     .then(() => {
-  //       console.log('Anonymous Login Complete!');
-  //       this.props.navigation.navigate('WHApplyNotification1');
-  //     }).catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
 
   render() {
     return (
@@ -116,14 +117,20 @@ class Home extends React.Component {
             underlayColor="#F0F0F0"
           >
             <View>
-              <Image style={styles.applyImage} source={require('../../assets/images/new-file.png')} />
+              <Image
+                style={styles.applyImage}
+                source={require('../../assets/images/new-file.png')}
+              />
               <Text style={styles.buttonText}>ワーホリ申請開始</Text>
             </View>
           </TouchableOpacity>
         </View>
 
         <View style={styles.buttonBox}>
-          <TouchableOpacity style={styles.linkOfHelp} onPress={() => { this.props.navigation.navigate('Help'); }}>
+          <TouchableOpacity
+            style={styles.linkOfHelp}
+            onPress={() => { this.props.navigation.navigate('Help'); }}
+          >
             <Text>ヘルプ</Text>
           </TouchableOpacity>
         </View>

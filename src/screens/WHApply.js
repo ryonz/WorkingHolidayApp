@@ -14,7 +14,11 @@ class WHApply extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <WHApplyBar navigation={this.props.navigation}>ワーキングホリデー申請</WHApplyBar>
+        <WHApplyBar
+          navigation={() => { this.props.navigation.navigate('Home'); }}
+        >
+          ワーキングホリデー申請
+        </WHApplyBar>
         <WHApplyIndexBar />
         <HWApplyMailBar />
         <HWApplyList navigation={this.props.navigation} />

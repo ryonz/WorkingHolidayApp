@@ -18,7 +18,6 @@ class HWApplyList extends React.Component {
   }
 
 
-
   render() {
     return (
 
@@ -87,7 +86,7 @@ class HWApplyList extends React.Component {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => { this.props.navigation.navigate('PersonalInfo4'); }}>
           <View style={styles.listBox}>
             <Text style={styles.listBoxText}>
                 申請者情報４
@@ -108,7 +107,7 @@ class HWApplyList extends React.Component {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => { this.props.navigation.navigate('PersonalInfo5'); }}>
           <View style={styles.listBox}>
             <Text style={styles.listBoxText}>
                 申請者情報５

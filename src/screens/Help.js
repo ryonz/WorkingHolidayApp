@@ -6,7 +6,7 @@ class Help extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <WHApplyBar navigation={this.props.navigation}>ヘルプ</WHApplyBar>
+        <WHApplyBar navigation={() => { this.props.navigation.goBack(); }}>ヘルプ</WHApplyBar>
         <TouchableOpacity style={styles.contentBox}>
           <Text>このアプリについて</Text>
         </TouchableOpacity>
@@ -25,6 +25,13 @@ class Help extends React.Component {
 
         <TouchableOpacity style={styles.contentBox}>
           <Text>登録情報の変更・修正について</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.contentBox}
+          onPress={() => { this.props.navigation.navigate('DeleteAll'); }}
+        >
+          <Text>アカウントの削除について</Text>
         </TouchableOpacity>
 
         <View style={styles.contentBox}>

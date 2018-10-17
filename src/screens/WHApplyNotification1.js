@@ -12,7 +12,11 @@ class WHApplyNotification1 extends React.Component {
 
       <View style={styles.container}>
 
-        <WHApplyBar navigation={this.props.navigation} />
+        <WHApplyBar
+          navigation={() => { this.props.navigation.goBack(); }}
+        >
+          注意事項
+        </WHApplyBar>
 
         <View style={styles.title}>
           <Text style={styles.titleText}>申請の前に</Text>

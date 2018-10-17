@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from 'firebase';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import Copyrights from '../elements/Copyrights';
+import SubmitButton from '../components/SubmitButton';
 
 class UpdatePassword extends React.Component {
   onPressSubmitEmail() {
@@ -46,14 +47,14 @@ class UpdatePassword extends React.Component {
           <Text style={styles.descriptionText}>パスワード再設定用のメールを送る</Text>
         </View>
 
-        <TouchableOpacity
-          style={styles.submittButton}
+        <SubmitButton
+          style={styles.submitButton}
           onPress={this.onPressSubmitEmail}
         >
           <View>
-            <Text style={styles.submittButtonText}>メールを送信</Text>
+            <Text style={styles.submitButtonText}>メールを送信</Text>
           </View>
-        </TouchableOpacity>
+        </SubmitButton>
 
         <View style={styles.copyrights}>
           <Copyrights />
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 30,
   },
-  submittButton: {
+  submitButton: {
     position: 'absolute',
     bottom: 100,
     alignSelf: 'center',
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
     borderColor: '#707070',
     borderRadius: 23,
   },
-  submittButtonText: {
+  submitButtonText: {
     alignSelf: 'center',
     paddingTop: 15,
     color: '#626262',

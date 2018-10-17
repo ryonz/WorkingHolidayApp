@@ -5,17 +5,18 @@ import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 
 class RadioButtons extends React.Component {
 
-
   render() {
     return (
       <View style={styles.container}>
-        <RadioGroup>
+        <RadioGroup
+          onSelect={(index, value) => { this.props.onSelect(index, value); }}
+        >
 
-          <RadioButton value={'yes'}>
+          <RadioButton value={'Yes'}>
             <Text>はい</Text>
           </RadioButton>
 
-          <RadioButton value={'no'}>
+          <RadioButton value={'No'}>
             <Text>いいえ</Text>
           </RadioButton>
 
