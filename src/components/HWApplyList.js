@@ -317,6 +317,50 @@ class HWApplyList extends React.Component {
             </View>
           </View>
         </TouchableOpacity>
+
+        <TouchableOpacity>
+          <View style={styles.listBox}>
+            <Text style={styles.listBoxText}>
+              申請者の申告
+            </Text>
+            <View style={styles.inputBotton}>
+              <Text style={styles.inputBottonText}>未入力</Text>
+            </View>
+
+            <View style={{ flex: 1, justifyContent: 'center' }}>
+              {
+                this.state.fontLoaded ? (
+                  <View style={styles.navigationButton}>
+                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                  </View>
+                ) : null
+             }
+            </View>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <View style={styles.listBox}>
+            <Text style={styles.listBoxText}>
+              同意書
+            </Text>
+            <View style={styles.inputBotton}>
+              <Text style={styles.inputBottonText}>未入力</Text>
+            </View>
+
+            <View style={{ flex: 1, justifyContent: 'center' }}>
+              {
+                this.state.fontLoaded ? (
+                  <View style={styles.navigationButton}>
+                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                  </View>
+                ) : null
+             }
+            </View>
+          </View>
+        </TouchableOpacity>
+
+
       </View>
     );
   }

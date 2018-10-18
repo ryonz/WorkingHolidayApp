@@ -6,14 +6,63 @@ import {
   TouchableOpacity,
   TextInput,
   Image,
+  Modal,
+  AsyncStorage,
 } from 'react-native';
 import firebase from 'firebase';
 import Copyrights from '../elements/Copyrights';
+import WHApplyNotification1 from '../components/WHApplyNotification1';
+import WHApplyNotification2 from '../components/WHApplyNotification2';
 
 class Login extends React.Component {
   state = {
     email: 'user0@example.com',
     password: 'password',
+    notificationModal1: false,
+    notificationModal2: false,
+  }
+
+  componentDidMount() {
+    this.checkIfNeedOpenModal();
+  }
+
+  setModalVisible(visible) {
+    this.setState({ notificationModal1: visible })
+  }
+
+  checkIfNeedOpenModal = async () => {
+    try {
+      const isFirstOpen = await AsyncStorage.getItem('IS_FIRST_OPEN');
+      if (!isFirstOpen || isFirstOpen !== 'true') {
+        console.log('Is first open');
+        this.setModalVisible(true)
+      } else {
+        console.log('Is not First Open')
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  saveModalOpen = async () => {
+    try {
+      await AsyncStorage.setItem('IS_FIRST_OPEN', 'true');
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  onModalShow = () => {
+    this.saveModalOpen();
+  }
+
+  nextModal(num) {
+    if (num === 0) {
+      this.setState({ notificationModal1: false });
+      this.setState({ notificationModal2: true });
+    } else if (num === 1) {
+      this.setState({ notificationModal2: false });
+    }
   }
 
   handleLogin() {
@@ -48,6 +97,7 @@ class Login extends React.Component {
             style={styles.textInput}
             editable
             placeholder={'ryugaku-taro@exapmple.com'}
+            textContentType={'emailAddress'}
           />
         </View>
 
@@ -61,7 +111,8 @@ class Login extends React.Component {
             secureTextEntry
             style={styles.textInput}
             editable
-            placeholder={'0文字以上16以内'}
+            placeholder={'8文字以上16以内'}
+            textContentType={'password'}
           />
         </View>
 
@@ -80,7 +131,7 @@ class Login extends React.Component {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => { this.props.navigation.navigate('Signup'); }}>
+        <TouchableOpacity onPress={() => { this.props.navigation.navigate('Birthday'); }}>
           <Text style={styles.forgetPasswordText}>登録がまだの方はこちら</Text>
         </TouchableOpacity>
 
@@ -90,6 +141,20 @@ class Login extends React.Component {
           <Copyrights />
         </View>
 
+        <Modal
+          visible={this.state.notificationModal1}
+          animationType={'none'}
+        >
+          <WHApplyNotification1 onPress={() => { this.nextModal(0); }} />
+        </Modal>
+
+        <Modal
+          visible={this.state.notificationModal2}
+          animationType={'none'}
+          onShow={this.onModalShow}
+        >
+          <WHApplyNotification2 onPress={() => { this.nextModal(1); }} />
+        </Modal>
 
       </View>
     );

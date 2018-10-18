@@ -6,7 +6,7 @@ import {
   Image,
   TouchableOpacity,
   Modal,
-  AsyncStorage
+  AsyncStorage,
 } from 'react-native';
 import firebase from 'firebase';
 import Copyrights from '../elements/Copyrights';
@@ -73,18 +73,13 @@ class Home extends React.Component {
     }
   }
 
-  // handleOnpress() {
-  //   this.props.navigation.navigate('WHApplyNotification1');
-  //
-  // }
-
   handleOnpress() {
     const user = firebase.auth().currentUser;
     if (user !== null) {
       console.log(user.uid);
       this.props.navigation.navigate('WHApply');
     } else {
-      this.props.navigation.navigate('WHApplyNotification1');
+      this.props.navigation.navigate('Login');
       console.log('No Login');
     }
   }

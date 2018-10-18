@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 
-import WHApplyBar from '../components/WHApplyBar';
-import SubmitButton from '../components/SubmitButton';
+import WHApplyBar from './WHApplyBar';
+import SubmitButton from './SubmitButton';
 import Copyrights from '../elements/Copyrights';
 
 
@@ -11,9 +11,7 @@ class WHApplyNotification2 extends React.Component {
     return (
 
       <ScrollView style={styles.container}>
-        <WHApplyBar
-          navigation={() => { this.props.navigation.goBack(); }}
-        >
+        <WHApplyBar>
           注意事項
         </WHApplyBar>
         <View style={styles.title}>
@@ -42,7 +40,7 @@ class WHApplyNotification2 extends React.Component {
           </Text>
         </View>
 
-        <SubmitButton style={styles.button} onPress={() => { this.props.navigation.navigate('Login'); }}>申請へ</SubmitButton>
+        <SubmitButton style={styles.button} onPress={() => { this.props.onPress(); }}>申請へ</SubmitButton>
 
         <View style={styles.copyrights}>
           <Copyrights />

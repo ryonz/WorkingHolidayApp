@@ -2,35 +2,55 @@ import React from 'react';
 import firebase from 'firebase';
 import { StyleSheet,
   View,
+  ScrollView,
   Text,
   TouchableOpacity,
   TextInput,
   Image,
   Modal,
+  Alert,
+  AsyncStorage,
 } from 'react-native';
+import { BlurView } from 'expo';
 import Copyrights from '../elements/Copyrights';
 import RegulationText from '../elements/RegulationText';
 
 
 class Signup extends React.Component {
-  state = {
-    email: '',
-    password: 'password',
-    modalMailVisible: false,
-    modalPasswordVisible: false,
-};
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: null,
+      password: null,
+      modalMailVisible: false,
+      modalPasswordVisible: false,
+    };
+  }
+
+  componentWillMount() {
+    AsyncStorage.getItem('birthday')
+      .then((num) => {
+        this.setState({ password: num });
+      });
+  }
 
   handleSignup() {
-    firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then((user) => {
-        console.log('success', user);
-        this.handleVerifyEmailAddress();
-        this.props.navigation.navigate('WHApply');
-
-      }).catch((error) => {
-        alert('既に使用されているメールアドレスです。別のメールアドレスを入力してください。')
-        console.log(error);
-      });
+    if (this.state.email !== null && this.state.password !== null) {
+      firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+        .then((user) => {
+          console.log('success', user);
+          this.handleVerifyEmailAddress();
+          this.props.navigation.navigate('WHApply');
+        }).catch((error) => {
+          console.log(error);
+        });
+    } else if (this.state.email === null && this.state.password === null) {
+      Alert.alert('メールアドレスとパスワードを入力してください');
+    } else if (this.state.email !== null && this.state.password === null) {
+      Alert.alert('パスワードを入力してください。');
+    } else if (this.state.email === null && this.state.password !== null) {
+      Alert.alert('メールアドレスを入力してください。');
+    }
   }
 
   handleVerifyEmailAddress() {
@@ -64,16 +84,24 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
 
         <View style={styles.headerHWApply}>
-          <Text style={styles.headerText}>登録</Text>
+          <Text style={styles.headerText}>アカウント登録２</Text>
           <TouchableOpacity
             style={styles.backbutton}
             onPress={() => { this.props.navigation.goBack(); }}
-            underlayColor="#F0F0F0">
+            underlayColor="#F0F0F0"
+          >
             <Image style={styles.backbuttonImage} source={require('../../assets/images/left-arrow.png')} />
           </TouchableOpacity>
+        </View>
+
+        <View style={styles.notesBox}>
+          <Text style={styles.notesText}>
+            初期パスワードは生年月日です。変更する場合はアカウント登録後［パスワード変更］より
+            変更してください。
+          </Text>
         </View>
 
         <View style={styles.textInputBox}>
@@ -90,18 +118,19 @@ class Signup extends React.Component {
             </TouchableOpacity>
           </Text>
           <TextInput
-            value={this.state.email}
             onChangeText={(text) => { this.setState({ email: text }); }}
             autoCapitalize="none"
             autoCorrect={false}
             style={styles.textInput}
+            value={this.state.email}
             editable
             placeholder={'ryugaku-taro@exapmple.com'}
+            textContentType={'emailAddress'}
           />
         </View>
 
         <View style={styles.textInputBox}>
-          <Text style={styles.textInputTitle}>
+          <Text style={styles.textInputTitlePassword}>
             パスワード
             <TouchableOpacity
               style={styles.questionMarkBox}
@@ -121,13 +150,17 @@ class Signup extends React.Component {
             secureTextEntry
             style={styles.textInput}
             editable
-            placeholder={'0文字以上16以内'}
+            placeholder={'8文字以上16以内'}
+            textContentType={'password'}
           />
         </View>
 
         <RegulationText />
 
-        <TouchableOpacity style={styles.loginButtonBox} onPress={this.handleSignup.bind(this)}>
+        <TouchableOpacity
+          style={styles.loginButtonBox}
+          onPress={this.handleSignup.bind(this)}
+        >
           <View style={styles.loginButton}>
             <Text style={styles.loginButtonText}>同意して登録</Text>
           </View>
@@ -143,54 +176,59 @@ class Signup extends React.Component {
           animationType={'fade'}
           transparent
         >
-          <View style={styles.modal}>
-            <Text style={styles.modalTitle}>メールアドレスについて</Text>
-            <View style={styles.modalTitleUnderbar} />
-            <Text style={styles.modalText}>
-              ＊ワーキングホリデーの申請に際しまして、
-              緊急に追加資料のご提示や追加でご質問を
-              させていただくことがあります。
-              必ず連絡が取れるメールアドレスをご登録ください。
-              また、緊急のメールもございます。メールを受信され
-              た際は速やかに内容を確認し、ご返信して頂きますよ
-              うご協力をお願いいたします。
-            </Text>
-            <TouchableOpacity
-              style={styles.modalCloseButton}
-              onPress={() => { this.closeMailModal(); }}
-            >
-              <Text style={styles.modalCloseButtonText}>閉じる</Text>
-            </TouchableOpacity>
-          </View>
+          <BlurView
+            style={styles.blurView}
+            tint="dark"
+          >
+            <View style={styles.modal}>
+              <Text style={styles.modalTitle}>メールアドレスについて</Text>
+              <View style={styles.modalTitleUnderbar} />
+              <Text style={styles.modalText}>
+                ＊ワーキングホリデーの申請に際しまして、
+                緊急に追加資料のご提示や追加でご質問を
+                させていただくことがあります。
+                必ず連絡が取れるメールアドレスをご登録ください。
+                また、緊急のメールもございます。メールを受信され
+                た際は速やかに内容を確認し、ご返信して頂きますよ
+                うご協力をお願いいたします。
+              </Text>
+              <TouchableOpacity
+                style={styles.modalCloseButton}
+                onPress={() => { this.closeMailModal(); }}
+              >
+                <Text style={styles.modalCloseButtonText}>閉じる</Text>
+              </TouchableOpacity>
+            </View>
+          </BlurView>
         </Modal>
 
         <Modal
           visible={this.state.modalPasswordVisible}
           animationType={'fade'}
-          transparent={true}
+          transparent
         >
-          <View style={styles.modal}>
-            <Text style={styles.modalTitle}>パスワードについて</Text>
-            <View style={styles.modalTitleUnderbar} />
-            <Text style={styles.modalText}>
-              ＊ご自身の携帯にアクセスできるのがご自
-              身だけであれば、パスワード設定は必須で
-              はありません。このアプリの情報を他の人
-              が見てしまう可能性がある方の場合は、パ
-              スワードを設定されることをお勧めいたし
-              ます。
-            </Text>
-            <TouchableOpacity
-              style={styles.modalPasswordCloseButton}
-              onPress={() => { this.closePasswordModal(); }}
-            >
-              <Text style={styles.modalCloseButtonText}>閉じる</Text>
-            </TouchableOpacity>
-          </View>
+          <BlurView
+            style={styles.blurView}
+            tint="dark"
+          >
+            <View style={styles.modal}>
+              <Text style={styles.modalTitle}>パスワードについて</Text>
+              <View style={styles.modalTitleUnderbar} />
+              <Text style={styles.modalText}>
+                ＊初期パスワードは生年月日です。変更する際はアカウント作成後、
+                ［パスワード変更］より変更してください。
+              </Text>
+              <TouchableOpacity
+                style={styles.modalPasswordCloseButton}
+                onPress={() => { this.closePasswordModal(); }}
+              >
+                <Text style={styles.modalCloseButtonText}>閉じる</Text>
+              </TouchableOpacity>
+            </View>
+          </BlurView>
         </Modal>
 
-
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -201,6 +239,15 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     backgroundColor: '#fff',
+  },
+  notesBox: {
+    width: '100%',
+    height: 'auto',
+    alignItems: 'center',
+  },
+  notesText: {
+    color: '#FF0000',
+    width: '83%',
   },
   headerHWApply: {
     backgroundColor: '#F0F0F0',
@@ -239,6 +286,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 12,
   },
+  textInputBoxPassword: {
+    alignItems: 'center',
+    marginTop: 12,
+    paddingRight: 25,
+  },
   textInput: {
     width: '83%',
     height: 44,
@@ -251,6 +303,11 @@ const styles = StyleSheet.create({
   textInputTitle: {
     fontSize: 13,
     left: -100,
+    paddingBottom: 6,
+  },
+  textInputTitlePassword: {
+    fontSize: 13,
+    left: -110,
     paddingBottom: 6,
   },
   questionMarkBox: {
@@ -273,6 +330,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#F0F0F0',
     alignItems: 'center',
     borderColor: '#707070',
+    marginTop: 20,
+    marginBottom: 20,
     borderWidth: 0.3,
     borderRadius: 23,
   },
@@ -283,8 +342,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   copyrights: {
-    position: 'absolute',
-    //alignSelf: 'flex-end',
+    //position: 'absolute',
     width: '100%',
     bottom: 0,
   },
@@ -292,7 +350,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     opacity: 0.9,
     width: '87%',
-    height: 250,
+    height: 'auto',
     alignSelf: 'center',
     top: 137,
     borderWidth: 1,
@@ -324,6 +382,7 @@ const styles = StyleSheet.create({
     height: 28,
     alignSelf: 'center',
     marginTop: 10,
+    marginBottom: 15,
     borderRadius: 23,
     borderWidth: 1,
     borderColor: '#707070',
@@ -341,10 +400,15 @@ const styles = StyleSheet.create({
     height: 28,
     alignSelf: 'center',
     marginTop: 55,
+    marginBottom: 15,
     borderRadius: 23,
     borderWidth: 1,
     borderColor: '#707070',
     backgroundColor: '#F0F0F0',
+  },
+  blurView: {
+    flex: 1,
+    width: '100%',
   },
 });
 

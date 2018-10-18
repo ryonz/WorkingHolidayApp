@@ -10,12 +10,11 @@ import PersonalInfo3 from './src/screens/PersonalInfo3';
 import PersonalInfo4 from './src/screens/PersonalInfo4';
 import PersonalInfo5 from './src/screens/PersonalInfo5';
 import PersonalInfo6 from './src/screens/PersonalInfo6';
-import WHApplyNotification1 from './src/screens/WHApplyNotification1';
-import WHApplyNotification2 from './src/screens/WHApplyNotification2';
 import InputEmail from './src/screens/InputEmail';
 import SplashScreen from './src/screens/SplashScreen';
 import Login from './src/screens/Login';
 import Signup from './src/screens/Signup';
+import Birthday from './src/screens/Birthday';
 import Help from './src/screens/Help';
 import UpdatePassword from './src/screens/UpdatePassword';
 import DeleteAll from './src/screens/DeleteAll';
@@ -39,8 +38,7 @@ const App = createStackNavigator({
   Splash:               { screen: SplashScreen },
   Login:                { screen: Login },
   Signup:               { screen: Signup },
-  WHApplyNotification1: { screen: WHApplyNotification1 },
-  WHApplyNotification2: { screen: WHApplyNotification2 },
+  Birthday:             { screen: Birthday },
   InputEmail:           { screen: InputEmail },
   PersonalInfo1:        { screen: PersonalInfo1 },
   PersonalInfo2:        { screen: PersonalInfo2 },
@@ -52,8 +50,6 @@ const App = createStackNavigator({
   UpdatePassword:       { screen: UpdatePassword },
   Help:                 { screen: Help },
   DeleteAll:            { screen: DeleteAll },
-
-
 
 }, {
   headerMode: 'none',

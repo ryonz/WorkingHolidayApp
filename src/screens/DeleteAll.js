@@ -27,14 +27,23 @@ class DeleteAll extends React.Component {
   }
 
   onPressDelete() {
-    AsyncStorage.clear();
     const user = firebase.auth().currentUser;
-    user.delete().then(() => {
-      this.props.navigation.navigate('Home');
-      console.log('success');
-    }).catch((error) => {
-      console.log(error);
-    });
+    if (user !== null) {
+      user.delete().then(() => {
+        AsyncStorage.clear();
+        this.props.navigation.navigate('Home');
+        this.setState({ modalVisible: false })
+        console.log('Delete All Success');
+      }).catch(() => {
+      });
+    } else if (user === null) {
+      this.setState({ modalVisible: false })
+      this.props.navigation.navigate('Login');
+    }
+  }
+
+  onPressCloseModal() {
+    this.setState({ modalVisible: false })
   }
 
   onPressLink() {
@@ -65,7 +74,9 @@ class DeleteAll extends React.Component {
                 Jpcanada留学センター側で入力された内容が確認できなくなります。{'\n'}
             {'\n'}
                 一部情報の変更や削除は直接
-            <TouchableOpacity onPress={() => { this.onPressLink.bind(this); }}>
+            <TouchableOpacity
+              onPress={() => { this.onPressLink.bind(this); }}
+            >
               <Text>［お問い合わせ］</Text>
             </TouchableOpacity>
                 からご依頼ください。{'\n'}
@@ -95,7 +106,7 @@ class DeleteAll extends React.Component {
         >
           <BlurView
             style={styles.blurView}
-            blurType={'dark'}
+            tint="dark"
           >
             <View style={styles.modalScreen}>
               <Text style={styles.modalText}>
@@ -111,12 +122,22 @@ class DeleteAll extends React.Component {
                 Jpcanada留学センターにご連絡ください。{'\n'}
               </Text>
 
-              <TouchableOpacity
-                style={styles.modalButton}
-                onPress={() => { this.onPressDelete(); }}
-              >
-                <Text style={styles.modalButtonText}>本当に削除する</Text>
-              </TouchableOpacity>
+              <View style={styles.buttonBox}>
+
+                <TouchableOpacity
+                  style={styles.modalButton}
+                  onPress={() => { this.onPressDelete(); }}
+                >
+                  <Text style={styles.modalButtonText}>削除する</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={styles.modalButton}
+                  onPress={() => { this.onPressCloseModal(); }}
+                >
+                  <Text style={styles.modalButtonText}>やめる</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </BlurView>
         </Modal>
@@ -176,6 +197,10 @@ const styles = StyleSheet.create({
     width: '100%',
     bottom: 0,
   },
+  buttonBox: {
+    alignSelf: 'center',
+    flexDirection: 'row',
+  },
   modalScreen: {
     backgroundColor: '#fff',
     opacity: 1,
@@ -204,11 +229,13 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
   modalButton: {
-    width: 'auto',
+    width: 100,
     height: 35,
     alignSelf: 'center',
-    marginTop: 55,
+    marginTop: 20,
     marginBottom: 25,
+    marginLeft: 20,
+    marginRight: 20,
     borderRadius: 23,
     borderWidth: 1,
     borderColor: '#707070',
