@@ -34,6 +34,8 @@ firebase.initializeApp(config);
 
 
 const App = createStackNavigator({
+  UpdatePassword:       { screen: UpdatePassword },
+
   Home:                 { screen: Home },
   Splash:               { screen: SplashScreen },
   Login:                { screen: Login },
@@ -47,7 +49,6 @@ const App = createStackNavigator({
   PersonalInfo5:        { screen: PersonalInfo5 },
   PersonalInfo6:        { screen: PersonalInfo6 },
   WHApply:              { screen: WHApply },
-  UpdatePassword:       { screen: UpdatePassword },
   Help:                 { screen: Help },
   DeleteAll:            { screen: DeleteAll },
 

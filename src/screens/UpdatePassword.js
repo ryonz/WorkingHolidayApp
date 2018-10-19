@@ -43,18 +43,21 @@ class UpdatePassword extends React.Component {
           <Text style={styles.descriptionText}>②登録メールアドレスに送信されたリンクから再設定を行なってください</Text>
         </View>
 
-        <View style={styles.buttonTextBox}>
-          <Text style={styles.descriptionText}>パスワード再設定用のメールを送る</Text>
-        </View>
+        <View style={styles.submitButtonBox}>
 
-        <SubmitButton
-          style={styles.submitButton}
-          onPress={this.onPressSubmitEmail}
-        >
-          <View>
-            <Text style={styles.submitButtonText}>メールを送信</Text>
+          <View style={styles.buttonTextBox}>
+            <Text style={styles.descriptionText}>パスワード再設定用のメールを送る</Text>
           </View>
-        </SubmitButton>
+
+          <SubmitButton
+            style={styles.submitButton}
+            onPress={this.onPressSubmitEmail}
+          >
+            <View>
+              <Text style={styles.submitButtonText}>メールを送信</Text>
+            </View>
+          </SubmitButton>
+        </View>
 
         <View style={styles.copyrights}>
           <Copyrights />
@@ -114,26 +117,31 @@ const styles = StyleSheet.create({
   descriptionText: {
     marginTop:8,
   },
+  submitButtonBox: {
+    position: 'absolute',
+    bottom: 280,
+    width: '100%',
+    height: 'auto',
+  },
   buttonTextBox: {
     position: 'absolute',
-    bottom: 150,
     alignSelf: 'center',
     marginTop: 30,
   },
   submitButton: {
-    position: 'absolute',
-    bottom: 100,
     alignSelf: 'center',
     width: '75%',
     height: 45,
-    marginTop: 15,
     borderWidth: 1,
     borderColor: '#707070',
     borderRadius: 23,
+    backgroundColor: '#fff',
+    marginBottom: 50,
+    marginTop:15,
   },
   submitButtonText: {
     alignSelf: 'center',
-    paddingTop: 15,
+    paddingTop: 6,
     color: '#626262',
     fontWeight: 'bold',
   },
