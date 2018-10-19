@@ -8,6 +8,7 @@ import {
   Image,
   Modal,
   AsyncStorage,
+  Alert,
 } from 'react-native';
 import firebase from 'firebase';
 import Copyrights from '../elements/Copyrights';
@@ -71,7 +72,7 @@ class Login extends React.Component {
         this.props.navigation.navigate('WHApply');
       })
       .catch((error) => {
-        alert('メールアドレスまたはパスワードが違います。');
+        Alert.alert('メールアドレスまたはパスワードが違います。');
         console.log(error);
       })
   }

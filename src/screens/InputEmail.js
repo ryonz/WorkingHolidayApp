@@ -63,7 +63,7 @@ class InputEmail extends React.Component {
           </Text>
           <TextInput
             value={this.state.email}
-            onChangeText={(text) => { this.setState({ email: text });}}
+            onChangeText={(text) => { this.setState({ email: text }); }}
             autoCapitalize="none"
             autoCorrect={false}
             style={styles.textInput}

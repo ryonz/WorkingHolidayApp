@@ -34,13 +34,12 @@ firebase.initializeApp(config);
 
 
 const App = createStackNavigator({
-  UpdatePassword:       { screen: UpdatePassword },
-
   Home:                 { screen: Home },
   Splash:               { screen: SplashScreen },
   Login:                { screen: Login },
   Signup:               { screen: Signup },
   Birthday:             { screen: Birthday },
+  //InputEmailは匿名認証のときに使っていた。なので、いらない。
   InputEmail:           { screen: InputEmail },
   PersonalInfo1:        { screen: PersonalInfo1 },
   PersonalInfo2:        { screen: PersonalInfo2 },
@@ -51,6 +50,8 @@ const App = createStackNavigator({
   WHApply:              { screen: WHApply },
   Help:                 { screen: Help },
   DeleteAll:            { screen: DeleteAll },
+  UpdatePassword:       { screen: UpdatePassword },
+
 
 }, {
   headerMode: 'none',

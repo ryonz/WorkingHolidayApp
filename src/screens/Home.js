@@ -9,7 +9,6 @@ import {
   AsyncStorage,
 } from 'react-native';
 import firebase from 'firebase';
-import Chat from '../components/Chat';
 import Copyrights from '../elements/Copyrights';
 
 class Home extends React.Component {
@@ -137,8 +136,6 @@ class Home extends React.Component {
         <View style={styles.copyrights}>
           <Copyrights />
         </View>
-
-        <Chat />
 
         <Modal
           visible={this.state.modal1Visible}

@@ -1,19 +1,39 @@
 import React from 'react';
 import firebase from 'firebase';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  TextInput,
+  Alert,
+} from 'react-native';
 import Copyrights from '../elements/Copyrights';
 import SubmitButton from '../components/SubmitButton';
 
 class UpdatePassword extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: null,
+    };
+  }
+
   onPressSubmitEmail() {
-    const auth = firebase.auth();
-    const emailAddress = auth.currentUser.email;
-    auth.sendPasswordResetEmail(emailAddress)
-      .then(() => {
-        console.log('success sending Password Reset Email', emailAddress);
-      }).catch((error) => {
-        console.log(error);
-      })
+    if (this.state.email !== null) {
+      const auth = firebase.auth();
+      const emailAdress = this.state.email;
+      auth.sendPasswordResetEmail(emailAdress)
+        .then(() => {
+          Alert.alert('送信が完了しました。\n届いたメールをご確認ください。');
+          this.setState({ email: null });
+        }).catch((error) => {
+          console.log(error);
+        });
+    } else if (this.state.email === null) {
+      Alert.alert('メールアドレスを正しく入力してください。');
+    }
   }
 
   render() {
@@ -39,25 +59,35 @@ class UpdatePassword extends React.Component {
         </View>
 
         <View style={styles.descriptionTextBox}>
-          <Text style={styles.descriptionText}>①下部の「パスワード再設定用のメールを送る」ボタンを押してください。</Text>
-          <Text style={styles.descriptionText}>②登録メールアドレスに送信されたリンクから再設定を行なってください</Text>
+          <Text style={styles.descriptionText}>①登録されたメールアドレスを入力してください。</Text>
+          <Text style={styles.descriptionText}>②下部の「メールを送信」ボタンを押してパスワード再設定メールを送信してください。</Text>
+          <Text style={styles.descriptionText}>③登録メールアドレスに送信されたリンクから再設定を行なってください。</Text>
+
         </View>
 
-        <View style={styles.submitButtonBox}>
+        <View style={styles.textInputBox}>
+          <Text style={styles.textInputTitle}>
+            登録メールアドレス
+          </Text>
+          <TextInput
+            onChangeText={(text) => { this.setState({ email: text }); }}
+            autoCapitalize="none"
+            autoCorrect={false}
+            style={styles.textInput}
+            placeholder={'ryugaku-taro@exapmple.com'}
+            textContentType={'emailAddress'}
+            value={this.state.email}
+          />
+        </View>
 
-          <View style={styles.buttonTextBox}>
-            <Text style={styles.descriptionText}>パスワード再設定用のメールを送る</Text>
+        <SubmitButton
+          style={styles.submitButton}
+          onPress={this.onPressSubmitEmail.bind(this)}
+        >
+          <View>
+            <Text style={styles.submitButtonText}>メールを送信</Text>
           </View>
-
-          <SubmitButton
-            style={styles.submitButton}
-            onPress={this.onPressSubmitEmail}
-          >
-            <View>
-              <Text style={styles.submitButtonText}>メールを送信</Text>
-            </View>
-          </SubmitButton>
-        </View>
+        </SubmitButton>
 
         <View style={styles.copyrights}>
           <Copyrights />
@@ -113,31 +143,34 @@ const styles = StyleSheet.create({
   descriptionTextBox: {
     alignSelf: 'center',
     width: '83%',
+    marginBottom: 20,
   },
   descriptionText: {
     marginTop:8,
   },
-  submitButtonBox: {
-    position: 'absolute',
-    bottom: 280,
-    width: '100%',
-    height: 'auto',
+  textInputBox: {
+    alignItems: 'center',
+    marginTop: 15,
+    marginBottom: 15,
   },
-  buttonTextBox: {
-    position: 'absolute',
-    alignSelf: 'center',
-    marginTop: 30,
+  textInput: {
+    width: '83%',
+    height: 44,
+    paddingLeft: 16,
+    backgroundColor: '#F4F4F4',
+    borderColor: '#707070',
+    borderWidth: 1,
+    borderRadius: 6,
+  },
+  textInputTitle: {
+    fontSize: 13,
+    left: -100,
+    paddingBottom: 6,
   },
   submitButton: {
-    alignSelf: 'center',
-    width: '75%',
-    height: 45,
-    borderWidth: 1,
     borderColor: '#707070',
-    borderRadius: 23,
     backgroundColor: '#fff',
-    marginBottom: 50,
-    marginTop:15,
+    marginTop: -40,
   },
   submitButtonText: {
     alignSelf: 'center',
@@ -149,7 +182,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     bottom: 0,
-  }
+  },
 
 });
 
