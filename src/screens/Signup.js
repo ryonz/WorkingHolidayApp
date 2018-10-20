@@ -35,7 +35,7 @@ class Signup extends React.Component {
   }
 
   handleSignup() {
-    if (this.state.email !== null && this.state.password !== null) {
+    if (this.state.email !== null) {
       firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
         .then((user) => {
           console.log('success', user);
@@ -44,11 +44,7 @@ class Signup extends React.Component {
         }).catch((error) => {
           console.log(error);
         });
-    } else if (this.state.email === null && this.state.password === null) {
-      Alert.alert('メールアドレスとパスワードを入力してください');
-    } else if (this.state.email !== null && this.state.password === null) {
-      Alert.alert('パスワードを入力してください。');
-    } else if (this.state.email === null && this.state.password !== null) {
+    } else if (this.state.email === null) {
       Alert.alert('メールアドレスを入力してください。');
     }
   }
@@ -99,7 +95,14 @@ class Signup extends React.Component {
 
         <View style={styles.notesBox}>
           <Text style={styles.notesText}>
-            初期パスワードは生年月日です。変更する場合はアカウント登録後［パスワード変更］より
+            ※メールアドレスは一度設定すると変更ができません。ご注意ください。登録後、メールアドレスを変更する際は
+            ホーム画面の［ヘルプ＞アカウントの削除について］からアカウントを削除して再度作り直す必要があります。
+          </Text>
+        </View>
+
+        <View style={styles.notesBox}>
+          <Text style={styles.notesText}>
+            ※初期パスワードは生年月日です。変更する場合はアカウント登録後［パスワード変更］より
             変更してください。
           </Text>
         </View>
@@ -149,7 +152,7 @@ class Signup extends React.Component {
             autoCorrect={false}
             secureTextEntry
             style={styles.textInput}
-            editable
+            editable={false}
             placeholder={'8文字以上16以内'}
             textContentType={'password'}
           />
@@ -244,6 +247,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 'auto',
     alignItems: 'center',
+    marginBottom: 15,
   },
   notesText: {
     color: '#FF0000',

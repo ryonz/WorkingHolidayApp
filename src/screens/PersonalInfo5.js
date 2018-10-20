@@ -1,5 +1,13 @@
 import React from 'react';
-import { StyleSheet, ScrollView, View, Text } from 'react-native';
+import {
+  StyleSheet,
+  ScrollView,
+  View,
+  Text,
+  AsyncStorage,
+} from 'react-native';
+
+import { CheckBox } from 'react-native-elements';
 
 import InfoHeader from '../components/InfoHeader';
 import Notes from '../elements/Notes';
@@ -12,55 +20,358 @@ import SubmitButton from '../components/SubmitButton';
 import Copyrights from '../elements/Copyrights';
 
 class PersonalInfo5 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      checked: false,
+      editable: true,
+      disabled: false,
+
+      currentNationality: '',
+      languageUsingToFamily: '',
+      areYouStudent: '',
+      dateOfAdmission: '',
+      dateOfGraduation: '',
+      majorOfSchool: '',
+      nameOfSchool: '',
+      nameCityOfSchool: '',
+      namePreferctureOfSchool: '',
+      dateOfLastAdmission: '',
+      dateOfLastGraduation: '',
+      majorOfLastSchool: '',
+      nameOfLastSchool: '',
+      nameCityOfLastSchool: '',
+      namePreferctureOfLastSchool: '',
+      areYouWorking: '',
+    };
+  }
+
+  componentDidMount() {
+    AsyncStorage.getItem('checked')
+      .then((value) => {
+        this.setState({ checked: JSON.parse(value) });
+      });
+    AsyncStorage.getItem('editable')
+      .then((value) => {
+        this.setState({ editable: JSON.parse(value) });
+      });
+    AsyncStorage.getItem('currentNationality')
+      .then((text) => {
+        if (text !== null) {
+          this.setState({ currentNationality: text });
+        }
+      });
+    AsyncStorage.getItem('languageUsingToFamily')
+      .then((text) => {
+        if (text !== null) {
+          this.setState({ languageUsingToFamily: text });
+        }
+      });
+    AsyncStorage.getItem('areYouStudent')
+      .then((text) => {
+        if (text !== null) {
+          this.setState({ areYouStudent: text });
+        }
+      });
+    AsyncStorage.getItem('dateOfAdmission')
+      .then((date) => {
+        if (date !== null) {
+          this.setState({ dateOfAdmission: date });
+        }
+      });
+    AsyncStorage.getItem('dateOfGraduation')
+      .then((date) => {
+        if (date !== null) {
+          this.setState({ dateOfGraduation: date });
+        }
+      });
+    AsyncStorage.getItem('majorOfSchool')
+      .then((text) => {
+        if (text !== null) {
+          this.setState({ majorOfSchool: text });
+        }
+      });
+    AsyncStorage.getItem('nameOfSchool')
+      .then((text) => {
+        if (text !== null) {
+          this.setState({ nameOfSchool: text });
+        }
+      });
+    AsyncStorage.getItem('nameCityOfSchool')
+      .then((text) => {
+        if (text !== null) {
+          this.setState({ nameCityOfSchool: text });
+        }
+      });
+    AsyncStorage.getItem('namePreferctureOfSchool')
+      .then((text) => {
+        if (text !== null) {
+          this.setState({ namePreferctureOfSchool: text });
+        }
+      });
+    AsyncStorage.getItem('dateOfLastAdmission')
+      .then((date) => {
+        if (date !== null) {
+          this.setState({ dateOfLastAdmission: date });
+        }
+      });
+    AsyncStorage.getItem('dateOfLastGraduation')
+      .then((date) => {
+        if (date !== null) {
+          this.setState({ dateOfLastGraduation: date });
+        }
+      });
+    AsyncStorage.getItem('majorOfLastSchool')
+      .then((text) => {
+        if (text !== null) {
+          this.setState({ majorOfLastSchool: text });
+        }
+      });
+    AsyncStorage.getItem('nameOfLastSchool')
+      .then((text) => {
+        if (text !== null) {
+          this.setState({ nameOfLastSchool: text });
+        }
+      });
+    AsyncStorage.getItem('nameCityOfLastSchool')
+      .then((text) => {
+        if (text !== null) {
+          this.setState({ nameCityOfLastSchool: text });
+        }
+      });
+    AsyncStorage.getItem('namePreferctureOfLastSchool')
+      .then((text) => {
+        if (text !== null) {
+          this.setState({ namePreferctureOfLastSchool: text });
+        }
+      });
+    AsyncStorage.getItem('areYouWorking')
+      .then((text) => {
+        if (text !== null) {
+          this.setState({ areYouWorking: text });
+        }
+      });
+  }
+
+  onPressCheckBox() {
+    if (this.state.checked === false) {
+      this.setState({ checked: true });
+      this.setState({ editable: false });
+      this.setState({ disabled: true });
+      AsyncStorage.setItem('checked', JSON.stringify(true));
+      AsyncStorage.setItem('editable', JSON.stringify(false));
+      this.props.navigation.goBack();
+    } else if (this.state.checked === true) {
+      this.setState({ checked: false });
+      this.setState({ editable: true });
+      this.setState({ disabled: false });
+      AsyncStorage.setItem('checked', JSON.stringify(false));
+      AsyncStorage.setItem('editable', JSON.stringify(true));
+    }
+  }
+
   render() {
     return (
       <ScrollView style={styles.container}>
         <InfoHeader navigation={this.props.navigation}>申請者情報5</InfoHeader>
         <Notes />
+        <QuestionTextSet
+          placeholder={'例：日本'}
+          onChangeText={(text) => {
+            AsyncStorage.setItem('currentNationality', text);
+            this.setState({ currentNationality: text });
+          }}
+          value={this.state.currentNationality}
+          editable={this.state.editable}
+        >
+          現在の国籍
+        </QuestionTextSet>
+        <QuestionTextSet
+          onChangeText={(text) => {
+            AsyncStorage.setItem('languageUsingToFamily', text);
+            this.setState({ languageUsingToFamily: text });
+          }}
+          editable={this.state.editable}
+          value={this.state.languageUsingToFamily}
 
-        <QuestionTextSet placeholder={'例：日本'}>現在の国籍</QuestionTextSet>
-        <QuestionTextSet>家族友達と話すときに使う言葉{'\n'}(英語/フランス語/どちらも使わない)</QuestionTextSet>
+        >
+          家族友達と話すときに使う言葉{'\n'}(英語/フランス語/どちらも使わない)
+        </QuestionTextSet>
         <View style={styles.questionTextBox}>
           <Text style={styles.questionText}>
           現在学生ですか？（はい/いいえ）
           </Text>
-          <RadioButtons />
+          <RadioButtons
+            onSelect={(index, value) => {
+              AsyncStorage.setItem('areYouStudent', value);
+              this.setState({ areYouStudent: value });
+            }}
+            value={this.state.areYouStudent}
+            disabled={this.state.disabled}
+          />
         </View>
-        <Text style={{ alignSelf: 'center', width: '83%' }}>*学生であれば以下の質問にお答えください。</Text>
+        <Text
+          style={{ alignSelf: 'center', width: '83%' }}
+        >
+          *学生であれば以下の質問にお答えください。
+        </Text>
         <View style={styles.line} />
         <View style={styles.questionTextBoxDateMargin}>
-          <QuestionTextBoxDate>入学年月日</QuestionTextBoxDate>
+          <QuestionTextBoxDate
+            onDateChange={(date) => {
+              AsyncStorage.setItem('dateOfAdmission', date);
+              this.setState({ dateOfAdmission: date });
+            }}
+            value={this.state.dateOfAdmission}
+            editable={this.state.editable}
+          >
+            入学年月日
+          </QuestionTextBoxDate>
         </View>
         <View style={styles.questionTextBoxDateMargin}>
-          <QuestionTextBoxDate>卒業予定年月日</QuestionTextBoxDate>
+          <QuestionTextBoxDate
+            onDateChange={(date) => {
+              AsyncStorage.setItem('dateOfGraduation', date);
+              this.setState({ dateOfGraduation: date });
+            }}
+            value={this.state.dateOfGraduation}
+            editable={this.state.editable}
+          >
+            卒業予定年月日
+          </QuestionTextBoxDate>
         </View>
-        <QuestionTextSet>学部・専攻名</QuestionTextSet>
-        <QuestionTextSet>学校名</QuestionTextSet>
-        <QuestionTextSet>学校所在地の市区町村名</QuestionTextSet>
-        <QuestionTextSet>学校所在地の都道府県名</QuestionTextSet>
-        <Text style={{ alignSelf: 'center', width: '83%' }}>*最終学歴について{'\n'}(現在学生の方は一つ前の学校になります)</Text>
+        <QuestionTextSet
+          onChangeText={(text) => {
+            AsyncStorage.setItem('majorOfSchool', text);
+            this.setState({ majorOfSchool: text });
+          }}
+          value={this.state.majorOfSchool}
+          editable={this.state.editable}
+        >
+          学部・専攻名
+        </QuestionTextSet>
+        <QuestionTextSet
+          onChangeText={(text) => {
+            AsyncStorage.setItem('nameOfSchool', text);
+            this.setState({ nameOfSchool: text });
+          }}
+          value={this.state.nameOfSchool}
+          editable={this.state.editable}
+        >
+          学校名
+        </QuestionTextSet>
+        <QuestionTextSet
+          onChangeText={(text) => {
+            AsyncStorage.setItem('nameCityOfSchool', text);
+            this.setState({ nameCityOfSchool: text });
+          }}
+          value={this.state.nameCityOfSchool}
+          editable={this.state.editable}
+        >
+          学校所在地の市区町村名
+        </QuestionTextSet>
+        <QuestionTextSet
+          onChangeText={(text) => {
+            AsyncStorage.setItem('namePreferctureOfSchool', text);
+            this.setState({ namePreferctureOfSchool: text });
+          }}
+          value={this.state.namePreferctureOfSchool}
+          editable={this.state.editable}
+        >
+          学校所在地の都道府県名
+        </QuestionTextSet>
+        <Text
+          style={{ alignSelf: 'center', width: '83%' }}
+        >
+          *最終学歴について{'\n'}(現在学生の方は一つ前の学校になります)
+        </Text>
         <View style={styles.line} />
         <View style={styles.questionTextBoxDateMargin}>
-          <QuestionTextBoxDate>入学年月日</QuestionTextBoxDate>
+          <QuestionTextBoxDate
+            onDateChange={(date) => {
+              AsyncStorage.setItem('dateOfLastAdmission', date);
+              this.setState({ dateOfLastAdmission: date });
+            }}
+            value={this.state.dateOfLastAdmission}
+            editable={this.state.editable}
+          >
+            入学年月日
+          </QuestionTextBoxDate>
         </View>
         <View style={styles.questionTextBoxDateMargin}>
-          <QuestionTextBoxDate>卒業予定年月日</QuestionTextBoxDate>
+          <QuestionTextBoxDate
+            onDateChange={(date) => {
+              AsyncStorage.setItem('dateOfLastGraduation', date);
+              this.setState({ dateOfLastGraduation: date });
+            }}
+            value={this.state.dateOfLastGraduation}
+            editable={this.state.editable}
+          >
+            卒業予定年月日
+          </QuestionTextBoxDate>
         </View>
-        <QuestionTextSet>学部・専攻名</QuestionTextSet>
-        <QuestionTextSet>学校名</QuestionTextSet>
-        <QuestionTextSet>学校所在地の市区町村名</QuestionTextSet>
-        <QuestionTextSet>学校所在地の都道府県名</QuestionTextSet>
+        <QuestionTextSet
+          onChangeText={(text) => {
+            AsyncStorage.setItem('majorOfLastSchool', text);
+            this.setState({ majorOfLastSchool: text });
+          }}
+          value={this.state.majorOfLastSchool}
+          editable={this.state.editable}
+        >
+          学部・専攻名
+        </QuestionTextSet>
+        <QuestionTextSet
+          onChangeText={(text) => {
+            AsyncStorage.setItem('nameOfLastSchool', text);
+            this.setState({ nameOfLastSchool: text });
+          }}
+          value={this.state.nameOfLastSchool}
+          editable={this.state.editable}
+        >
+          学校名
+        </QuestionTextSet>
+        <QuestionTextSet
+          onChangeText={(text) => {
+            AsyncStorage.setItem('nameCityOfLastSchool', text);
+            this.setState({ nameCityOfLastSchool: text });
+          }}
+          value={this.state.nameCityOfLastSchool}
+          editable={this.state.editable}
+        >
+          学校所在地の市区町村名
+        </QuestionTextSet>
+        <QuestionTextSet
+          onChangeText={(text) => {
+            AsyncStorage.setItem('namePreferctureOfLastSchool', text);
+            this.setState({ namePreferctureOfLastSchool: text });
+          }}
+          value={this.state.namePreferctureOfLastSchool}
+          editable={this.state.editable}
+        >
+          学校所在地の都道府県名
+        </QuestionTextSet>
 
         <View style={styles.line} />
         <View style={styles.questionTextBox}>
           <Text style={styles.questionText}>
           現在働いていますか？（はい/いいえ）
           </Text>
-          <RadioButtons />
+          <RadioButtons
+            onSelect={(index, value) => {
+              AsyncStorage.setItem('areYouWorking', value);
+              this.setState({ areYouWorking: value });
+            }}
+            value={this.state.areYouWorking}
+            disabled={this.state.disabled}
+          />
         </View>
 
-        <SubmitButton style={styles.saveButton}>入力完了</SubmitButton>
-
+        <CheckBox
+          center
+          title={'保存/修正'}
+          checked={this.state.checked}
+          onPress={() => { this.onPressCheckBox(); }}
+        />
 
         <Copyrights />
 

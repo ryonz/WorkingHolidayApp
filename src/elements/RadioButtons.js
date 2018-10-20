@@ -9,14 +9,22 @@ class RadioButtons extends React.Component {
     return (
       <View style={styles.container}>
         <RadioGroup
-          onSelect={(index, value) => { this.props.onSelect(index, value); }}
+          onSelect={(index, value) => {
+            this.props.onSelect(index, value);
+          }}
         >
 
-          <RadioButton value={'Yes'}>
+          <RadioButton
+            value={'Yes'}
+            disabled={this.props.disabled}
+          >
             <Text>はい</Text>
           </RadioButton>
 
-          <RadioButton value={'No'}>
+          <RadioButton
+            value={'No'}
+            disabled={this.props.disabled}
+          >
             <Text>いいえ</Text>
           </RadioButton>
 

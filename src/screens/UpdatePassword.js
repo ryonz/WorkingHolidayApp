@@ -84,9 +84,7 @@ class UpdatePassword extends React.Component {
           style={styles.submitButton}
           onPress={this.onPressSubmitEmail.bind(this)}
         >
-          <View>
-            <Text style={styles.submitButtonText}>メールを送信</Text>
-          </View>
+         メール送信
         </SubmitButton>
 
         <View style={styles.copyrights}>
@@ -172,12 +170,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginTop: -40,
   },
-  submitButtonText: {
-    alignSelf: 'center',
-    paddingTop: 6,
-    color: '#626262',
-    fontWeight: 'bold',
-  },
+  // submitButtonText: {
+  //   alignSelf: 'center',
+  //   paddingTop: 6,
+  //   color: '#626262',
+  //   fontWeight: 'bold',
+  // },
   copyrights: {
     position: 'absolute',
     width: '100%',

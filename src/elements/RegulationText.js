@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
     width: '78%',
     height: 32,
     marginTop:32,
-    marginBottom: 5,
   },
   regulationText: {
     color: '#ADADAD',
@@ -46,11 +45,14 @@ const styles = StyleSheet.create({
     width: '78%',
     height: 123,
     marginBottom: 27,
+    paddingBottom: 10,
     borderWidth: 1,
     borderColor: '#707070',
   },
   regulationInsideText: {
     paddingLeft: 10,
+    marginTop: 10,
+    marginRight: 10,
   },
 
 });
