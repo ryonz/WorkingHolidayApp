@@ -39,11 +39,11 @@ class PersonalInfo1 extends React.Component {
     AsyncStorage.getItem('checked1')
       .then((value) => {
         this.setState({ checked: JSON.parse(value) });
-        if (value === true) {
+        if (value === 'true') {
           console.log('yes');
           this.setState({ editable: false });
           this.setState({ disabled: true });
-        } else if (value === false) {
+        } else if (value === 'false') {
           console.log('no');
           this.setState({ editable: true });
           this.setState({ disabled: false });
