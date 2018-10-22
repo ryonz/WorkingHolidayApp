@@ -262,7 +262,7 @@ class PersonalInfo2 extends React.Component {
         <CheckBox
           center
           title={'保存/修正'}
-          checked={this.state.checked1}
+          checked={this.state.checked}
           onPress={() => { this.onPressCheckBox(); }}
         />
 

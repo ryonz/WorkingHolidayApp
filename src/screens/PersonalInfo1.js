@@ -39,6 +39,15 @@ class PersonalInfo1 extends React.Component {
     AsyncStorage.getItem('checked1')
       .then((value) => {
         this.setState({ checked: JSON.parse(value) });
+        if (value === true) {
+          console.log('yes');
+          this.setState({ editable: false });
+          this.setState({ disabled: true });
+        } else if (value === false) {
+          console.log('no');
+          this.setState({ editable: true });
+          this.setState({ disabled: false });
+        }
       });
     AsyncStorage.getItem('fullname')
       .then((text) => {
@@ -134,7 +143,6 @@ class PersonalInfo1 extends React.Component {
 
   onPressCheckBox() {
     if (this.state.checked === false) {
-      console.log('yes')
       this.setState({ checked: true });
       this.setState({ editable: false });
       this.setState({ disabled: true });
@@ -172,17 +180,6 @@ class PersonalInfo1 extends React.Component {
       this.setState({ disabled: false });
       AsyncStorage.setItem('checked1', JSON.stringify(false));
     }
-  }
-
-  componetWillMount() {
-    AsyncStorage.getItem('checked1')
-      .then((value) => {
-        if (value === 'true') {
-          this.setState({ editable: false }, { disabled: true });
-        } else if (value === 'false') {
-          this.setState({ editable: true }, { disabled: false });
-        }
-      });
   }
 
   render() {
@@ -358,7 +355,7 @@ class PersonalInfo1 extends React.Component {
           center
           title={'保存/修正'}
           checked={this.state.checked}
-          onPress={() => { this.onPressCheckBox.bind(this); }}
+          onPress={() => { this.onPressCheckBox(); }}
         />
 
         <Copyrights />
