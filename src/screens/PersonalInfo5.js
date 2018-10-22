@@ -16,7 +16,6 @@ import RadioButtons from '../elements/RadioButtons';
 
 import QuestionTextSet from '../components/QuestionTextSet';
 import QuestionTextBoxDate from '../components/QuestionTextBoxDate';
-import SubmitButton from '../components/SubmitButton';
 import Copyrights from '../elements/Copyrights';
 
 class PersonalInfo5 extends React.Component {
@@ -54,6 +53,10 @@ class PersonalInfo5 extends React.Component {
     AsyncStorage.getItem('editable')
       .then((value) => {
         this.setState({ editable: JSON.parse(value) });
+      });
+    AsyncStorage.getItem('disabled')
+      .then((value) => {
+        this.setState({ disabled: JSON.parse(value) });
       });
     AsyncStorage.getItem('currentNationality')
       .then((text) => {
@@ -160,6 +163,7 @@ class PersonalInfo5 extends React.Component {
       this.setState({ disabled: true });
       AsyncStorage.setItem('checked', JSON.stringify(true));
       AsyncStorage.setItem('editable', JSON.stringify(false));
+      AsyncStorage.setItem('disabled', JSON.stringify(true));
       this.props.navigation.goBack();
     } else if (this.state.checked === true) {
       this.setState({ checked: false });
@@ -167,6 +171,7 @@ class PersonalInfo5 extends React.Component {
       this.setState({ disabled: false });
       AsyncStorage.setItem('checked', JSON.stringify(false));
       AsyncStorage.setItem('editable', JSON.stringify(true));
+      AsyncStorage.setItem('disabled', JSON.stringify(false));
     }
   }
 
@@ -223,7 +228,7 @@ class PersonalInfo5 extends React.Component {
               this.setState({ dateOfAdmission: date });
             }}
             value={this.state.dateOfAdmission}
-            editable={this.state.editable}
+            disabled={this.state.disabled}
           >
             入学年月日
           </QuestionTextBoxDate>
@@ -235,7 +240,7 @@ class PersonalInfo5 extends React.Component {
               this.setState({ dateOfGraduation: date });
             }}
             value={this.state.dateOfGraduation}
-            editable={this.state.editable}
+            disabled={this.state.disabled}
           >
             卒業予定年月日
           </QuestionTextBoxDate>
@@ -293,7 +298,7 @@ class PersonalInfo5 extends React.Component {
               this.setState({ dateOfLastAdmission: date });
             }}
             value={this.state.dateOfLastAdmission}
-            editable={this.state.editable}
+            editable={this.state.disabled}
           >
             入学年月日
           </QuestionTextBoxDate>
@@ -305,7 +310,7 @@ class PersonalInfo5 extends React.Component {
               this.setState({ dateOfLastGraduation: date });
             }}
             value={this.state.dateOfLastGraduation}
-            editable={this.state.editable}
+            disabled={this.state.disabled}
           >
             卒業予定年月日
           </QuestionTextBoxDate>

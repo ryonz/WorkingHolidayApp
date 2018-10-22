@@ -46,6 +46,7 @@ class QuestionTextBoxDate extends React.Component {
           onDateChange={this.props.onDateChange}
           showIcon={false}
           value={this.props.value}
+          disabled={this.props.disabled}
         />
       </View>
     );
