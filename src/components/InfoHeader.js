@@ -1,16 +1,27 @@
-//後々、WHApplyListの各リスト名からタイトルを取得する。
 
 import React from 'react';
 import { StyleSheet, View, Text, TouchableHighlight, Image } from 'react-native';
 
 class InfoHeader extends React.Component {
   render() {
+    const { style } = this.props;
+
     return (
       <View style={styles.container}>
-        <Text style={styles.headerTitle}>{this.props.children}</Text>
+        <Text
+          style={[styles.headerTitle, style]}
+        >
+          {this.props.children}
+        </Text>
 
-        <TouchableHighlight style={styles.backbutton} onPress={() => { this.props.navigation.goBack(); }} underlayColor="#F0F0F0">
-          <Image style={styles.backbuttonImage} source={require('../../assets/images/left-arrow.png')} />
+        <TouchableHighlight
+          style={styles.backbutton}
+          onPress={() => { this.props.navigation.goBack(); }}
+          underlayColor="#F0F0F0">
+          <Image
+            style={styles.backbuttonImage}
+            source={require('../../assets/images/left-arrow.png')}
+          />
         </TouchableHighlight>
       </View>
     );
@@ -25,6 +36,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerTitle: {
+    alignSelf: 'center',
     fontSize: 20,
     fontWeight: '900',
     color: '#626262',

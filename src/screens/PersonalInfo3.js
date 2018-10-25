@@ -1,20 +1,23 @@
 import React from 'react';
 import { StyleSheet, ScrollView, View, Text, AsyncStorage } from 'react-native';
 import firebase from 'firebase';
+import { CheckBox } from 'react-native-elements';
+
 import InfoHeader from '../components/InfoHeader';
 import Notes from '../elements/Notes';
-
 import RadioButtons from '../elements/RadioButtons';
-
 import QuestionTextSet from '../components/QuestionTextSet';
 import QuestionTextBoxDate from '../components/QuestionTextBoxDate';
-import SubmitButton from '../components/SubmitButton';
 import Copyrights from '../elements/Copyrights';
 
 class PersonalInfo3 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      checked: false,
+      editable: true,
+      disabled: false,
+
       aboutVisa: '',
       fromDateOfStaying: '',
       toDateOfStaying: '',
@@ -26,72 +29,94 @@ class PersonalInfo3 extends React.Component {
   }
 
   componentDidMount() {
-    AsyncStorage.getItem('aboutVisa')
-      .then((value) => {
-        if (value !== null) {
-          this.setState({ aboutVisa: value });
-        }
-      });
+    AsyncStorage.getItem('checked3').then(value => {
+      this.setState({ checked: JSON.parse(value) });
+      if (value === 'true') {
+        this.setState({ editable: false });
+        this.setState({ disabled: true });
+      } else if (value === 'false') {
+        this.setState({ editable: true });
+        this.setState({ disabled: false });
+      }
+    });
+    AsyncStorage.getItem('aboutVisa').then(value => {
+      if (value !== null) {
+        this.setState({ aboutVisa: value });
+      }
+    });
 
-    AsyncStorage.getItem('fromDateOfStaying')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ fromDateOfStaying: text });
-        }
-      });
+    AsyncStorage.getItem('fromDateOfStaying').then(text => {
+      if (text !== null) {
+        this.setState({ fromDateOfStaying: text });
+      }
+    });
 
-    AsyncStorage.getItem('toDateOfStaying')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ toDateOfStaying: text });
-        }
-      });
+    AsyncStorage.getItem('toDateOfStaying').then(text => {
+      if (text !== null) {
+        this.setState({ toDateOfStaying: text });
+      }
+    });
 
-    AsyncStorage.getItem('kindOfVisa')
-      .then((date) => {
-        if (date !== null) {
-          this.setState({ kindOfVisa: date });
-        }
-      });
+    AsyncStorage.getItem('kindOfVisa').then(date => {
+      if (date !== null) {
+        this.setState({ kindOfVisa: date });
+      }
+    });
 
-    AsyncStorage.getItem('fromDateOfStayingCanada')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ fromDateOfStayingCanada: text });
-        }
-      });
+    AsyncStorage.getItem('fromDateOfStayingCanada').then(text => {
+      if (text !== null) {
+        this.setState({ fromDateOfStayingCanada: text });
+      }
+    });
 
-    AsyncStorage.getItem('toDateOfStayingCanada')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ toDateOfStayingCanada: text });
-        }
-      });
+    AsyncStorage.getItem('toDateOfStayingCanada').then(text => {
+      if (text !== null) {
+        this.setState({ toDateOfStayingCanada: text });
+      }
+    });
 
-    AsyncStorage.getItem('placeOfstaying')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ placeOfstaying: text });
-        }
-      });
+    AsyncStorage.getItem('placeOfstaying').then(text => {
+      if (text !== null) {
+        this.setState({ placeOfstaying: text });
+      }
+    });
   }
 
-  handleOnpress() {
-    const db = firebase.firestore();
-    const user = firebase.auth().currentUser;
-    db.collection(`users/${user.uid}/forms`).doc('form3')
-      .set({
-        form3: [
-          { aboutVisa: this.state.aboutVisa },
-          { fromDateOfStaying: this.state.fromDateOfStaying },
-          { toDateOfStaying: this.state.toDateOfStaying },
-          { kindOfVisa: this.state.kindOfVisa },
-          { fromDateOfStayingCanada: this.state.fromDateOfStayingCanada },
-          { toDateOfStayingCanada: this.state.toDateOfStayingCanada },
-          { placeOfstaying: this.state.placeOfstaying },
-        ],
-      });
-    this.props.navigation.goBack();
+  onPressCheckBox() {
+    const { checked } = this.state;
+    // if (checked === false)だと機能しない。なんで？
+    if (checked !== true) {
+      this.setState({ checked: true });
+      AsyncStorage.setItem('checked3', JSON.stringify(true));
+      const db = firebase.firestore();
+      const { currentUser } = firebase.auth();
+      db.collection(`users/${currentUser.uid}/forms`)
+        .doc('form3')
+        .set({
+          form3: [
+            { aboutVisa: this.state.aboutVisa },
+            { fromDateOfStaying: this.state.fromDateOfStaying },
+            { toDateOfStaying: this.state.toDateOfStaying },
+            { kindOfVisa: this.state.kindOfVisa },
+            { fromDateOfStayingCanada: this.state.fromDateOfStayingCanada },
+            { toDateOfStayingCanada: this.state.toDateOfStayingCanada },
+            { placeOfstaying: this.state.placeOfstaying },
+          ],
+        })
+        .then(() => {
+          this.props.navigation.goBack();
+        })
+        .catch(error => {
+          console.log(error);
+          console.log();
+        });
+    } else if (checked !== false) {
+      console.log('here');
+      this.setState({ checked: false });
+      this.setState({ editable: true });
+      this.setState({ disabled: false });
+      AsyncStorage.setItem('checked3', JSON.stringify(false));
+    }
   }
 
   render() {
@@ -107,22 +132,23 @@ class PersonalInfo3 extends React.Component {
             （はい/いいえ）{'\n'}
             {'\n'}
             ＊パスポートにスタンプのみ押され、紙のビザを発{'\n'}
-            行されなかった方はビザを申請したことにはなりません。
-            「いいえ」でご回答ください。{'\n'}
+            行されなかった方はビザを申請したことにはなりません。 「いいえ」でご回答ください。{'\n'}
           </Text>
 
           <RadioButtons
             onSelect={(index, value) => {
+              console.log(index);
               AsyncStorage.setItem('aboutVisa', value);
               this.setState({ aboutVisa: value });
             }}
             value={this.state.aboutVisa}
+            disabled={this.state.disabled}
           />
         </View>
 
         <View style={styles.questionTextBoxDateMargin}>
           <QuestionTextBoxDate
-            onDateChange={(date) => {
+            onDateChange={date => {
               AsyncStorage.setItem('fromDateOfStaying', date);
               this.setState({ fromDateOfStaying: date });
             }}
@@ -131,11 +157,12 @@ class PersonalInfo3 extends React.Component {
             *「はい」と回答された方。滞在期間をご回答ください。
           </QuestionTextBoxDate>
           <QuestionTextBoxDate
-            onDateChange={(date) => {
+            onDateChange={date => {
               AsyncStorage.setItem('toDateOfStaying', date);
               this.setState({ toDateOfStaying: date });
             }}
             value={this.state.toDateOfStaying}
+            disabled={this.state.disabled}
           >
             から
           </QuestionTextBoxDate>
@@ -143,31 +170,34 @@ class PersonalInfo3 extends React.Component {
 
         <QuestionTextSet
           placeholder={'例：学生ビザ、観光ビザなど'}
-          onChangeText={(text) => {
+          onChangeText={text => {
             AsyncStorage.setItem('kindOfVisa', text);
             this.setState({ kindOfVisa: text });
           }}
           value={this.state.kindOfVisa}
+          editable={this.state.editable}
         >
           *「はい」と回答された方。ビザの種類をご回答ください。
         </QuestionTextSet>
 
         <View style={styles.questionTextBoxDateMargin}>
           <QuestionTextBoxDate
-            onDateChange={(date) => {
+            onDateChange={date => {
               AsyncStorage.setItem('fromDateOfStayingCanada', date);
               this.setState({ fromDateOfStayingCanada: date });
             }}
             value={this.state.fromDateOfStayingCanada}
+            disabled={this.state.disabled}
           >
             今回のカナダ滞在予定年月
           </QuestionTextBoxDate>
           <QuestionTextBoxDate
-            onDateChange={(date) => {
+            onDateChange={date => {
               AsyncStorage.setItem('toDateOfStayingCanada', date);
               this.setState({ toDateOfStayingCanada: date });
             }}
             value={this.state.toDateOfStayingCanada}
+            disabled={this.state.disabled}
           >
             から
           </QuestionTextBoxDate>
@@ -175,30 +205,30 @@ class PersonalInfo3 extends React.Component {
 
         <QuestionTextSet
           placeholder={'例：バンクーバー,ビクトリア,トロントなど'}
-          onChangeText={(text) => {
+          onChangeText={text => {
             AsyncStorage.setItem('placeOfstaying', text);
             this.setState({ placeOfstaying: text });
           }}
           value={this.state.placeOfstaying}
+          editable={this.state.editable}
         >
           カナダのどの州に滞在する予定ですか
         </QuestionTextSet>
 
-        <SubmitButton
-          style={styles.saveButton}
-          onPress={this.handleOnpress.bind(this)}
-        >
-          入力完了
-        </SubmitButton>
-
+        <CheckBox
+          center
+          title={'保存/修正'}
+          checked={this.state.checked}
+          onPress={() => {
+            this.onPressCheckBox();
+          }}
+        />
 
         <Copyrights />
-
       </ScrollView>
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -220,7 +250,6 @@ const styles = StyleSheet.create({
   questionTextBoxDateMargin: {
     marginTop: 20,
     marginBottom: 20,
-
   },
 });
 

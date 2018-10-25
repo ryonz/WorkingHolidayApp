@@ -10,6 +10,15 @@ import PersonalInfo3 from './src/screens/PersonalInfo3';
 import PersonalInfo4 from './src/screens/PersonalInfo4';
 import PersonalInfo5 from './src/screens/PersonalInfo5';
 import PersonalInfo6 from './src/screens/PersonalInfo6';
+import FamilyInfo1 from './src/screens/FamilyInfo1';
+import FamilyInfo2 from './src/screens/FamilyInfo2';
+import FamilyInfo3 from './src/screens/FamilyInfo3';
+import FamilyInfo4 from './src/screens/FamilyInfo4';
+import FamilyInfo5 from './src/screens/FamilyInfo5';
+import AgreementPII from './src/screens/AgreementPII';
+import FromCanadaGovernment from './src/screens/FromCanadaGovernment';
+import Declaration from './src/screens/Declaration';
+import Agreement from './src/screens/Agreement';
 import InputEmail from './src/screens/InputEmail';
 import SplashScreen from './src/screens/SplashScreen';
 import Login from './src/screens/Login';
@@ -32,34 +41,41 @@ const config = {
 };
 firebase.initializeApp(config);
 
-
-const App = createStackNavigator({
-  Home:                 { screen: Home },
-  Splash:               { screen: SplashScreen },
-  Login:                { screen: Login },
-  Signup:               { screen: Signup },
-  Birthday:             { screen: Birthday },
-  //InputEmailは匿名認証のときに使っていた。なので、いらない。
-  InputEmail:           { screen: InputEmail },
-  PersonalInfo1:        { screen: PersonalInfo1 },
-
-  PersonalInfo2:        { screen: PersonalInfo2 },
-  PersonalInfo3:        { screen: PersonalInfo3 },
-  PersonalInfo4:        { screen: PersonalInfo4 },
-  PersonalInfo5:        { screen: PersonalInfo5 },
-  PersonalInfo6:        { screen: PersonalInfo6 },
-  WHApply:              { screen: WHApply },
-  Help:                 { screen: Help },
-  DeleteAll:            { screen: DeleteAll },
-  UpdatePassword:       { screen: UpdatePassword },
-
-
-}, {
-  headerMode: 'none',
-  navigationOptions:{
-    headerVisble: false,
+const App = createStackNavigator(
+  {
+    Home: { screen: Home },
+    Splash: { screen: SplashScreen },
+    Login: { screen: Login },
+    Signup: { screen: Signup },
+    Birthday: { screen: Birthday },
+    // InputEmailは匿名認証のときに使っていた。なので、いらない。
+    InputEmail: { screen: InputEmail },
+    PersonalInfo1: { screen: PersonalInfo1 },
+    PersonalInfo2: { screen: PersonalInfo2 },
+    PersonalInfo3: { screen: PersonalInfo3 },
+    PersonalInfo4: { screen: PersonalInfo4 },
+    PersonalInfo5: { screen: PersonalInfo5 },
+    PersonalInfo6: { screen: PersonalInfo6 },
+    FamilyInfo1: { screen: FamilyInfo1 },
+    FamilyInfo2: { screen: FamilyInfo2 },
+    FamilyInfo3: { screen: FamilyInfo3 },
+    FamilyInfo4: { screen: FamilyInfo4 },
+    FamilyInfo5: { screen: FamilyInfo5 },
+    AgreementPII: { screen: AgreementPII },
+    FromCanadaGovernment: { screen: FromCanadaGovernment },
+    Declaration: { screen: Declaration },
+    Agreement: { screen: Agreement },
+    WHApply: { screen: WHApply },
+    Help: { screen: Help },
+    DeleteAll: { screen: DeleteAll },
+    UpdatePassword: { screen: UpdatePassword },
   },
-});
-
+  {
+    headerMode: 'none',
+    navigationOptions: {
+      headerVisble: false,
+    },
+  },
+);
 
 export default App;

@@ -28,15 +28,17 @@ class DeleteAll extends React.Component {
 
   onPressDelete() {
     const user = firebase.auth().currentUser;
-    if (user !== null) {
-      user.delete().then(() => {
-        AsyncStorage.clear();
-        this.props.navigation.navigate('Home');
-        this.setState({ modalVisible: false })
-        console.log('Delete All Success');
-      }).catch(() => {
-      });
-    } else if (user === null) {
+    if (user) {
+      user.delete()
+        .then(() => {
+          AsyncStorage.clear();
+          this.props.navigation.navigate('Home');
+          this.setState({ modalVisible: false })
+          console.log('Delete All Success');
+        }).catch(() => {
+        });
+    } else {
+      console.log(user);
       this.setState({ modalVisible: false })
       this.props.navigation.navigate('Login');
     }

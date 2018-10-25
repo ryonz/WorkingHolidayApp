@@ -18,44 +18,44 @@ import WHApplyNotification2 from '../components/WHApplyNotification2';
 class Login extends React.Component {
   state = {
     email: 'user0@example.com',
-    password: 'password',
+    password: '19920101',
     notificationModal1: false,
     notificationModal2: false,
-  }
+  };
 
   componentDidMount() {
     this.checkIfNeedOpenModal();
   }
 
   setModalVisible(visible) {
-    this.setState({ notificationModal1: visible })
+    this.setState({ notificationModal1: visible });
   }
 
   checkIfNeedOpenModal = async () => {
     try {
-      const isFirstOpen = await AsyncStorage.getItem('IS_FIRST_OPEN');
+      const isFirstOpen = await AsyncStorage.getItem('IS_FIRST_LOGIN_OPEN');
       if (!isFirstOpen || isFirstOpen !== 'true') {
         console.log('Is first open');
-        this.setModalVisible(true)
+        this.setModalVisible(true);
       } else {
-        console.log('Is not First Open')
+        console.log('Is not First Open');
       }
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   saveModalOpen = async () => {
     try {
-      await AsyncStorage.setItem('IS_FIRST_OPEN', 'true');
+      await AsyncStorage.setItem('IS_FIRST_LOGIN_OPEN', 'true');
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   onModalShow = () => {
     this.saveModalOpen();
-  }
+  };
 
   nextModal(num) {
     if (num === 0) {
@@ -67,24 +67,34 @@ class Login extends React.Component {
   }
 
   handleLogin() {
-    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         this.props.navigation.navigate('WHApply');
       })
-      .catch((error) => {
+      .catch(error => {
         Alert.alert('メールアドレスまたはパスワードが違います。');
         console.log(error);
-      })
+      });
   }
 
   render() {
     return (
       <View style={styles.container}>
-
         <View style={styles.headerHWApply}>
           <Text style={styles.headerText}>ログイン</Text>
-          <TouchableOpacity style={styles.backbutton} onPress={() => { this.props.navigation.goBack(); }} underlayColor="#F0F0F0">
-            <Image style={styles.backbuttonImage} source={require('../../assets/images/left-arrow.png')} />
+          <TouchableOpacity
+            style={styles.backbutton}
+            onPress={() => {
+              this.props.navigation.goBack();
+            }}
+            underlayColor="#F0F0F0"
+          >
+            <Image
+              style={styles.backbuttonImage}
+              source={require('../../assets/images/left-arrow.png')}
+            />
           </TouchableOpacity>
         </View>
 
@@ -92,7 +102,9 @@ class Login extends React.Component {
           <Text style={styles.textInputTitle}>メールアドレス</Text>
           <TextInput
             value={this.state.email}
-            onChangeText={(text) => { this.setState({ email: text }); }}
+            onChangeText={text => {
+              this.setState({ email: text });
+            }}
             autoCapitalize="none"
             autoCorrect={false}
             style={styles.textInput}
@@ -106,7 +118,9 @@ class Login extends React.Component {
           <Text style={styles.textInputTitle}>パスワード　　</Text>
           <TextInput
             value={this.state.password}
-            onChangeText={(text) => { this.setState({ password: text }); }}
+            onChangeText={text => {
+              this.setState({ password: text });
+            }}
             autoCapitalize="none"
             autoCorrect={false}
             secureTextEntry
@@ -118,21 +132,24 @@ class Login extends React.Component {
         </View>
 
         <TouchableOpacity
-          onPress={() => { this.props.navigation.navigate('UpdatePassword'); }}
+          onPress={() => {
+            this.props.navigation.navigate('UpdatePassword');
+          }}
         >
           <Text style={styles.forgetPasswordText}>パスワードを忘れた場合</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.loginButtonBox}
-          onPress={this.handleLogin.bind(this)}
-        >
+        <TouchableOpacity style={styles.loginButtonBox} onPress={this.handleLogin.bind(this)}>
           <View style={styles.loginButton}>
             <Text style={styles.loginButtonText}>ログイン</Text>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => { this.props.navigation.navigate('Birthday'); }}>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('Birthday');
+          }}
+        >
           <Text style={styles.forgetPasswordText}>登録がまだの方はこちら</Text>
         </TouchableOpacity>
 
@@ -142,11 +159,12 @@ class Login extends React.Component {
           <Copyrights />
         </View>
 
-        <Modal
-          visible={this.state.notificationModal1}
-          animationType={'none'}
-        >
-          <WHApplyNotification1 onPress={() => { this.nextModal(0); }} />
+        <Modal visible={this.state.notificationModal1} animationType={'none'}>
+          <WHApplyNotification1
+            onPress={() => {
+              this.nextModal(0);
+            }}
+          />
         </Modal>
 
         <Modal
@@ -154,14 +172,16 @@ class Login extends React.Component {
           animationType={'none'}
           onShow={this.onModalShow}
         >
-          <WHApplyNotification2 onPress={() => { this.nextModal(1); }} />
+          <WHApplyNotification2
+            onPress={() => {
+              this.nextModal(1);
+            }}
+          />
         </Modal>
-
       </View>
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -255,13 +275,10 @@ const styles = StyleSheet.create({
   },
   copyrights: {
     position: 'absolute',
-    //alignSelf: 'flex-end',
+    // alignSelf: 'flex-end',
     width: '100%',
     bottom: 0,
-
   },
-
-
 });
 
 export default Login;

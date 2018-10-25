@@ -26,7 +26,7 @@ class PersonalInfo1 extends React.Component {
       aboutMaridge: '',
       fromTermOfMaridge: '',
       ToTermOfMaridge: '',
-      nameOfSpouse:'',
+      nameOfSpouse: '',
       birthdateOfSpouse: '',
       fromTermOfExMaridge: '',
       ToTermOfExMaridge: '',
@@ -36,122 +36,104 @@ class PersonalInfo1 extends React.Component {
   }
 
   componentDidMount() {
-    AsyncStorage.getItem('checked1')
-      .then((value) => {
-        this.setState({ checked: JSON.parse(value) });
-        if (value === 'true') {
-          console.log('yes');
-          this.setState({ editable: false });
-          this.setState({ disabled: true });
-        } else if (value === 'false') {
-          console.log('no');
-          this.setState({ editable: true });
-          this.setState({ disabled: false });
-        }
-      });
-    AsyncStorage.getItem('fullname')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ fullname: text });
-        }
-      });
-    AsyncStorage.getItem('middleName')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ middleName: text });
-        }
-      });
-    AsyncStorage.getItem('reason')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ reason: text });
-        }
-      });
-    AsyncStorage.getItem('birthPlaceCity')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ birthPlaceCity: text });
-        }
-      });
-    AsyncStorage.getItem('birthPlaceCountry')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ birthPlaceCountry: text });
-        }
-      });
-    AsyncStorage.getItem('Citizinchip')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ Citizinchip: text });
-        }
-      });
-    AsyncStorage.getItem('aboutMaridge')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ aboutMaridge: text });
-        }
-      });
-    AsyncStorage.getItem('fromTermOfMaridge')
-      .then((date) => {
-        if (date !== null) {
-          this.setState({ fromTermOfMaridge: date });
-        }
-      });
-    AsyncStorage.getItem('ToTermOfMaridge')
-      .then((date) => {
-        if (date !== null) {
-          this.setState({ ToTermOfMaridge: date });
-        }
-      });
-    AsyncStorage.getItem('nameOfSpouse')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ nameOfSpouse: text });
-        }
-      });
-    AsyncStorage.getItem('birthdateOfSpouse')
-      .then((date) => {
-        if (date !== null) {
-          this.setState({ birthdateOfSpouse: date });
-        }
-      });
-    AsyncStorage.getItem('fromTermOfExMaridge')
-      .then((date) => {
-        if (date !== null) {
-          this.setState({ fromTermOfExMaridge: date });
-        }
-      });
-    AsyncStorage.getItem('ToTermOfExMaridge')
-      .then((date) => {
-        if (date !== null) {
-          this.setState({ ToTermOfExMaridge: date });
-        }
-      });
-    AsyncStorage.getItem('nameOfExSpouse')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ nameOfExSpouse: text });
-        }
-      });
-    AsyncStorage.getItem('birthdateOfExSpouse')
-      .then((date) => {
-        if (date !== null) {
-          this.setState({ birthdateOfExSpouse: date });
-        }
-      });
+    AsyncStorage.getItem('checked1').then(value => {
+      this.setState({ checked: JSON.parse(value) });
+      if (value === 'true') {
+        this.setState({ editable: false });
+        this.setState({ disabled: true });
+      } else if (value === 'false') {
+        this.setState({ editable: true });
+        this.setState({ disabled: false });
+      }
+    });
+    AsyncStorage.getItem('fullname').then(text => {
+      if (text !== null) {
+        this.setState({ fullname: text });
+      }
+    });
+    AsyncStorage.getItem('middleName').then(text => {
+      if (text !== null) {
+        this.setState({ middleName: text });
+      }
+    });
+    AsyncStorage.getItem('reason').then(text => {
+      if (text !== null) {
+        this.setState({ reason: text });
+      }
+    });
+    AsyncStorage.getItem('birthPlaceCity').then(text => {
+      if (text !== null) {
+        this.setState({ birthPlaceCity: text });
+      }
+    });
+    AsyncStorage.getItem('birthPlaceCountry').then(text => {
+      if (text !== null) {
+        this.setState({ birthPlaceCountry: text });
+      }
+    });
+    AsyncStorage.getItem('Citizinchip').then(text => {
+      if (text !== null) {
+        this.setState({ Citizinchip: text });
+      }
+    });
+    AsyncStorage.getItem('aboutMaridge').then(text => {
+      if (text !== null) {
+        this.setState({ aboutMaridge: text });
+      }
+    });
+    AsyncStorage.getItem('fromTermOfMaridge').then(date => {
+      if (date !== null) {
+        this.setState({ fromTermOfMaridge: date });
+      }
+    });
+    AsyncStorage.getItem('ToTermOfMaridge').then(date => {
+      if (date !== null) {
+        this.setState({ ToTermOfMaridge: date });
+      }
+    });
+    AsyncStorage.getItem('nameOfSpouse').then(text => {
+      if (text !== null) {
+        this.setState({ nameOfSpouse: text });
+      }
+    });
+    AsyncStorage.getItem('birthdateOfSpouse').then(date => {
+      if (date !== null) {
+        this.setState({ birthdateOfSpouse: date });
+      }
+    });
+    AsyncStorage.getItem('fromTermOfExMaridge').then(date => {
+      if (date !== null) {
+        this.setState({ fromTermOfExMaridge: date });
+      }
+    });
+    AsyncStorage.getItem('ToTermOfExMaridge').then(date => {
+      if (date !== null) {
+        this.setState({ ToTermOfExMaridge: date });
+      }
+    });
+    AsyncStorage.getItem('nameOfExSpouse').then(text => {
+      if (text !== null) {
+        this.setState({ nameOfExSpouse: text });
+      }
+    });
+    AsyncStorage.getItem('birthdateOfExSpouse').then(date => {
+      if (date !== null) {
+        this.setState({ birthdateOfExSpouse: date });
+      }
+    });
   }
 
   onPressCheckBox() {
-    if (this.state.checked === false) {
+    const { checked } = this.state;
+    if (checked !== true) {
       this.setState({ checked: true });
-      this.setState({ editable: false });
-      this.setState({ disabled: true });
       AsyncStorage.setItem('checked1', JSON.stringify(true));
       const db = firebase.firestore();
       const { currentUser } = firebase.auth();
-      db.collection(`users/${currentUser.uid}/form`).doc('form1')
+      db.collection(`users/${currentUser.uid}/forms`)
+        .doc('form1')
         .set({
-          form1 : [
+          form1: [
             { fullname: this.state.fullname },
             { middleName: this.state.middleName },
             { reason: this.state.reason },
@@ -166,15 +148,16 @@ class PersonalInfo1 extends React.Component {
             { fromTermOfExMaridge: this.state.fromTermOfExMaridge },
             { ToTermOfExMaridge: this.state.ToTermOfExMaridge },
             { nameOfExSpouse: this.state.nameOfExSpouse },
-            { birthdateOfExSpouse: this.state.birthdateOfExSpouse }],
+            { birthdateOfExSpouse: this.state.birthdateOfExSpouse },
+          ],
         })
         .then(() => {
           this.props.navigation.goBack();
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
         });
-    } else if (this.state.checked === true) {
+    } else if (checked !== false) {
       this.setState({ checked: false });
       this.setState({ editable: true });
       this.setState({ disabled: false });
@@ -188,7 +171,7 @@ class PersonalInfo1 extends React.Component {
         <InfoHeader navigation={this.props.navigation}>申請者情報１</InfoHeader>
         <Notes />
         <QuestionTextSet
-          onChangeText={(text) => {
+          onChangeText={text => {
             AsyncStorage.setItem('fullname', text);
             this.setState({ fullname: text });
           }}
@@ -199,7 +182,7 @@ class PersonalInfo1 extends React.Component {
           姓名（漢字表記）
         </QuestionTextSet>
         <QuestionTextSet
-          onChangeText={(text) => {
+          onChangeText={text => {
             AsyncStorage.setItem('middleName', text);
             this.setState({ middleName: text });
           }}
@@ -209,7 +192,7 @@ class PersonalInfo1 extends React.Component {
           本名以外に旧姓・通称名(通名)・別名など他の名前があればローマ字で記入
         </QuestionTextSet>
         <QuestionTextSet
-          onChangeText={(text) => {
+          onChangeText={text => {
             AsyncStorage.setItem('reason', text);
             this.setState({ reason: text });
           }}
@@ -220,7 +203,7 @@ class PersonalInfo1 extends React.Component {
           別名がある方はその理由
         </QuestionTextSet>
         <QuestionTextSet
-          onChangeText={(text) => {
+          onChangeText={text => {
             AsyncStorage.setItem('birthPlaceCity', text);
             this.setState({ birthPlaceCity: text });
           }}
@@ -231,7 +214,7 @@ class PersonalInfo1 extends React.Component {
           出生地（都道府県と市名）
         </QuestionTextSet>
         <QuestionTextSet
-          onChangeText={(text) => {
+          onChangeText={text => {
             AsyncStorage.setItem('birthPlaceCountry', text);
             this.setState({ birthPlaceCountry: text });
           }}
@@ -242,7 +225,7 @@ class PersonalInfo1 extends React.Component {
           出生地（国名）
         </QuestionTextSet>
         <QuestionTextSet
-          onChangeText={(text) => {
+          onChangeText={text => {
             AsyncStorage.setItem('Citizinchip', text);
             this.setState({ Citizinchip: text });
           }}
@@ -253,7 +236,7 @@ class PersonalInfo1 extends React.Component {
           国籍
         </QuestionTextSet>
         <QuestionTextSet
-          onChangeText={(text) => {
+          onChangeText={text => {
             AsyncStorage.setItem('aboutMaridge', text);
             this.setState({ aboutMaridge: text });
           }}
@@ -265,7 +248,7 @@ class PersonalInfo1 extends React.Component {
         </QuestionTextSet>
         <View style={styles.questionTextBoxDateMargin}>
           <QuestionTextBoxDate
-            onDateChange={(date) => {
+            onDateChange={date => {
               AsyncStorage.setItem('fromTermOfMaridge', date);
               this.setState({ fromTermOfMaridge: date });
             }}
@@ -275,7 +258,7 @@ class PersonalInfo1 extends React.Component {
             婚姻期間（上記で既婚・離婚と答えた方)
           </QuestionTextBoxDate>
           <QuestionTextBoxDate
-            onDateChange={(date) => {
+            onDateChange={date => {
               AsyncStorage.setItem('ToTermOfMaridge', date);
               this.setState({ ToTermOfMaridge: date });
             }}
@@ -286,7 +269,7 @@ class PersonalInfo1 extends React.Component {
           </QuestionTextBoxDate>
         </View>
         <QuestionTextSet
-          onChangeText={(text) => {
+          onChangeText={text => {
             AsyncStorage.setItem('nameOfSpouse', text);
             this.setState({ nameOfSpouse: text });
           }}
@@ -297,7 +280,7 @@ class PersonalInfo1 extends React.Component {
           配偶者の氏名（上記で既婚・離婚と答えた方）{'\n'}パスポート表記通りローマ字で記入
         </QuestionTextSet>
         <QuestionTextBoxDate
-          onDateChange={(date) => {
+          onDateChange={date => {
             AsyncStorage.setItem('birthdateOfSpouse', date);
             this.setState({ birthdateOfSpouse: date });
           }}
@@ -308,7 +291,7 @@ class PersonalInfo1 extends React.Component {
         </QuestionTextBoxDate>
         <View style={styles.questionTextBoxDateMargin2Line}>
           <QuestionTextBoxDate
-            onDateChange={(date) => {
+            onDateChange={date => {
               AsyncStorage.setItem('fromTermOfExMaridge', date);
               this.setState({ fromTermOfExMaridge: date });
             }}
@@ -318,7 +301,7 @@ class PersonalInfo1 extends React.Component {
             上記で回答した婚姻期間以外に、過去に婚姻歴の）{'\n'}ある方はその婚姻期間
           </QuestionTextBoxDate>
           <QuestionTextBoxDate
-            onDateChange={(date) => {
+            onDateChange={date => {
               AsyncStorage.setItem('ToTermOfExMaridge', date);
               this.setState({ ToTermOfExMaridge: date });
             }}
@@ -329,7 +312,7 @@ class PersonalInfo1 extends React.Component {
           </QuestionTextBoxDate>
         </View>
         <QuestionTextSet
-          onChangeText={(text) => {
+          onChangeText={text => {
             AsyncStorage.setItem('nameOfExSpouse', text);
             this.setState({ nameOfExSpouse: text });
           }}
@@ -340,7 +323,7 @@ class PersonalInfo1 extends React.Component {
           上記で過去の婚姻歴があると回答した方は、その{'\n'}配偶者の氏名をパスポート表記通りローマ字で記入
         </QuestionTextSet>
         <QuestionTextBoxDate
-          onDateChange={(date) => {
+          onDateChange={date => {
             AsyncStorage.setItem('birthdateOfExSpouse', date);
             this.setState({ birthdateOfExSpouse: date });
           }}
@@ -350,21 +333,20 @@ class PersonalInfo1 extends React.Component {
           上記の配偶者の生年月日（西暦で）
         </QuestionTextBoxDate>
 
-
         <CheckBox
           center
           title={'保存/修正'}
           checked={this.state.checked}
-          onPress={() => { this.onPressCheckBox(); }}
+          onPress={() => {
+            this.onPressCheckBox();
+          }}
         />
 
         <Copyrights />
-
       </ScrollView>
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {

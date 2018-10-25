@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  AsyncStorage,
-} from 'react-native';
-
+import { StyleSheet, ScrollView, View, Text, AsyncStorage } from 'react-native';
+import firebase from 'firebase';
 import { CheckBox } from 'react-native-elements';
 
 import InfoHeader from '../components/InfoHeader';
@@ -46,132 +40,138 @@ class PersonalInfo5 extends React.Component {
   }
 
   componentDidMount() {
-    AsyncStorage.getItem('checked')
-      .then((value) => {
-        this.setState({ checked: JSON.parse(value) });
-      });
-    AsyncStorage.getItem('editable')
-      .then((value) => {
-        this.setState({ editable: JSON.parse(value) });
-      });
-    AsyncStorage.getItem('disabled')
-      .then((value) => {
-        this.setState({ disabled: JSON.parse(value) });
-      });
-    AsyncStorage.getItem('currentNationality')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ currentNationality: text });
-        }
-      });
-    AsyncStorage.getItem('languageUsingToFamily')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ languageUsingToFamily: text });
-        }
-      });
-    AsyncStorage.getItem('areYouStudent')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ areYouStudent: text });
-        }
-      });
-    AsyncStorage.getItem('dateOfAdmission')
-      .then((date) => {
-        if (date !== null) {
-          this.setState({ dateOfAdmission: date });
-        }
-      });
-    AsyncStorage.getItem('dateOfGraduation')
-      .then((date) => {
-        if (date !== null) {
-          this.setState({ dateOfGraduation: date });
-        }
-      });
-    AsyncStorage.getItem('majorOfSchool')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ majorOfSchool: text });
-        }
-      });
-    AsyncStorage.getItem('nameOfSchool')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ nameOfSchool: text });
-        }
-      });
-    AsyncStorage.getItem('nameCityOfSchool')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ nameCityOfSchool: text });
-        }
-      });
-    AsyncStorage.getItem('namePreferctureOfSchool')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ namePreferctureOfSchool: text });
-        }
-      });
-    AsyncStorage.getItem('dateOfLastAdmission')
-      .then((date) => {
-        if (date !== null) {
-          this.setState({ dateOfLastAdmission: date });
-        }
-      });
-    AsyncStorage.getItem('dateOfLastGraduation')
-      .then((date) => {
-        if (date !== null) {
-          this.setState({ dateOfLastGraduation: date });
-        }
-      });
-    AsyncStorage.getItem('majorOfLastSchool')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ majorOfLastSchool: text });
-        }
-      });
-    AsyncStorage.getItem('nameOfLastSchool')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ nameOfLastSchool: text });
-        }
-      });
-    AsyncStorage.getItem('nameCityOfLastSchool')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ nameCityOfLastSchool: text });
-        }
-      });
-    AsyncStorage.getItem('namePreferctureOfLastSchool')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ namePreferctureOfLastSchool: text });
-        }
-      });
-    AsyncStorage.getItem('areYouWorking')
-      .then((text) => {
-        if (text !== null) {
-          this.setState({ areYouWorking: text });
-        }
-      });
+    AsyncStorage.getItem('checked5').then(value => {
+      this.setState({ checked: JSON.parse(value) });
+      if (value === 'true') {
+        this.setState({ editable: false });
+        this.setState({ disabled: true });
+      } else if (value === 'false') {
+        this.setState({ editable: true });
+        this.setState({ disabled: false });
+      }
+    });
+    AsyncStorage.getItem('currentNationality').then(text => {
+      if (text !== null) {
+        this.setState({ currentNationality: text });
+      }
+    });
+    AsyncStorage.getItem('languageUsingToFamily').then(text => {
+      if (text !== null) {
+        this.setState({ languageUsingToFamily: text });
+      }
+    });
+    AsyncStorage.getItem('areYouStudent').then(text => {
+      if (text !== null) {
+        this.setState({ areYouStudent: text });
+      }
+    });
+    AsyncStorage.getItem('dateOfAdmission').then(date => {
+      if (date !== null) {
+        this.setState({ dateOfAdmission: date });
+      }
+    });
+    AsyncStorage.getItem('dateOfGraduation').then(date => {
+      if (date !== null) {
+        this.setState({ dateOfGraduation: date });
+      }
+    });
+    AsyncStorage.getItem('majorOfSchool').then(text => {
+      if (text !== null) {
+        this.setState({ majorOfSchool: text });
+      }
+    });
+    AsyncStorage.getItem('nameOfSchool').then(text => {
+      if (text !== null) {
+        this.setState({ nameOfSchool: text });
+      }
+    });
+    AsyncStorage.getItem('nameCityOfSchool').then(text => {
+      if (text !== null) {
+        this.setState({ nameCityOfSchool: text });
+      }
+    });
+    AsyncStorage.getItem('namePreferctureOfSchool').then(text => {
+      if (text !== null) {
+        this.setState({ namePreferctureOfSchool: text });
+      }
+    });
+    AsyncStorage.getItem('dateOfLastAdmission').then(date => {
+      if (date !== null) {
+        this.setState({ dateOfLastAdmission: date });
+      }
+    });
+    AsyncStorage.getItem('dateOfLastGraduation').then(date => {
+      if (date !== null) {
+        this.setState({ dateOfLastGraduation: date });
+      }
+    });
+    AsyncStorage.getItem('majorOfLastSchool').then(text => {
+      if (text !== null) {
+        this.setState({ majorOfLastSchool: text });
+      }
+    });
+    AsyncStorage.getItem('nameOfLastSchool').then(text => {
+      if (text !== null) {
+        this.setState({ nameOfLastSchool: text });
+      }
+    });
+    AsyncStorage.getItem('nameCityOfLastSchool').then(text => {
+      if (text !== null) {
+        this.setState({ nameCityOfLastSchool: text });
+      }
+    });
+    AsyncStorage.getItem('namePreferctureOfLastSchool').then(text => {
+      if (text !== null) {
+        this.setState({ namePreferctureOfLastSchool: text });
+      }
+    });
+    AsyncStorage.getItem('areYouWorking').then(text => {
+      if (text !== null) {
+        this.setState({ areYouWorking: text });
+      }
+    });
   }
 
   onPressCheckBox() {
-    if (this.state.checked === false) {
+    const { checked } = this.state;
+    if (checked !== true) {
       this.setState({ checked: true });
-      this.setState({ editable: false });
-      this.setState({ disabled: true });
-      AsyncStorage.setItem('checked', JSON.stringify(true));
-      AsyncStorage.setItem('editable', JSON.stringify(false));
-      AsyncStorage.setItem('disabled', JSON.stringify(true));
-      this.props.navigation.goBack();
-    } else if (this.state.checked === true) {
+      AsyncStorage.setItem('checked5', JSON.stringify(true));
+      const db = firebase.firestore();
+      const { currentUser } = firebase.auth();
+      db.collection(`users/${currentUser.uid}/forms`)
+        .doc('form5')
+        .set({
+          form5: [
+            { currentNationality: this.state.currentNationality },
+            { languageUsingToFamily: this.state.languageUsingToFamily },
+            { areYouStudent: this.state.areYouStudent },
+            { dateOfAdmission: this.state.dateOfAdmission },
+            { dateOfGraduation: this.state.dateOfGraduation },
+            { majorOfSchool: this.state.majorOfSchool },
+            { nameOfSchool: this.state.nameOfSchool },
+            { nameCityOfSchool: this.state.nameCityOfSchool },
+            { namePreferctureOfSchool: this.state.namePreferctureOfSchool },
+            { dateOfLastAdmission: this.state.dateOfLastAdmission },
+            { dateOfLastGraduation: this.state.dateOfLastGraduation },
+            { majorOfLastSchool: this.state.majorOfLastSchool },
+            { nameOfLastSchool: this.state.nameOfLastSchool },
+            { nameCityOfLastSchool: this.state.nameCityOfLastSchool },
+            { namePreferctureOfLastSchool: this.state.namePreferctureOfLastSchool },
+            { areYouWorking: this.state.areYouWorking },
+          ],
+        })
+        .then(() => {
+          this.props.navigation.goBack();
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    } else if (checked !== false) {
       this.setState({ checked: false });
       this.setState({ editable: true });
       this.setState({ disabled: false });
-      AsyncStorage.setItem('checked', JSON.stringify(false));
-      AsyncStorage.setItem('editable', JSON.stringify(true));
-      AsyncStorage.setItem('disabled', JSON.stringify(false));
+      AsyncStorage.setItem('checked5', JSON.stringify(false));
     }
   }
 
@@ -182,7 +182,7 @@ class PersonalInfo5 extends React.Component {
         <Notes />
         <QuestionTextSet
           placeholder={'例：日本'}
-          onChangeText={(text) => {
+          onChangeText={text => {
             AsyncStorage.setItem('currentNationality', text);
             this.setState({ currentNationality: text });
           }}
@@ -192,20 +192,17 @@ class PersonalInfo5 extends React.Component {
           現在の国籍
         </QuestionTextSet>
         <QuestionTextSet
-          onChangeText={(text) => {
+          onChangeText={text => {
             AsyncStorage.setItem('languageUsingToFamily', text);
             this.setState({ languageUsingToFamily: text });
           }}
           editable={this.state.editable}
           value={this.state.languageUsingToFamily}
-
         >
           家族友達と話すときに使う言葉{'\n'}(英語/フランス語/どちらも使わない)
         </QuestionTextSet>
         <View style={styles.questionTextBox}>
-          <Text style={styles.questionText}>
-          現在学生ですか？（はい/いいえ）
-          </Text>
+          <Text style={styles.questionText}>現在学生ですか？（はい/いいえ）</Text>
           <RadioButtons
             onSelect={(index, value) => {
               AsyncStorage.setItem('areYouStudent', value);
@@ -215,15 +212,13 @@ class PersonalInfo5 extends React.Component {
             disabled={this.state.disabled}
           />
         </View>
-        <Text
-          style={{ alignSelf: 'center', width: '83%' }}
-        >
+        <Text style={{ alignSelf: 'center', width: '83%' }}>
           *学生であれば以下の質問にお答えください。
         </Text>
         <View style={styles.line} />
         <View style={styles.questionTextBoxDateMargin}>
           <QuestionTextBoxDate
-            onDateChange={(date) => {
+            onDateChange={date => {
               AsyncStorage.setItem('dateOfAdmission', date);
               this.setState({ dateOfAdmission: date });
             }}
@@ -235,7 +230,7 @@ class PersonalInfo5 extends React.Component {
         </View>
         <View style={styles.questionTextBoxDateMargin}>
           <QuestionTextBoxDate
-            onDateChange={(date) => {
+            onDateChange={date => {
               AsyncStorage.setItem('dateOfGraduation', date);
               this.setState({ dateOfGraduation: date });
             }}
@@ -246,7 +241,7 @@ class PersonalInfo5 extends React.Component {
           </QuestionTextBoxDate>
         </View>
         <QuestionTextSet
-          onChangeText={(text) => {
+          onChangeText={text => {
             AsyncStorage.setItem('majorOfSchool', text);
             this.setState({ majorOfSchool: text });
           }}
@@ -256,7 +251,7 @@ class PersonalInfo5 extends React.Component {
           学部・専攻名
         </QuestionTextSet>
         <QuestionTextSet
-          onChangeText={(text) => {
+          onChangeText={text => {
             AsyncStorage.setItem('nameOfSchool', text);
             this.setState({ nameOfSchool: text });
           }}
@@ -266,7 +261,7 @@ class PersonalInfo5 extends React.Component {
           学校名
         </QuestionTextSet>
         <QuestionTextSet
-          onChangeText={(text) => {
+          onChangeText={text => {
             AsyncStorage.setItem('nameCityOfSchool', text);
             this.setState({ nameCityOfSchool: text });
           }}
@@ -276,7 +271,7 @@ class PersonalInfo5 extends React.Component {
           学校所在地の市区町村名
         </QuestionTextSet>
         <QuestionTextSet
-          onChangeText={(text) => {
+          onChangeText={text => {
             AsyncStorage.setItem('namePreferctureOfSchool', text);
             this.setState({ namePreferctureOfSchool: text });
           }}
@@ -285,15 +280,13 @@ class PersonalInfo5 extends React.Component {
         >
           学校所在地の都道府県名
         </QuestionTextSet>
-        <Text
-          style={{ alignSelf: 'center', width: '83%' }}
-        >
+        <Text style={{ alignSelf: 'center', width: '83%' }}>
           *最終学歴について{'\n'}(現在学生の方は一つ前の学校になります)
         </Text>
         <View style={styles.line} />
         <View style={styles.questionTextBoxDateMargin}>
           <QuestionTextBoxDate
-            onDateChange={(date) => {
+            onDateChange={date => {
               AsyncStorage.setItem('dateOfLastAdmission', date);
               this.setState({ dateOfLastAdmission: date });
             }}
@@ -305,7 +298,7 @@ class PersonalInfo5 extends React.Component {
         </View>
         <View style={styles.questionTextBoxDateMargin}>
           <QuestionTextBoxDate
-            onDateChange={(date) => {
+            onDateChange={date => {
               AsyncStorage.setItem('dateOfLastGraduation', date);
               this.setState({ dateOfLastGraduation: date });
             }}
@@ -316,7 +309,7 @@ class PersonalInfo5 extends React.Component {
           </QuestionTextBoxDate>
         </View>
         <QuestionTextSet
-          onChangeText={(text) => {
+          onChangeText={text => {
             AsyncStorage.setItem('majorOfLastSchool', text);
             this.setState({ majorOfLastSchool: text });
           }}
@@ -326,7 +319,7 @@ class PersonalInfo5 extends React.Component {
           学部・専攻名
         </QuestionTextSet>
         <QuestionTextSet
-          onChangeText={(text) => {
+          onChangeText={text => {
             AsyncStorage.setItem('nameOfLastSchool', text);
             this.setState({ nameOfLastSchool: text });
           }}
@@ -336,7 +329,7 @@ class PersonalInfo5 extends React.Component {
           学校名
         </QuestionTextSet>
         <QuestionTextSet
-          onChangeText={(text) => {
+          onChangeText={text => {
             AsyncStorage.setItem('nameCityOfLastSchool', text);
             this.setState({ nameCityOfLastSchool: text });
           }}
@@ -346,7 +339,7 @@ class PersonalInfo5 extends React.Component {
           学校所在地の市区町村名
         </QuestionTextSet>
         <QuestionTextSet
-          onChangeText={(text) => {
+          onChangeText={text => {
             AsyncStorage.setItem('namePreferctureOfLastSchool', text);
             this.setState({ namePreferctureOfLastSchool: text });
           }}
@@ -358,9 +351,7 @@ class PersonalInfo5 extends React.Component {
 
         <View style={styles.line} />
         <View style={styles.questionTextBox}>
-          <Text style={styles.questionText}>
-          現在働いていますか？（はい/いいえ）
-          </Text>
+          <Text style={styles.questionText}>現在働いていますか？（はい/いいえ）</Text>
           <RadioButtons
             onSelect={(index, value) => {
               AsyncStorage.setItem('areYouWorking', value);
@@ -375,16 +366,16 @@ class PersonalInfo5 extends React.Component {
           center
           title={'保存/修正'}
           checked={this.state.checked}
-          onPress={() => { this.onPressCheckBox(); }}
+          onPress={() => {
+            this.onPressCheckBox();
+          }}
         />
 
         <Copyrights />
-
       </ScrollView>
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {

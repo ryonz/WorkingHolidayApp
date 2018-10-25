@@ -7,7 +7,7 @@ class HWApplyList extends React.Component {
   state = {
     fontLoaded: false,
     stateOfEdit: '未入力',
-  }
+  };
 
   async componentWillMount() {
     await Font.loadAsync({
@@ -17,286 +17,266 @@ class HWApplyList extends React.Component {
     this.setState({ fontLoaded: true });
   }
 
-
   render() {
     return (
-
       <View style={styles.container}>
-
-        <TouchableOpacity onPress={() => { this.props.navigation.navigate('PersonalInfo1'); }}>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('PersonalInfo1');
+          }}
+        >
           <View style={styles.listBox}>
-            <Text style={styles.listBoxText}>
-                申請者情報１
-            </Text>
+            <Text style={styles.listBoxText}>申請者情報１</Text>
             <View style={styles.inputBotton}>
               <Text style={styles.inputBottonText}>未入力</Text>
             </View>
 
             <View style={{ flex: 1, justifyContent: 'center' }}>
-              {
-                this.state.fontLoaded ? (
-                  <View style={styles.navigationButton}>
-                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                  </View>
-                ) : null
-             }
+              {this.state.fontLoaded ? (
+                <View style={styles.navigationButton}>
+                  <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                </View>
+              ) : null}
             </View>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => { this.props.navigation.navigate('PersonalInfo2'); }}>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('PersonalInfo2');
+          }}
+        >
           <View style={styles.listBox}>
-            <Text style={styles.listBoxText}>
-                申請者情報２
-            </Text>
+            <Text style={styles.listBoxText}>申請者情報２</Text>
             <View style={styles.inputBotton}>
               <Text style={styles.inputBottonText}>{this.state.stateOfEdit}</Text>
             </View>
 
             <View style={{ flex: 1, justifyContent: 'center' }}>
-              {
-                this.state.fontLoaded ? (
-                  <View style={styles.navigationButton}>
-                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                  </View>
-                ) : null
-             }
+              {this.state.fontLoaded ? (
+                <View style={styles.navigationButton}>
+                  <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                </View>
+              ) : null}
             </View>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => { this.props.navigation.navigate('PersonalInfo3'); }}>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('PersonalInfo3');
+          }}
+        >
           <View style={styles.listBox}>
-            <Text style={styles.listBoxText}>
-                申請者情報３
-            </Text>
+            <Text style={styles.listBoxText}>申請者情報３</Text>
             <View style={styles.inputBotton}>
               <Text style={styles.inputBottonText}>未入力</Text>
             </View>
 
             <View style={{ flex: 1, justifyContent: 'center' }}>
-              {
-                this.state.fontLoaded ? (
-                  <View style={styles.navigationButton}>
-                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                  </View>
-                ) : null
-             }
+              {this.state.fontLoaded ? (
+                <View style={styles.navigationButton}>
+                  <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                </View>
+              ) : null}
             </View>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => { this.props.navigation.navigate('PersonalInfo4'); }}>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('PersonalInfo4');
+          }}
+        >
           <View style={styles.listBox}>
-            <Text style={styles.listBoxText}>
-                申請者情報４
-            </Text>
+            <Text style={styles.listBoxText}>申請者情報４</Text>
             <View style={styles.inputBotton}>
               <Text style={styles.inputBottonText}>未入力</Text>
             </View>
 
             <View style={{ flex: 1, justifyContent: 'center' }}>
-              {
-                this.state.fontLoaded ? (
-                  <View style={styles.navigationButton}>
-                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                  </View>
-                ) : null
-             }
+              {this.state.fontLoaded ? (
+                <View style={styles.navigationButton}>
+                  <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                </View>
+              ) : null}
             </View>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => { this.props.navigation.navigate('PersonalInfo5'); }}>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('PersonalInfo5');
+          }}
+        >
           <View style={styles.listBox}>
-            <Text style={styles.listBoxText}>
-                申請者情報５
-            </Text>
+            <Text style={styles.listBoxText}>申請者情報５</Text>
             <View style={styles.inputBotton}>
               <Text style={styles.inputBottonText}>未入力</Text>
             </View>
 
             <View style={{ flex: 1, justifyContent: 'center' }}>
-              {
-                this.state.fontLoaded ? (
-                  <View style={styles.navigationButton}>
-                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                  </View>
-                ) : null
-             }
+              {this.state.fontLoaded ? (
+                <View style={styles.navigationButton}>
+                  <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                </View>
+              ) : null}
             </View>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => { this.props.navigation.navigate('PersonalInfo6'); }}>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('PersonalInfo6');
+          }}
+        >
           <View style={styles.listBox}>
-            <Text style={styles.listBoxText}>
-                申請者情報６
-            </Text>
+            <Text style={styles.listBoxText}>申請者情報６</Text>
             <View style={styles.inputBotton}>
               <Text style={styles.inputBottonText}>未入力</Text>
             </View>
 
             <View style={{ flex: 1, justifyContent: 'center' }}>
-              {
-                this.state.fontLoaded ? (
-                  <View style={styles.navigationButton}>
-                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                  </View>
-                ) : null
-             }
+              {this.state.fontLoaded ? (
+                <View style={styles.navigationButton}>
+                  <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                </View>
+              ) : null}
             </View>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('FamilyInfo1');
+          }}
+        >
           <View style={styles.listBox}>
-            <Text style={styles.listBoxText}>
-              家族情報１
-            </Text>
+            <Text style={styles.listBoxText}>家族情報１</Text>
             <View style={styles.inputBotton}>
               <Text style={styles.inputBottonText}>未入力</Text>
             </View>
 
             <View style={{ flex: 1, justifyContent: 'center' }}>
-              {
-                this.state.fontLoaded ? (
-                  <View style={styles.navigationButton}>
-                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                  </View>
-                ) : null
-             }
+              {this.state.fontLoaded ? (
+                <View style={styles.navigationButton}>
+                  <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                </View>
+              ) : null}
             </View>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('FamilyInfo2');
+          }}
+        >
           <View style={styles.listBox}>
-            <Text style={styles.listBoxText}>
-              家族情報２
-            </Text>
+            <Text style={styles.listBoxText}>家族情報２</Text>
             <View style={styles.inputBotton}>
               <Text style={styles.inputBottonText}>未入力</Text>
             </View>
 
             <View style={{ flex: 1, justifyContent: 'center' }}>
-              {
-                this.state.fontLoaded ? (
-                  <View style={styles.navigationButton}>
-                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                  </View>
-                ) : null
-             }
+              {this.state.fontLoaded ? (
+                <View style={styles.navigationButton}>
+                  <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                </View>
+              ) : null}
             </View>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('FamilyInfo3');
+          }}
+        >
           <View style={styles.listBox}>
-            <Text style={styles.listBoxText}>
-              家族情報３
-            </Text>
+            <Text style={styles.listBoxText}>家族情報３</Text>
             <View style={styles.inputBotton}>
               <Text style={styles.inputBottonText}>未入力</Text>
             </View>
 
             <View style={{ flex: 1, justifyContent: 'center' }}>
-              {
-                this.state.fontLoaded ? (
-                  <View style={styles.navigationButton}>
-                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                  </View>
-                ) : null
-             }
+              {this.state.fontLoaded ? (
+                <View style={styles.navigationButton}>
+                  <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                </View>
+              ) : null}
             </View>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('FamilyInfo4');
+          }}
+        >
           <View style={styles.listBox}>
-            <Text style={styles.listBoxText}>
-              家族情報４
-            </Text>
+            <Text style={styles.listBoxText}>家族情報４</Text>
             <View style={styles.inputBotton}>
               <Text style={styles.inputBottonText}>未入力</Text>
             </View>
 
             <View style={{ flex: 1, justifyContent: 'center' }}>
-              {
-                this.state.fontLoaded ? (
-                  <View style={styles.navigationButton}>
-                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                  </View>
-                ) : null
-             }
+              {this.state.fontLoaded ? (
+                <View style={styles.navigationButton}>
+                  <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                </View>
+              ) : null}
             </View>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('FamilyInfo5');
+          }}
+        >
           <View style={styles.listBox}>
-            <Text style={styles.listBoxText}>
-              家族情報５
-            </Text>
+            <Text style={styles.listBoxText}>家族情報５</Text>
             <View style={styles.inputBotton}>
               <Text style={styles.inputBottonText}>未入力</Text>
             </View>
 
             <View style={{ flex: 1, justifyContent: 'center' }}>
-              {
-                this.state.fontLoaded ? (
-                  <View style={styles.navigationButton}>
-                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                  </View>
-                ) : null
-             }
+              {this.state.fontLoaded ? (
+                <View style={styles.navigationButton}>
+                  <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                </View>
+              ) : null}
             </View>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('AgreementPII');
+          }}
+        >
           <View style={styles.listBox}>
-            <Text style={styles.listBoxText}>
-              家族情報６
-            </Text>
+            <Text style={styles.listBoxText}>個人情報・同意事項</Text>
             <View style={styles.inputBotton}>
               <Text style={styles.inputBottonText}>未入力</Text>
             </View>
 
             <View style={{ flex: 1, justifyContent: 'center' }}>
-              {
-                this.state.fontLoaded ? (
-                  <View style={styles.navigationButton}>
-                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                  </View>
-                ) : null
-             }
+              {this.state.fontLoaded ? (
+                <View style={styles.navigationButton}>
+                  <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                </View>
+              ) : null}
             </View>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity>
-          <View style={styles.listBox}>
-            <Text style={styles.listBoxText}>
-              個人情報・同意事項
-            </Text>
-            <View style={styles.inputBotton}>
-              <Text style={styles.inputBottonText}>未入力</Text>
-            </View>
-
-            <View style={{ flex: 1, justifyContent: 'center' }}>
-              {
-                this.state.fontLoaded ? (
-                  <View style={styles.navigationButton}>
-                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                  </View>
-                ) : null
-             }
-            </View>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('FromCanadaGovernment');
+          }}
+        >
           <View style={styles.listBox}>
             <Text style={styles.privacyPolicyCA}>
               カナダ外務・国際貿易省からの「個人情報取扱い
@@ -307,60 +287,56 @@ class HWApplyList extends React.Component {
               <Text style={styles.inputBottonText}>未入力</Text>
             </View>
             <View style={{ flex: 1, justifyContent: 'center' }}>
-              {
-                this.state.fontLoaded ? (
-                  <View style={styles.navigationButton}>
-                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                  </View>
-                ) : null
-             }
+              {this.state.fontLoaded ? (
+                <View style={styles.navigationButton}>
+                  <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                </View>
+              ) : null}
             </View>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('Declaration');
+          }}
+        >
           <View style={styles.listBox}>
-            <Text style={styles.listBoxText}>
-              申請者の申告
-            </Text>
+            <Text style={styles.listBoxText}>申請者の申告</Text>
             <View style={styles.inputBotton}>
               <Text style={styles.inputBottonText}>未入力</Text>
             </View>
 
             <View style={{ flex: 1, justifyContent: 'center' }}>
-              {
-                this.state.fontLoaded ? (
-                  <View style={styles.navigationButton}>
-                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                  </View>
-                ) : null
-             }
+              {this.state.fontLoaded ? (
+                <View style={styles.navigationButton}>
+                  <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                </View>
+              ) : null}
             </View>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('Agreement');
+          }}
+        >
           <View style={styles.listBox}>
-            <Text style={styles.listBoxText}>
-              同意書
-            </Text>
+            <Text style={styles.listBoxText}>同意書</Text>
             <View style={styles.inputBotton}>
               <Text style={styles.inputBottonText}>未入力</Text>
             </View>
 
             <View style={{ flex: 1, justifyContent: 'center' }}>
-              {
-                this.state.fontLoaded ? (
-                  <View style={styles.navigationButton}>
-                    <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
-                  </View>
-                ) : null
-             }
+              {this.state.fontLoaded ? (
+                <View style={styles.navigationButton}>
+                  <Text style={styles.navigationButtonIcon}>{'\uf0da'}</Text>
+                </View>
+              ) : null}
             </View>
           </View>
         </TouchableOpacity>
-
-
       </View>
     );
   }
@@ -383,7 +359,6 @@ const styles = StyleSheet.create({
     left: 40,
     width: '60%',
     paddingTop: 12,
-
   },
   privacyPolicyCA: {
     fontSize: 10,

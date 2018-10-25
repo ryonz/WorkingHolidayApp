@@ -7,7 +7,6 @@ import InfoHeader from '../components/InfoHeader';
 import Notes from '../elements/Notes';
 import QuestionTextSet from '../components/QuestionTextSet';
 import QuestionTextBoxDate from '../components/QuestionTextBoxDate';
-import SubmitButton from '../components/SubmitButton';
 import Copyrights from '../elements/Copyrights';
 
 class PersonalInfo2 extends React.Component {
@@ -32,17 +31,16 @@ class PersonalInfo2 extends React.Component {
   }
 
   componentDidMount() {
-    AsyncStorage.getItem('checked')
+    AsyncStorage.getItem('checked2')
       .then((value) => {
         this.setState({ checked: JSON.parse(value) });
-      });
-    AsyncStorage.getItem('editable')
-      .then((value) => {
-        this.setState({ editable: JSON.parse(value) });
-      });
-    AsyncStorage.getItem('disabled')
-      .then((value) => {
-        this.setState({ disabled: JSON.parse(value) });
+        if (value === 'true') {
+          this.setState({ editable: false });
+          this.setState({ disabled: true });
+        } else if (value === 'false') {
+          this.setState({ editable: true });
+          this.setState({ disabled: false });
+        }
       });
     AsyncStorage.getItem('currentAddress')
       .then((text) => {
@@ -113,13 +111,11 @@ class PersonalInfo2 extends React.Component {
   }
 
   onPressCheckBox() {
-    if (this.state.checked === false) {
+    const { checked } = this.state;
+
+    if (checked !== true) {
       this.setState({ checked: true });
-      this.setState({ editable: false });
-      this.setState({ disabled: true });
-      AsyncStorage.setItem('checked', JSON.stringify(true));
-      AsyncStorage.setItem('editable', JSON.stringify(false));
-      AsyncStorage.setItem('disabled', JSON.stringify(true));
+      AsyncStorage.setItem('checked2', JSON.stringify(true));
       const db = firebase.firestore();
       const { currentUser } = firebase.auth();
       db.collection(`users/${currentUser.uid}/forms`).doc('form2')
@@ -142,13 +138,11 @@ class PersonalInfo2 extends React.Component {
         .catch((error) => {
           console.log(error);
         });
-    } else if (this.state.checked === true) {
+    } else if (checked !== false) {
       this.setState({ checked: false });
       this.setState({ editable: true });
       this.setState({ disabled: false });
-      AsyncStorage.setItem('checked', JSON.stringify(false));
-      AsyncStorage.setItem('editable', JSON.stringify(true));
-      AsyncStorage.setItem('disabled', JSON.stringify(false));
+      AsyncStorage.setItem('checked2', JSON.stringify(false));
     }
   }
 

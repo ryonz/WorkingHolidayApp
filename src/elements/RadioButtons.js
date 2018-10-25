@@ -4,7 +4,6 @@ import { StyleSheet, View, Text } from 'react-native';
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button';
 
 class RadioButtons extends React.Component {
-
   render() {
     return (
       <View style={styles.container}>
@@ -12,11 +11,13 @@ class RadioButtons extends React.Component {
           onSelect={(index, value) => {
             this.props.onSelect(index, value);
           }}
+          selectedIndex={this.props.value === 'Yes' ? 0 : 1}
         >
 
           <RadioButton
             value={'Yes'}
             disabled={this.props.disabled}
+
           >
             <Text>はい</Text>
           </RadioButton>
@@ -27,6 +28,7 @@ class RadioButtons extends React.Component {
           >
             <Text>いいえ</Text>
           </RadioButton>
+
 
         </RadioGroup>
       </View>
