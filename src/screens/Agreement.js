@@ -1,5 +1,12 @@
 import React from 'react';
-import { StyleSheet, ScrollView, View, Text, AsyncStorage } from 'react-native';
+import {
+  StyleSheet,
+  ScrollView,
+  View,
+  Text,
+  AsyncStorage,
+  Alert,
+} from 'react-native';
 
 import firebase from 'firebase';
 import { CheckBox } from 'react-native-elements';
@@ -13,30 +20,40 @@ class Agreement extends React.Component {
     this.state = {
       checked: false,
       disabled: false,
+      disableChecked: false,
 
       agreement: '',
     };
   }
 
   componentDidMount() {
-    AsyncStorage.getItem('checked15').then(value => {
-      this.setState({ checked: JSON.parse(value) });
-      if (value === 'true') {
-        this.setState({ disabled: true });
-      } else if (value === 'false') {
-        this.setState({ disabled: false });
-      }
-    });
-    AsyncStorage.getItem('agreement').then(text => {
-      if (text !== null) {
-        this.setState({ agreement: text });
-      }
-    });
+    AsyncStorage.getItem('checked15')
+      .then(value => {
+        this.setState({ checked: JSON.parse(value) });
+        if (value === 'true') {
+          this.setState({ disabled: true });
+        } else if (value === 'false') {
+          this.setState({ disabled: false });
+        }
+      });
+    AsyncStorage.getItem('disableChecked')
+      .then(text => {
+        if (text !== null) {
+          this.setState({ disableChecked: JSON.parse(false) });
+        }
+      });
+    AsyncStorage.getItem('agreement')
+      .then(text => {
+        if (text !== null) {
+          this.setState({ agreement: text });
+        }
+      });
   }
 
   onPressCheckBox() {
     const { checked } = this.state;
     if (checked !== true) {
+      this.setState({ disableChecked: true });
       this.setState({ checked: true });
       AsyncStorage.setItem('checked15', JSON.stringify(true));
       const db = firebase.firestore();
@@ -47,23 +64,39 @@ class Agreement extends React.Component {
           Agreement: [{ agreement: this.state.agreement }],
         })
         .then(() => {
-          this.props.navigation.goBack();
+          this.props.navigation.state.params.setStateEdit15();
+          this.props.navigation.navigate('WHApply');
+          this.setState({ disableChecked: false });
         })
         .catch(error => {
           console.log(error);
+          this.setState({ disableChecked: false });
         });
     } else if (checked !== false) {
       this.setState({ checked: false });
       this.setState({ disabled: false });
+      this.props.navigation.state.params.setStateEdit15();
       AsyncStorage.setItem('checked15', JSON.stringify(false));
     }
+  }
+
+  onPressBackButton() {
+    AsyncStorage.getItem('checked15')
+      .then((value) => {
+        if (value !== 'false') {
+          this.props.navigation.goBack();
+        } else if (value === 'false') {
+          this.props.navigation.state.params.setStateEdit15();
+          this.props.navigation.goBack();
+        }
+      });
   }
 
   render() {
     return (
       <ScrollView style={styles.container}>
         <InfoHeader
-          navigation={this.props.navigation}
+          onPress={this.onPressBackButton.bind(this)}
         >
           同意書
         </InfoHeader>
@@ -94,6 +127,13 @@ class Agreement extends React.Component {
             onSelect={(index, value) => {
               AsyncStorage.setItem('agreement', value);
               this.setState({ agreement: value });
+              if (value === 'Yes') {
+                AsyncStorage.setItem('disableChecked', JSON.stringify(false));
+                this.setState({ disableChecked: false });
+              } else {
+                this.setState({ disableChecked: true });
+                Alert.alert('同意しない場合、ワーキングホリデーの申請ができません。');
+              }
             }}
             value={this.state.agreement}
             disabled={this.state.disabled}
@@ -101,6 +141,7 @@ class Agreement extends React.Component {
         </View>
 
         <CheckBox
+          disabled={this.state.disableChecked}
           center
           title={'保存/修正'}
           checked={this.state.checked}

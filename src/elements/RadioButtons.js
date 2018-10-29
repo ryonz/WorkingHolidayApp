@@ -11,7 +11,7 @@ class RadioButtons extends React.Component {
           onSelect={(index, value) => {
             this.props.onSelect(index, value);
           }}
-          selectedIndex={this.props.value === 'Yes' ? 0 : 1}
+          selectedIndex={this.props.value === 'Yes' ? 0 : null || this.props.value === 'No' ? 1: null}
         >
 
           <RadioButton
@@ -59,49 +59,3 @@ const styles = StyleSheet.create({
 });
 
 export default RadioButtons;
-
-
-// <View style={styles.yesButton} />
-// <Text>はい</Text>
-//
-// <View style={styles.noButton} />
-// <Text>いいえ</Text>
-
-//import CheckBox from 'react-native-check-box'
-
-// state = {
-//   answerYes: '',
-//   answerNo: '',
-//   yesIsChecked: false,
-//   noIsChecked: false,
-//   yesDisabled: false,
-//   noDisabled: false,
-// };
-//
-// onClickCheckBox() {
-//   if (this.yesIsChecked === true) {
-//     this.setState({ answerYes:'はい' });
-//     this.setState({ noDisabled:true });
-//   }
-//   else if (this.noIsChecked === true) {
-//     this.setState({ answerNo:'いいえ' });
-//     this.setState({ yesDisabled:true });
-//   }
-// }
-
-
-// <CheckBox
-//   style={styles.yesButton}
-//   isChecked={this.state.yesIsChecked}
-//   onClick={() => { this.setState({ yesIsChecked:!this.state.yesIsChecked }) }}
-//   disabled={this.state.yesDisabled}
-// />
-// <Text style={styles.answerText}>はい</Text>
-//
-// <CheckBox
-//   style={styles.noButton}
-//   isChecked={this.state.noIsChecked}
-//   onClick={() => { this.setState({ noIsChecked:!this.state.noIsChecked }); }}
-//   disabled={this.state.noDisabled}
-// />
-// <Text style={styles.answerText}>いいえ</Text>

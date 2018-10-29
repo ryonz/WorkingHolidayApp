@@ -13,6 +13,7 @@ class FromCanadaGovernment extends React.Component {
     this.state = {
       checked: false,
       disabled: false,
+      disableChecked: false,
 
       FromCanadaGovernment: '',
     };
@@ -37,6 +38,7 @@ class FromCanadaGovernment extends React.Component {
   onPressCheckBox() {
     const { checked } = this.state;
     if (checked !== true) {
+      this.setState({ disableChecked: true });
       this.setState({ checked: true });
       AsyncStorage.setItem('checked13', JSON.stringify(true));
       const db = firebase.firestore();
@@ -47,10 +49,13 @@ class FromCanadaGovernment extends React.Component {
           FromCanadaGovernment: [{ FromCanadaGovernment: this.state.FromCanadaGovernment }],
         })
         .then(() => {
-          this.props.navigation.goBack();
+          this.props.navigation.state.params.setStateEdit13();
+          this.props.navigation.navigate('WHApply');
+          this.setState({ disableChecked: false });
         })
         .catch(error => {
           console.log(error);
+          this.setState({ disableChecked: false });
         });
     } else if (checked !== false) {
       this.setState({ checked: false });
@@ -59,11 +64,24 @@ class FromCanadaGovernment extends React.Component {
     }
   }
 
+  onPressBackButton() {
+    AsyncStorage.getItem('checked13')
+      .then((value) => {
+        if (value !== 'false') {
+          this.props.navigation.goBack();
+        } else if (value === 'false') {
+          this.props.navigation.state.params.setStateEdit13();
+          this.props.navigation.goBack();
+        }
+      });
+  }
+
+
   render() {
     return (
       <ScrollView style={styles.container}>
         <InfoHeader
-          navigation={this.props.navigation}
+          onPress={this.onPressBackButton.bind(this)}
           style={styles.headerTitle}
         >
         カナダ外務・国際貿易省からの{'\n'}
@@ -131,6 +149,7 @@ class FromCanadaGovernment extends React.Component {
         </View>
 
         <CheckBox
+          disabled={this.state.disableChecked}
           center
           title={'保存/修正'}
           checked={this.state.checked}

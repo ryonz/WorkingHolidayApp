@@ -17,6 +17,7 @@ class PersonalInfo4 extends React.Component {
       checked: false,
       editable: true,
       disabled: false,
+      disableChecked: false,
 
       currentCountry: '',
       statusOfcurrentCountry: '',
@@ -133,8 +134,8 @@ class PersonalInfo4 extends React.Component {
 
   onPressCheckBox() {
     const { checked } = this.state;
-    // if (checked === false)だと機能しない。なんで？
     if (checked !== true) {
+      this.setState({ disableChecked: true });
       this.setState({ checked: true });
       AsyncStorage.setItem('checked4', JSON.stringify(true));
       const db = firebase.firestore();
@@ -160,10 +161,13 @@ class PersonalInfo4 extends React.Component {
           ],
         })
         .then(() => {
-          this.props.navigation.goBack();
+          this.props.navigation.state.params.setStateEdit4();
+          this.props.navigation.navigate('WHApply');
+          this.setState({ disableChecked: false });
         })
         .catch(error => {
           console.log(error);
+          this.setState({ disableChecked: false });
         });
     } else if (checked !== false) {
       console.log('here');
@@ -174,10 +178,22 @@ class PersonalInfo4 extends React.Component {
     }
   }
 
+  onPressBackButton() {
+    AsyncStorage.getItem('checked4')
+      .then((value) => {
+        if (value !== 'false') {
+          this.props.navigation.goBack();
+        } else if (value === 'false') {
+          this.props.navigation.state.params.setStateEdit4();
+          this.props.navigation.goBack();
+        }
+      });
+  }
+
   render() {
     return (
       <ScrollView style={styles.container}>
-        <InfoHeader navigation={this.props.navigation}>申請者情報４</InfoHeader>
+        <InfoHeader onPress={this.onPressBackButton.bind(this)}>申請者情報４</InfoHeader>
         <Notes />
 
         <QuestionTextSet
@@ -341,6 +357,7 @@ class PersonalInfo4 extends React.Component {
         </View>
 
         <CheckBox
+          disabled={this.state.disableChecked}
           center
           title={'保存/修正'}
           checked={this.state.checked}

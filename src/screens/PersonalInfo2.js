@@ -16,6 +16,7 @@ class PersonalInfo2 extends React.Component {
       checked: false,
       editable: true,
       disabled: false,
+      disableChecked: false,
 
       currentAddress: '',
       currentAddressYomi: '',
@@ -112,8 +113,8 @@ class PersonalInfo2 extends React.Component {
 
   onPressCheckBox() {
     const { checked } = this.state;
-
     if (checked !== true) {
+      this.setState({ disableChecked: true });
       this.setState({ checked: true });
       AsyncStorage.setItem('checked2', JSON.stringify(true));
       const db = firebase.firestore();
@@ -133,10 +134,13 @@ class PersonalInfo2 extends React.Component {
             { faxNumber: this.state.faxNumber }],
         })
         .then(() => {
-          this.props.navigation.goBack();
+          this.props.navigation.state.params.setStateEdit2();
+          this.props.navigation.navigate('WHApply');
+          this.setState({ disableChecked: false });
         })
         .catch((error) => {
           console.log(error);
+          this.setState({ disableChecked: false });
         });
     } else if (checked !== false) {
       this.setState({ checked: false });
@@ -146,10 +150,22 @@ class PersonalInfo2 extends React.Component {
     }
   }
 
+  onPressBackButton() {
+    AsyncStorage.getItem('checked2')
+      .then((value) => {
+        if (value !== 'false') {
+          this.props.navigation.goBack();
+        } else if (value === 'false') {
+          this.props.navigation.state.params.setStateEdit2();
+          this.props.navigation.goBack();
+        }
+      });
+  }
+
   render() {
     return (
       <ScrollView style={styles.container}>
-        <InfoHeader navigation={this.props.navigation}>申請者情報２</InfoHeader>
+        <InfoHeader onPress={this.onPressBackButton.bind(this)}>申請者情報２</InfoHeader>
         <Notes />
         <QuestionTextSet
           onChangeText={(text) => {
@@ -254,10 +270,13 @@ class PersonalInfo2 extends React.Component {
 
 
         <CheckBox
+          disabled={this.state.disableChecked}
           center
           title={'保存/修正'}
           checked={this.state.checked}
-          onPress={() => { this.onPressCheckBox(); }}
+          onPress={() => {
+            this.onPressCheckBox();
+          }}
         />
 
         <Copyrights />

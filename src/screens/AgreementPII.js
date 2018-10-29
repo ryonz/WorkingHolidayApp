@@ -14,6 +14,7 @@ class AgreementPII extends React.Component {
       checked: false,
       disabled: false,
       editable: true,
+      disableChecked: false,
 
       AgreementPII: '',
     };
@@ -40,6 +41,7 @@ class AgreementPII extends React.Component {
   onPressCheckBox() {
     const { checked } = this.state;
     if (checked !== true) {
+      this.setState({ disableChecked: true });
       this.setState({ checked: true });
       AsyncStorage.setItem('checked12', JSON.stringify(true));
       const db = firebase.firestore();
@@ -50,10 +52,13 @@ class AgreementPII extends React.Component {
           AgreementPII: [{ AgreementPII: this.state.AgreementPII }],
         })
         .then(() => {
-          this.props.navigation.goBack();
+          this.props.navigation.state.params.setStateEdit12();
+          this.props.navigation.navigate('WHApply');
+          this.setState({ disableChecked: false });
         })
         .catch(error => {
           console.log(error);
+          this.setState({ disableChecked: false });
         });
     } else if (checked !== false) {
       this.setState({ checked: false });
@@ -63,10 +68,22 @@ class AgreementPII extends React.Component {
     }
   }
 
+  onPressBackButton() {
+    AsyncStorage.getItem('checked12')
+      .then((value) => {
+        if (value !== 'false') {
+          this.props.navigation.goBack();
+        } else if (value === 'false') {
+          this.props.navigation.state.params.setStateEdit12();
+          this.props.navigation.goBack();
+        }
+      });
+  }
+
   render() {
     return (
       <ScrollView style={styles.container}>
-        <InfoHeader navigation={this.props.navigation}>個人情報・同意事項</InfoHeader>
+        <InfoHeader onPress={this.onPressBackButton.bind(this)}>個人情報・同意事項</InfoHeader>
 
         <View style={styles.textBox}>
           <Text style={styles.textNoteText}>以下の質問を読んで、一番下の◎の問いにお答え下さい。</Text>
@@ -133,6 +150,7 @@ class AgreementPII extends React.Component {
         </View>
 
         <CheckBox
+          disabled={this.state.disableChecked}
           center
           title={'保存/修正'}
           checked={this.state.checked}

@@ -22,7 +22,8 @@ class Home extends React.Component {
 
   componentDidMount() {
     this.checkIfNeedOpenModal();
-    console.log('check first')
+    console.log('check first');
+    console.log(this.props.navigation.checked);
   }
 
 
@@ -82,6 +83,8 @@ class Home extends React.Component {
       console.log('No Login');
     }
   }
+
+
 
   render() {
     return (

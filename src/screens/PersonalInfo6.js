@@ -16,6 +16,7 @@ class PersonalInfo6 extends React.Component {
       checked: false,
       editable: true,
       disabled: false,
+      disableChecked: false,
 
       dateOfStart1: '',
       dateOfFinish1: '',
@@ -171,6 +172,7 @@ class PersonalInfo6 extends React.Component {
   onPressCheckBox() {
     const { checked } = this.state;
     if (checked !== true) {
+      this.setState({ disableChecked: true });
       this.setState({ checked: true });
       AsyncStorage.setItem('checked6', JSON.stringify(true));
       const db = firebase.firestore();
@@ -204,7 +206,9 @@ class PersonalInfo6 extends React.Component {
           ],
         })
         .then(() => {
-          this.props.navigation.goBack();
+          this.props.navigation.state.params.setStateEdit6();
+          this.props.navigation.navigate('WHApply');
+          this.setState({ disableChecked: false });
         })
         .catch(error => {
           console.log(error);
@@ -217,10 +221,22 @@ class PersonalInfo6 extends React.Component {
     }
   }
 
+  onPressBackButton() {
+    AsyncStorage.getItem('checked6')
+      .then((value) => {
+        if (value !== 'false') {
+          this.props.navigation.goBack();
+        } else if (value === 'false') {
+          this.props.navigation.state.params.setStateEdit6();
+          this.props.navigation.goBack();
+        }
+      });
+  }
+
   render() {
     return (
       <ScrollView style={styles.container}>
-        <InfoHeader navigation={this.props.navigation}>申請者情報６</InfoHeader>
+        <InfoHeader onPress={this.onPressBackButton.bind(this)}>申請者情報６</InfoHeader>
         <View style={styles.notes}>
           <Text style={styles.notesText}>
             学校卒業から現在までの職歴について、履歴書を完{'\n'}
@@ -534,6 +550,7 @@ class PersonalInfo6 extends React.Component {
         </View>
 
         <CheckBox
+          disabled={this.state.disableChecked}
           center
           title={'保存/修正'}
           checked={this.state.checked}

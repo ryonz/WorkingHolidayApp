@@ -16,8 +16,9 @@ class InfoHeader extends React.Component {
 
         <TouchableHighlight
           style={styles.backbutton}
-          onPress={() => { this.props.navigation.goBack(); }}
-          underlayColor="#F0F0F0">
+          onPress={() => { this.props.onPress(); }}
+          underlayColor="#F0F0F0"
+        >
           <Image
             style={styles.backbuttonImage}
             source={require('../../assets/images/left-arrow.png')}
