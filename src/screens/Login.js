@@ -59,8 +59,8 @@ class Login extends React.Component {
 
   nextModal(num) {
     if (num === 0) {
-      this.setState({ notificationModal1: false });
       this.setState({ notificationModal2: true });
+      this.setState({ notificationModal1: false });
     } else if (num === 1) {
       this.setState({ notificationModal2: false });
     }

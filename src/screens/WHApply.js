@@ -5,7 +5,7 @@ import WHApplyBar from '../components/WHApplyBar';
 import WHApplyIndexBar from '../elements/WHApplyIndexBar';
 import HWApplyMailBar from '../components/HWApplyMailBar';
 import HWApplyList from '../components/HWApplyList';
-import SubmitButton from '../components/SubmitButton';
+import FinalSubmitButton from '../components/FinalSubmitButton';
 import Copyrights from '../elements/Copyrights';
 import Agreement from '../components/Agreement';
 import Logout from '../components/Logout';
@@ -23,7 +23,7 @@ class WHApply extends React.Component {
         <HWApplyMailBar />
         <HWApplyList navigation={this.props.navigation} />
         <Agreement />
-        <SubmitButton>同意して送信</SubmitButton>
+        <FinalSubmitButton navigation={this.props.navigation}>同意して送信</FinalSubmitButton>
         <Logout navigation={this.props.navigation} />
         <Copyrights />
       </ScrollView>

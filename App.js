@@ -19,6 +19,7 @@ import AgreementPII from './src/screens/AgreementPII';
 import FromCanadaGovernment from './src/screens/FromCanadaGovernment';
 import Declaration from './src/screens/Declaration';
 import Agreement from './src/screens/Agreement';
+import AfterApply1 from './src/screens/AfterApply1';
 import InputEmail from './src/screens/InputEmail';
 import SplashScreen from './src/screens/SplashScreen';
 import Login from './src/screens/Login';
@@ -65,6 +66,7 @@ const App = createStackNavigator(
     FromCanadaGovernment: { screen: FromCanadaGovernment },
     Declaration: { screen: Declaration },
     Agreement: { screen: Agreement },
+    AfterApply1: { screen: AfterApply1 },
     WHApply: { screen: WHApply },
     Help: { screen: Help },
     DeleteAll: { screen: DeleteAll },

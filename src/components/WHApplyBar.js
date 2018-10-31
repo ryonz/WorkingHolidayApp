@@ -20,7 +20,10 @@ class WHApplyBar extends React.Component {
           onPress={() => { this.props.navigation(); }}
           underlayColor="#F0F0F0"
         >
-          <Image style={styles.backbuttonImage} source={require('../../assets/images/left-arrow.png')} />
+          <Image
+            style={styles.backbuttonImage}
+            source={require('../../assets/images/left-arrow.png')}
+          />
         </TouchableHighlight>
 
       </View>

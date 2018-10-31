@@ -6,6 +6,7 @@ import fontAwesome from '../../assets/fonts/fa-solid-900.ttf';
 class HWApplyList extends React.Component {
   state = {
     fontLoaded: false,
+
     stateOfEdit1: '未入力',
     stateOfEdit2: '未入力',
     stateOfEdit3: '未入力',

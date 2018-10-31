@@ -346,7 +346,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   copyrights: {
-    //position: 'absolute',
     width: '100%',
     bottom: 0,
   },

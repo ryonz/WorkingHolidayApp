@@ -1,7 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
 
-import WHApplyBar from './WHApplyBar';
 import SubmitButton from './SubmitButton';
 import Copyrights from '../elements/Copyrights';
 
@@ -11,10 +10,14 @@ class WHApplyNotification1 extends React.Component {
     return (
 
       <View style={styles.container}>
+        <View style={styles.headerHWApply}>
+          <Text style={styles.headerText}>注意事項</Text>
+        </View>
 
-        <WHApplyBar>
-          注意事項
-        </WHApplyBar>
+        <Image
+          style={styles.headerImage}
+          source={require('../../assets/images/headerLogo.png')}
+        />
 
         <View style={styles.title}>
           <Text style={styles.titleText}>申請の前に</Text>
@@ -54,6 +57,34 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     backgroundColor: '#fff',
+  },
+  headerHWApply: {
+    backgroundColor: '#F0F0F0',
+    width: '100%',
+    height: 96,
+    top: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowRadius: 0,
+    shadowOpacity: 0.1,
+  },
+  headerText: {
+    fontSize: 20,
+    paddingTop: 30,
+    fontWeight: 'bold',
+    color: '#626262',
+  },
+  headerImage: {
+    position: 'absolute',
+    width: 48,
+    height: 48,
+    top: 40,
+    right: 18,
   },
   title: {
     width: '33%',

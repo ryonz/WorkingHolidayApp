@@ -26,6 +26,31 @@ class DeleteAll extends React.Component {
     this.setState({ modalVisible: true });
   }
 
+  // onPressDelete() {
+  //   const { currentUser } = firebase.auth();
+  //   const db = firebase.firestore();
+  //   const user = firebase.auth().currentUser;
+  //   db.collection(`users/${currentUser.uid}/data`)
+  //     .doc('forms')
+  //     .delete()
+  //     .then(() => {
+  //       if (user) {
+  //         user.delete()
+  //           .then(() => {
+  //             AsyncStorage.clear();
+  //             this.props.navigation.navigate('Home');
+  //             this.setState({ modalVisible: false })
+  //             console.log('Delete All Success');
+  //           }).catch(() => {
+  //           });
+  //       } else {
+  //         console.log(user);
+  //         this.setState({ modalVisible: false })
+  //         this.props.navigation.navigate('Login');
+  //       }
+  //     })
+  // }
+
   onPressDelete() {
     const user = firebase.auth().currentUser;
     if (user) {
