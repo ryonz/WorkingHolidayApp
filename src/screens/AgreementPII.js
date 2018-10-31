@@ -1,5 +1,13 @@
 import React from 'react';
-import { StyleSheet, ScrollView, View, Text, AsyncStorage, TextInput } from 'react-native';
+import {
+  StyleSheet,
+  ScrollView,
+  View,
+  Text,
+  AsyncStorage,
+  TextInput,
+  KeyboardAvoidingView,
+} from 'react-native';
 
 import firebase from 'firebase';
 import { CheckBox } from 'react-native-elements';
@@ -82,85 +90,91 @@ class AgreementPII extends React.Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-        <InfoHeader onPress={this.onPressBackButton.bind(this)}>個人情報・同意事項</InfoHeader>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior="padding"
+        enable
+      >
+        <ScrollView>
+          <InfoHeader onPress={this.onPressBackButton.bind(this)}>個人情報・同意事項</InfoHeader>
 
-        <View style={styles.textBox}>
-          <Text style={styles.textNoteText}>以下の質問を読んで、一番下の◎の問いにお答え下さい。</Text>
-        </View>
+          <View style={styles.textBox}>
+            <Text style={styles.textNoteText}>以下の質問を読んで、一番下の◎の問いにお答え下さい。</Text>
+          </View>
 
-        <View style={styles.line} />
+          <View style={styles.line} />
 
-        <View style={styles.textBox}>
-          <Text style={styles.text}>
-            ●この2年間で、あなたもしくは家族に肺結核にかかった人、もしくは肺結核患者と接触の多い環境にいた人がいますか？{'\n'}{'\n'}
-            ●カナダ滞在中に社会保障や医療保障が必要となるような、重大な身体的・精神的疾患を持っていますか？{'\n'}{'\n'}
-            ●ビザの期限を超えて滞在したり、許可なく就学、就労したことがありますか？{'\n'}{'\n'}
-            ●国を問わず、ビザや許可書（承認）などの申請を却下されたり、または国外退去を命じられたことがありますか？{'\n'}{'\n'}
-            ●国を問わず、犯罪で逮捕されたことがありますか？{'\n'}{'\n'}
-            ●軍隊、自衛隊、警察などでの勤務経験がありますか？{'\n'}{'\n'}
-            ●暴力行為や犯罪行為などに関わる政治団体や宗教団体に参加している、または参加していたことがありますか？{'\n'}{'\n'}
-            ●カナダ市民権・永住権を持つ家族がいますか？ アメリカの永住権を持っていますか？{'\n'}{'\n'}
-            ●雇用主からのWritten Offerがありますか？ ケアギバーの訓練をうけたことがありますか？{'\n'}{'\n'}
-            ●カナダの一時就労者の配偶者・コモンローパートナーとしての渡航ですか？{'\n'}{'\n'}
-            ●CIC認定機関での健康診断を受けましたか？{'\n'}{'\n'}
-            ●カナダ渡航後、次のカテゴリーで働く予定がありますか？（公的任務や航空関係、健康診断が必要な職業）{'\n'}{'\n'}
-            ○軍事・政府・政治（政治的活動、調査など）・警察・裁判所関係（鑑定人・公証人）の仕事{'\n'}{'\n'}
-            ○医療（医師・医学部生インターンなど）・救命救急・看護・介護関係の仕事{'\n'}{'\n'}
-            ○幼児・小・中・高校の教師 ニュースレポーター・映画製作などマスコミ・メディア関係の仕事{'\n'}{'\n'}
-            ○プロアスリート（コーチ）・プロアーティストなどの仕事{'\n'}{'\n'}
-            ○宗教関係（宗教的活動など含む）の仕事 航空関係、航空機事故調査などの仕事{'\n'}{'\n'}
-            ○長期ビジネス出張・滞在者{'\n'}{'\n'}
+          <View style={styles.textBox}>
+            <Text style={styles.text}>
+              ●この2年間で、あなたもしくは家族に肺結核にかかった人、もしくは肺結核患者と接触の多い環境にいた人がいますか？{'\n'}{'\n'}
+              ●カナダ滞在中に社会保障や医療保障が必要となるような、重大な身体的・精神的疾患を持っていますか？{'\n'}{'\n'}
+              ●ビザの期限を超えて滞在したり、許可なく就学、就労したことがありますか？{'\n'}{'\n'}
+              ●国を問わず、ビザや許可書（承認）などの申請を却下されたり、または国外退去を命じられたことがありますか？{'\n'}{'\n'}
+              ●国を問わず、犯罪で逮捕されたことがありますか？{'\n'}{'\n'}
+              ●軍隊、自衛隊、警察などでの勤務経験がありますか？{'\n'}{'\n'}
+              ●暴力行為や犯罪行為などに関わる政治団体や宗教団体に参加している、または参加していたことがありますか？{'\n'}{'\n'}
+              ●カナダ市民権・永住権を持つ家族がいますか？ アメリカの永住権を持っていますか？{'\n'}{'\n'}
+              ●雇用主からのWritten Offerがありますか？ ケアギバーの訓練をうけたことがありますか？{'\n'}{'\n'}
+              ●カナダの一時就労者の配偶者・コモンローパートナーとしての渡航ですか？{'\n'}{'\n'}
+              ●CIC認定機関での健康診断を受けましたか？{'\n'}{'\n'}
+              ●カナダ渡航後、次のカテゴリーで働く予定がありますか？（公的任務や航空関係、健康診断が必要な職業）{'\n'}{'\n'}
+              ○軍事・政府・政治（政治的活動、調査など）・警察・裁判所関係（鑑定人・公証人）の仕事{'\n'}{'\n'}
+              ○医療（医師・医学部生インターンなど）・救命救急・看護・介護関係の仕事{'\n'}{'\n'}
+              ○幼児・小・中・高校の教師 ニュースレポーター・映画製作などマスコミ・メディア関係の仕事{'\n'}{'\n'}
+              ○プロアスリート（コーチ）・プロアーティストなどの仕事{'\n'}{'\n'}
+              ○宗教関係（宗教的活動など含む）の仕事 航空関係、航空機事故調査などの仕事{'\n'}{'\n'}
+              ○長期ビジネス出張・滞在者{'\n'}{'\n'}
+            </Text>
+          </View>
+
+          <View style={styles.line} />
+
+          <View style={styles.questionTextBox}>
+            <Text style={styles.questionText}>
+              ◎すべて「いいえ」ですか。「はい」の項目がありますか？{'\n'}
+              （通常は全て「いいえ」を回答する質問です）{'\n'}
+              ＊「はい」の項目がある場合は、どの項目が該当するか詳細をご回答ください。
+            </Text>
+            <RadioButtons
+              onSelect={(index, value) => {
+                AsyncStorage.setItem('AgreementPII', value);
+                this.setState({ AgreementPII: value });
+              }}
+              value={this.state.AgreementPII}
+              disabled={this.state.disabled}
+            />
+          </View>
+
+          <Text style={styles.textInputTitle}>
+            上記で「はい」を選択した方は、以下にどの項目が該当するか詳細を回答して下さい。{'\n'}
           </Text>
-        </View>
 
-        <View style={styles.line} />
+          <View style={styles.textInputBox}>
+            <TextInput
+              onChangeText={text => {
+                AsyncStorage.setItem('extra', text);
+                this.setState({ extra: text });
+              }}
+              value={this.state.extra}
+              editable={this.state.editable}
+              style={styles.textInput}
+              multiline
+            />
+          </View>
 
-        <View style={styles.questionTextBox}>
-          <Text style={styles.questionText}>
-            ◎すべて「いいえ」ですか。「はい」の項目がありますか？{'\n'}
-            （通常は全て「いいえ」を回答する質問です）{'\n'}
-            ＊「はい」の項目がある場合は、どの項目が該当するか詳細をご回答ください。
-          </Text>
-          <RadioButtons
-            onSelect={(index, value) => {
-              AsyncStorage.setItem('AgreementPII', value);
-              this.setState({ AgreementPII: value });
+          <CheckBox
+            disabled={this.state.disableChecked}
+            center
+            title={'保存/修正'}
+            checked={this.state.checked}
+            onPress={() => {
+              this.onPressCheckBox();
             }}
-            value={this.state.AgreementPII}
-            disabled={this.state.disabled}
           />
-        </View>
 
-        <Text style={styles.textInputTitle}>
-          上記で「はい」を選択した方は、以下にどの項目が該当するか詳細を回答して下さい。{'\n'}
-        </Text>
-
-        <View style={styles.textInputBox}>
-          <TextInput
-            onChangeText={text => {
-              AsyncStorage.setItem('extra', text);
-              this.setState({ extra: text });
-            }}
-            value={this.state.extra}
-            editable={this.state.editable}
-            style={styles.textInput}
-            multiline
-          />
-        </View>
-
-        <CheckBox
-          disabled={this.state.disableChecked}
-          center
-          title={'保存/修正'}
-          checked={this.state.checked}
-          onPress={() => {
-            this.onPressCheckBox();
-          }}
-        />
-
-        <Copyrights />
-      </ScrollView>
+          <Copyrights />
+        </ScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }

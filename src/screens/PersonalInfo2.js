@@ -1,5 +1,10 @@
 import React from 'react';
-import { StyleSheet, ScrollView, AsyncStorage } from 'react-native';
+import {
+  StyleSheet,
+  ScrollView,
+  AsyncStorage,
+  KeyboardAvoidingView,
+} from 'react-native';
 import firebase from 'firebase';
 
 import { CheckBox } from 'react-native-elements';
@@ -164,124 +169,130 @@ class PersonalInfo2 extends React.Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-        <InfoHeader onPress={this.onPressBackButton.bind(this)}>申請者情報２</InfoHeader>
-        <Notes />
-        <QuestionTextSet
-          onChangeText={(text) => {
-            AsyncStorage.setItem('currentAddress', text);
-            this.setState({ currentAddress: text });
-          }}
-          value={this.state.currentAddress}
-          editable={this.state.editable}
-        >
-          現住所(カナダにいらっしゃる方はカナダのご住所で)
-        </QuestionTextSet>
-        <QuestionTextSet
-          onChangeText={(text) => {
-            AsyncStorage.setItem('currentAddressYomi', text);
-            this.setState({ currentAddressYomi: text });
-          }}
-          value={this.state.currentAddressYomi}
-          editable={this.state.editable}
-        >
-          現住所ふりがな{'\n'}(カナダのご住所をご回答頂いた方は不要です)
-        </QuestionTextSet>
-        <QuestionTextSet
-          onChangeText={(text) => {
-            AsyncStorage.setItem('currentPostalCode', text);
-            this.setState({ currentPostalCode: text });
-          }}
-          value={this.state.currentPostalCode}
-          editable={this.state.editable}
-        >
-          現住所の郵便番号
-        </QuestionTextSet>
-        <QuestionTextBoxDate
-          onDateChange={(date) => {
-            AsyncStorage.setItem('startDateofcurrentAdress', date);
-            this.setState({ startDateofcurrentAdress: date });
-          }}
-          value={this.state.startDateofcurrentAdress}
-          disabled={this.state.disabled}
-        >
-          現住所にご自身が住み始めた日
-        </QuestionTextBoxDate>
-        <QuestionTextSet
-          onChangeText={(text) => {
-            AsyncStorage.setItem('domicile', text);
-            this.setState({ domicile: text });
-          }}
-          value={this.state.domicile}
-          editable={this.state.editable}
-        >
-          本籍は「B現住所と同じ」「C現住所と違う」
-        </QuestionTextSet>
-        <QuestionTextSet
-          onChangeText={(text) => {
-            AsyncStorage.setItem('addressOfDomicile', text);
-            this.setState({ addressOfDomicile: text });
-          }}
-          value={this.state.addressOfDomicile}
-          editable={this.state.editable}
-        >
-          「C現住所と違う」の場合本籍地の住所
-        </QuestionTextSet>
-        <QuestionTextSet
-          onChangeText={(text) => {
-            AsyncStorage.setItem('addressOfDomicileYomi', text);
-            this.setState({ addressOfDomicileYomi: text });
-          }}
-          value={this.state.addressOfDomicileYomi}
-          editable={this.state.editable}
-        >
-          本籍地ふりがな
-        </QuestionTextSet>
-        <QuestionTextSet
-          onChangeText={(text) => {
-            AsyncStorage.setItem('postalCodeofDomicile', text);
-            this.setState({ postalCodeofDomicile: text });
-          }}
-          value={this.state.postalCodeofDomicile}
-          editable={this.state.editable}
-        >
-          本籍地の郵便番号
-        </QuestionTextSet>
-        <QuestionTextSet
-          onChangeText={(text) => {
-            AsyncStorage.setItem('phoneNumber', text);
-            this.setState({ phoneNumber: text });
-          }}
-          value={this.state.phoneNumber}
-          editable={this.state.editable}
-        >
-          携帯番号（もしくはご自宅）の番号
-        </QuestionTextSet>
-        <QuestionTextSet
-          onChangeText={(text) => {
-            AsyncStorage.setItem('faxNumber', text);
-            this.setState({ faxNumber: text });
-          }}
-          value={this.state.faxNumber}
-          editable={this.state.editable}
-        >
-          FAX番号（もしあれば）
-        </QuestionTextSet>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior="padding"
+        enable
+      >
+        <ScrollView>
+          <InfoHeader onPress={this.onPressBackButton.bind(this)}>申請者情報２</InfoHeader>
+          <Notes />
+          <QuestionTextSet
+            onChangeText={(text) => {
+              AsyncStorage.setItem('currentAddress', text);
+              this.setState({ currentAddress: text });
+            }}
+            value={this.state.currentAddress}
+            editable={this.state.editable}
+          >
+            現住所(カナダにいらっしゃる方はカナダのご住所で)
+          </QuestionTextSet>
+          <QuestionTextSet
+            onChangeText={(text) => {
+              AsyncStorage.setItem('currentAddressYomi', text);
+              this.setState({ currentAddressYomi: text });
+            }}
+            value={this.state.currentAddressYomi}
+            editable={this.state.editable}
+          >
+            現住所ふりがな{'\n'}(カナダのご住所をご回答頂いた方は不要です)
+          </QuestionTextSet>
+          <QuestionTextSet
+            onChangeText={(text) => {
+              AsyncStorage.setItem('currentPostalCode', text);
+              this.setState({ currentPostalCode: text });
+            }}
+            value={this.state.currentPostalCode}
+            editable={this.state.editable}
+          >
+            現住所の郵便番号
+          </QuestionTextSet>
+          <QuestionTextBoxDate
+            onDateChange={(date) => {
+              AsyncStorage.setItem('startDateofcurrentAdress', date);
+              this.setState({ startDateofcurrentAdress: date });
+            }}
+            value={this.state.startDateofcurrentAdress}
+            disabled={this.state.disabled}
+          >
+            現住所にご自身が住み始めた日
+          </QuestionTextBoxDate>
+          <QuestionTextSet
+            onChangeText={(text) => {
+              AsyncStorage.setItem('domicile', text);
+              this.setState({ domicile: text });
+            }}
+            value={this.state.domicile}
+            editable={this.state.editable}
+          >
+            本籍は「B現住所と同じ」「C現住所と違う」
+          </QuestionTextSet>
+          <QuestionTextSet
+            onChangeText={(text) => {
+              AsyncStorage.setItem('addressOfDomicile', text);
+              this.setState({ addressOfDomicile: text });
+            }}
+            value={this.state.addressOfDomicile}
+            editable={this.state.editable}
+          >
+            「C現住所と違う」の場合本籍地の住所
+          </QuestionTextSet>
+          <QuestionTextSet
+            onChangeText={(text) => {
+              AsyncStorage.setItem('addressOfDomicileYomi', text);
+              this.setState({ addressOfDomicileYomi: text });
+            }}
+            value={this.state.addressOfDomicileYomi}
+            editable={this.state.editable}
+          >
+            本籍地ふりがな
+          </QuestionTextSet>
+          <QuestionTextSet
+            onChangeText={(text) => {
+              AsyncStorage.setItem('postalCodeofDomicile', text);
+              this.setState({ postalCodeofDomicile: text });
+            }}
+            value={this.state.postalCodeofDomicile}
+            editable={this.state.editable}
+          >
+            本籍地の郵便番号
+          </QuestionTextSet>
+          <QuestionTextSet
+            onChangeText={(text) => {
+              AsyncStorage.setItem('phoneNumber', text);
+              this.setState({ phoneNumber: text });
+            }}
+            value={this.state.phoneNumber}
+            editable={this.state.editable}
+          >
+            携帯番号（もしくはご自宅）の番号
+          </QuestionTextSet>
+          <QuestionTextSet
+            onChangeText={(text) => {
+              AsyncStorage.setItem('faxNumber', text);
+              this.setState({ faxNumber: text });
+            }}
+            value={this.state.faxNumber}
+            editable={this.state.editable}
+          >
+            FAX番号（もしあれば）
+          </QuestionTextSet>
 
 
-        <CheckBox
-          disabled={this.state.disableChecked}
-          center
-          title={'保存/修正'}
-          checked={this.state.checked}
-          onPress={() => {
-            this.onPressCheckBox();
-          }}
-        />
+          <CheckBox
+            disabled={this.state.disableChecked}
+            center
+            title={'保存/修正'}
+            checked={this.state.checked}
+            onPress={() => {
+              this.onPressCheckBox();
+            }}
+          />
 
-        <Copyrights />
+          <Copyrights />
 
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }

@@ -1,5 +1,12 @@
 import React from 'react';
-import { StyleSheet, ScrollView, View, Text, AsyncStorage } from 'react-native';
+import {
+  StyleSheet,
+  ScrollView,
+  View,
+  Text,
+  AsyncStorage,
+  KeyboardAvoidingView,
+} from 'react-native';
 
 import firebase from 'firebase';
 import { CheckBox } from 'react-native-elements';
@@ -271,323 +278,329 @@ class FamilyInfo5 extends React.Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-        <InfoHeader onPress={this.onPressBackButton.bind(this)}>家族情報５</InfoHeader>
-        <Notes />
-        <QuestionTextSet
-          onChangeText={text => {
-            AsyncStorage.setItem('siblingsNameJa1', text);
-            this.setState({ siblingsNameJa1: text });
-          }}
-          value={this.state.siblingsNameJa1}
-          editable={this.state.editable}
-        >
-          お子様の姓名（漢字表記）
-        </QuestionTextSet>
-        <QuestionTextSet
-          onChangeText={text => {
-            AsyncStorage.setItem('siblingsNameEn1', text);
-            this.setState({ siblingsNameEn1: text });
-          }}
-          value={this.state.siblingsNameEn1}
-          editable={this.state.editable}
-        >
-          お子様姓名（英字表記/パスポート通りのローマ字で）
-        </QuestionTextSet>
-
-        <QuestionTextBoxDate
-          onDateChange={date => {
-            AsyncStorage.setItem('birthdayOfSiblings1', date);
-            this.setState({ birthdayOfSiblings1: date });
-          }}
-          value={this.state.birthdayOfSiblings1}
-          disabled={this.state.disabled}
-        >
-          お子様の生年月日（西暦で）
-        </QuestionTextBoxDate>
-
-        <QuestionTextSet
-          onChangeText={text => {
-            AsyncStorage.setItem('birthCountryOfSiblings1', text);
-            this.setState({ birthCountryOfSiblings1: text });
-          }}
-          value={this.state.birthCountryOfSiblings1}
-          editable={this.state.editable}
-          placeholder={'例：日本'}
-        >
-          お子様の出生国
-        </QuestionTextSet>
-        <QuestionTextSet
-          onChangeText={text => {
-            AsyncStorage.setItem('aboutMaridgeOfSiblings1', text);
-            this.setState({ aboutMaridgeOfSiblings1: text });
-          }}
-          placeholder={'例：未婚、既婚、離婚、別居、死別等'}
-          value={this.state.aboutMaridgeOfSiblings1}
-          editable={this.state.editable}
-        >
-          お子様の婚姻状況
-        </QuestionTextSet>
-        <QuestionTextSet
-          onChangeText={text => {
-            AsyncStorage.setItem('addressOfSiblings1', text);
-            this.setState({ addressOfSiblings1: text });
-          }}
-          value={this.state.addressOfSiblings1}
-          editable={this.state.editable}
-        >
-          お子様の現住所
-        </QuestionTextSet>
-        <QuestionTextSet
-          onChangeText={text => {
-            AsyncStorage.setItem('postalCodeOfSiblings1', text);
-            this.setState({ postalCodeOfSiblings1: text });
-          }}
-          value={this.state.postalCodeOfSiblings1}
-          editable={this.state.editable}
-        >
-          お子様の郵便番号
-        </QuestionTextSet>
-
-        <QuestionTextSet
-          onChangeText={text => {
-            AsyncStorage.setItem('jobOfSiblings1', text);
-            this.setState({ jobOfSiblings1: text });
-          }}
-          value={this.state.jobOfSiblings1}
-          editable={this.state.editable}
-          placeholder={'例：レジ/洋服販売/飲食店ウェイター/会社員/主婦/定年退職等'}
-        >
-          お子様のご職業
-        </QuestionTextSet>
-
-        <View style={styles.questionTextBox}>
-          <Text style={styles.questionText}>一緒にカナダに来ますか？（はい/いいえ）</Text>
-          <RadioButtons
-            onSelect={(index, value) => {
-              AsyncStorage.setItem('comeTogetherWithSiblings1', value);
-              this.setState({ comeTogetherWithSiblings1: value });
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior="padding"
+        enable
+      >
+        <ScrollView style={styles.container}>
+          <InfoHeader onPress={this.onPressBackButton.bind(this)}>家族情報５</InfoHeader>
+          <Notes />
+          <QuestionTextSet
+            onChangeText={text => {
+              AsyncStorage.setItem('siblingsNameJa1', text);
+              this.setState({ siblingsNameJa1: text });
             }}
-            value={this.state.comeTogetherWithSiblings1}
-            disabled={this.state.disabled}
-          />
-        </View>
-        {/* 2行目 */}
-        <View style={styles.line} />
-
-        <QuestionTextSet
-          onChangeText={text => {
-            AsyncStorage.setItem('siblingsNameJa2', text);
-            this.setState({ siblingsNameJa2: text });
-          }}
-          value={this.state.siblingsNameJa2}
-          editable={this.state.editable}
-        >
-          お子様の姓名（漢字表記）
-        </QuestionTextSet>
-        <QuestionTextSet
-          onChangeText={text => {
-            AsyncStorage.setItem('siblingsNameEn2', text);
-            this.setState({ siblingsNameEn2: text });
-          }}
-          value={this.state.siblingsNameEn2}
-          editable={this.state.editable}
-        >
-          お子様姓名（英字表記/パスポート通りのローマ字で）
-        </QuestionTextSet>
-
-        <QuestionTextBoxDate
-          onDateChange={date => {
-            AsyncStorage.setItem('birthdayOfSiblings2', date);
-            this.setState({ birthdayOfSiblings2: date });
-          }}
-          value={this.state.birthdayOfSiblings2}
-          disabled={this.state.disabled}
-        >
-          お子様の生年月日（西暦で）
-        </QuestionTextBoxDate>
-
-        <QuestionTextSet
-          onChangeText={text => {
-            AsyncStorage.setItem('birthCountryOfSiblings2', text);
-            this.setState({ birthCountryOfSiblings2: text });
-          }}
-          value={this.state.birthCountryOfSiblings2}
-          editable={this.state.editable}
-          placeholder={'例：日本'}
-        >
-          お子様の出生国
-        </QuestionTextSet>
-        <QuestionTextSet
-          onChangeText={text => {
-            AsyncStorage.setItem('aboutMaridgeOfSiblings2', text);
-            this.setState({ aboutMaridgeOfSiblings2: text });
-          }}
-          placeholder={'例：未婚、既婚、離婚、別居、死別等'}
-          value={this.state.aboutMaridgeOfSiblings2}
-          editable={this.state.editable}
-        >
-          お子様の婚姻状況
-        </QuestionTextSet>
-        <QuestionTextSet
-          onChangeText={text => {
-            AsyncStorage.setItem('addressOfSiblings2', text);
-            this.setState({ addressOfSiblings2: text });
-          }}
-          value={this.state.addressOfSiblings2}
-          editable={this.state.editable}
-        >
-          お子様の現住所
-        </QuestionTextSet>
-        <QuestionTextSet
-          onChangeText={text => {
-            AsyncStorage.setItem('postalCodeOfSiblings2', text);
-            this.setState({ postalCodeOfSiblings2: text });
-          }}
-          value={this.state.postalCodeOfSiblings2}
-          editable={this.state.editable}
-        >
-          お子様の郵便番号
-        </QuestionTextSet>
-
-        <QuestionTextSet
-          onChangeText={text => {
-            AsyncStorage.setItem('jobOfSiblings2', text);
-            this.setState({ jobOfSiblings2: text });
-          }}
-          value={this.state.jobOfSiblings2}
-          editable={this.state.editable}
-          placeholder={'例：レジ/洋服販売/飲食店ウェイター/会社員/主婦/定年退職等'}
-        >
-          お子様のご職業
-        </QuestionTextSet>
-
-        <View style={styles.questionTextBox}>
-          <Text style={styles.questionText}>一緒にカナダに来ますか？（はい/いいえ）</Text>
-          <RadioButtons
-            onSelect={(index, value) => {
-              AsyncStorage.setItem('comeTogetherWithSiblings2', value);
-              this.setState({ comeTogetherWithSiblings2: value });
+            value={this.state.siblingsNameJa1}
+            editable={this.state.editable}
+          >
+            お子様の姓名（漢字表記）
+          </QuestionTextSet>
+          <QuestionTextSet
+            onChangeText={text => {
+              AsyncStorage.setItem('siblingsNameEn1', text);
+              this.setState({ siblingsNameEn1: text });
             }}
-            value={this.state.comeTogetherWithSiblings2}
-            disabled={this.state.disabled}
-          />
-        </View>
+            value={this.state.siblingsNameEn1}
+            editable={this.state.editable}
+          >
+            お子様姓名（英字表記/パスポート通りのローマ字で）
+          </QuestionTextSet>
 
-        {/* 3行目 */}
-        <View style={styles.line} />
-
-        <QuestionTextSet
-          onChangeText={text => {
-            AsyncStorage.setItem('siblingsNameJa3', text);
-            this.setState({ siblingsNameJa3: text });
-          }}
-          value={this.state.siblingsNameJa3}
-          editable={this.state.editable}
-        >
-          お子様の姓名（漢字表記）
-        </QuestionTextSet>
-        <QuestionTextSet
-          onChangeText={text => {
-            AsyncStorage.setItem('siblingsNameEn3', text);
-            this.setState({ siblingsNameEn3: text });
-          }}
-          value={this.state.siblingsNameEn3}
-          editable={this.state.editable}
-        >
-          お子様姓名（英字表記/パスポート通りのローマ字で）
-        </QuestionTextSet>
-
-        <QuestionTextBoxDate
-          onDateChange={date => {
-            AsyncStorage.setItem('birthdayOfSiblings3', date);
-            this.setState({ birthdayOfSiblings3: date });
-          }}
-          value={this.state.birthdayOfSiblings3}
-          disabled={this.state.disabled}
-        >
-          お子様の生年月日（西暦で）
-        </QuestionTextBoxDate>
-
-        <QuestionTextSet
-          onChangeText={text => {
-            AsyncStorage.setItem('birthCountryOfSiblings3', text);
-            this.setState({ birthCountryOfSiblings3: text });
-          }}
-          value={this.state.birthCountryOfSiblings3}
-          editable={this.state.editable}
-          placeholder={'例：日本'}
-        >
-          お子様の出生国
-        </QuestionTextSet>
-        <QuestionTextSet
-          onChangeText={text => {
-            AsyncStorage.setItem('aboutMaridgeOfSiblings3', text);
-            this.setState({ aboutMaridgeOfSiblings3: text });
-          }}
-          placeholder={'例：未婚、既婚、離婚、別居、死別等'}
-          value={this.state.aboutMaridgeOfSiblings3}
-          editable={this.state.editable}
-        >
-          お子様の婚姻状況
-        </QuestionTextSet>
-        <QuestionTextSet
-          onChangeText={text => {
-            AsyncStorage.setItem('addressOfSiblings3', text);
-            this.setState({ addressOfSiblings3: text });
-          }}
-          value={this.state.addressOfSiblings3}
-          editable={this.state.editable}
-        >
-          お子様の現住所
-        </QuestionTextSet>
-        <QuestionTextSet
-          onChangeText={text => {
-            AsyncStorage.setItem('postalCodeOfSiblings3', text);
-            this.setState({ postalCodeOfSiblings3: text });
-          }}
-          value={this.state.postalCodeOfSiblings3}
-          editable={this.state.editable}
-        >
-          お子様の郵便番号
-        </QuestionTextSet>
-
-        <QuestionTextSet
-          onChangeText={text => {
-            AsyncStorage.setItem('jobOfSiblings3', text);
-            this.setState({ jobOfSiblings3: text });
-          }}
-          value={this.state.jobOfSiblings3}
-          editable={this.state.editable}
-          placeholder={'例：レジ/洋服販売/飲食店ウェイター/会社員/主婦/定年退職等'}
-        >
-          お子様のご職業
-        </QuestionTextSet>
-
-        <View style={styles.questionTextBox}>
-          <Text style={styles.questionText}>一緒にカナダに来ますか？（はい/いいえ）</Text>
-          <RadioButtons
-            onSelect={(index, value) => {
-              AsyncStorage.setItem('comeTogetherWithSiblings3', value);
-              this.setState({ comeTogetherWithSiblings3: value });
+          <QuestionTextBoxDate
+            onDateChange={date => {
+              AsyncStorage.setItem('birthdayOfSiblings1', date);
+              this.setState({ birthdayOfSiblings1: date });
             }}
-            value={this.state.comeTogetherWithSiblings3}
+            value={this.state.birthdayOfSiblings1}
             disabled={this.state.disabled}
+          >
+            お子様の生年月日（西暦で）
+          </QuestionTextBoxDate>
+
+          <QuestionTextSet
+            onChangeText={text => {
+              AsyncStorage.setItem('birthCountryOfSiblings1', text);
+              this.setState({ birthCountryOfSiblings1: text });
+            }}
+            value={this.state.birthCountryOfSiblings1}
+            editable={this.state.editable}
+            placeholder={'例：日本'}
+          >
+            お子様の出生国
+          </QuestionTextSet>
+          <QuestionTextSet
+            onChangeText={text => {
+              AsyncStorage.setItem('aboutMaridgeOfSiblings1', text);
+              this.setState({ aboutMaridgeOfSiblings1: text });
+            }}
+            placeholder={'例：未婚、既婚、離婚、別居、死別等'}
+            value={this.state.aboutMaridgeOfSiblings1}
+            editable={this.state.editable}
+          >
+            お子様の婚姻状況
+          </QuestionTextSet>
+          <QuestionTextSet
+            onChangeText={text => {
+              AsyncStorage.setItem('addressOfSiblings1', text);
+              this.setState({ addressOfSiblings1: text });
+            }}
+            value={this.state.addressOfSiblings1}
+            editable={this.state.editable}
+          >
+            お子様の現住所
+          </QuestionTextSet>
+          <QuestionTextSet
+            onChangeText={text => {
+              AsyncStorage.setItem('postalCodeOfSiblings1', text);
+              this.setState({ postalCodeOfSiblings1: text });
+            }}
+            value={this.state.postalCodeOfSiblings1}
+            editable={this.state.editable}
+          >
+            お子様の郵便番号
+          </QuestionTextSet>
+
+          <QuestionTextSet
+            onChangeText={text => {
+              AsyncStorage.setItem('jobOfSiblings1', text);
+              this.setState({ jobOfSiblings1: text });
+            }}
+            value={this.state.jobOfSiblings1}
+            editable={this.state.editable}
+            placeholder={'例：レジ/洋服販売/飲食店ウェイター/会社員/主婦/定年退職等'}
+          >
+            お子様のご職業
+          </QuestionTextSet>
+
+          <View style={styles.questionTextBox}>
+            <Text style={styles.questionText}>一緒にカナダに来ますか？（はい/いいえ）</Text>
+            <RadioButtons
+              onSelect={(index, value) => {
+                AsyncStorage.setItem('comeTogetherWithSiblings1', value);
+                this.setState({ comeTogetherWithSiblings1: value });
+              }}
+              value={this.state.comeTogetherWithSiblings1}
+              disabled={this.state.disabled}
+            />
+          </View>
+          {/* 2行目 */}
+          <View style={styles.line} />
+
+          <QuestionTextSet
+            onChangeText={text => {
+              AsyncStorage.setItem('siblingsNameJa2', text);
+              this.setState({ siblingsNameJa2: text });
+            }}
+            value={this.state.siblingsNameJa2}
+            editable={this.state.editable}
+          >
+            お子様の姓名（漢字表記）
+          </QuestionTextSet>
+          <QuestionTextSet
+            onChangeText={text => {
+              AsyncStorage.setItem('siblingsNameEn2', text);
+              this.setState({ siblingsNameEn2: text });
+            }}
+            value={this.state.siblingsNameEn2}
+            editable={this.state.editable}
+          >
+            お子様姓名（英字表記/パスポート通りのローマ字で）
+          </QuestionTextSet>
+
+          <QuestionTextBoxDate
+            onDateChange={date => {
+              AsyncStorage.setItem('birthdayOfSiblings2', date);
+              this.setState({ birthdayOfSiblings2: date });
+            }}
+            value={this.state.birthdayOfSiblings2}
+            disabled={this.state.disabled}
+          >
+            お子様の生年月日（西暦で）
+          </QuestionTextBoxDate>
+
+          <QuestionTextSet
+            onChangeText={text => {
+              AsyncStorage.setItem('birthCountryOfSiblings2', text);
+              this.setState({ birthCountryOfSiblings2: text });
+            }}
+            value={this.state.birthCountryOfSiblings2}
+            editable={this.state.editable}
+            placeholder={'例：日本'}
+          >
+            お子様の出生国
+          </QuestionTextSet>
+          <QuestionTextSet
+            onChangeText={text => {
+              AsyncStorage.setItem('aboutMaridgeOfSiblings2', text);
+              this.setState({ aboutMaridgeOfSiblings2: text });
+            }}
+            placeholder={'例：未婚、既婚、離婚、別居、死別等'}
+            value={this.state.aboutMaridgeOfSiblings2}
+            editable={this.state.editable}
+          >
+            お子様の婚姻状況
+          </QuestionTextSet>
+          <QuestionTextSet
+            onChangeText={text => {
+              AsyncStorage.setItem('addressOfSiblings2', text);
+              this.setState({ addressOfSiblings2: text });
+            }}
+            value={this.state.addressOfSiblings2}
+            editable={this.state.editable}
+          >
+            お子様の現住所
+          </QuestionTextSet>
+          <QuestionTextSet
+            onChangeText={text => {
+              AsyncStorage.setItem('postalCodeOfSiblings2', text);
+              this.setState({ postalCodeOfSiblings2: text });
+            }}
+            value={this.state.postalCodeOfSiblings2}
+            editable={this.state.editable}
+          >
+            お子様の郵便番号
+          </QuestionTextSet>
+
+          <QuestionTextSet
+            onChangeText={text => {
+              AsyncStorage.setItem('jobOfSiblings2', text);
+              this.setState({ jobOfSiblings2: text });
+            }}
+            value={this.state.jobOfSiblings2}
+            editable={this.state.editable}
+            placeholder={'例：レジ/洋服販売/飲食店ウェイター/会社員/主婦/定年退職等'}
+          >
+            お子様のご職業
+          </QuestionTextSet>
+
+          <View style={styles.questionTextBox}>
+            <Text style={styles.questionText}>一緒にカナダに来ますか？（はい/いいえ）</Text>
+            <RadioButtons
+              onSelect={(index, value) => {
+                AsyncStorage.setItem('comeTogetherWithSiblings2', value);
+                this.setState({ comeTogetherWithSiblings2: value });
+              }}
+              value={this.state.comeTogetherWithSiblings2}
+              disabled={this.state.disabled}
+            />
+          </View>
+
+          {/* 3行目 */}
+          <View style={styles.line} />
+
+          <QuestionTextSet
+            onChangeText={text => {
+              AsyncStorage.setItem('siblingsNameJa3', text);
+              this.setState({ siblingsNameJa3: text });
+            }}
+            value={this.state.siblingsNameJa3}
+            editable={this.state.editable}
+          >
+            お子様の姓名（漢字表記）
+          </QuestionTextSet>
+          <QuestionTextSet
+            onChangeText={text => {
+              AsyncStorage.setItem('siblingsNameEn3', text);
+              this.setState({ siblingsNameEn3: text });
+            }}
+            value={this.state.siblingsNameEn3}
+            editable={this.state.editable}
+          >
+            お子様姓名（英字表記/パスポート通りのローマ字で）
+          </QuestionTextSet>
+
+          <QuestionTextBoxDate
+            onDateChange={date => {
+              AsyncStorage.setItem('birthdayOfSiblings3', date);
+              this.setState({ birthdayOfSiblings3: date });
+            }}
+            value={this.state.birthdayOfSiblings3}
+            disabled={this.state.disabled}
+          >
+            お子様の生年月日（西暦で）
+          </QuestionTextBoxDate>
+
+          <QuestionTextSet
+            onChangeText={text => {
+              AsyncStorage.setItem('birthCountryOfSiblings3', text);
+              this.setState({ birthCountryOfSiblings3: text });
+            }}
+            value={this.state.birthCountryOfSiblings3}
+            editable={this.state.editable}
+            placeholder={'例：日本'}
+          >
+            お子様の出生国
+          </QuestionTextSet>
+          <QuestionTextSet
+            onChangeText={text => {
+              AsyncStorage.setItem('aboutMaridgeOfSiblings3', text);
+              this.setState({ aboutMaridgeOfSiblings3: text });
+            }}
+            placeholder={'例：未婚、既婚、離婚、別居、死別等'}
+            value={this.state.aboutMaridgeOfSiblings3}
+            editable={this.state.editable}
+          >
+            お子様の婚姻状況
+          </QuestionTextSet>
+          <QuestionTextSet
+            onChangeText={text => {
+              AsyncStorage.setItem('addressOfSiblings3', text);
+              this.setState({ addressOfSiblings3: text });
+            }}
+            value={this.state.addressOfSiblings3}
+            editable={this.state.editable}
+          >
+            お子様の現住所
+          </QuestionTextSet>
+          <QuestionTextSet
+            onChangeText={text => {
+              AsyncStorage.setItem('postalCodeOfSiblings3', text);
+              this.setState({ postalCodeOfSiblings3: text });
+            }}
+            value={this.state.postalCodeOfSiblings3}
+            editable={this.state.editable}
+          >
+            お子様の郵便番号
+          </QuestionTextSet>
+
+          <QuestionTextSet
+            onChangeText={text => {
+              AsyncStorage.setItem('jobOfSiblings3', text);
+              this.setState({ jobOfSiblings3: text });
+            }}
+            value={this.state.jobOfSiblings3}
+            editable={this.state.editable}
+            placeholder={'例：レジ/洋服販売/飲食店ウェイター/会社員/主婦/定年退職等'}
+          >
+            お子様のご職業
+          </QuestionTextSet>
+
+          <View style={styles.questionTextBox}>
+            <Text style={styles.questionText}>一緒にカナダに来ますか？（はい/いいえ）</Text>
+            <RadioButtons
+              onSelect={(index, value) => {
+                AsyncStorage.setItem('comeTogetherWithSiblings3', value);
+                this.setState({ comeTogetherWithSiblings3: value });
+              }}
+              value={this.state.comeTogetherWithSiblings3}
+              disabled={this.state.disabled}
+            />
+          </View>
+
+          <CheckBox
+            disabled={this.state.disableChecked}
+            center
+            title={'保存/修正'}
+            checked={this.state.checked}
+            onPress={() => {
+              this.onPressCheckBox();
+            }}
           />
-        </View>
 
-        <CheckBox
-          disabled={this.state.disableChecked}
-          center
-          title={'保存/修正'}
-          checked={this.state.checked}
-          onPress={() => {
-            this.onPressCheckBox();
-          }}
-        />
-
-        <Copyrights />
-      </ScrollView>
+          <Copyrights />
+        </ScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }

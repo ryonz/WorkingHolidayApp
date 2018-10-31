@@ -1,5 +1,12 @@
 import React from 'react';
-import { StyleSheet, ScrollView, View, Text, AsyncStorage } from 'react-native';
+import {
+  StyleSheet,
+  ScrollView,
+  View,
+  Text,
+  AsyncStorage,
+  KeyboardAvoidingView
+} from 'react-native';
 import firebase from 'firebase';
 import { CheckBox } from 'react-native-elements';
 
@@ -135,112 +142,118 @@ class PersonalInfo3 extends React.Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-        <InfoHeader onPress={this.onPressBackButton.bind(this)}>申請者情報３</InfoHeader>
-        <Notes />
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior="padding"
+        enable
+      >
+        <ScrollView>
+          <InfoHeader onPress={this.onPressBackButton.bind(this)}>申請者情報３</InfoHeader>
+          <Notes />
 
-        <View style={styles.questionTextBox}>
-          <Text style={styles.questionText}>
-            過去にカナダのビザ（ワーキングホリデー・学生・{'\n'}
-            観光）の申請をしたことがありますか？{'\n'}
-            （はい/いいえ）{'\n'}
-            {'\n'}
-            ＊パスポートにスタンプのみ押され、紙のビザを発{'\n'}
-            行されなかった方はビザを申請したことにはなりません。 「いいえ」でご回答ください。{'\n'}
-          </Text>
+          <View style={styles.questionTextBox}>
+            <Text style={styles.questionText}>
+              過去にカナダのビザ（ワーキングホリデー・学生・{'\n'}
+              観光）の申請をしたことがありますか？{'\n'}
+              （はい/いいえ）{'\n'}
+              {'\n'}
+              ＊パスポートにスタンプのみ押され、紙のビザを発{'\n'}
+              行されなかった方はビザを申請したことにはなりません。 「いいえ」でご回答ください。{'\n'}
+            </Text>
 
-          <RadioButtons
-            onSelect={(index, value) => {
-              console.log(index);
-              AsyncStorage.setItem('aboutVisa', value);
-              this.setState({ aboutVisa: value });
+            <RadioButtons
+              onSelect={(index, value) => {
+                console.log(index);
+                AsyncStorage.setItem('aboutVisa', value);
+                this.setState({ aboutVisa: value });
+              }}
+              value={this.state.aboutVisa}
+              disabled={this.state.disabled}
+            />
+          </View>
+
+          <View style={styles.questionTextBoxDateMargin}>
+            <QuestionTextBoxDate
+              onDateChange={date => {
+                AsyncStorage.setItem('fromDateOfStaying', date);
+                this.setState({ fromDateOfStaying: date });
+              }}
+              value={this.state.fromDateOfStaying}
+            >
+              *「はい」と回答された方。滞在期間をご回答ください。
+            </QuestionTextBoxDate>
+            <QuestionTextBoxDate
+              onDateChange={date => {
+                AsyncStorage.setItem('toDateOfStaying', date);
+                this.setState({ toDateOfStaying: date });
+              }}
+              value={this.state.toDateOfStaying}
+              disabled={this.state.disabled}
+            >
+              から
+            </QuestionTextBoxDate>
+          </View>
+
+          <QuestionTextSet
+            placeholder={'例：学生ビザ、観光ビザなど'}
+            onChangeText={text => {
+              AsyncStorage.setItem('kindOfVisa', text);
+              this.setState({ kindOfVisa: text });
             }}
-            value={this.state.aboutVisa}
-            disabled={this.state.disabled}
+            value={this.state.kindOfVisa}
+            editable={this.state.editable}
+          >
+            *「はい」と回答された方。ビザの種類をご回答ください。
+          </QuestionTextSet>
+
+          <View style={styles.questionTextBoxDateMargin}>
+            <QuestionTextBoxDate
+              onDateChange={date => {
+                AsyncStorage.setItem('fromDateOfStayingCanada', date);
+                this.setState({ fromDateOfStayingCanada: date });
+              }}
+              value={this.state.fromDateOfStayingCanada}
+              disabled={this.state.disabled}
+            >
+              今回のカナダ滞在予定年月
+            </QuestionTextBoxDate>
+            <QuestionTextBoxDate
+              onDateChange={date => {
+                AsyncStorage.setItem('toDateOfStayingCanada', date);
+                this.setState({ toDateOfStayingCanada: date });
+              }}
+              value={this.state.toDateOfStayingCanada}
+              disabled={this.state.disabled}
+            >
+              から
+            </QuestionTextBoxDate>
+          </View>
+
+          <QuestionTextSet
+            placeholder={'例：バンクーバー,ビクトリア,トロントなど'}
+            onChangeText={text => {
+              AsyncStorage.setItem('placeOfstaying', text);
+              this.setState({ placeOfstaying: text });
+            }}
+            value={this.state.placeOfstaying}
+            editable={this.state.editable}
+          >
+            カナダのどの州に滞在する予定ですか
+          </QuestionTextSet>
+
+          <CheckBox
+            disabled={this.state.disableChecked}
+            center
+            title={'保存/修正'}
+            checked={this.state.checked}
+            onPress={() => {
+              this.onPressCheckBox();
+            }}
           />
-        </View>
 
-        <View style={styles.questionTextBoxDateMargin}>
-          <QuestionTextBoxDate
-            onDateChange={date => {
-              AsyncStorage.setItem('fromDateOfStaying', date);
-              this.setState({ fromDateOfStaying: date });
-            }}
-            value={this.state.fromDateOfStaying}
-          >
-            *「はい」と回答された方。滞在期間をご回答ください。
-          </QuestionTextBoxDate>
-          <QuestionTextBoxDate
-            onDateChange={date => {
-              AsyncStorage.setItem('toDateOfStaying', date);
-              this.setState({ toDateOfStaying: date });
-            }}
-            value={this.state.toDateOfStaying}
-            disabled={this.state.disabled}
-          >
-            から
-          </QuestionTextBoxDate>
-        </View>
-
-        <QuestionTextSet
-          placeholder={'例：学生ビザ、観光ビザなど'}
-          onChangeText={text => {
-            AsyncStorage.setItem('kindOfVisa', text);
-            this.setState({ kindOfVisa: text });
-          }}
-          value={this.state.kindOfVisa}
-          editable={this.state.editable}
-        >
-          *「はい」と回答された方。ビザの種類をご回答ください。
-        </QuestionTextSet>
-
-        <View style={styles.questionTextBoxDateMargin}>
-          <QuestionTextBoxDate
-            onDateChange={date => {
-              AsyncStorage.setItem('fromDateOfStayingCanada', date);
-              this.setState({ fromDateOfStayingCanada: date });
-            }}
-            value={this.state.fromDateOfStayingCanada}
-            disabled={this.state.disabled}
-          >
-            今回のカナダ滞在予定年月
-          </QuestionTextBoxDate>
-          <QuestionTextBoxDate
-            onDateChange={date => {
-              AsyncStorage.setItem('toDateOfStayingCanada', date);
-              this.setState({ toDateOfStayingCanada: date });
-            }}
-            value={this.state.toDateOfStayingCanada}
-            disabled={this.state.disabled}
-          >
-            から
-          </QuestionTextBoxDate>
-        </View>
-
-        <QuestionTextSet
-          placeholder={'例：バンクーバー,ビクトリア,トロントなど'}
-          onChangeText={text => {
-            AsyncStorage.setItem('placeOfstaying', text);
-            this.setState({ placeOfstaying: text });
-          }}
-          value={this.state.placeOfstaying}
-          editable={this.state.editable}
-        >
-          カナダのどの州に滞在する予定ですか
-        </QuestionTextSet>
-
-        <CheckBox
-          disabled={this.state.disableChecked}
-          center
-          title={'保存/修正'}
-          checked={this.state.checked}
-          onPress={() => {
-            this.onPressCheckBox();
-          }}
-        />
-
-        <Copyrights />
-      </ScrollView>
+          <Copyrights />
+        </ScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }

@@ -1,5 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, Text, ScrollView, TextInput, AsyncStorage } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  TextInput,
+  AsyncStorage,
+  KeyboardAvoidingView,
+} from 'react-native';
 
 import firebase from 'firebase';
 import { CheckBox } from 'react-native-elements';
@@ -235,332 +243,338 @@ class PersonalInfo6 extends React.Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-        <InfoHeader onPress={this.onPressBackButton.bind(this)}>申請者情報６</InfoHeader>
-        <View style={styles.notes}>
-          <Text style={styles.notesText}>
-            学校卒業から現在までの職歴について、履歴書を完{'\n'}
-            成させてください。＊卒業から10年以上たっている{'\n'}
-            人は、過去10年分について記載してください。{'\n'}
-            ＊空白の期間がないように記入してください。{'\n'}
-            ＊具体的に内容を説明してください。{'\n'}
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior="padding"
+        enable
+      >
+        <ScrollView>
+          <InfoHeader onPress={this.onPressBackButton.bind(this)}>申請者情報６</InfoHeader>
+          <View style={styles.notes}>
+            <Text style={styles.notesText}>
+              学校卒業から現在までの職歴について、履歴書を完{'\n'}
+              成させてください。＊卒業から10年以上たっている{'\n'}
+              人は、過去10年分について記載してください。{'\n'}
+              ＊空白の期間がないように記入してください。{'\n'}
+              ＊具体的に内容を説明してください。{'\n'}
+              {'\n'}
+              ＊空白の期間がないように記入してください。{'\n'}
+              &emsp;各職歴の間に空白の期間がある場合は、その間何{'\n'}
+              &emsp;をしていたかを項目ごとに期間を示し、具体的に{'\n'}
+              &emsp;内容を一番説明下の「内容」の項目に記入してく{'\n'}
+              &emsp;ださい。{'\n'}
+              &emsp;「開始日」と「内容」の項目は必須項目です。{'\n'}
+              &emsp;（例：○○の資格勉強、留学準備、就職活動、{'\n'}
+              &emsp;○○学校で○○コース受講、アメリカへ語学{'\n'}
+              &emsp;留学など）{'\n'}
+              ＊学生時代のアルバイトは含めません。{'\n'}
+              ＊卒業後は雇用形態（正社員・アルバイトなど）{'\n'}
+              &emsp;に関係なくご回答ください。{'\n'}
+            </Text>
+          </View>
+
+          <View style={styles.questionSetBox}>
+            <View style={styles.questionTextBoxDateMargin}>
+              <QuestionTextBoxDate
+                onDateChange={date => {
+                  AsyncStorage.setItem('dateOfStart1', date);
+                  this.setState({ dateOfStart1: date });
+                }}
+                value={this.state.dateOfStart1}
+                disabled={this.state.disabled}
+              >
+                開始日(入社日)*
+              </QuestionTextBoxDate>
+              <QuestionTextBoxDate
+                onDateChange={date => {
+                  AsyncStorage.setItem('dateOfFinish1', date);
+                  this.setState({ dateOfFinish1: date });
+                }}
+                value={this.state.dateOfFinish1}
+                disabled={this.state.disabled}
+              >
+                終了日(退社日)*
+              </QuestionTextBoxDate>
+            </View>
+
+            <QuestionTextSet
+              onChangeText={text => {
+                AsyncStorage.setItem('nameOfCompany1', text);
+                this.setState({ nameOfCompany1: text });
+              }}
+              value={this.state.nameOfCompany1}
+              editable={this.state.editable}
+              placeholder={'例：株式会社加奈陀(かぶしきがいしゃ かなだ)'}
+            >
+              会社名(ふりがな)
+            </QuestionTextSet>
+
+            <QuestionTextSet
+              onChangeText={text => {
+                AsyncStorage.setItem('address1', text);
+                this.setState({ address1: text });
+              }}
+              value={this.state.address1}
+              editable={this.state.editable}
+              placeholder={'例：東京都千代田区'}
+            >
+              所在地
+            </QuestionTextSet>
+
+            <QuestionTextSet
+              onChangeText={text => {
+                AsyncStorage.setItem('job1', text);
+                this.setState({ job1: text });
+              }}
+              value={this.state.job1}
+              editable={this.state.editable}
+              placeholder={'例：留学カウンセラー'}
+            >
+              職業
+            </QuestionTextSet>
+
+            <QuestionTextSet
+              onChangeText={text => {
+                AsyncStorage.setItem('position1', text);
+                this.setState({ position1: text });
+              }}
+              value={this.state.position1}
+              editable={this.state.editable}
+              placeholder={'例：係長'}
+            >
+              役職(ポジション)
+            </QuestionTextSet>
+
+            <QuestionTextSet
+              onChangeText={text => {
+                AsyncStorage.setItem('detailOfJob1', text);
+                this.setState({ detailOfJob1: text });
+              }}
+              value={this.state.detailOfJob1}
+              editable={this.state.editable}
+              placeholder={'例：願書作成、請求書発行、書類送付'}
+            >
+              主な(仕事)内容*
+            </QuestionTextSet>
+          </View>
+          {/* 2行目 */}
+          <View style={styles.line} />
+
+          <View style={styles.questionSetBox}>
+            <View style={styles.questionTextBoxDateMargin}>
+              <QuestionTextBoxDate
+                onDateChange={date => {
+                  AsyncStorage.setItem('dateOfStart2', date);
+                  this.setState({ dateOfStart2: date });
+                }}
+                value={this.state.dateOfStart2}
+                disabled={this.state.disabled}
+              >
+                開始日(入社日)*
+              </QuestionTextBoxDate>
+
+              <QuestionTextBoxDate
+                onDateChange={date => {
+                  AsyncStorage.setItem('dateOfFinish2', date);
+                  this.setState({ dateOfFinish2: date });
+                }}
+                value={this.state.dateOfFinish2}
+                disabled={this.state.disabled}
+              >
+                終了日(退社日)*
+              </QuestionTextBoxDate>
+            </View>
+
+            <QuestionTextSet
+              onChangeText={text => {
+                AsyncStorage.setItem('nameOfCompany2', text);
+                this.setState({ nameOfCompany2: text });
+              }}
+              value={this.state.nameOfCompany2}
+              editable={this.state.editable}
+              placeholder={'例：株式会社加奈陀(かぶしきがいしゃ かなだ)'}
+            >
+              会社名(ふりがな)
+            </QuestionTextSet>
+
+            <QuestionTextSet
+              onChangeText={text => {
+                AsyncStorage.setItem('address2', text);
+                this.setState({ address2: text });
+              }}
+              value={this.state.address2}
+              editable={this.state.editable}
+              placeholder={'例：東京都千代田区'}
+            >
+              所在地
+            </QuestionTextSet>
+
+            <QuestionTextSet
+              onChangeText={text => {
+                AsyncStorage.setItem('job2', text);
+                this.setState({ job2: text });
+              }}
+              value={this.state.job2}
+              editable={this.state.editable}
+              placeholder={'例：留学カウンセラー'}
+            >
+              職業
+            </QuestionTextSet>
+
+            <QuestionTextSet
+              onChangeText={text => {
+                AsyncStorage.setItem('position2', text);
+                this.setState({ position2: text });
+              }}
+              value={this.state.position2}
+              editable={this.state.editable}
+              placeholder={'例：係長'}
+            >
+              役職(ポジション)
+            </QuestionTextSet>
+
+            <QuestionTextSet
+              onChangeText={text => {
+                AsyncStorage.setItem('detailOfJob2', text);
+                this.setState({ detailOfJob2: text });
+              }}
+              value={this.state.detailOfJob2}
+              editable={this.state.editable}
+              placeholder={'例：願書作成、請求書発行、書類送付'}
+            >
+              主な(仕事)内容*
+            </QuestionTextSet>
+          </View>
+
+          <View style={styles.line} />
+          {/* 3行目 */}
+          <View style={styles.questionSetBox}>
+            <View style={styles.questionTextBoxDateMargin}>
+              <QuestionTextBoxDate
+                onDateChange={date => {
+                  AsyncStorage.setItem('dateOfStart3', date);
+                  this.setState({ dateOfStart3: date });
+                }}
+                value={this.state.dateOfStart3}
+                disabled={this.state.disabled}
+              >
+                開始日(入社日)*
+              </QuestionTextBoxDate>
+
+              <QuestionTextBoxDate
+                onDateChange={date => {
+                  AsyncStorage.setItem('dateOfFinish3', date);
+                  this.setState({ dateOfFinish3: date });
+                }}
+                value={this.state.dateOfFinish3}
+                disabled={this.state.disabled}
+              >
+                終了日(退社日)*
+              </QuestionTextBoxDate>
+            </View>
+
+            <QuestionTextSet
+              onChangeText={text => {
+                AsyncStorage.setItem('nameOfCompany3', text);
+                this.setState({ nameOfCompany3: text });
+              }}
+              value={this.state.nameOfCompany3}
+              editable={this.state.editable}
+              placeholder={'例：株式会社加奈陀(かぶしきがいしゃ かなだ)'}
+            >
+              会社名(ふりがな)
+            </QuestionTextSet>
+
+            <QuestionTextSet
+              onChangeText={text => {
+                AsyncStorage.setItem('address3', text);
+                this.setState({ address3: text });
+              }}
+              value={this.state.address3}
+              editable={this.state.editable}
+              placeholder={'例：東京都千代田区'}
+            >
+              所在地
+            </QuestionTextSet>
+
+            <QuestionTextSet
+              onChangeText={text => {
+                AsyncStorage.setItem('job3', text);
+                this.setState({ job3: text });
+              }}
+              value={this.state.job3}
+              editable={this.state.editable}
+              placeholder={'例：留学カウンセラー'}
+            >
+              職業
+            </QuestionTextSet>
+
+            <QuestionTextSet
+              onChangeText={text => {
+                AsyncStorage.setItem('position3', text);
+                this.setState({ position3: text });
+              }}
+              value={this.state.position3}
+              editable={this.state.editable}
+              placeholder={'例：係長'}
+            >
+              役職(ポジション)
+            </QuestionTextSet>
+
+            <QuestionTextSet
+              onChangeText={text => {
+                AsyncStorage.setItem('detailOfJob3', text);
+                this.setState({ detailOfJob3: text });
+              }}
+              value={this.state.detailOfJob3}
+              editable={this.state.editable}
+              placeholder={'例：願書作成、請求書発行、書類送付'}
+            >
+              主な(仕事)内容*
+            </QuestionTextSet>
+          </View>
+
+          <View style={styles.line} />
+
+          <Text style={styles.textInputTitle}>
+            4つ目以降はこちらに記入してください。{'\n'}
+            *印は必須項目です。{'\n'}
             {'\n'}
-            ＊空白の期間がないように記入してください。{'\n'}
-            &emsp;各職歴の間に空白の期間がある場合は、その間何{'\n'}
-            &emsp;をしていたかを項目ごとに期間を示し、具体的に{'\n'}
-            &emsp;内容を一番説明下の「内容」の項目に記入してく{'\n'}
-            &emsp;ださい。{'\n'}
-            &emsp;「開始日」と「内容」の項目は必須項目です。{'\n'}
-            &emsp;（例：○○の資格勉強、留学準備、就職活動、{'\n'}
-            &emsp;○○学校で○○コース受講、アメリカへ語学{'\n'}
-            &emsp;留学など）{'\n'}
-            ＊学生時代のアルバイトは含めません。{'\n'}
-            ＊卒業後は雇用形態（正社員・アルバイトなど）{'\n'}
-            &emsp;に関係なくご回答ください。{'\n'}
+            ［書き方］{'\n'}
+            ①開始日(入社日)*、終了日(退社日)*、会社名(ふりがな)、所在地、職業、役職(ポジション)、
+            主な(仕事)内容*{'\n'}
+            ②開始日(入社日)*、終了日(退社日)*、会社名(ふりがな)、所在地、職業、役職(ポジション)、
+            主な(仕事)内容*
           </Text>
-        </View>
 
-        <View style={styles.questionSetBox}>
-          <View style={styles.questionTextBoxDateMargin}>
-            <QuestionTextBoxDate
-              onDateChange={date => {
-                AsyncStorage.setItem('dateOfStart1', date);
-                this.setState({ dateOfStart1: date });
+          <View style={styles.textInputBox}>
+            <TextInput
+              onChangeText={text => {
+                AsyncStorage.setItem('extra', text);
+                this.setState({ extra: text });
               }}
-              value={this.state.dateOfStart1}
-              disabled={this.state.disabled}
-            >
-              開始日(入社日)*
-            </QuestionTextBoxDate>
-            <QuestionTextBoxDate
-              onDateChange={date => {
-                AsyncStorage.setItem('dateOfFinish1', date);
-                this.setState({ dateOfFinish1: date });
-              }}
-              value={this.state.dateOfFinish1}
-              disabled={this.state.disabled}
-            >
-              終了日(退社日)*
-            </QuestionTextBoxDate>
+              value={this.state.extra}
+              editable={this.state.editable}
+              style={styles.textInput}
+              multiline
+              placeholder={`開始日(入社日)、終了日(退社日)、会社名(ふりがな)、所在地、職業、役職(ポジション)、
+              主な(仕事)内容`}
+            />
           </View>
 
-          <QuestionTextSet
-            onChangeText={text => {
-              AsyncStorage.setItem('nameOfCompany1', text);
-              this.setState({ nameOfCompany1: text });
+          <CheckBox
+            disabled={this.state.disableChecked}
+            center
+            title={'保存/修正'}
+            checked={this.state.checked}
+            onPress={() => {
+              this.onPressCheckBox();
             }}
-            value={this.state.nameOfCompany1}
-            editable={this.state.editable}
-            placeholder={'例：株式会社加奈陀(かぶしきがいしゃ かなだ)'}
-          >
-            会社名(ふりがな)
-          </QuestionTextSet>
-
-          <QuestionTextSet
-            onChangeText={text => {
-              AsyncStorage.setItem('address1', text);
-              this.setState({ address1: text });
-            }}
-            value={this.state.address1}
-            editable={this.state.editable}
-            placeholder={'例：東京都千代田区'}
-          >
-            所在地
-          </QuestionTextSet>
-
-          <QuestionTextSet
-            onChangeText={text => {
-              AsyncStorage.setItem('job1', text);
-              this.setState({ job1: text });
-            }}
-            value={this.state.job1}
-            editable={this.state.editable}
-            placeholder={'例：留学カウンセラー'}
-          >
-            職業
-          </QuestionTextSet>
-
-          <QuestionTextSet
-            onChangeText={text => {
-              AsyncStorage.setItem('position1', text);
-              this.setState({ position1: text });
-            }}
-            value={this.state.position1}
-            editable={this.state.editable}
-            placeholder={'例：係長'}
-          >
-            役職(ポジション)
-          </QuestionTextSet>
-
-          <QuestionTextSet
-            onChangeText={text => {
-              AsyncStorage.setItem('detailOfJob1', text);
-              this.setState({ detailOfJob1: text });
-            }}
-            value={this.state.detailOfJob1}
-            editable={this.state.editable}
-            placeholder={'例：願書作成、請求書発行、書類送付'}
-          >
-            主な(仕事)内容*
-          </QuestionTextSet>
-        </View>
-        {/* 2行目 */}
-        <View style={styles.line} />
-
-        <View style={styles.questionSetBox}>
-          <View style={styles.questionTextBoxDateMargin}>
-            <QuestionTextBoxDate
-              onDateChange={date => {
-                AsyncStorage.setItem('dateOfStart2', date);
-                this.setState({ dateOfStart2: date });
-              }}
-              value={this.state.dateOfStart2}
-              disabled={this.state.disabled}
-            >
-              開始日(入社日)*
-            </QuestionTextBoxDate>
-
-            <QuestionTextBoxDate
-              onDateChange={date => {
-                AsyncStorage.setItem('dateOfFinish2', date);
-                this.setState({ dateOfFinish2: date });
-              }}
-              value={this.state.dateOfFinish2}
-              disabled={this.state.disabled}
-            >
-              終了日(退社日)*
-            </QuestionTextBoxDate>
-          </View>
-
-          <QuestionTextSet
-            onChangeText={text => {
-              AsyncStorage.setItem('nameOfCompany2', text);
-              this.setState({ nameOfCompany2: text });
-            }}
-            value={this.state.nameOfCompany2}
-            editable={this.state.editable}
-            placeholder={'例：株式会社加奈陀(かぶしきがいしゃ かなだ)'}
-          >
-            会社名(ふりがな)
-          </QuestionTextSet>
-
-          <QuestionTextSet
-            onChangeText={text => {
-              AsyncStorage.setItem('address2', text);
-              this.setState({ address2: text });
-            }}
-            value={this.state.address2}
-            editable={this.state.editable}
-            placeholder={'例：東京都千代田区'}
-          >
-            所在地
-          </QuestionTextSet>
-
-          <QuestionTextSet
-            onChangeText={text => {
-              AsyncStorage.setItem('job2', text);
-              this.setState({ job2: text });
-            }}
-            value={this.state.job2}
-            editable={this.state.editable}
-            placeholder={'例：留学カウンセラー'}
-          >
-            職業
-          </QuestionTextSet>
-
-          <QuestionTextSet
-            onChangeText={text => {
-              AsyncStorage.setItem('position2', text);
-              this.setState({ position2: text });
-            }}
-            value={this.state.position2}
-            editable={this.state.editable}
-            placeholder={'例：係長'}
-          >
-            役職(ポジション)
-          </QuestionTextSet>
-
-          <QuestionTextSet
-            onChangeText={text => {
-              AsyncStorage.setItem('detailOfJob2', text);
-              this.setState({ detailOfJob2: text });
-            }}
-            value={this.state.detailOfJob2}
-            editable={this.state.editable}
-            placeholder={'例：願書作成、請求書発行、書類送付'}
-          >
-            主な(仕事)内容*
-          </QuestionTextSet>
-        </View>
-
-        <View style={styles.line} />
-        {/* 3行目 */}
-        <View style={styles.questionSetBox}>
-          <View style={styles.questionTextBoxDateMargin}>
-            <QuestionTextBoxDate
-              onDateChange={date => {
-                AsyncStorage.setItem('dateOfStart3', date);
-                this.setState({ dateOfStart3: date });
-              }}
-              value={this.state.dateOfStart3}
-              disabled={this.state.disabled}
-            >
-              開始日(入社日)*
-            </QuestionTextBoxDate>
-
-            <QuestionTextBoxDate
-              onDateChange={date => {
-                AsyncStorage.setItem('dateOfFinish3', date);
-                this.setState({ dateOfFinish3: date });
-              }}
-              value={this.state.dateOfFinish3}
-              disabled={this.state.disabled}
-            >
-              終了日(退社日)*
-            </QuestionTextBoxDate>
-          </View>
-
-          <QuestionTextSet
-            onChangeText={text => {
-              AsyncStorage.setItem('nameOfCompany3', text);
-              this.setState({ nameOfCompany3: text });
-            }}
-            value={this.state.nameOfCompany3}
-            editable={this.state.editable}
-            placeholder={'例：株式会社加奈陀(かぶしきがいしゃ かなだ)'}
-          >
-            会社名(ふりがな)
-          </QuestionTextSet>
-
-          <QuestionTextSet
-            onChangeText={text => {
-              AsyncStorage.setItem('address3', text);
-              this.setState({ address3: text });
-            }}
-            value={this.state.address3}
-            editable={this.state.editable}
-            placeholder={'例：東京都千代田区'}
-          >
-            所在地
-          </QuestionTextSet>
-
-          <QuestionTextSet
-            onChangeText={text => {
-              AsyncStorage.setItem('job3', text);
-              this.setState({ job3: text });
-            }}
-            value={this.state.job3}
-            editable={this.state.editable}
-            placeholder={'例：留学カウンセラー'}
-          >
-            職業
-          </QuestionTextSet>
-
-          <QuestionTextSet
-            onChangeText={text => {
-              AsyncStorage.setItem('position3', text);
-              this.setState({ position3: text });
-            }}
-            value={this.state.position3}
-            editable={this.state.editable}
-            placeholder={'例：係長'}
-          >
-            役職(ポジション)
-          </QuestionTextSet>
-
-          <QuestionTextSet
-            onChangeText={text => {
-              AsyncStorage.setItem('detailOfJob3', text);
-              this.setState({ detailOfJob3: text });
-            }}
-            value={this.state.detailOfJob3}
-            editable={this.state.editable}
-            placeholder={'例：願書作成、請求書発行、書類送付'}
-          >
-            主な(仕事)内容*
-          </QuestionTextSet>
-        </View>
-
-        <View style={styles.line} />
-
-        <Text style={styles.textInputTitle}>
-          4つ目以降はこちらに記入してください。{'\n'}
-          *印は必須項目です。{'\n'}
-          {'\n'}
-          ［書き方］{'\n'}
-          ①開始日(入社日)*、終了日(退社日)*、会社名(ふりがな)、所在地、職業、役職(ポジション)、
-          主な(仕事)内容*{'\n'}
-          ②開始日(入社日)*、終了日(退社日)*、会社名(ふりがな)、所在地、職業、役職(ポジション)、
-          主な(仕事)内容*
-        </Text>
-
-        <View style={styles.textInputBox}>
-          <TextInput
-            onChangeText={text => {
-              AsyncStorage.setItem('extra', text);
-              this.setState({ extra: text });
-            }}
-            value={this.state.extra}
-            editable={this.state.editable}
-            style={styles.textInput}
-            multiline
-            placeholder={`開始日(入社日)、終了日(退社日)、会社名(ふりがな)、所在地、職業、役職(ポジション)、
-            主な(仕事)内容`}
           />
-        </View>
 
-        <CheckBox
-          disabled={this.state.disableChecked}
-          center
-          title={'保存/修正'}
-          checked={this.state.checked}
-          onPress={() => {
-            this.onPressCheckBox();
-          }}
-        />
-
-        <Copyrights />
-      </ScrollView>
+          <Copyrights />
+        </ScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }

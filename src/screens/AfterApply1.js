@@ -24,7 +24,7 @@ class AfterApply1 extends React.Component {
           <Text style={styles.textBoxText}>
             ご入力お疲れ様でした。
             これより入力頂きました内容を確認し
-            改めましてJpcanada留学センター担当カウンセラーから登録メールアドレ
+            改めてJpcanada留学センター担当カウンセラーから登録メールアドレ
             スにメールをさせて頂きます。申請完
             了までメールでのやり取りが続くかと思いますが、ご協力お願い致します。
 
