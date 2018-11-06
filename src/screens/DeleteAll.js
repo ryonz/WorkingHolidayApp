@@ -21,6 +21,8 @@ class DeleteAll extends React.Component {
     this.state = {
       modalVisible: false,
       modalVisibleLogin: false,
+
+      editable: true,
     };
   }
 
@@ -35,6 +37,7 @@ class DeleteAll extends React.Component {
   }
 
   async onPressDelete() {
+    this.setState({ editable: false });
     const { currentUser } = firebase.auth();
     const user = firebase.auth().currentUser;
     const db = firebase.firestore();
@@ -44,8 +47,6 @@ class DeleteAll extends React.Component {
         deletedAccount: 'This account is not exsit.',
       });
     if (user) {
-      //ここまでは読み込まれている
-      console.log('ccc');
       user.delete()
         .then(() => {
           this.setState({ modalVisible: false });
@@ -126,6 +127,7 @@ class DeleteAll extends React.Component {
           <LoginModal
             handleLoginModal={this.setModalVisibelLogin.bind(this)}
             handleDeleteModal={this.setModalVsible.bind(this)}
+            navigation={this.props.navigation}
           />
         </Modal>
 
@@ -157,6 +159,7 @@ class DeleteAll extends React.Component {
                 <TouchableOpacity
                   style={styles.modalButton}
                   onPress={() => { this.onPressDelete(); }}
+                  editable={this.state.editable}
                 >
                   <Text style={styles.modalButtonText}>削除する</Text>
                 </TouchableOpacity>

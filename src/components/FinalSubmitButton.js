@@ -18,6 +18,7 @@ class FinalSubmitButton extends React.Component {
     this.state = {
       disabled: false,
       modalVisible: false,
+
     };
   }
 
@@ -53,7 +54,7 @@ class FinalSubmitButton extends React.Component {
         'checked15',
       ])
       .then(() => {
-        
+
   })
 }
 

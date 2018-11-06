@@ -15,11 +15,13 @@ class LoginModal extends React.Component {
   state = {
     email: 'user0@example.com',
     password: '19920101',
+
+    editable: true,
   };
 
   handleLoginModal() {
-    firebase
-      .auth()
+    this.setState({ editable: false });
+    firebase.auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         this.props.handleLoginModal();
@@ -86,12 +88,21 @@ class LoginModal extends React.Component {
         <TouchableOpacity
           onPress={() => {
             this.props.navigation.navigate('UpdatePassword');
+            this.props.handleLoginModal();
           }}
         >
-          <Text style={styles.forgetPasswordText}>パスワードを忘れた場合</Text>
+          <Text
+            style={styles.forgetPasswordText}
+          >
+            パスワードを忘れた場合
+          </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.loginButtonBox} onPress={this.handleLoginModal.bind(this)}>
+        <TouchableOpacity
+          style={styles.loginButtonBox}
+          onPress={this.handleLoginModal.bind(this)}
+          editable={this.state.editable}
+        >
           <View style={styles.loginButton}>
             <Text style={styles.loginButtonText}>ログイン</Text>
           </View>
@@ -100,9 +111,14 @@ class LoginModal extends React.Component {
         <TouchableOpacity
           onPress={() => {
             this.props.navigation.navigate('Birthday');
+            this.props.handleLoginModal();
           }}
         >
-          <Text style={styles.forgetPasswordText}>登録がまだの方はこちら</Text>
+          <Text
+            style={styles.forgetPasswordText}
+          >
+          登録がまだの方はこちら
+          </Text>
         </TouchableOpacity>
 
         <Image style={styles.image} source={require('../../assets/images/kanatan.png')} />

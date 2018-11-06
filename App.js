@@ -31,6 +31,7 @@ import Help from './src/screens/Help';
 import UpdatePassword from './src/screens/UpdatePassword';
 import DeleteAll from './src/screens/DeleteAll';
 
+
 require('firebase/firestore');
 
 // firebaseの認証用config

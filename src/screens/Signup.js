@@ -24,6 +24,8 @@ class Signup extends React.Component {
       password: null,
       modalMailVisible: false,
       modalPasswordVisible: false,
+
+      editable: true,
     };
   }
 
@@ -35,6 +37,7 @@ class Signup extends React.Component {
   }
 
   handleSignup() {
+    this.setState({ editable: false });
     if (this.state.email !== null) {
       firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
         .then((user) => {
@@ -163,6 +166,7 @@ class Signup extends React.Component {
         <TouchableOpacity
           style={styles.loginButtonBox}
           onPress={this.handleSignup.bind(this)}
+          editable={this.state.editable}
         >
           <View style={styles.loginButton}>
             <Text style={styles.loginButtonText}>同意して登録</Text>

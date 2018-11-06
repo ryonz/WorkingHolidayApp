@@ -21,6 +21,8 @@ class Login extends React.Component {
     password: '19920101',
     notificationModal1: false,
     notificationModal2: false,
+
+    editable: true,
   };
 
   componentDidMount() {
@@ -67,8 +69,8 @@ class Login extends React.Component {
   }
 
   handleLogin() {
-    firebase
-      .auth()
+    this.setState({ editable: false });
+    firebase.auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         this.props.navigation.navigate('WHApply');
@@ -139,7 +141,11 @@ class Login extends React.Component {
           <Text style={styles.forgetPasswordText}>パスワードを忘れた場合</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.loginButtonBox} onPress={this.handleLogin.bind(this)}>
+        <TouchableOpacity
+          style={styles.loginButtonBox}
+          onPress={this.handleLogin.bind(this)}
+          editable={this.state.editable}
+        >
           <View style={styles.loginButton}>
             <Text style={styles.loginButtonText}>ログイン</Text>
           </View>
