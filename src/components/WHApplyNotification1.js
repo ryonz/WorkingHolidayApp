@@ -20,7 +20,9 @@ class WHApplyNotification1 extends React.Component {
         />
 
         <View style={styles.title}>
-          <Text style={styles.titleText}>申請の前に</Text>
+          <Text style={styles.titleText}>
+            申請の前に
+          </Text>
         </View>
 
         <View style={styles.textBox}>
@@ -101,7 +103,8 @@ const styles = StyleSheet.create({
   titleText: {
     color: '#626262',
     fontSize: 20,
-    paddingLeft: 5,
+    paddingLeft: 15,
+    paddingRight: 15,
     fontWeight: 'bold',
   },
   textBox: {

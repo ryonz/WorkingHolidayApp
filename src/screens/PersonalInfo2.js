@@ -2,7 +2,9 @@ import React from 'react';
 import {
   StyleSheet,
   ScrollView,
+  Text,
   AsyncStorage,
+  TouchableOpacity,
   KeyboardAvoidingView,
 } from 'react-native';
 import firebase from 'firebase';
@@ -278,11 +280,19 @@ class PersonalInfo2 extends React.Component {
             FAX番号（もしあれば）
           </QuestionTextSet>
 
+          <TouchableOpacity
+            style={styles.temporarySaveButton}
+            onPress={this.onPressBackButton.bind(this)}
+          >
+            <Text>
+              保存して戻る
+            </Text>
+          </TouchableOpacity>
 
           <CheckBox
             disabled={this.state.disableChecked}
             center
-            title={'保存/修正'}
+            title={'完了/修正'}
             checked={this.state.checked}
             onPress={() => {
               this.onPressCheckBox();
@@ -314,6 +324,20 @@ const styles = StyleSheet.create({
   questionTextBoxDateMargin2Line: {
     marginTop: 20,
     marginBottom: 20,
+  },
+  temporarySaveButton: {
+    width: '95%',
+    height: 40,
+    alignSelf: 'center',
+    alignItems: 'center',
+    paddingTop: 12,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+    marginTop: 30,
+    marginBottom: 10,
+    borderWidth: 0.5,
+    borderRadius: 3,
   },
 });
 

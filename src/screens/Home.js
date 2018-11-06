@@ -26,6 +26,13 @@ class Home extends React.Component {
     console.log(this.props.navigation.checked);
   }
 
+  onPressAboutJpcanada() {
+    this.props.navigation.navigate('AboutJpcanada');
+  }
+
+  onPressAboutWorkingHoliday() {
+    this.props.navigation.navigate('AboutWorkingHoliday');
+  }
 
   setModalVisible(visible) {
     this.setState({ modal1Visible: visible });
@@ -84,8 +91,6 @@ class Home extends React.Component {
     }
   }
 
-
-
   render() {
     return (
       <View style={styles.container}>
@@ -96,14 +101,24 @@ class Home extends React.Component {
         </View>
 
         <View style={styles.buttonBox}>
-          <TouchableOpacity style={styles.button} onPress={this.onPress}>
-            <Text style={styles.buttonText}>JPCANADAについて</Text>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={this.onPressAboutJpcanada.bind(this)}
+          >
+            <Text style={styles.buttonText}>
+              JPCANADAについて
+            </Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.buttonBox}>
-          <TouchableOpacity style={styles.button} onPress={this.onPress}>
-            <Text style={styles.buttonText}>ワーホリ申請について</Text>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={this.onPressAboutWorkingHoliday.bind(this)}
+          >
+            <Text style={styles.buttonText}>
+              ワーホリ申請について
+            </Text>
           </TouchableOpacity>
         </View>
 
@@ -276,6 +291,7 @@ const styles = StyleSheet.create({
     width: '55%',
     height: 36,
     marginTop: 8,
+    paddingTop: 2,
     marginBottom: 8,
     alignItems: 'center',
     borderWidth: 1,
@@ -286,7 +302,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '900',
     color: '#626262',
-    paddingTop: 9,
+    paddingTop: 8,
   },
   startApplyButton: {
     backgroundColor: '#fff',

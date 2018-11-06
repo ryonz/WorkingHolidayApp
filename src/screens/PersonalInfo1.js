@@ -3,8 +3,10 @@ import {
   StyleSheet,
   ScrollView,
   View,
+  Text,
   AsyncStorage,
-  KeyboardAvoidingView
+  TouchableOpacity,
+  KeyboardAvoidingView,
 } from 'react-native';
 
 import firebase from 'firebase';
@@ -198,7 +200,11 @@ class PersonalInfo1 extends React.Component {
         enable
       >
         <ScrollView>
-          <InfoHeader onPress={this.onPressBackButton.bind(this)}>申請者情報１</InfoHeader>
+          <InfoHeader
+            onPress={this.onPressBackButton.bind(this)}
+          >
+            申請者情報１
+          </InfoHeader>
           <Notes />
           <QuestionTextSet
             onChangeText={text => {
@@ -363,10 +369,19 @@ class PersonalInfo1 extends React.Component {
             上記の配偶者の生年月日（西暦で）
           </QuestionTextBoxDate>
 
+          <TouchableOpacity
+            style={styles.temporarySaveButton}
+            onPress={this.onPressBackButton.bind(this)}
+          >
+            <Text>
+              保存して戻る
+            </Text>
+          </TouchableOpacity>
+
           <CheckBox
             disabled={this.state.disableChecked}
             center
-            title={'保存/修正'}
+            title={'完了/修正'}
             checked={this.state.checked}
             onPress={() => {
               this.onPressCheckBox();
@@ -375,7 +390,7 @@ class PersonalInfo1 extends React.Component {
 
           <Copyrights />
         </ScrollView>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
 
     );
   }
@@ -397,6 +412,20 @@ const styles = StyleSheet.create({
   questionTextBoxDateMargin2Line: {
     marginTop: 20,
     marginBottom: 20,
+  },
+  temporarySaveButton: {
+    width: '95%',
+    height: 40,
+    alignSelf: 'center',
+    alignItems: 'center',
+    paddingTop: 12,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+    marginTop: 30,
+    marginBottom: 10,
+    borderWidth: 0.5,
+    borderRadius: 3,
   },
 });
 

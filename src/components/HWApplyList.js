@@ -7,21 +7,21 @@ class HWApplyList extends React.Component {
   state = {
     fontLoaded: false,
 
-    stateOfEdit1: '未入力',
-    stateOfEdit2: '未入力',
-    stateOfEdit3: '未入力',
-    stateOfEdit4: '未入力',
-    stateOfEdit5: '未入力',
-    stateOfEdit6: '未入力',
-    stateOfEdit7: '未入力',
-    stateOfEdit8: '未入力',
-    stateOfEdit9: '未入力',
-    stateOfEdit10: '未入力',
-    stateOfEdit11: '未入力',
-    stateOfEdit12: '未入力',
-    stateOfEdit13: '未入力',
-    stateOfEdit14: '未入力',
-    stateOfEdit15: '未入力',
+    stateOfEdit1: '未完了',
+    stateOfEdit2: '未完了',
+    stateOfEdit3: '未完了',
+    stateOfEdit4: '未完了',
+    stateOfEdit5: '未完了',
+    stateOfEdit6: '未完了',
+    stateOfEdit7: '未完了',
+    stateOfEdit8: '未完了',
+    stateOfEdit9: '未完了',
+    stateOfEdit10: '未完了',
+    stateOfEdit11: '未完了',
+    stateOfEdit12: '未完了',
+    stateOfEdit13: '未完了',
+    stateOfEdit14: '未完了',
+    stateOfEdit15: '未完了',
 
   };
 
@@ -39,7 +39,7 @@ class HWApplyList extends React.Component {
         if (value === 'true') {
           this.setState({ stateOfEdit1: '完了' });
         } else if (value === 'false') {
-          this.setState({ stateOfEdit1: '未入力' });
+          this.setState({ stateOfEdit1: '未完了' });
         }
       });
     AsyncStorage.getItem('checked2')
@@ -47,7 +47,7 @@ class HWApplyList extends React.Component {
         if (value === 'true') {
           this.setState({ stateOfEdit2: '完了' });
         } else if (value === 'false') {
-          this.setState({ stateOfEdit2: '未入力' });
+          this.setState({ stateOfEdit2: '未完了' });
         }
       });
     AsyncStorage.getItem('checked3')
@@ -55,7 +55,7 @@ class HWApplyList extends React.Component {
         if (value === 'true') {
           this.setState({ stateOfEdit3: '完了' });
         } else if (value === 'false') {
-          this.setState({ stateOfEdit3: '未入力' });
+          this.setState({ stateOfEdit3: '未完了' });
         }
       });
     AsyncStorage.getItem('checked4')
@@ -63,7 +63,7 @@ class HWApplyList extends React.Component {
         if (value === 'true') {
           this.setState({ stateOfEdit4: '完了' });
         } else if (value === 'false') {
-          this.setState({ stateOfEdit4: '未入力' });
+          this.setState({ stateOfEdit4: '未完了' });
         }
       });
     AsyncStorage.getItem('checked5')
@@ -71,7 +71,7 @@ class HWApplyList extends React.Component {
         if (value === 'true') {
           this.setState({ stateOfEdit5: '完了' });
         } else if (value === 'false') {
-          this.setState({ stateOfEdit5: '未入力' });
+          this.setState({ stateOfEdit5: '未完了' });
         }
       });
     AsyncStorage.getItem('checked6')
@@ -79,7 +79,7 @@ class HWApplyList extends React.Component {
         if (value === 'true') {
           this.setState({ stateOfEdit6: '完了' });
         } else if (value === 'false') {
-          this.setState({ stateOfEdit6: '未入力' });
+          this.setState({ stateOfEdit6: '未完了' });
         }
       });
     AsyncStorage.getItem('checked7')
@@ -87,7 +87,7 @@ class HWApplyList extends React.Component {
         if (value === 'true') {
           this.setState({ stateOfEdit7: '完了' });
         } else if (value === 'false') {
-          this.setState({ stateOfEdit7: '未入力' });
+          this.setState({ stateOfEdit7: '未完了' });
         }
       });
     AsyncStorage.getItem('checked8')
@@ -95,7 +95,7 @@ class HWApplyList extends React.Component {
         if (value === 'true') {
           this.setState({ stateOfEdit8: '完了' });
         } else if (value === 'false') {
-          this.setState({ stateOfEdit8: '未入力' });
+          this.setState({ stateOfEdit8: '未完了' });
         }
       });
     AsyncStorage.getItem('checked9')
@@ -103,7 +103,7 @@ class HWApplyList extends React.Component {
         if (value === 'true') {
           this.setState({ stateOfEdit9: '完了' });
         } else if (value === 'false') {
-          this.setState({ stateOfEdit9: '未入力' });
+          this.setState({ stateOfEdit9: '未完了' });
         }
       });
     AsyncStorage.getItem('checked10')
@@ -111,7 +111,7 @@ class HWApplyList extends React.Component {
         if (value === 'true') {
           this.setState({ stateOfEdit10: '完了' });
         } else if (value === 'false') {
-          this.setState({ stateOfEdit10: '未入力' });
+          this.setState({ stateOfEdit10: '未完了' });
         }
       });
     AsyncStorage.getItem('checked11')
@@ -119,7 +119,7 @@ class HWApplyList extends React.Component {
         if (value === 'true') {
           this.setState({ stateOfEdit11: '完了' });
         } else if (value === 'false') {
-          this.setState({ stateOfEdit11: '未入力' });
+          this.setState({ stateOfEdit11: '未完了' });
         }
       });
     AsyncStorage.getItem('checked12')
@@ -127,7 +127,7 @@ class HWApplyList extends React.Component {
         if (value === 'true') {
           this.setState({ stateOfEdit12: '完了' });
         } else if (value === 'false') {
-          this.setState({ stateOfEdit12: '未入力' });
+          this.setState({ stateOfEdit12: '未完了' });
         }
       });
     AsyncStorage.getItem('checked13')
@@ -135,7 +135,7 @@ class HWApplyList extends React.Component {
         if (value === 'true') {
           this.setState({ stateOfEdit13: '完了' });
         } else if (value === 'false') {
-          this.setState({ stateOfEdit13: '未入力' });
+          this.setState({ stateOfEdit13: '未完了' });
         }
       });
     AsyncStorage.getItem('checked14')
@@ -143,7 +143,7 @@ class HWApplyList extends React.Component {
         if (value === 'true') {
           this.setState({ stateOfEdit14: '完了' });
         } else if (value === 'false') {
-          this.setState({ stateOfEdit14: '未入力' });
+          this.setState({ stateOfEdit14: '未完了' });
         }
       });
     AsyncStorage.getItem('checked15')
@@ -151,7 +151,7 @@ class HWApplyList extends React.Component {
         if (value === 'true') {
           this.setState({ stateOfEdit15: '完了' });
         } else if (value === 'false') {
-          this.setState({ stateOfEdit15: '未入力' });
+          this.setState({ stateOfEdit15: '未完了' });
         }
       });
   }
@@ -171,7 +171,7 @@ class HWApplyList extends React.Component {
             <Text style={styles.listBoxText}>申請者情報１</Text>
             <View style={styles.inputBotton}>
               <Text
-                style={this.state.stateOfEdit1 === '未入力' ? styles.inputBottonText : styles.inputBottonTextRed}
+                style={this.state.stateOfEdit1 === '未完了' ? styles.inputBottonText : styles.inputBottonTextRed}
               >
                 {this.state.stateOfEdit1}
               </Text>
@@ -197,7 +197,7 @@ class HWApplyList extends React.Component {
             <Text style={styles.listBoxText}>申請者情報２</Text>
             <View style={styles.inputBotton}>
               <Text
-                style={this.state.stateOfEdit2 === '未入力' ? styles.inputBottonText : styles.inputBottonTextRed}
+                style={this.state.stateOfEdit2 === '未完了' ? styles.inputBottonText : styles.inputBottonTextRed}
               >
                 {this.state.stateOfEdit2}
               </Text>
@@ -223,7 +223,7 @@ class HWApplyList extends React.Component {
             <Text style={styles.listBoxText}>申請者情報３</Text>
             <View style={styles.inputBotton}>
               <Text
-                style={this.state.stateOfEdit3 === '未入力' ? styles.inputBottonText : styles.inputBottonTextRed}
+                style={this.state.stateOfEdit3 === '未完了' ? styles.inputBottonText : styles.inputBottonTextRed}
               >
                 {this.state.stateOfEdit3}
               </Text>
@@ -249,7 +249,7 @@ class HWApplyList extends React.Component {
             <Text style={styles.listBoxText}>申請者情報４</Text>
             <View style={styles.inputBotton}>
               <Text
-                style={this.state.stateOfEdit4 === '未入力' ? styles.inputBottonText : styles.inputBottonTextRed}
+                style={this.state.stateOfEdit4 === '未完了' ? styles.inputBottonText : styles.inputBottonTextRed}
               >
                 {this.state.stateOfEdit4}
               </Text>
@@ -275,7 +275,7 @@ class HWApplyList extends React.Component {
             <Text style={styles.listBoxText}>申請者情報５</Text>
             <View style={styles.inputBotton}>
               <Text
-                style={this.state.stateOfEdit5 === '未入力' ? styles.inputBottonText : styles.inputBottonTextRed}
+                style={this.state.stateOfEdit5 === '未完了' ? styles.inputBottonText : styles.inputBottonTextRed}
               >
                 {this.state.stateOfEdit5}
               </Text>
@@ -301,7 +301,7 @@ class HWApplyList extends React.Component {
             <Text style={styles.listBoxText}>申請者情報６</Text>
             <View style={styles.inputBotton}>
               <Text
-                style={this.state.stateOfEdit6 === '未入力' ? styles.inputBottonText : styles.inputBottonTextRed}
+                style={this.state.stateOfEdit6 === '未完了' ? styles.inputBottonText : styles.inputBottonTextRed}
               >
                 {this.state.stateOfEdit6}
               </Text>
@@ -327,7 +327,7 @@ class HWApplyList extends React.Component {
             <Text style={styles.listBoxText}>家族情報１</Text>
             <View style={styles.inputBotton}>
               <Text
-                style={this.state.stateOfEdit7 === '未入力' ? styles.inputBottonText : styles.inputBottonTextRed}
+                style={this.state.stateOfEdit7 === '未完了' ? styles.inputBottonText : styles.inputBottonTextRed}
               >
                 {this.state.stateOfEdit7}
               </Text>
@@ -353,7 +353,7 @@ class HWApplyList extends React.Component {
             <Text style={styles.listBoxText}>家族情報２</Text>
             <View style={styles.inputBotton}>
               <Text
-                style={this.state.stateOfEdit8 === '未入力' ? styles.inputBottonText : styles.inputBottonTextRed}
+                style={this.state.stateOfEdit8 === '未完了' ? styles.inputBottonText : styles.inputBottonTextRed}
               >
                 {this.state.stateOfEdit8}
               </Text>
@@ -379,7 +379,7 @@ class HWApplyList extends React.Component {
             <Text style={styles.listBoxText}>家族情報３</Text>
             <View style={styles.inputBotton}>
               <Text
-                style={this.state.stateOfEdit9 === '未入力' ? styles.inputBottonText : styles.inputBottonTextRed}
+                style={this.state.stateOfEdit9 === '未完了' ? styles.inputBottonText : styles.inputBottonTextRed}
               >
                 {this.state.stateOfEdit9}
               </Text>
@@ -405,7 +405,7 @@ class HWApplyList extends React.Component {
             <Text style={styles.listBoxText}>家族情報４</Text>
             <View style={styles.inputBotton}>
               <Text
-                style={this.state.stateOfEdit10 === '未入力' ? styles.inputBottonText : styles.inputBottonTextRed}
+                style={this.state.stateOfEdit10 === '未完了' ? styles.inputBottonText : styles.inputBottonTextRed}
               >
                 {this.state.stateOfEdit10}
               </Text>
@@ -431,7 +431,7 @@ class HWApplyList extends React.Component {
             <Text style={styles.listBoxText}>家族情報５</Text>
             <View style={styles.inputBotton}>
               <Text
-                style={this.state.stateOfEdit11 === '未入力' ? styles.inputBottonText : styles.inputBottonTextRed}
+                style={this.state.stateOfEdit11 === '未完了' ? styles.inputBottonText : styles.inputBottonTextRed}
               >
                 {this.state.stateOfEdit11}
               </Text>
@@ -457,7 +457,7 @@ class HWApplyList extends React.Component {
             <Text style={styles.listBoxText}>個人情報・同意事項</Text>
             <View style={styles.inputBotton}>
               <Text
-                style={this.state.stateOfEdit12 === '未入力' ? styles.inputBottonText : styles.inputBottonTextRed}
+                style={this.state.stateOfEdit12 === '未完了' ? styles.inputBottonText : styles.inputBottonTextRed}
               >
                 {this.state.stateOfEdit12}
               </Text>
@@ -487,7 +487,7 @@ class HWApplyList extends React.Component {
             </Text>
             <View style={styles.inputBotton}>
               <Text
-                style={this.state.stateOfEdit13 === '未入力' ? styles.inputBottonText : styles.inputBottonTextRed}
+                style={this.state.stateOfEdit13 === '未完了' ? styles.inputBottonText : styles.inputBottonTextRed}
               >
                 {this.state.stateOfEdit13}
               </Text>
@@ -512,7 +512,7 @@ class HWApplyList extends React.Component {
             <Text style={styles.listBoxText}>申請者の申告</Text>
             <View style={styles.inputBotton}>
               <Text
-                style={this.state.stateOfEdit14 === '未入力' ? styles.inputBottonText : styles.inputBottonTextRed}
+                style={this.state.stateOfEdit14 === '未完了' ? styles.inputBottonText : styles.inputBottonTextRed}
               >
                 {this.state.stateOfEdit14}
               </Text>
@@ -538,7 +538,7 @@ class HWApplyList extends React.Component {
             <Text style={styles.listBoxText}>同意書</Text>
             <View style={styles.inputBotton}>
               <Text
-                style={this.state.stateOfEdit15 === '未入力' ? styles.inputBottonText : styles.inputBottonTextRed}
+                style={this.state.stateOfEdit15 === '未完了' ? styles.inputBottonText : styles.inputBottonTextRed}
               >
                 {this.state.stateOfEdit15}
               </Text>
@@ -574,12 +574,12 @@ const styles = StyleSheet.create({
   listBoxText: {
     left: 40,
     width: '60%',
-    paddingTop: 12,
+    paddingTop: 13,
   },
   privacyPolicyCA: {
     fontSize: 10,
     lineHeight: 16,
-    paddingTop: 2,
+    paddingTop: 5,
     left: 40,
   },
   inputBotton: {

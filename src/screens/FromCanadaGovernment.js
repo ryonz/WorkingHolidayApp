@@ -157,7 +157,7 @@ class FromCanadaGovernment extends React.Component {
         <CheckBox
           disabled={this.state.disableChecked}
           center
-          title={'保存/修正'}
+          title={'完了/修正'}
           checked={this.state.checked}
           onPress={() => {
             this.onPressCheckBox();

@@ -34,11 +34,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logout: {
-    width: 70,
+    width: 'auto',
     height: 14,
     borderBottomWidth: 1,
     borderBottomColor: '#ADADAD',
-    paddingLeft: 11,
+    paddingLeft: 3,
+    paddingRight: 3,
   },
   logoutText: {
     fontSize: 11,

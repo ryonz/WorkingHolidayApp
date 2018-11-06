@@ -4,6 +4,7 @@ import {
   ScrollView,
   View,
   Text,
+  TouchableOpacity,
   AsyncStorage,
   KeyboardAvoidingView,
 } from 'react-native';
@@ -588,10 +589,19 @@ class FamilyInfo4 extends React.Component {
             />
           </View>
 
+          <TouchableOpacity
+            style={styles.temporarySaveButton}
+            onPress={this.onPressBackButton.bind(this)}
+          >
+            <Text>
+              保存して戻る
+            </Text>
+          </TouchableOpacity>
+
           <CheckBox
             disabled={this.state.disableChecked}
             center
-            title={'保存/修正'}
+            title={'完了/修正'}
             checked={this.state.checked}
             onPress={() => {
               this.onPressCheckBox();
@@ -636,6 +646,20 @@ const styles = StyleSheet.create({
     height: 0.5,
     marginTop: 20,
     marginBottom: 20,
+  },
+  temporarySaveButton: {
+    width: '95%',
+    height: 40,
+    alignSelf: 'center',
+    alignItems: 'center',
+    paddingTop: 12,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+    marginTop: 30,
+    marginBottom: 10,
+    borderWidth: 0.5,
+    borderRadius: 3,
   },
 });
 

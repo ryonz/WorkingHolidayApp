@@ -1,6 +1,14 @@
 import React from 'react';
 import firebase from 'firebase';
-import { StyleSheet, View, Text, TouchableOpacity, Modal, Alert } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  AsyncStorage,
+  TouchableOpacity,
+  Modal,
+  Alert,
+} from 'react-native';
 import { BlurView } from 'expo';
 
 
@@ -14,33 +22,59 @@ class FinalSubmitButton extends React.Component {
   }
 
   onPressSubmitCompleteNotification() {
-    const db = firebase.firestore();
-    const { currentUser } = firebase.auth();
-    db.collection(`users/${currentUser.uid}/status`)
-      .doc('Form Compreted')
-      .set({
-        date: new Date(),
-        status: 'All Forms completed!!!',
-      })
-      .then(() => {
-        console.log('then');
-        this.props.navigation.navigate('AfterApply1');
-        this.setState({ modalVisible: false });
-      })
-      .catch((error) => {
-        console.log(error);
-        this.setState({ modalVisible: false });
-        Alert.alert('送信が途中で失敗しました。ネットワークの状態をご確認ください。');
-      });
+
   }
 
   onPressCloseModal() {
     this.setState({ modalVisible: false });
   }
 
+  // finalOnPress() {
+  //   this.setState({ modalVisible: true });
+  // }
+
   finalOnPress() {
-    this.setState({ modalVisible: true });
-  }
+    AsyncStorage
+      .multiGet([
+        'checked1',
+        'checked2',
+        'checked3',
+        'checked4',
+        'checked5',
+        'checked6',
+        'checked7',
+        'checked8',
+        'checked9',
+        'checked10',
+        'checked11',
+        'checked12',
+        'checked13',
+        'checked14',
+        'checked15',
+      ])
+      .then(() => {
+        
+  })
+}
+
+  // const db = firebase.firestore();
+  // const { currentUser } = firebase.auth();
+  // db.collection(`users/${currentUser.uid}/status`)
+  //   .doc('Form Compreted')
+  //   .set({
+  //     date: new Date(),
+  //     status: 'All Forms completed!!!',
+  //   })
+  //   .then(() => {
+  //     console.log('then');
+  //     this.props.navigation.navigate('AfterApply1');
+  //     this.setState({ modalVisible: false });
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //     this.setState({ modalVisible: false });
+  //     Alert.alert('送信が途中で失敗しました。ネットワークの状態をご確認ください。');
+  //   });
 
   render() {
     const { style } = this.props;
@@ -52,56 +86,10 @@ class FinalSubmitButton extends React.Component {
           onPress={() => { this.finalOnPress(); }}
           disabled={this.state.disabled}
         >
-          <Text style={styles.buttonText}>{this.props.children}</Text>
+          <Text style={styles.buttonText}>
+            {this.props.children}
+          </Text>
         </TouchableOpacity>
-
-        <Modal
-          visible={this.state.modalVisible}
-          animationType={'fade'}
-          transparent
-        >
-          <BlurView
-            style={styles.blurView}
-            tint="dark"
-          >
-            <View style={styles.modalScreen}>
-              <Text style={styles.modalTitle}>送信の前に</Text>
-              <View style={styles.modalTitleUnderbar} />
-              <Text style={styles.modalText}>
-                全ての入力フォームが「完了」になっていますか？
-                {'\n'}{'\n'}
-                もし、「未入力」のフォームがあれば、{'\n'}「完了」にしてから
-                再度「同意して送信」を押してください。
-                {'\n'}{'\n'}
-                送信後はJpcanada留学センターの担当者と
-                メールでのやり取りになります。
-                {'\n'}
-                メールは登録したアドレスに送信されます。
-                {'\n'}{'\n'}
-
-              </Text>
-
-              <View style={styles.buttonBox}>
-
-                <TouchableOpacity
-                  style={styles.modalButton}
-                  onPress={() => { this.onPressSubmitCompleteNotification(); }}
-                >
-                  <Text style={styles.modalButtonText}>送信する</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  style={styles.modalButton}
-                  onPress={() => { this.onPressCloseModal(); }}
-                >
-                  <Text style={styles.modalButtonText}>やめる</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </BlurView>
-        </Modal>
-
-
       </View>
     );
   }
@@ -137,6 +125,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '900',
     color: '#626262',
+    paddingTop: 3,
   },
   modalTitle: {
     alignSelf: 'center',
@@ -175,7 +164,7 @@ const styles = StyleSheet.create({
     color: '#626262',
     fontWeight: 'bold',
     alignSelf: 'center',
-    paddingTop: 9,
+    paddingTop: 10,
     marginLeft:20,
     marginRight: 20,
   },
@@ -204,8 +193,48 @@ const styles = StyleSheet.create({
 
 export default FinalSubmitButton;
 
-/*
-position: 'absolute',
-bottom: 50,
-right: 98,
-*/
+// <Modal
+//   visible={this.state.modalVisible}
+//   animationType={'fade'}
+//   transparent
+// >
+//   <BlurView
+//     style={styles.blurView}
+//     tint="dark"
+//   >
+//     <View style={styles.modalScreen}>
+//       <Text style={styles.modalTitle}>送信の前に</Text>
+//       <View style={styles.modalTitleUnderbar} />
+//       <Text style={styles.modalText}>
+//         全ての入力フォームが「完了」になっていますか？
+//         {'\n'}{'\n'}
+//         もし、「未入力」のフォームがあれば、「完了」に{'\n'}
+//         してから再度「同意して送信」を押してください。
+//         {'\n'}{'\n'}
+//         送信後はJpcanada留学センターの担当者と
+//         メールでのやり取りになります。
+//         {'\n'}
+//         メールは登録したアドレスに送信されます。
+//         {'\n'}{'\n'}
+//
+//       </Text>
+//
+//       <View style={styles.buttonBox}>
+//
+//         <TouchableOpacity
+//           style={styles.modalButton}
+//           onPress={() => { this.onPressSubmitCompleteNotification(); }}
+//         >
+//           <Text style={styles.modalButtonText}>送信する</Text>
+//         </TouchableOpacity>
+//
+//         <TouchableOpacity
+//           style={styles.modalButton}
+//           onPress={() => { this.onPressCloseModal(); }}
+//         >
+//           <Text style={styles.modalButtonText}>やめる</Text>
+//         </TouchableOpacity>
+//       </View>
+//     </View>
+//   </BlurView>
+// </Modal>

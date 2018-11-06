@@ -14,8 +14,12 @@ class Agreement extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.agreementTitle}>＜個人情報取扱いについて＞</Text>
-        <Text style={styles.agreementTitleText}>下記をお読み頂き、「同意して送信」を押してください。</Text>
+        <Text style={styles.agreementTitle}>
+          ＜個人情報取扱いについて＞
+        </Text>
+        <Text style={styles.agreementTitleText}>
+          下記をお読み頂き、「同意して送信」を押してください。
+        </Text>
         <TextInput
           style={styles.agreement}
           multiline
@@ -41,7 +45,8 @@ const styles = StyleSheet.create({
     fontSize: 11,
     borderWidth: 1,
     width: '90%',
-    paddingLeft: 18,
+    paddingLeft: 15,
+    paddingRight: 15,
   },
   agreementTitle: {
     fontWeight: 'bold',

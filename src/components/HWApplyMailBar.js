@@ -19,7 +19,9 @@ class HWApplyMailBar extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.mailBar}>
-          <Text style={styles.mailBarText}>登録メールアドレス:{this.state.email}</Text>
+          <Text style={styles.mailBarText}>
+            登録メールアドレス:{this.state.email}
+          </Text>
         </View>
       </View>
 
@@ -38,7 +40,8 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   mailBarText: {
-    fontSize: 14,
+    fontSize: 15,
+    paddingTop: 2,
   },
 });
 

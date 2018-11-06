@@ -11,6 +11,7 @@ import {
 import firebase from 'firebase';
 import { BlurView } from 'expo';
 import WHApplyBar from '../components/WHApplyBar';
+import LoginModal from './LoginModal';
 import SubmitButton from '../components/SubmitButton';
 import Copyrights from '../elements/Copyrights';
 
@@ -19,63 +20,60 @@ class DeleteAll extends React.Component {
     super(props);
     this.state = {
       modalVisible: false,
+      modalVisibleLogin: false,
     };
   }
 
   onPressPreDelete() {
-    this.setState({ modalVisible: true });
+    firebase.auth().signOut()
+      .then(() => {
+        this.setState({ modalVisibleLogin: true });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
-  // onPressDelete() {
-  //   const { currentUser } = firebase.auth();
-  //   const db = firebase.firestore();
-  //   const user = firebase.auth().currentUser;
-  //   db.collection(`users/${currentUser.uid}/data`)
-  //     .doc('forms')
-  //     .delete()
-  //     .then(() => {
-  //       if (user) {
-  //         user.delete()
-  //           .then(() => {
-  //             AsyncStorage.clear();
-  //             this.props.navigation.navigate('Home');
-  //             this.setState({ modalVisible: false })
-  //             console.log('Delete All Success');
-  //           }).catch(() => {
-  //           });
-  //       } else {
-  //         console.log(user);
-  //         this.setState({ modalVisible: false })
-  //         this.props.navigation.navigate('Login');
-  //       }
-  //     })
-  // }
-
-  onPressDelete() {
+  async onPressDelete() {
+    const { currentUser } = firebase.auth();
     const user = firebase.auth().currentUser;
+    const db = firebase.firestore();
+    await db.collection(`users/${currentUser.uid}/DeletedAccount`)
+      .doc('deletedAccount')
+      .set({
+        deletedAccount: 'This account is not exsit.',
+      });
     if (user) {
+      //ここまでは読み込まれている
+      console.log('ccc');
       user.delete()
         .then(() => {
+          this.setState({ modalVisible: false });
           AsyncStorage.clear();
           this.props.navigation.navigate('Home');
-          this.setState({ modalVisible: false })
           console.log('Delete All Success');
         }).catch(() => {
         });
     } else {
+      console.log('ddd');
       console.log(user);
-      this.setState({ modalVisible: false })
+      this.setState({ modalVisible: false });
       this.props.navigation.navigate('Login');
     }
   }
 
   onPressCloseModal() {
-    this.setState({ modalVisible: false })
+    this.setState({ modalVisible: false });
   }
 
-  onPressLink() {
-    this.props.navigation.navigate('');
+  setModalVisibelLogin() {
+    this.setState({ modalVisibleLogin: false });
   }
+
+  setModalVsible() {
+    this.setState({ modalVisible: true });
+  }
+
 
   render() {
     return (
@@ -100,13 +98,7 @@ class DeleteAll extends React.Component {
                 削除しないでください。{'\n'}
                 Jpcanada留学センター側で入力された内容が確認できなくなります。{'\n'}
             {'\n'}
-                一部情報の変更や削除は直接
-            <TouchableOpacity
-              onPress={() => { this.onPressLink.bind(this); }}
-            >
-              <Text>［お問い合わせ］</Text>
-            </TouchableOpacity>
-                からご依頼ください。{'\n'}
+                一部情報の変更や削除はログイン後［お問い合わせ］からご依頼ください。{'\n'}
             {'\n'}
                 削除後は再度アカウント登録が必要になります。{'\n'}
                 ＊ワーホキングホリデー申請以外の機能は引き続きご利用頂けます。
@@ -125,6 +117,17 @@ class DeleteAll extends React.Component {
         <View style={styles.copyrights}>
           <Copyrights />
         </View>
+
+        <Modal
+          visible={this.state.modalVisibleLogin}
+          animationType={'none'}
+          transparent
+        >
+          <LoginModal
+            handleLoginModal={this.setModalVisibelLogin.bind(this)}
+            handleDeleteModal={this.setModalVsible.bind(this)}
+          />
+        </Modal>
 
         <Modal
           visible={this.state.modalVisible}
