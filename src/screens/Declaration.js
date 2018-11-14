@@ -15,6 +15,8 @@ class Declaration extends React.Component {
       disabled: false,
       disableChecked: false,
 
+      modifyNote: '',
+
       Declaration: '',
     };
   }
@@ -24,8 +26,10 @@ class Declaration extends React.Component {
       this.setState({ checked: JSON.parse(value) });
       if (value === 'true') {
         this.setState({ disabled: true });
+        this.setState({ modifyNote: '修正を行う場合は、完了ボタンを再度押してください。' });
       } else if (value === 'false') {
         this.setState({ disabled: false });
+        this.setState({ modifyNote: '' });
       }
     });
     AsyncStorage.getItem('Declaration').then(text => {
@@ -44,9 +48,9 @@ class Declaration extends React.Component {
       const db = firebase.firestore();
       const { currentUser } = firebase.auth();
       db.collection(`users/${currentUser.uid}/forms`)
-        .doc('Declaration')
+        .doc('申請者の申告')
         .set({
-          Declaration: [{ Declaration: this.state.Declaration }],
+          '申請者の申告　': [{ Declaration: this.state.Declaration }],
         })
         .then(() => {
           this.props.navigation.state.params.setStateEdit14();
@@ -84,6 +88,12 @@ class Declaration extends React.Component {
         >
           申請者の申告
         </InfoHeader>
+
+        <View style={styles.notesTextBox}>
+          <Text style={styles.notesText}>
+            {this.state.modifyNote}
+          </Text>
+        </View>
 
         <View style={styles.textBox}>
           <Text style={styles.textNoteText}>
@@ -175,7 +185,7 @@ class Declaration extends React.Component {
         <CheckBox
           disabled={this.state.disableChecked}
           center
-          title={'完了/修正'}
+          title={'完了したらここをチェック'}
           checked={this.state.checked}
           onPress={() => {
             this.onPressCheckBox();
@@ -248,6 +258,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#F4F4F4',
     borderWidth: 0.5,
     borderRadius: 10,
+  },
+  notesTextBox: {
+    width: '100%',
+    height: 35,
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 18,
+  },
+  notesText: {
+    color: '#FF0000',
+    width: '83%',
   },
 });
 

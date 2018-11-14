@@ -8,10 +8,16 @@ class HWApplyMailBar extends React.Component {
   }
 
   componentWillMount() {
+    const db = firebase.firestore();
     const { currentUser } = firebase.auth();
     const userEmail = currentUser.email;
     if (currentUser) {
       this.setState({ email: userEmail });
+      db.collection(`users/${currentUser.uid}/${userEmail}`)
+        .doc('メールアドレス')
+        .set({
+          'メールアドレス ': userEmail,
+        });
     }
   }
 

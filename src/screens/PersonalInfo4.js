@@ -6,7 +6,7 @@ import {
   Text,
   AsyncStorage,
   TouchableOpacity,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
 } from 'react-native';
 import firebase from 'firebase';
 import { CheckBox } from 'react-native-elements';
@@ -26,6 +26,8 @@ class PersonalInfo4 extends React.Component {
       editable: true,
       disabled: false,
       disableChecked: false,
+
+      modifyNote: '',
 
       currentCountry: '',
       statusOfcurrentCountry: '',
@@ -50,9 +52,11 @@ class PersonalInfo4 extends React.Component {
       if (value === 'true') {
         this.setState({ editable: false });
         this.setState({ disabled: true });
+        this.setState({ modifyNote: '修正を行う場合は、完了ボタンを再度押してください。' });
       } else if (value === 'false') {
         this.setState({ editable: true });
         this.setState({ disabled: false });
+        this.setState({ modifyNote: '' });
       }
     });
     AsyncStorage.getItem('currentCountry').then(text => {
@@ -149,23 +153,23 @@ class PersonalInfo4 extends React.Component {
       const db = firebase.firestore();
       const { currentUser } = firebase.auth();
       db.collection(`users/${currentUser.uid}/forms`)
-        .doc('form4')
+        .doc('申請者情報④')
         .set({
-          form4: [
-            { currentCountry: this.state.currentCountry },
-            { statusOfcurrentCountry: this.state.statusOfcurrentCountry },
-            { fromDurationOfVisa: this.state.fromDurationOfVisa },
-            { toDurationOfVisa: this.state.toDurationOfVisa },
-            { otherCountry: this.state.otherCountry },
-            { nameOfotherCountry: this.state.nameOfotherCountry },
-            { statusOfOtherCountry: this.state.statusOfOtherCountry },
-            { fromDurationOfOtherCountry: this.state.fromDurationOfOtherCountry },
-            { toDurationOfOtherCountry: this.state.toDurationOfOtherCountry },
-            { whereApplyFrom: this.state.whereApplyFrom },
-            { whichCountryApplyFrom: this.state.whichCountryApplyFrom },
-            { statusOfCountryToApply: this.state.statusOfCountryToApply },
-            { fromDurationOfCountryToApply: this.state.fromDurationOfCountryToApply },
-            { toDurationOfCountryToApply: this.state.toDurationOfCountryToApply },
+          '申請者情報④ ': [
+            { '現在住んでいる国 ': this.state.currentCountry },
+            { 'その国のステイタス（国籍を持っている/○○ビザで滞在中など）': this.state.statusOfcurrentCountry },
+            { '上記で「ビザで滞在中」と回答された方は、滞在期間（西暦で年月日〜） ': this.state.fromDurationOfVisa },
+            { '上記で「ビザで滞在中」と回答された方は、滞在期間（〜年月日）': this.state.toDurationOfVisa },
+            { '過去５年間に、国籍を持つ国以外に６ヶ月以上住んでいたことがありますか（はい/いいえ）': this.state.otherCountry },
+            { '＊上記で「はい」と回答された方。その国名': this.state.nameOfotherCountry },
+            { '＊上記で「はい」と回答された方。その国でのステイタス（例：学生ビザ）': this.state.statusOfOtherCountry },
+            { '＊上記で「はい」と回答された方。滞在期間（西暦で年月日〜）': this.state.fromDurationOfOtherCountry },
+            { '＊上記で「はい」と回答された方。滞在期間（〜年月日）': this.state.toDurationOfOtherCountry },
+            { '現在住んでいる国から申請をしますか？（はい/いいえ） ': this.state.whereApplyFrom },
+            { '＊上記で「いいえ」と回答された方。その国名 ': this.state.whichCountryApplyFrom },
+            { '＊上記で「いいえ」と回答された方。その国でのステイタス（例：学生ビザ） ': this.state.statusOfCountryToApply },
+            { '＊上記で「いいえ」と回答された方。滞在期間（西暦で年月日〜）': this.state.fromDurationOfCountryToApply },
+            { '＊上記で「いいえ」と回答された方。滞在期間（〜年月日）': this.state.toDurationOfCountryToApply },
           ],
         })
         .then(() => {
@@ -208,7 +212,11 @@ class PersonalInfo4 extends React.Component {
         <ScrollView>
           <InfoHeader onPress={this.onPressBackButton.bind(this)}>申請者情報４</InfoHeader>
           <Notes />
-
+          <View style={styles.notesTextBox}>
+            <Text style={styles.notesText}>
+              {this.state.modifyNote}
+            </Text>
+          </View>
           <QuestionTextSet
             placeholder={'例：日本、カナダなど'}
             onChangeText={text => {
@@ -381,7 +389,7 @@ class PersonalInfo4 extends React.Component {
           <CheckBox
             disabled={this.state.disableChecked}
             center
-            title={'完了/修正'}
+            title={'完了したらここをチェック'}
             checked={this.state.checked}
             onPress={() => {
               this.onPressCheckBox();
@@ -429,6 +437,17 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderWidth: 0.5,
     borderRadius: 3,
+  },
+  notesTextBox: {
+    width: '100%',
+    height: 35,
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 18,
+  },
+  notesText: {
+    color: '#FF0000',
+    width: '83%',
   },
 });
 

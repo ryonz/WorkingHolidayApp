@@ -29,6 +29,8 @@ class PersonalInfo5 extends React.Component {
       disabled: false,
       disableChecked: false,
 
+      modifyNote: '',
+
       currentNationality: '',
       languageUsingToFamily: '',
       areYouStudent: '',
@@ -54,9 +56,11 @@ class PersonalInfo5 extends React.Component {
       if (value === 'true') {
         this.setState({ editable: false });
         this.setState({ disabled: true });
+        this.setState({ modifyNote: '修正を行う場合は、完了ボタンを再度押してください。' });
       } else if (value === 'false') {
         this.setState({ editable: true });
         this.setState({ disabled: false });
+        this.setState({ modifyNote: '' });
       }
     });
     AsyncStorage.getItem('currentNationality').then(text => {
@@ -150,25 +154,25 @@ class PersonalInfo5 extends React.Component {
       const db = firebase.firestore();
       const { currentUser } = firebase.auth();
       db.collection(`users/${currentUser.uid}/forms`)
-        .doc('form5')
+        .doc('申請者情報⑤')
         .set({
-          form5: [
-            { currentNationality: this.state.currentNationality },
-            { languageUsingToFamily: this.state.languageUsingToFamily },
-            { areYouStudent: this.state.areYouStudent },
-            { dateOfAdmission: this.state.dateOfAdmission },
-            { dateOfGraduation: this.state.dateOfGraduation },
-            { majorOfSchool: this.state.majorOfSchool },
-            { nameOfSchool: this.state.nameOfSchool },
-            { nameCityOfSchool: this.state.nameCityOfSchool },
-            { namePreferctureOfSchool: this.state.namePreferctureOfSchool },
-            { dateOfLastAdmission: this.state.dateOfLastAdmission },
-            { dateOfLastGraduation: this.state.dateOfLastGraduation },
-            { majorOfLastSchool: this.state.majorOfLastSchool },
-            { nameOfLastSchool: this.state.nameOfLastSchool },
-            { nameCityOfLastSchool: this.state.nameCityOfLastSchool },
-            { namePreferctureOfLastSchool: this.state.namePreferctureOfLastSchool },
-            { areYouWorking: this.state.areYouWorking },
+          '申請者情報⑤ ': [
+            { '母国語 ': this.state.currentNationality },
+            { '家族友達と話すときに使う言葉（英語/フランス語/どちらも使わない）': this.state.languageUsingToFamily },
+            { '現在学生ですか（はい/いいえ） ': this.state.areYouStudent },
+            { '入学年月日（西暦年・月・日） ': this.state.dateOfAdmission },
+            { '卒業予定年月日（西暦年・月・日） ': this.state.dateOfGraduation },
+            { '学部・専攻名 ': this.state.majorOfSchool },
+            { '学校名 ': this.state.nameOfSchool },
+            { '学校所在地の市区町村名 ': this.state.nameCityOfSchool },
+            { '学校所在地の都道府県名 ': this.state.namePreferctureOfSchool },
+            { '最終学歴）入学年月日（西暦年・月・日） ': this.state.dateOfLastAdmission },
+            { '最終学歴）卒業年月日（西暦年・月・日） ': this.state.dateOfLastGraduation },
+            { '最終学歴）学部・専攻名 ': this.state.majorOfLastSchool },
+            { '最終学歴）学校名　': this.state.nameOfLastSchool },
+            { '最終学歴）学校所在地の市区町村名 ': this.state.nameCityOfLastSchool },
+            { '最終学歴）学校所在地の都道府県名 ': this.state.namePreferctureOfLastSchool },
+            { '最終学歴）現在働いていますか（はい/いいえ） ': this.state.areYouWorking },
           ],
         })
         .then(() => {
@@ -210,6 +214,11 @@ class PersonalInfo5 extends React.Component {
         <ScrollView>
           <InfoHeader onPress={this.onPressBackButton.bind(this)}>申請者情報5</InfoHeader>
           <Notes />
+          <View style={styles.notesTextBox}>
+            <Text style={styles.notesText}>
+              {this.state.modifyNote}
+            </Text>
+          </View>
           <QuestionTextSet
             placeholder={'例：日本'}
             onChangeText={text => {
@@ -404,7 +413,7 @@ class PersonalInfo5 extends React.Component {
           <CheckBox
             disabled={this.state.disableChecked}
             center
-            title={'完了/修正'}
+            title={'完了したらここをチェック'}
             checked={this.state.checked}
             onPress={() => {
               this.onPressCheckBox();
@@ -459,6 +468,17 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderWidth: 0.5,
     borderRadius: 3,
+  },
+  notesTextBox: {
+    width: '100%',
+    height: 35,
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 18,
+  },
+  notesText: {
+    color: '#FF0000',
+    width: '83%',
   },
 });
 

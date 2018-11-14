@@ -21,6 +21,8 @@ class FromCanadaGovernment extends React.Component {
       disabled: false,
       disableChecked: false,
 
+      modifyNote: '',
+
       FromCanadaGovernment: '',
     };
   }
@@ -30,8 +32,10 @@ class FromCanadaGovernment extends React.Component {
       this.setState({ checked: JSON.parse(value) });
       if (value === 'true') {
         this.setState({ disabled: true });
+        this.setState({ modifyNote: '修正を行う場合は、完了ボタンを再度押してください。' });
       } else if (value === 'false') {
         this.setState({ disabled: false });
+        this.setState({ modifyNote: '' });
       }
     });
     AsyncStorage.getItem('FromCanadaGovernment').then(text => {
@@ -50,9 +54,9 @@ class FromCanadaGovernment extends React.Component {
       const db = firebase.firestore();
       const { currentUser } = firebase.auth();
       db.collection(`users/${currentUser.uid}/forms`)
-        .doc('FromCanadaGovernment')
+        .doc('カナダ外務省・国際貿易省からの声明')
         .set({
-          FromCanadaGovernment: [{ FromCanadaGovernment: this.state.FromCanadaGovernment }],
+          'カナダ外務省・国際貿易省からの声明': [{ FromCanadaGovernment: this.state.FromCanadaGovernment }],
         })
         .then(() => {
           this.props.navigation.state.params.setStateEdit13();
@@ -93,6 +97,12 @@ class FromCanadaGovernment extends React.Component {
         カナダ外務・国際貿易省からの{'\n'}
         「個人情報取扱いについて/個人情報保護に関する声明」
         </InfoHeader>
+
+        <View style={styles.notesTextBox}>
+          <Text style={styles.notesText}>
+            {this.state.modifyNote}
+          </Text>
+        </View>
 
         <View style={styles.textBox}>
           <Text style={styles.textNoteText}>
@@ -157,7 +167,7 @@ class FromCanadaGovernment extends React.Component {
         <CheckBox
           disabled={this.state.disableChecked}
           center
-          title={'完了/修正'}
+          title={'完了したらここをチェック'}
           checked={this.state.checked}
           onPress={() => {
             this.onPressCheckBox();
@@ -236,6 +246,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#F4F4F4',
     borderWidth: 0.5,
     borderRadius: 10,
+  },
+  notesTextBox: {
+    width: '100%',
+    height: 35,
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 18,
+  },
+  notesText: {
+    color: '#FF0000',
+    width: '83%',
   },
 });
 

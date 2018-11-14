@@ -17,6 +17,7 @@ import InfoHeader from '../components/InfoHeader';
 import QuestionTextSet from '../components/QuestionTextSet';
 import QuestionTextBoxDate from '../components/QuestionTextBoxDate';
 import Copyrights from '../elements/Copyrights';
+import { isiPhoneSE } from '../lib/windowsize';
 
 class PersonalInfo6 extends React.Component {
   constructor(props) {
@@ -26,6 +27,8 @@ class PersonalInfo6 extends React.Component {
       editable: true,
       disabled: false,
       disableChecked: false,
+
+      modifyNote: '',
 
       dateOfStart1: '',
       dateOfFinish1: '',
@@ -61,9 +64,12 @@ class PersonalInfo6 extends React.Component {
       if (value === 'true') {
         this.setState({ editable: false });
         this.setState({ disabled: true });
+        this.setState({ modifyNote: '修正を行う場合は、完了ボタンを再度押してください。' });
       } else if (value === 'false') {
         this.setState({ editable: true });
         this.setState({ disabled: false });
+        this.setState({ modifyNote: '' });
+
       }
     });
     AsyncStorage.getItem('dateOfStart1').then(date => {
@@ -187,31 +193,31 @@ class PersonalInfo6 extends React.Component {
       const db = firebase.firestore();
       const { currentUser } = firebase.auth();
       db.collection(`users/${currentUser.uid}/forms`)
-        .doc('form6')
+        .doc('申請者情報⑥')
         .set({
-          form6: [
-            { dateOfStart1: this.state.dateOfStart1 },
-            { dateOfFinish1: this.state.dateOfFinish1 },
-            { nameOfCompany1: this.state.nameOfCompany1 },
-            { address1: this.state.address1 },
-            { job1: this.state.job1 },
-            { position1: this.state.position1 },
-            { detailOfJob1: this.state.detailOfJob1 },
-            { dateOfStart2: this.state.dateOfStart2 },
-            { dateOfFinish2: this.state.dateOfFinish2 },
-            { nameOfCompany2: this.state.nameOfCompany2 },
-            { address2: this.state.address2 },
-            { job2: this.state.job2 },
-            { position2: this.state.position2 },
-            { detailOfJob2: this.state.detailOfJob2 },
-            { dateOfStart3: this.state.dateOfStart3 },
-            { dateOfFinish3: this.state.dateOfFinish3 },
-            { nameOfCompany3: this.state.nameOfCompany3 },
-            { address3: this.state.address3 },
-            { job3: this.state.job3 },
-            { position3: this.state.position3 },
-            { detailOfJob3: this.state.detailOfJob3 },
-            { extra: this.state.extra },
+          '申請者情報⑥ ': [
+            { '開始日（入社日）① ': this.state.dateOfStart1 },
+            { '終了日（退社日）① ': this.state.dateOfFinish1 },
+            { '会社名(ふりがな)① ': this.state.nameOfCompany1 },
+            { '所在地① ': this.state.address1 },
+            { '職業① ': this.state.job1 },
+            { '役職（ポジション）① ': this.state.position1 },
+            { '主な仕事内容① ': this.state.detailOfJob1 },
+            { '開始日(入社日)②': this.state.dateOfStart2 },
+            { '終了日（退社日）②': this.state.dateOfFinish2 },
+            { '会社名(ふりがな)②': this.state.nameOfCompany2 },
+            { '所在地②': this.state.address2 },
+            { '職業②': this.state.job2 },
+            { '役職（ポジション）②': this.state.position2 },
+            { '主な仕事内容②': this.state.detailOfJob2 },
+            { '開始日（入社日）③': this.state.dateOfStart3 },
+            { '終了日（退社日）③': this.state.dateOfFinish3 },
+            { '会社名(ふりがな)③': this.state.nameOfCompany3 },
+            { '所在地③': this.state.address3 },
+            { '職業③': this.state.job3 },
+            { '役職（ポジション）③': this.state.position3 },
+            { '主な仕事内容③': this.state.detailOfJob3 },
+            { '4つ目以降': this.state.extra },
           ],
         })
         .then(() => {
@@ -253,24 +259,24 @@ class PersonalInfo6 extends React.Component {
           <InfoHeader onPress={this.onPressBackButton.bind(this)}>申請者情報６</InfoHeader>
           <View style={styles.notes}>
             <Text style={styles.notesText}>
-              学校卒業から現在までの職歴について、履歴書を完{'\n'}
-              成させてください。＊卒業から10年以上たっている{'\n'}
-              人は、過去10年分について記載してください。{'\n'}
+              学校卒業から現在までの職歴について、履歴書を完成させてください。{'\n'}
+              ＊卒業から10年以上たっている人は、過去10年分について記載してください。{'\n'}
               ＊空白の期間がないように記入してください。{'\n'}
               ＊具体的に内容を説明してください。{'\n'}
               {'\n'}
               ＊空白の期間がないように記入してください。{'\n'}
-              &emsp;各職歴の間に空白の期間がある場合は、その間何{'\n'}
-              &emsp;をしていたかを項目ごとに期間を示し、具体的に{'\n'}
-              &emsp;内容を一番説明下の「内容」の項目に記入してく{'\n'}
-              &emsp;ださい。{'\n'}
-              &emsp;「開始日」と「内容」の項目は必須項目です。{'\n'}
-              &emsp;（例：○○の資格勉強、留学準備、就職活動、{'\n'}
-              &emsp;○○学校で○○コース受講、アメリカへ語学{'\n'}
-              &emsp;留学など）{'\n'}
+              各職歴の間に空白の期間がある場合は、その間何をしていたかを項目ごとに期間を示し、
+              具体的に内容を一番説明下の「内容」の項目に記入してください。{'\n'}
+              「開始日」と「内容」の項目は必須項目です。{'\n'}
+              （例：○○の資格勉強、留学準備、就職活動、
+              ○○学校で○○コース受講、アメリカへ語学留学など）{'\n'}
               ＊学生時代のアルバイトは含めません。{'\n'}
-              ＊卒業後は雇用形態（正社員・アルバイトなど）{'\n'}
-              &emsp;に関係なくご回答ください。{'\n'}
+              ＊卒業後は雇用形態（正社員・アルバイトなど）に関係なくご回答ください。{'\n'}
+            </Text>
+          </View>
+          <View style={styles.notesTextBox}>
+            <Text style={styles.notesText}>
+              {this.state.modifyNote}
             </Text>
           </View>
 
@@ -575,7 +581,7 @@ class PersonalInfo6 extends React.Component {
           <CheckBox
             disabled={this.state.disableChecked}
             center
-            title={'完了/修正'}
+            title={'完了したらここをチェック'}
             checked={this.state.checked}
             onPress={() => {
               this.onPressCheckBox();
@@ -607,6 +613,7 @@ const styles = StyleSheet.create({
   notesText: {
     color: '#FF0000',
     width: '83%',
+    fontSize: isiPhoneSE() ? 13 : 14,
   },
   saveButton: {
     backgroundColor: '#fff',
@@ -661,6 +668,13 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderWidth: 0.5,
     borderRadius: 3,
+  },
+  notesTextBox: {
+    width: '100%',
+    height: 35,
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 18,
   },
 });
 

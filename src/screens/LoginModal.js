@@ -2,6 +2,7 @@ import React from 'react';
 import {
   StyleSheet,
   View,
+  ScrollView,
   Text,
   TouchableOpacity,
   TextInput,
@@ -10,6 +11,8 @@ import {
 } from 'react-native';
 import firebase from 'firebase';
 import Copyrights from '../elements/Copyrights';
+import { isiPhoneSE } from '../lib/windowsize';
+
 
 class LoginModal extends React.Component {
   state = {
@@ -35,7 +38,7 @@ class LoginModal extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.headerHWApply}>
           <Text style={styles.headerText}>ログイン</Text>
           <TouchableOpacity
@@ -85,7 +88,13 @@ class LoginModal extends React.Component {
           />
         </View>
 
+        <Image
+          style={styles.image}
+          source={require('../../assets/images/kanatan.png')}
+        />
+
         <TouchableOpacity
+          style={styles.forgetPasswordBox}
           onPress={() => {
             this.props.navigation.navigate('UpdatePassword');
             this.props.handleLoginModal();
@@ -98,17 +107,22 @@ class LoginModal extends React.Component {
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.loginButtonBox}
-          onPress={this.handleLoginModal.bind(this)}
-          editable={this.state.editable}
-        >
-          <View style={styles.loginButton}>
-            <Text style={styles.loginButtonText}>ログイン</Text>
-          </View>
-        </TouchableOpacity>
+        <View style={styles.loginButtonBox}>
+          <TouchableOpacity
+            style={styles.loginButton}
+            onPress={this.handleLoginModal.bind(this)}
+            editable={this.state.editable}
+          >
+            <Text
+              style={styles.loginButtonText}
+            >
+              ログイン
+            </Text>
+          </TouchableOpacity>
+        </View>
 
         <TouchableOpacity
+          style={styles.forgetPasswordBox}
           onPress={() => {
             this.props.navigation.navigate('Birthday');
             this.props.handleLoginModal();
@@ -121,12 +135,10 @@ class LoginModal extends React.Component {
           </Text>
         </TouchableOpacity>
 
-        <Image style={styles.image} source={require('../../assets/images/kanatan.png')} />
-
         <View style={styles.copyrights}>
           <Copyrights />
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -184,9 +196,12 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   textInputTitle: {
-    fontSize: 13,
-    left: -110,
+    left: isiPhoneSE() ? -85 : -110,
     paddingBottom: 6,
+  },
+  forgetPasswordBox: {
+    width: '50%',
+    alignSelf: 'center',
   },
   forgetPasswordText: {
     alignSelf: 'center',
@@ -217,15 +232,13 @@ const styles = StyleSheet.create({
   },
   image: {
     alignSelf: 'center',
-    width: '48%',
-    height: 157,
+    width: isiPhoneSE() ? '48%' : '48%',
+    height: isiPhoneSE() ? 135 : 157,
+    marginTop: 20,
     marginBottom: 20,
   },
   copyrights: {
-    position: 'absolute',
-    // alignSelf: 'flex-end',
     width: '100%',
-    bottom: 0,
   },
 });
 

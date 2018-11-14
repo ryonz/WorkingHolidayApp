@@ -26,6 +26,8 @@ class PersonalInfo1 extends React.Component {
       disabled: false,
       disableChecked: false,
 
+      modifyNote: '',
+
       fullname: '',
       middleName: '',
       reason: '',
@@ -50,9 +52,11 @@ class PersonalInfo1 extends React.Component {
       if (value === 'true') {
         this.setState({ editable: false });
         this.setState({ disabled: true });
+        this.setState({ modifyNote: '修正を行う場合は、完了ボタンを再度押してください。' });
       } else if (value === 'false') {
         this.setState({ editable: true });
         this.setState({ disabled: false });
+        this.setState({ modifyNote: '' });
       }
     });
     AsyncStorage.getItem('fullname').then(text => {
@@ -142,30 +146,45 @@ class PersonalInfo1 extends React.Component {
       const db = firebase.firestore();
       const { currentUser } = firebase.auth();
       db.collection(`users/${currentUser.uid}/forms`)
-        .doc('form1')
+        .doc('申請者情報①')
         .set({
-          form1: [
-            { fullname: this.state.fullname },
-            { middleName: this.state.middleName },
-            { reason: this.state.reason },
-            { birthPlaceCity: this.state.birthPlaceCity },
-            { birthPlaceCountry: this.state.birthPlaceCountry },
-            { Citizinchip: this.state.Citizinchip },
-            { aboutMaridge: this.state.aboutMaridge },
-            { fromTermOfMaridge: this.state.fromTermOfMaridge },
-            { ToTermOfMaridge: this.state.ToTermOfMaridge },
-            { nameOfSpouse: this.state.nameOfSpouse },
-            { birthdateOfSpouse: this.state.birthdateOfSpouse },
-            { fromTermOfExMaridge: this.state.fromTermOfExMaridge },
-            { ToTermOfExMaridge: this.state.ToTermOfExMaridge },
-            { nameOfExSpouse: this.state.nameOfExSpouse },
-            { birthdateOfExSpouse: this.state.birthdateOfExSpouse },
+          '申請者情報① ': [
+            { '姓名(漢字表記)': this.state.fullname },
+            { '本名以外に旧姓・通称名（通名）・別名など他の名前があればローマ字で': this.state.middleName },
+            { '別名がある方はその理由（例：結婚、離婚、ご両親の離婚のためなど）': this.state.reason },
+            { '出生地（都道府県名と市名）': this.state.birthPlaceCity },
+            { '出生地（国名）': this.state.birthPlaceCountry },
+            { '国籍 ': this.state.Citizinchip },
+            { '婚姻の形態（例：未婚、既婚、離婚、別居、死別等）': this.state.aboutMaridge },
+            { '（上記で既婚/離婚と答えた方）婚姻期間（西暦で年月日〜）': this.state.fromTermOfMaridge },
+            { '（上記で既婚/離婚と答えた方）婚姻期間（〜年月日）': this.state.ToTermOfMaridge },
+            { '（上記で既婚/離婚と答えた方）配偶者の氏名（パスポート表記通り、ローマ字で）': this.state.nameOfSpouse },
+            { '配偶者の生年月日（西暦で）': this.state.birthdateOfSpouse },
+            { '上記で回答した婚姻期間以外に、過去に婚姻歴のある方はその婚姻期間（西暦で年月日〜）': this.state.fromTermOfExMaridge },
+            { '上記で回答した婚姻期間以外に、過去に婚姻歴のある方はその婚姻期間（〜年月日）': this.state.ToTermOfExMaridge },
+            { '上記で過去の婚姻歴があると回答した方は、配偶者の氏名（パスポート表記通り、ローマ字）': this.state.nameOfExSpouse },
+            { '配偶者の生年月日（西暦で）': this.state.birthdateOfExSpouse },
           ],
         })
         .then(() => {
-          this.props.navigation.state.params.setStateEdit1();
-          this.props.navigation.navigate('WHApply');
-          this.setState({ disableChecked: false });
+          const name = this.state.fullname;
+          if (name) {
+            const UserName = this.state.fullname;
+            db.collection(`users/${currentUser.uid}/${UserName}`)
+              .doc('氏名')
+              .set({
+                '氏名 ':
+                  { '姓名(漢字表記)': this.state.fullname },
+              }).then(() => {
+                this.props.navigation.state.params.setStateEdit1();
+                this.props.navigation.navigate('WHApply');
+                this.setState({ disableChecked: false });
+              })
+          } else {
+            this.props.navigation.state.params.setStateEdit1();
+            this.props.navigation.navigate('WHApply');
+            this.setState({ disableChecked: false });
+          }
         })
         .catch(error => {
           console.log(error);
@@ -206,6 +225,11 @@ class PersonalInfo1 extends React.Component {
             申請者情報１
           </InfoHeader>
           <Notes />
+          <View style={styles.notesTextBox}>
+            <Text style={styles.notesText}>
+              {this.state.modifyNote}
+            </Text>
+          </View>
           <QuestionTextSet
             onChangeText={text => {
               AsyncStorage.setItem('fullname', text);
@@ -381,7 +405,7 @@ class PersonalInfo1 extends React.Component {
           <CheckBox
             disabled={this.state.disableChecked}
             center
-            title={'完了/修正'}
+            title={'完了したらここをチェック'}
             checked={this.state.checked}
             onPress={() => {
               this.onPressCheckBox();
@@ -426,6 +450,17 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderWidth: 0.5,
     borderRadius: 3,
+  },
+  notesTextBox: {
+    width: '100%',
+    height: 35,
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 18,
+  },
+  notesText: {
+    color: '#FF0000',
+    width: '83%',
   },
 });
 

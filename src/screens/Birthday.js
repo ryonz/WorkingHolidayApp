@@ -10,6 +10,7 @@ import {
   AsyncStorage,
 } from 'react-native';
 import Copyrights from '../elements/Copyrights';
+import { isiPhoneSE, isiPhoneX } from '../lib/windowsize';
 
 class Birthday extends React.Component {
   state = {
@@ -31,8 +32,15 @@ class Birthday extends React.Component {
 
         <View style={styles.headerHWApply}>
           <Text style={styles.headerText}>アカウント登録１</Text>
-          <TouchableOpacity style={styles.backbutton} onPress={() => { this.props.navigation.goBack(); }} underlayColor="#F0F0F0">
-            <Image style={styles.backbuttonImage} source={require('../../assets/images/left-arrow.png')} />
+          <TouchableOpacity
+            style={styles.backbutton}
+            onPress={() => { this.props.navigation.goBack(); }}
+            underlayColor="#F0F0F0"
+          >
+            <Image
+              style={styles.backbuttonImage}
+              source={require('../../assets/images/left-arrow.png')}
+            />
           </TouchableOpacity>
         </View>
 
@@ -49,16 +57,15 @@ class Birthday extends React.Component {
           />
         </View>
 
-        <TouchableOpacity
-          style={styles.nextButtonBox}
-          onPress={() => { this.onPressNextButton(); }}
-        >
-          <View style={styles.nextButton}>
+        <View style={styles.nextButtonBox}>
+          <TouchableOpacity
+            style={styles.nextButton}
+            onPress={() => { this.onPressNextButton(); }}
+          >
             <Text style={styles.nextButtonText}>次へ</Text>
-          </View>
-        </TouchableOpacity>
 
-        <Image style={styles.image} source={require('../../assets/images/kanatan.png')} />
+          </TouchableOpacity>
+        </View>
 
         <View style={styles.copyrights}>
           <Copyrights />
@@ -111,7 +118,7 @@ const styles = StyleSheet.create({
   },
   textInputBox: {
     alignItems: 'center',
-    marginTop: 12,
+    marginTop: isiPhoneX() ? 120 : 70,
   },
   textInput: {
     width: '83%',
@@ -124,7 +131,7 @@ const styles = StyleSheet.create({
   },
   textInputTitle: {
     fontSize: 13,
-    left: -93,
+    left:  isiPhoneSE() ? -72 : -93,
     paddingBottom: 6,
   },
   forgetPasswordText: {
@@ -136,6 +143,8 @@ const styles = StyleSheet.create({
     fontWeight: '900',
   },
   nextButtonBox: {
+    position: 'absolute',
+    bottom: 20,
     width: '100%',
     alignItems: 'center',
   },
@@ -160,14 +169,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 52,
     alignSelf: 'center',
-    width: '48%',
-    height: 157,
+    width: isiPhoneSE() ? '48%' : '48%',
+    height: isiPhoneSE() ? 135 : 157,
     marginBottom: 20,
   },
   copyrights: {
     position: 'absolute',
     width: '100%',
-    bottom: 0,
+    bottom:  isiPhoneX() ? 25 : 0,
 
   },
 

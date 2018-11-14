@@ -22,7 +22,6 @@ import FromCanadaGovernment from './src/screens/FromCanadaGovernment';
 import Declaration from './src/screens/Declaration';
 import Agreement from './src/screens/Agreement';
 import AfterApply1 from './src/screens/AfterApply1';
-import InputEmail from './src/screens/InputEmail';
 import SplashScreen from './src/screens/SplashScreen';
 import Login from './src/screens/Login';
 import Signup from './src/screens/Signup';
@@ -54,8 +53,6 @@ const App = createStackNavigator(
     Login: { screen: Login },
     Signup: { screen: Signup },
     Birthday: { screen: Birthday },
-    // InputEmailは匿名認証のときに使っていた。なので、いらない。
-    InputEmail: { screen: InputEmail },
     PersonalInfo1: { screen: PersonalInfo1 },
     PersonalInfo2: { screen: PersonalInfo2 },
     PersonalInfo3: { screen: PersonalInfo3 },

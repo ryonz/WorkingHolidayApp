@@ -17,22 +17,8 @@ class FinalSubmitButton extends React.Component {
     super(props);
     this.state = {
       disabled: false,
-      modalVisible: false,
-
     };
   }
-
-  onPressSubmitCompleteNotification() {
-
-  }
-
-  onPressCloseModal() {
-    this.setState({ modalVisible: false });
-  }
-
-  // finalOnPress() {
-  //   this.setState({ modalVisible: true });
-  // }
 
   finalOnPress() {
     AsyncStorage
@@ -52,30 +38,39 @@ class FinalSubmitButton extends React.Component {
         'checked13',
         'checked14',
         'checked15',
-      ])
-      .then(() => {
+      ]).then(response => this.completeButton(response))
+  }
 
-  })
-}
-
-  // const db = firebase.firestore();
-  // const { currentUser } = firebase.auth();
-  // db.collection(`users/${currentUser.uid}/status`)
-  //   .doc('Form Compreted')
-  //   .set({
-  //     date: new Date(),
-  //     status: 'All Forms completed!!!',
-  //   })
-  //   .then(() => {
-  //     console.log('then');
-  //     this.props.navigation.navigate('AfterApply1');
-  //     this.setState({ modalVisible: false });
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //     this.setState({ modalVisible: false });
-  //     Alert.alert('送信が途中で失敗しました。ネットワークの状態をご確認ください。');
-  //   });
+  completeButton(response) {
+    let numberOfChecked = 0;
+    for (i = 0; i < 15; i++) {
+      console.log(response[i][1]);
+      if (response[i][1] === 'true') {
+        numberOfChecked++;
+      }
+    }
+    console.log(numberOfChecked);
+    if (numberOfChecked === 15) {
+      const db = firebase.firestore();
+      const { currentUser } = firebase.auth();
+      db.collection(`users/${currentUser.uid}/Compreted`)
+        .doc('Form ')
+        .set({
+          date: new Date(),
+          status: 'All Forms completed!!!',
+        })
+        .then(() => {
+          console.log('then');
+          this.props.navigation.navigate('AfterApply1');
+        })
+        .catch((error) => {
+          console.log(error);
+          Alert.alert('送信が途中で失敗しました。ネットワークの状態をご確認ください。');
+        });
+    } else {
+      Alert.alert(`${15 - numberOfChecked}個のフォームが「未完了」です。`);
+    }
+  }
 
   render() {
     const { style } = this.props;
@@ -193,49 +188,3 @@ const styles = StyleSheet.create({
 });
 
 export default FinalSubmitButton;
-
-// <Modal
-//   visible={this.state.modalVisible}
-//   animationType={'fade'}
-//   transparent
-// >
-//   <BlurView
-//     style={styles.blurView}
-//     tint="dark"
-//   >
-//     <View style={styles.modalScreen}>
-//       <Text style={styles.modalTitle}>送信の前に</Text>
-//       <View style={styles.modalTitleUnderbar} />
-//       <Text style={styles.modalText}>
-//         全ての入力フォームが「完了」になっていますか？
-//         {'\n'}{'\n'}
-//         もし、「未入力」のフォームがあれば、「完了」に{'\n'}
-//         してから再度「同意して送信」を押してください。
-//         {'\n'}{'\n'}
-//         送信後はJpcanada留学センターの担当者と
-//         メールでのやり取りになります。
-//         {'\n'}
-//         メールは登録したアドレスに送信されます。
-//         {'\n'}{'\n'}
-//
-//       </Text>
-//
-//       <View style={styles.buttonBox}>
-//
-//         <TouchableOpacity
-//           style={styles.modalButton}
-//           onPress={() => { this.onPressSubmitCompleteNotification(); }}
-//         >
-//           <Text style={styles.modalButtonText}>送信する</Text>
-//         </TouchableOpacity>
-//
-//         <TouchableOpacity
-//           style={styles.modalButton}
-//           onPress={() => { this.onPressCloseModal(); }}
-//         >
-//           <Text style={styles.modalButtonText}>やめる</Text>
-//         </TouchableOpacity>
-//       </View>
-//     </View>
-//   </BlurView>
-// </Modal>

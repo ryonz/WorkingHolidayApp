@@ -1,5 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableHighlight } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableHighlight,
+} from 'react-native';
+
+import { isiPhoneSE } from '../lib/windowsize';
 
 class WHApplyBar extends React.Component {
   render() {
@@ -52,7 +60,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
   },
   headerText: {
-    fontSize: 20,
+    fontSize: isiPhoneSE() ? 18 : 20,
     paddingTop: 30,
     fontWeight: 'bold',
     color: '#626262',

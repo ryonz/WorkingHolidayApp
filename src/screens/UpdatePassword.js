@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import Copyrights from '../elements/Copyrights';
 import SubmitButton from '../components/SubmitButton';
+import { isiPhoneSE, isiPhoneX } from '../lib/windowsize';
 
 class UpdatePassword extends React.Component {
   constructor(props) {
@@ -80,12 +81,14 @@ class UpdatePassword extends React.Component {
           />
         </View>
 
-        <SubmitButton
-          style={styles.submitButton}
-          onPress={this.onPressSubmitEmail.bind(this)}
-        >
-         メール送信
-        </SubmitButton>
+        <View style={styles.submitButtonBox}>
+          <SubmitButton
+            style={styles.submitButton}
+            onPress={this.onPressSubmitEmail.bind(this)}
+          >
+           メール送信
+          </SubmitButton>
+        </View>
 
         <View style={styles.copyrights}>
           <Copyrights />
@@ -162,24 +165,22 @@ const styles = StyleSheet.create({
   },
   textInputTitle: {
     fontSize: 13,
-    left: -100,
+    left: isiPhoneSE() ? -80 : -100,
     paddingBottom: 6,
+  },
+  submitButtonBox: {
+    position: 'absolute',
+    alignSelf: 'center',
+    bottom: isiPhoneSE() ? 60 : 100,
   },
   submitButton: {
     borderColor: '#707070',
     backgroundColor: '#fff',
-    marginTop: -40,
   },
-  // submitButtonText: {
-  //   alignSelf: 'center',
-  //   paddingTop: 6,
-  //   color: '#626262',
-  //   fontWeight: 'bold',
-  // },
   copyrights: {
     position: 'absolute',
     width: '100%',
-    bottom: 0,
+    bottom:  isiPhoneX() ? 25 : 0,
   },
 
 });

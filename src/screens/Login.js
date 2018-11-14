@@ -2,6 +2,7 @@ import React from 'react';
 import {
   StyleSheet,
   View,
+  ScrollView,
   Text,
   TouchableOpacity,
   TextInput,
@@ -14,6 +15,7 @@ import firebase from 'firebase';
 import Copyrights from '../elements/Copyrights';
 import WHApplyNotification1 from '../components/WHApplyNotification1';
 import WHApplyNotification2 from '../components/WHApplyNotification2';
+import { isiPhoneSE, isiPhoneX } from '../lib/windowsize';
 
 class Login extends React.Component {
   state = {
@@ -83,7 +85,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.headerHWApply}>
           <Text style={styles.headerText}>ログイン</Text>
           <TouchableOpacity
@@ -133,39 +135,57 @@ class Login extends React.Component {
           />
         </View>
 
+        <Image
+          style={styles.image}
+          source={require('../../assets/images/kanatan.png')}
+        />
+
         <TouchableOpacity
+          style={styles.forgetPasswordBox}
           onPress={() => {
             this.props.navigation.navigate('UpdatePassword');
           }}
         >
-          <Text style={styles.forgetPasswordText}>パスワードを忘れた場合</Text>
+          <Text
+            style={styles.forgetPasswordText}
+          >
+            パスワードを忘れた場合
+          </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.loginButtonBox}
-          onPress={this.handleLogin.bind(this)}
-          editable={this.state.editable}
-        >
-          <View style={styles.loginButton}>
+
+        <View style={styles.loginButtonBox}>
+          <TouchableOpacity
+            style={styles.loginButton}
+            onPress={this.handleLogin.bind(this)}
+            editable={this.state.editable}
+          >
             <Text style={styles.loginButtonText}>ログイン</Text>
-          </View>
-        </TouchableOpacity>
+          </TouchableOpacity>
+        </View>
 
         <TouchableOpacity
+          style={styles.forgetPasswordBox}
           onPress={() => {
             this.props.navigation.navigate('Birthday');
           }}
         >
-          <Text style={styles.forgetPasswordText}>登録がまだの方はこちら</Text>
+          <Text
+            style={styles.forgetPasswordText}
+          >
+            登録がまだの方はこちら
+          </Text>
         </TouchableOpacity>
 
-        <Image style={styles.image} source={require('../../assets/images/kanatan.png')} />
 
         <View style={styles.copyrights}>
           <Copyrights />
         </View>
 
-        <Modal visible={this.state.notificationModal1} animationType={'none'}>
+        <Modal
+          visible={this.state.notificationModal1}
+          animationType={'none'}
+        >
           <WHApplyNotification1
             onPress={() => {
               this.nextModal(0);
@@ -184,7 +204,7 @@ class Login extends React.Component {
             }}
           />
         </Modal>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -199,7 +219,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#F0F0F0',
     width: '100%',
     height: 96,
-    top: 0,
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000000',
@@ -209,7 +228,7 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 0,
     shadowOpacity: 0.1,
-    marginBottom: 49,
+    marginBottom: isiPhoneX() ? 100 : 49,
   },
   headerText: {
     fontSize: 20,
@@ -242,9 +261,12 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   textInputTitle: {
-    fontSize: 13,
-    left: -110,
+    left: isiPhoneSE() ? -85 : -110,
     paddingBottom: 6,
+  },
+  forgetPasswordBox: {
+    width: '50%',
+    alignSelf: 'center',
   },
   forgetPasswordText: {
     alignSelf: 'center',
@@ -275,15 +297,14 @@ const styles = StyleSheet.create({
   },
   image: {
     alignSelf: 'center',
-    width: '48%',
-    height: 157,
-    marginBottom: 20,
+    width: isiPhoneSE() ? '48%' : '48%',
+    height: isiPhoneSE() ? 135 : 157,
+    marginTop: 30,
+    marginBottom: 30,
   },
   copyrights: {
-    position: 'absolute',
-    // alignSelf: 'flex-end',
     width: '100%',
-    bottom: 0,
+    marginTop: isiPhoneX() ? 25 : 0,
   },
 });
 

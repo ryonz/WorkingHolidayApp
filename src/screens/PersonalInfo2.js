@@ -3,6 +3,7 @@ import {
   StyleSheet,
   ScrollView,
   Text,
+  View,
   AsyncStorage,
   TouchableOpacity,
   KeyboardAvoidingView,
@@ -25,6 +26,8 @@ class PersonalInfo2 extends React.Component {
       disabled: false,
       disableChecked: false,
 
+      modifyNote: '',
+
       currentAddress: '',
       currentAddressYomi: '',
       currentPostalCode: '',
@@ -45,9 +48,11 @@ class PersonalInfo2 extends React.Component {
         if (value === 'true') {
           this.setState({ editable: false });
           this.setState({ disabled: true });
+          this.setState({ modifyNote: '修正を行う場合は、完了ボタンを再度押してください。' });
         } else if (value === 'false') {
           this.setState({ editable: true });
           this.setState({ disabled: false });
+          this.setState({ modifyNote: '' });
         }
       });
     AsyncStorage.getItem('currentAddress')
@@ -126,19 +131,19 @@ class PersonalInfo2 extends React.Component {
       AsyncStorage.setItem('checked2', JSON.stringify(true));
       const db = firebase.firestore();
       const { currentUser } = firebase.auth();
-      db.collection(`users/${currentUser.uid}/forms`).doc('form2')
+      db.collection(`users/${currentUser.uid}/forms`).doc('申請者情報②')
         .set({
-          form2 : [
-            { currentAddress: this.state.currentAddress },
-            { currentAddressYomi: this.state.currentAddressYomi },
-            { currentPostalCode: this.state.currentPostalCode },
-            { startDateofcurrentAdress: this.state.startDateofcurrentAdress },
-            { domicile: this.state.domicile },
-            { addressOfDomicile: this.state.addressOfDomicile },
-            { addressOfDomicileYomi: this.state.addressOfDomicileYomi },
-            { postalCodeofDomicile: this.state.postalCodeofDomicile },
-            { phoneNumber: this.state.phoneNumber },
-            { faxNumber: this.state.faxNumber }],
+          '申請者情報② ' : [
+            { '現住所（カナダにいらしゃる方はカナダのご住所で）': this.state.currentAddress },
+            { '現住所ふりがな（カナダのご住所をご回答いただいた方は不要です）': this.state.currentAddressYomi },
+            { '現住所の郵便番号 ': this.state.currentPostalCode },
+            { '現住所にご自身が住み始めた日（西暦で年月日）': this.state.startDateofcurrentAdress },
+            { '本籍は「B現住所と同じ」「C現住所と違う」': this.state.domicile },
+            { 'Cの場合本籍地の住所 ': this.state.addressOfDomicile },
+            { '本籍地ふりがな ': this.state.addressOfDomicileYomi },
+            { '本籍地の郵便番号 ': this.state.postalCodeofDomicile },
+            { '携帯番号（もしくはご自宅）の番号': this.state.phoneNumber },
+            { 'FAX番号（もしあれば）': this.state.faxNumber }],
         })
         .then(() => {
           this.props.navigation.state.params.setStateEdit2();
@@ -179,6 +184,11 @@ class PersonalInfo2 extends React.Component {
         <ScrollView>
           <InfoHeader onPress={this.onPressBackButton.bind(this)}>申請者情報２</InfoHeader>
           <Notes />
+          <View style={styles.notesTextBox}>
+            <Text style={styles.notesText}>
+              {this.state.modifyNote}
+            </Text>
+          </View>
           <QuestionTextSet
             onChangeText={(text) => {
               AsyncStorage.setItem('currentAddress', text);
@@ -292,7 +302,7 @@ class PersonalInfo2 extends React.Component {
           <CheckBox
             disabled={this.state.disableChecked}
             center
-            title={'完了/修正'}
+            title={'完了したらここをチェック'}
             checked={this.state.checked}
             onPress={() => {
               this.onPressCheckBox();
@@ -338,6 +348,17 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderWidth: 0.5,
     borderRadius: 3,
+  },
+  notesTextBox: {
+    width: '100%',
+    height: 35,
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 18,
+  },
+  notesText: {
+    color: '#FF0000',
+    width: '83%',
   },
 });
 

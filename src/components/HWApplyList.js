@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, AsyncStorage } from 'react-native';
 import { Font } from 'expo';
 import fontAwesome from '../../assets/fonts/fa-solid-900.ttf';
+import { isiPhoneSE } from '../lib/windowsize';
 
 class HWApplyList extends React.Component {
   state = {
@@ -572,15 +573,15 @@ const styles = StyleSheet.create({
     borderBottomColor: '#000',
   },
   listBoxText: {
-    left: 40,
+    left: 30,
     width: '60%',
     paddingTop: 13,
   },
   privacyPolicyCA: {
-    fontSize: 10,
+    fontSize: isiPhoneSE() ? 9 : 10,
     lineHeight: 16,
-    paddingTop: 5,
-    left: 40,
+    paddingTop: 4,
+    left: 30,
   },
   inputBotton: {
     position: 'absolute',

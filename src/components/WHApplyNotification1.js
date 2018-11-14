@@ -1,5 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  Text,
+  Image,
+} from 'react-native';
 
 import SubmitButton from './SubmitButton';
 import Copyrights from '../elements/Copyrights';
@@ -8,8 +14,7 @@ import Copyrights from '../elements/Copyrights';
 class WHApplyNotification1 extends React.Component {
   render() {
     return (
-
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.headerHWApply}>
           <Text style={styles.headerText}>注意事項</Text>
         </View>
@@ -47,7 +52,7 @@ class WHApplyNotification1 extends React.Component {
         <View style={styles.copyrights}>
           <Copyrights />
         </View>
-      </View>
+      </ScrollView>
 
     );
   }
@@ -57,7 +62,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    alignItems: 'center',
     backgroundColor: '#fff',
   },
   headerHWApply: {
@@ -93,7 +97,7 @@ const styles = StyleSheet.create({
     height: 39,
     marginTop: 39,
     marginBottom: 36,
-    alignItems: 'center',
+    alignSelf: 'center',
     borderWidth: 1,
     borderRadius: 6,
     borderColor: '#707070',
@@ -110,6 +114,7 @@ const styles = StyleSheet.create({
   textBox: {
     width: '83%',
     height: 284,
+    alignSelf: 'center',
     borderWidth: 1,
     borderColor: '#707070',
 
@@ -123,9 +128,7 @@ const styles = StyleSheet.create({
     lineHeight: 25,
   },
   copyrights:{
-    position: 'absolute',
     width: '100%',
-    bottom: 0,
   },
 });
 

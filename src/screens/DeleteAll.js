@@ -2,6 +2,7 @@ import React from 'react';
 import {
   StyleSheet,
   View,
+  ScrollView,
   Text,
   Modal,
   TouchableOpacity,
@@ -14,6 +15,7 @@ import WHApplyBar from '../components/WHApplyBar';
 import LoginModal from './LoginModal';
 import SubmitButton from '../components/SubmitButton';
 import Copyrights from '../elements/Copyrights';
+import { isiPhoneSE } from '../lib/windowsize';
 
 class DeleteAll extends React.Component {
   constructor(props) {
@@ -78,7 +80,7 @@ class DeleteAll extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <WHApplyBar navigation={() => { this.props.navigation.goBack(); }}>アカウント削除</WHApplyBar>
 
         <View style={styles.title}>
@@ -91,8 +93,7 @@ class DeleteAll extends React.Component {
             <Text style={{ color: '#FF0000', fontWeight: 'bold' }}>
                 全ての情報
             </Text>
-                を削除{'\n'}
-                します。{'\n'}
+                を削除します。{'\n'}
             {'\n'}
                 これまで入力した内容は全て削除されます。もし、現在ワーホキングホリデーの
                 申請中で、担当カウンセラーとやり取りをしている最中であれば、絶対に
@@ -161,7 +162,11 @@ class DeleteAll extends React.Component {
                   onPress={() => { this.onPressDelete(); }}
                   editable={this.state.editable}
                 >
-                  <Text style={styles.modalButtonText}>削除する</Text>
+                  <Text
+                    style={styles.modalButtonText}
+                  >
+                  削除する
+                  </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -175,7 +180,7 @@ class DeleteAll extends React.Component {
           </BlurView>
         </Modal>
 
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -217,18 +222,15 @@ const styles = StyleSheet.create({
     width: '83%',
   },
   submitButtonBox: {
-    position: 'absolute',
     alignSelf: 'center',
-    bottom: 64,
   },
   submitButton: {
+    position: 'absolute',
+    bottom: isiPhoneSE() ? 30 : 60,
     backgroundColor: '#fff',
-
   },
   copyrights: {
-    position: 'absolute',
     width: '100%',
-    bottom: 0,
   },
   buttonBox: {
     alignSelf: 'center',

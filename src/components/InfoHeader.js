@@ -1,6 +1,12 @@
 
 import React from 'react';
-import { StyleSheet, View, Text, TouchableHighlight, Image } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableHighlight,
+  Image,
+} from 'react-native';
 
 class InfoHeader extends React.Component {
   render() {
@@ -33,7 +39,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#F0F0F0',
     width: '100%',
-    height: 96,
+    height: 105,
     alignItems: 'center',
   },
   headerTitle: {
@@ -41,12 +47,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '900',
     color: '#626262',
-    paddingTop: 50,
+    paddingTop: 60,
   },
   backbutton: {
     position: 'absolute',
-    top: 49,
-    left: 18,
+    top: 58,
+    left: 19,
     width: 40,
     height: 40,
   },

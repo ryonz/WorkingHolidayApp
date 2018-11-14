@@ -27,6 +27,8 @@ class PersonalInfo3 extends React.Component {
       disabled: false,
       disableChecked: false,
 
+      modifyNote: '',
+
       aboutVisa: '',
       fromDateOfStaying: '',
       toDateOfStaying: '',
@@ -43,9 +45,11 @@ class PersonalInfo3 extends React.Component {
       if (value === 'true') {
         this.setState({ editable: false });
         this.setState({ disabled: true });
+        this.setState({ modifyNote: '修正を行う場合は、完了ボタンを再度押してください。' });
       } else if (value === 'false') {
         this.setState({ editable: true });
         this.setState({ disabled: false });
+        this.setState({ modifyNote: '' });
       }
     });
     AsyncStorage.getItem('aboutVisa').then(value => {
@@ -100,16 +104,16 @@ class PersonalInfo3 extends React.Component {
       const db = firebase.firestore();
       const { currentUser } = firebase.auth();
       db.collection(`users/${currentUser.uid}/forms`)
-        .doc('form3')
+        .doc('申請者情報③')
         .set({
-          form3: [
-            { aboutVisa: this.state.aboutVisa },
-            { fromDateOfStaying: this.state.fromDateOfStaying },
-            { toDateOfStaying: this.state.toDateOfStaying },
-            { kindOfVisa: this.state.kindOfVisa },
-            { fromDateOfStayingCanada: this.state.fromDateOfStayingCanada },
-            { toDateOfStayingCanada: this.state.toDateOfStayingCanada },
-            { placeOfstaying: this.state.placeOfstaying },
+          '申請者情報③ ': [
+            { '過去にカナダのビザ（ワーキングホリデー・学生・観光）の申請をしたことがありますか？（はい/いいえ）＊パスポートにスタンプのみ押され、紙のビザを発行されなかった方はビザを申請したことにはなりません。「いいえ」でご回答ください。': this.state.aboutVisa },
+            { '＊「はい」と回答された方。滞在期間（西暦で年月日〜）': this.state.fromDateOfStaying },
+            { '＊「はい」と回答された方。滞在期間（〜年月日）': this.state.toDateOfStaying },
+            { '＊「はい」と回答された方。ビザの種類': this.state.kindOfVisa },
+            { '今回のカナダ滞在予定年月（西暦で年月〜）': this.state.fromDateOfStayingCanada },
+            { '今回のカナダ滞在予定年月（〜年月）': this.state.toDateOfStayingCanada },
+            { 'カナダのどの州に滞在する予定ですか ': this.state.placeOfstaying },
           ],
         })
         .then(() => {
@@ -151,7 +155,11 @@ class PersonalInfo3 extends React.Component {
         <ScrollView>
           <InfoHeader onPress={this.onPressBackButton.bind(this)}>申請者情報３</InfoHeader>
           <Notes />
-
+          <View style={styles.notesTextBox}>
+            <Text style={styles.notesText}>
+              {this.state.modifyNote}
+            </Text>
+          </View>
           <View style={styles.questionTextBox}>
             <Text style={styles.questionText}>
               過去にカナダのビザ（ワーキングホリデー・学生・{'\n'}
@@ -254,7 +262,7 @@ class PersonalInfo3 extends React.Component {
           <CheckBox
             disabled={this.state.disableChecked}
             center
-            title={'完了/修正'}
+            title={'完了したらここをチェック'}
             checked={this.state.checked}
             onPress={() => {
               this.onPressCheckBox();
@@ -302,6 +310,17 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderWidth: 0.5,
     borderRadius: 3,
+  },
+  notesTextBox: {
+    width: '100%',
+    height: 35,
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 18,
+  },
+  notesText: {
+    color: '#FF0000',
+    width: '83%',
   },
 });
 

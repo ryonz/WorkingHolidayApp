@@ -27,6 +27,8 @@ class FamilyInfo4 extends React.Component {
       disabled: false,
       disableChecked: false,
 
+      modifyNote: '',
+
       chidrenNameJa1: '',
       childrenNameEn1: '',
       birthdayOfChildren1: '',
@@ -65,9 +67,11 @@ class FamilyInfo4 extends React.Component {
       if (value === 'true') {
         this.setState({ editable: false });
         this.setState({ disabled: true });
+        this.setState({ modifyNote: '修正を行う場合は、完了ボタンを再度押してください。' });
       } else if (value === 'false') {
         this.setState({ editable: true });
         this.setState({ disabled: false });
+        this.setState({ modifyNote: '' });
       }
     });
     AsyncStorage.getItem('chidrenNameJa1').then(text => {
@@ -216,36 +220,36 @@ class FamilyInfo4 extends React.Component {
       const db = firebase.firestore();
       const { currentUser } = firebase.auth();
       db.collection(`users/${currentUser.uid}/forms`)
-        .doc('form10')
+        .doc('お子様について')
         .set({
-          form10: [
-            { chidrenNameJa1: this.state.chidrenNameJa1 },
-            { childrenNameEn1: this.state.childrenNameEn1 },
-            { birthdayOfChildren1: this.state.birthdayOfChildren1 },
-            { birthCountryOfChildren1: this.state.birthCountryOfChildren1 },
-            { aboutMaridgeOfChildren1: this.state.aboutMaridgeOfChildren1 },
-            { addressOfChildren1: this.state.addressOfChildren1 },
-            { postalCodeOfChildren1: this.state.postalCodeOfChildren1 },
-            { jobOfChildren1: this.state.jobOfChildren1 },
-            { comeTogetherWithChildren1: this.state.comeTogetherWithChildren1 },
-            { chidrenNameJa2: this.state.chidrenNameJa2 },
-            { childrenNameEn2: this.state.childrenNameEn2 },
-            { birthdayOfChildren2: this.state.birthdayOfChildren2 },
-            { birthCountryOfChildren2: this.state.birthCountryOfChildren2 },
-            { aboutMaridgeOfChildren2: this.state.aboutMaridgeOfChildren2 },
-            { addressOfChildren2: this.state.addressOfChildren2 },
-            { postalCodeOfChildren2: this.state.postalCodeOfChildren2 },
-            { jobOfChildren2: this.state.jobOfChildren2 },
-            { comeTogetherWithChildren2: this.state.comeTogetherWithChildren2 },
-            { chidrenNameJa3: this.state.chidrenNameJa3 },
-            { childrenNameEn3: this.state.childrenNameEn3 },
-            { birthdayOfChildren3: this.state.birthdayOfChildren3 },
-            { birthCountryOfChildren3: this.state.birthCountryOfChildren3 },
-            { aboutMaridgeOfChildren3: this.state.aboutMaridgeOfChildren3 },
-            { addressOfChildren3: this.state.addressOfChildren3 },
-            { postalCodeOfChildren3: this.state.postalCodeOfChildren3 },
-            { jobOfChildren3: this.state.jobOfChildren3 },
-            { comeTogetherWithChildren3: this.state.comeTogetherWithChildren3 },
+          'お子様について ': [
+            { 'お子様の姓名（漢字表記）①': this.state.chidrenNameJa1 },
+            { 'お子様の姓名（英字表記/パスポート表記通りのローマ字で）①': this.state.childrenNameEn1 },
+            { 'お子様の生年月日（西暦でご回答ください）①': this.state.birthdayOfChildren1 },
+            { 'お子様の出生国①': this.state.birthCountryOfChildren1 },
+            { 'お子様の婚姻状況（例：未婚、既婚、離婚、別居、死別等）①': this.state.aboutMaridgeOfChildren1 },
+            { 'お子様の現住所①': this.state.addressOfChildren1 },
+            { 'お子様の郵便番号①': this.state.postalCodeOfChildren1 },
+            { 'お子様のご職業①': this.state.jobOfChildren1 },
+            { '一緒にカナダに来ますか？（はい/いいえ）①': this.state.comeTogetherWithChildren1 },
+            { 'お子様の姓名（漢字表記）②': this.state.chidrenNameJa2 },
+            { 'お子様の姓名（英字表記/パスポート表記通りのローマ字で）②': this.state.childrenNameEn2 },
+            { 'お子様の生年月日（西暦でご回答ください）②': this.state.birthdayOfChildren2 },
+            { 'お子様の出生国②': this.state.birthCountryOfChildren2 },
+            { 'お子様の婚姻状況（例：未婚、既婚、離婚、別居、死別等）②': this.state.aboutMaridgeOfChildren2 },
+            { 'お子様の現住所②': this.state.addressOfChildren2 },
+            { 'お子様の郵便番号②': this.state.postalCodeOfChildren2 },
+            { 'お子様のご職業②': this.state.jobOfChildren2 },
+            { '一緒にカナダに来ますか？（はい/いいえ）②': this.state.comeTogetherWithChildren2 },
+            { 'お子様の姓名（漢字表記）③': this.state.chidrenNameJa3 },
+            { 'お子様の姓名（英字表記/パスポート表記通りのローマ字で）③': this.state.childrenNameEn3 },
+            { 'お子様の生年月日（西暦でご回答ください）③': this.state.birthdayOfChildren3 },
+            { 'お子様の出生国③': this.state.birthCountryOfChildren3 },
+            { 'お子様の婚姻状況（例：未婚、既婚、離婚、別居、死別等）③': this.state.aboutMaridgeOfChildren3 },
+            { 'お子様の現住所③': this.state.addressOfChildren3 },
+            { 'お子様の郵便番号③': this.state.postalCodeOfChildren3 },
+            { 'お子様のご職業③': this.state.jobOfChildren3 },
+            { '一緒にカナダに来ますか？（はい/いいえ）③': this.state.comeTogetherWithChildren3 },
           ],
         })
         .then(() => {
@@ -287,6 +291,11 @@ class FamilyInfo4 extends React.Component {
         <ScrollView style={styles.container}>
           <InfoHeader onPress={this.onPressBackButton.bind(this)}>家族情報４</InfoHeader>
           <Notes />
+          <View style={styles.notesTextBox}>
+            <Text style={styles.notesText}>
+              {this.state.modifyNote}
+            </Text>
+          </View>
           <QuestionTextSet
             onChangeText={text => {
               AsyncStorage.setItem('chidrenNameJa1', text);
@@ -601,7 +610,7 @@ class FamilyInfo4 extends React.Component {
           <CheckBox
             disabled={this.state.disableChecked}
             center
-            title={'完了/修正'}
+            title={'完了したらここをチェック'}
             checked={this.state.checked}
             onPress={() => {
               this.onPressCheckBox();
@@ -660,6 +669,17 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderWidth: 0.5,
     borderRadius: 3,
+  },
+  notesTextBox: {
+    width: '100%',
+    height: 35,
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 18,
+  },
+  notesText: {
+    color: '#FF0000',
+    width: '83%',
   },
 });
 

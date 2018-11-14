@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   StyleSheet,
+  ScrollView,
   View,
   Text,
   Image,
@@ -10,6 +11,7 @@ import {
 } from 'react-native';
 import firebase from 'firebase';
 import Copyrights from '../elements/Copyrights';
+import { isiPhoneSE, isiPhoneX } from '../lib/windowsize';
 
 class Home extends React.Component {
   state = {
@@ -93,7 +95,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.HomeHeaderLogo}>
           <Image
             source={require('../../assets/images/HomeHeaderLogo.png')}
@@ -228,7 +230,10 @@ class Home extends React.Component {
               <Text style={{ fontSize: 10 }}>*諸条件あり。詳しくは、「規約」をご覧ください。</Text>
             </Text>
 
-          <Image style={styles.modalImage} source={require('../../assets/images/vanqu2.png')} />
+            <Image
+              style={styles.modalImage}
+              source={require('../../assets/images/vanqu2.png')}
+            />
 
             <TouchableOpacity
               style={styles.modalCloseButton}
@@ -256,7 +261,10 @@ class Home extends React.Component {
               カナダ日系最大手のエージェントのサポートを受けることができます。
             </Text>
 
-          <Image style={styles.modalImage} source={require('../../assets/images/vanqu2.png')} />
+            <Image
+              style={styles.modalImage}
+              source={require('../../assets/images/vanqu2.png')}
+            />
 
             <TouchableOpacity
               style={styles.modalCloseButton}
@@ -266,7 +274,7 @@ class Home extends React.Component {
             </TouchableOpacity>
           </View>
         </Modal>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -280,8 +288,8 @@ const styles = StyleSheet.create({
   HomeHeaderLogo: {
     alignItems: 'center',
     height: 101,
-    paddingTop: 26,
-    marginBottom: 29,
+    paddingTop: 40,
+    marginBottom: isiPhoneX() ? 50 : 29,
   },
   buttonBox: {
     width: '100%',
@@ -290,7 +298,7 @@ const styles = StyleSheet.create({
   button: {
     width: '55%',
     height: 36,
-    marginTop: 8,
+    marginTop: isiPhoneX() ? 20 : 8,
     paddingTop: 2,
     marginBottom: 8,
     alignItems: 'center',
@@ -306,8 +314,8 @@ const styles = StyleSheet.create({
   },
   startApplyButton: {
     backgroundColor: '#fff',
-    width: '44%',
-    marginTop: 34,
+    width: isiPhoneSE() ? '50%' : '44%',
+    marginTop: isiPhoneX() ? 80 : 34,
     marginBottom: 26,
     paddingTop: '9%',
     paddingBottom: '9%',
@@ -328,18 +336,15 @@ const styles = StyleSheet.create({
     height:77,
     alignSelf: 'center',
   },
-  linkOfHelp: {
-
-  },
   vanquBox:{
     width: '100%',
     alignItems: 'center',
-    marginTop: 29,
+    marginTop: 20,
     marginBottom: 20,
   },
   vanqu:{
-    width: '20%',
-    height: 97,
+    width: 80,
+    height: 102,
   },
   copyrights: {
     width: '100%',
@@ -347,9 +352,9 @@ const styles = StyleSheet.create({
   modal: {
     backgroundColor: '#fff',
     width: '87%',
-    height: 450,
+    height:'auto',
     alignSelf: 'center',
-    top: 100,
+    top: isiPhoneX() ? 200 : 100,
     borderWidth: 1,
     borderColor: '#707070',
     borderRadius: 10,
@@ -387,15 +392,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingTop: 15,
     lineHeight:25,
-    fontSize: 15,
+
   },
   modalCloseButton: {
-    position: 'absolute',
-    bottom: 43,
     width: '40%',
     height: 44,
     alignSelf: 'center',
-    marginTop: 10,
+    marginTop: 20,
+    marginBottom: 20,
     borderRadius: 23,
     borderWidth: 1,
     borderColor: '#707070',
@@ -409,43 +413,11 @@ const styles = StyleSheet.create({
     fontWeight: '900',
   },
   modalImage: {
-    position: 'absolute',
-    bottom: 120,
-    width: '21%',
-    height: 87,
+    width: isiPhoneSE() ? 60 : 80,
+    height: isiPhoneSE() ? 80 : 100,
     alignSelf: 'center',
     marginTop: 20,
   },
 });
 
 export default Home;
-//
-// import { Font } from 'expo';
-// import Copyrights from '../elements/Copyrights';
-//
-// import fontAwesome from '../../assets/fonts/fa-solid-900.ttf';
-//
-
-// state = {
-//   fontLoaded: false,
-// }
-//
-//
-// async componentWillMount() {
-//   await Font.loadAsync({
-//     FontAwesome: fontAwesome,
-//   });
-//
-//   this.setState({ fontLoaded: true });
-// }
-
-
-
-
-// <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-//   {
-//   this.state.fontLoaded ? (
-//     <Text style={{ fontFamily : 'FontAwesome', fontSize: 56, color: '#82F873' }}>{'\uf044'}</Text>
-//   ) : null
-// }
-// </View>

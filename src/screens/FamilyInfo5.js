@@ -27,6 +27,8 @@ class FamilyInfo5 extends React.Component {
       disabled: false,
       disableChecked: false,
 
+      modifyNote: '',
+
       siblingsNameJa1: '',
       siblingsNameEn1: '',
       birthdayOfSiblings1: '',
@@ -65,9 +67,11 @@ class FamilyInfo5 extends React.Component {
       if (value === 'true') {
         this.setState({ editable: false });
         this.setState({ disabled: true });
+        this.setState({ modifyNote: '修正を行う場合は、完了ボタンを再度押してください。' });
       } else if (value === 'false') {
         this.setState({ editable: true });
         this.setState({ disabled: false });
+        this.setState({ modifyNote: '' });
       }
     });
     AsyncStorage.getItem('siblingsNameJa1').then(text => {
@@ -216,36 +220,36 @@ class FamilyInfo5 extends React.Component {
       const db = firebase.firestore();
       const { currentUser } = firebase.auth();
       db.collection(`users/${currentUser.uid}/forms`)
-        .doc('form11')
+        .doc('兄弟姉妹について')
         .set({
-          form11: [
-            { siblingsNameJa1: this.state.siblingsNameJa1 },
-            { siblingsNameEn1: this.state.siblingsNameEn1 },
-            { birthdayOfSiblings1: this.state.birthdayOfSiblings1 },
-            { birthCountryOfSiblings1: this.state.birthCountryOfSiblings1 },
-            { aboutMaridgeOfSiblings1: this.state.aboutMaridgeOfSiblings1 },
-            { addressOfSiblings1: this.state.addressOfSiblings1 },
-            { postalCodeOfSiblings1: this.state.postalCodeOfSiblings1 },
-            { jobOfSiblings1: this.state.jobOfSiblings1 },
-            { comeTogetherWithSiblings1: this.state.comeTogetherWithSiblings1 },
-            { siblingsNameJa2: this.state.siblingsNameJa2 },
-            { siblingsNameEn2: this.state.siblingsNameEn2 },
-            { birthdayOfSiblings2: this.state.birthdayOfSiblings2 },
-            { birthCountryOfSiblings2: this.state.birthCountryOfSiblings2 },
-            { aboutMaridgeOfSiblings2: this.state.aboutMaridgeOfSiblings2 },
-            { addressOfSiblings2: this.state.addressOfSiblings2 },
-            { postalCodeOfSiblings2: this.state.postalCodeOfSiblings2 },
-            { jobOfSiblings2: this.state.jobOfSiblings2 },
-            { comeTogetherWithSiblings2: this.state.comeTogetherWithSiblings2 },
-            { siblingsNameJa3: this.state.siblingsNameJa3 },
-            { siblingsNameEn3: this.state.siblingsNameEn3 },
-            { birthdayOfSiblings3: this.state.birthdayOfSiblings3 },
-            { birthCountryOfSiblings3: this.state.birthCountryOfSiblings3 },
-            { aboutMaridgeOfSiblings3: this.state.aboutMaridgeOfSiblings3 },
-            { addressOfSiblings3: this.state.addressOfSiblings3 },
-            { postalCodeOfSiblings3: this.state.postalCodeOfSiblings3 },
-            { jobOfSiblings3: this.state.jobOfSiblings3 },
-            { comeTogetherWithSiblings3: this.state.comeTogetherWithSiblings3 },
+          '兄弟姉妹について ': [
+            { '兄弟姉妹姓名（漢字表記）①': this.state.siblingsNameJa1 },
+            { '兄弟姉妹姓名（英字表記/パスポート表記通りのローマ字で）①　': this.state.siblingsNameEn1 },
+            { '兄弟姉妹生年月日（西暦でご回答ください）①': this.state.birthdayOfSiblings1 },
+            { '兄弟姉妹出生国①': this.state.birthCountryOfSiblings1 },
+            { '兄弟姉妹の婚姻状況（例：未婚、既婚、離婚、別居、死別等）①': this.state.aboutMaridgeOfSiblings1 },
+            { '兄弟姉妹の現住所①': this.state.addressOfSiblings1 },
+            { '兄弟姉妹の郵便番号①': this.state.postalCodeOfSiblings1 },
+            { '兄弟姉妹のご職業（例：レジ/洋服販売/飲食店ウェイター/会社員/主婦/定年退職）①': this.state.jobOfSiblings1 },
+            { '一緒にカナダに来ますか？（はい/いいえ）①': this.state.comeTogetherWithSiblings1 },
+            { '兄弟姉妹姓名（漢字表記）②': this.state.siblingsNameJa2 },
+            { '兄弟姉妹姓名（英字表記/パスポート表記通りのローマ字で）②': this.state.siblingsNameEn2 },
+            { '兄弟姉妹生年月日（西暦でご回答ください）②': this.state.birthdayOfSiblings2 },
+            { '兄弟姉妹出生国②': this.state.birthCountryOfSiblings2 },
+            { '兄弟姉妹の婚姻状況（例：未婚、既婚、離婚、別居、死別等）②': this.state.aboutMaridgeOfSiblings2 },
+            { '兄弟姉妹の現住所②': this.state.addressOfSiblings2 },
+            { '兄弟姉妹の郵便番号②': this.state.postalCodeOfSiblings2 },
+            { '兄弟姉妹のご職業（例：レジ/洋服販売/飲食店ウェイター/会社員/主婦/定年退職）②': this.state.jobOfSiblings2 },
+            { '一緒にカナダに来ますか？（はい/いいえ）②': this.state.comeTogetherWithSiblings2 },
+            { '兄弟姉妹姓名（漢字表記）③': this.state.siblingsNameJa3 },
+            { '兄弟姉妹姓名（英字表記/パスポート表記通りのローマ字で）③': this.state.siblingsNameEn3 },
+            { '兄弟姉妹生年月日（西暦でご回答ください）③': this.state.birthdayOfSiblings3 },
+            { '兄弟姉妹出生国③': this.state.birthCountryOfSiblings3 },
+            { '兄弟姉妹の婚姻状況（例：未婚、既婚、離婚、別居、死別等）③': this.state.aboutMaridgeOfSiblings3 },
+            { '兄弟姉妹の現住所③': this.state.addressOfSiblings3 },
+            { '兄弟姉妹の郵便番号③': this.state.postalCodeOfSiblings3 },
+            { '兄弟姉妹のご職業（例：レジ/洋服販売/飲食店ウェイター/会社員/主婦/定年退職）③': this.state.jobOfSiblings3 },
+            { '一緒にカナダに来ますか？（はい/いいえ）③': this.state.comeTogetherWithSiblings3 },
           ],
         })
         .then(() => {
@@ -287,6 +291,11 @@ class FamilyInfo5 extends React.Component {
         <ScrollView style={styles.container}>
           <InfoHeader onPress={this.onPressBackButton.bind(this)}>家族情報５</InfoHeader>
           <Notes />
+          <View style={styles.notesTextBox}>
+            <Text style={styles.notesText}>
+              {this.state.modifyNote}
+            </Text>
+          </View>
           <QuestionTextSet
             onChangeText={text => {
               AsyncStorage.setItem('siblingsNameJa1', text);
@@ -601,7 +610,7 @@ class FamilyInfo5 extends React.Component {
           <CheckBox
             disabled={this.state.disableChecked}
             center
-            title={'完了/修正'}
+            title={'完了したらここをチェック'}
             checked={this.state.checked}
             onPress={() => {
               this.onPressCheckBox();
@@ -660,6 +669,17 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderWidth: 0.5,
     borderRadius: 3,
+  },
+  notesTextBox: {
+    width: '100%',
+    height: 35,
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 18,
+  },
+  notesText: {
+    color: '#FF0000',
+    width: '83%',
   },
 });
 

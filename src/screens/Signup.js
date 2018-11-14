@@ -14,6 +14,7 @@ import { StyleSheet,
 import { BlurView } from 'expo';
 import Copyrights from '../elements/Copyrights';
 import RegulationText from '../elements/RegulationText';
+import { isiPhoneSE, isiPhoneX } from '../lib/windowsize';
 
 
 class Signup extends React.Component {
@@ -92,7 +93,10 @@ class Signup extends React.Component {
             onPress={() => { this.props.navigation.goBack(); }}
             underlayColor="#F0F0F0"
           >
-            <Image style={styles.backbuttonImage} source={require('../../assets/images/left-arrow.png')} />
+            <Image
+              style={styles.backbuttonImage}
+              source={require('../../assets/images/left-arrow.png')}
+            />
           </TouchableOpacity>
         </View>
 
@@ -163,15 +167,15 @@ class Signup extends React.Component {
 
         <RegulationText />
 
-        <TouchableOpacity
-          style={styles.loginButtonBox}
-          onPress={this.handleSignup.bind(this)}
-          editable={this.state.editable}
-        >
-          <View style={styles.loginButton}>
+        <View style={styles.loginButtonBox}>
+          <TouchableOpacity
+            style={styles.loginButton}
+            onPress={this.handleSignup.bind(this)}
+            editable={this.state.editable}
+            >
             <Text style={styles.loginButtonText}>同意して登録</Text>
-          </View>
         </TouchableOpacity>
+        </View>
 
         <View style={styles.copyrights}>
           <Copyrights />
@@ -310,12 +314,12 @@ const styles = StyleSheet.create({
   },
   textInputTitle: {
     fontSize: 13,
-    left: -100,
+    left:  isiPhoneSE() ? -80 : -100,
     paddingBottom: 6,
   },
   textInputTitlePassword: {
     fontSize: 13,
-    left: -110,
+    left:  isiPhoneSE() ? -90 : -110,
     paddingBottom: 6,
   },
   questionMarkBox: {
@@ -351,7 +355,7 @@ const styles = StyleSheet.create({
   },
   copyrights: {
     width: '100%',
-    bottom: 0,
+    bottom:  isiPhoneX() ? 25 : 0,
   },
   modal: {
     backgroundColor: '#fff',

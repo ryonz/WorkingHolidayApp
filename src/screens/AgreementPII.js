@@ -25,6 +25,8 @@ class AgreementPII extends React.Component {
       editable: true,
       disableChecked: false,
 
+      modifyNote: '',
+
       AgreementPII: '',
     };
   }
@@ -35,9 +37,11 @@ class AgreementPII extends React.Component {
       if (value === 'true') {
         this.setState({ disabled: true });
         this.setState({ editable: false });
+        this.setState({ modifyNote: '修正を行う場合は、完了ボタンを再度押してください。' });
       } else if (value === 'false') {
         this.setState({ disabled: false });
         this.setState({ editable: true });
+        this.setState({ modifyNote: '' });
       }
     });
     AsyncStorage.getItem('AgreementPII').then(text => {
@@ -56,9 +60,9 @@ class AgreementPII extends React.Component {
       const db = firebase.firestore();
       const { currentUser } = firebase.auth();
       db.collection(`users/${currentUser.uid}/forms`)
-        .doc('AgreementPII')
+        .doc('個人情報・同意事項')
         .set({
-          AgreementPII: [{ AgreementPII: this.state.AgreementPII }],
+          '個人情報・同意事項': [{ AgreementPII: this.state.AgreementPII }],
         })
         .then(() => {
           this.props.navigation.state.params.setStateEdit12();
@@ -98,6 +102,12 @@ class AgreementPII extends React.Component {
       >
         <ScrollView>
           <InfoHeader onPress={this.onPressBackButton.bind(this)}>個人情報・同意事項</InfoHeader>
+
+          <View style={styles.notesTextBox}>
+            <Text style={styles.notesText}>
+              {this.state.modifyNote}
+            </Text>
+          </View>
 
           <View style={styles.textBox}>
             <Text style={styles.textNoteText}>以下の質問を読んで、一番下の◎の問いにお答え下さい。</Text>
@@ -175,7 +185,7 @@ class AgreementPII extends React.Component {
           <CheckBox
             disabled={this.state.disableChecked}
             center
-            title={'完了/修正'}
+            title={'完了したらここをチェック'}
             checked={this.state.checked}
             onPress={() => {
               this.onPressCheckBox();
@@ -263,6 +273,17 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderWidth: 0.5,
     borderRadius: 3,
+  },
+  notesTextBox: {
+    width: '100%',
+    height: 35,
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 18,
+  },
+  notesText: {
+    color: '#FF0000',
+    width: '83%',
   },
 });
 

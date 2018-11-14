@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
     paddingTop: 19,
     alignSelf: 'center',
-
   },
 });
 

@@ -139,7 +139,6 @@ const styles = StyleSheet.create({
   },
   copyrights:{
     width: '100%',
-    bottom: 0,
   },
 });
 

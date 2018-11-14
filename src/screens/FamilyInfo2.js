@@ -27,6 +27,8 @@ class FamilyInfo2 extends React.Component {
       disabled: false,
       disableChecked: false,
 
+      modifyNote: '',
+
       fatherNameJa: '',
       fatherNameEn: '',
       birthdayOfFather: '',
@@ -45,9 +47,11 @@ class FamilyInfo2 extends React.Component {
       if (value === 'true') {
         this.setState({ editable: false });
         this.setState({ disabled: true });
+        this.setState({ modifyNote: '修正を行う場合は、完了ボタンを再度押してください。' });
       } else if (value === 'false') {
         this.setState({ editable: true });
         this.setState({ disabled: false });
+        this.setState({ modifyNote: '' });
       }
     });
     AsyncStorage.getItem('fatherNameJa').then(text => {
@@ -106,18 +110,18 @@ class FamilyInfo2 extends React.Component {
       const db = firebase.firestore();
       const { currentUser } = firebase.auth();
       db.collection(`users/${currentUser.uid}/forms`)
-        .doc('form8')
+        .doc('お父様について')
         .set({
-          form8: [
-            { fatherNameJa: this.state.fatherNameJa },
-            { fatherNameEn: this.state.fatherNameEn },
-            { birthdayOfFather: this.state.birthdayOfFather },
-            { birthCountryOfFather: this.state.birthCountryOfFather },
-            { aboutMaridgeOfFather: this.state.aboutMaridgeOfFather },
-            { addressOfFather: this.state.addressOfFather },
-            { postalCodeOfFather: this.state.postalCodeOfFather },
-            { jobOfFather: this.state.jobOfFather },
-            { comeTogetherWithFather: this.state.comeTogetherWithFather },
+          'お父様について ': [
+            { 'お父様姓名（漢字表記）': this.state.fatherNameJa },
+            { 'お父様姓名（英字表記/パスポート表記通りのローマ字で ': this.state.fatherNameEn },
+            { 'お父様生年月日（西暦でご回答ください） ': this.state.birthdayOfFather },
+            { 'お父様出生国 ': this.state.birthCountryOfFather },
+            { 'お父様の婚姻状況（例：未婚、既婚、離婚、別居、死別等） ': this.state.aboutMaridgeOfFather },
+            { 'お父様の現住所 ': this.state.addressOfFather },
+            { 'お父様の郵便番号 ': this.state.postalCodeOfFather },
+            { 'お父様のご職業（例：レジ/洋服販売/飲食店ウェイター/会社員/主婦/定年退職）': this.state.jobOfFather },
+            { '一緒にカナダに来ますか？（はい/いいえ）': this.state.comeTogetherWithFather },
           ],
         })
         .then(() => {
@@ -159,6 +163,11 @@ class FamilyInfo2 extends React.Component {
         <ScrollView style={styles.container}>
           <InfoHeader onPress={this.onPressBackButton.bind(this)}>家族情報２</InfoHeader>
           <Notes />
+          <View style={styles.notesTextBox}>
+            <Text style={styles.notesText}>
+              {this.state.modifyNote}
+            </Text>
+          </View>
           <QuestionTextSet
             onChangeText={text => {
               AsyncStorage.setItem('fatherNameJa', text);
@@ -272,7 +281,7 @@ class FamilyInfo2 extends React.Component {
           <CheckBox
             disabled={this.state.disableChecked}
             center
-            title={'完了/修正'}
+            title={'完了したらここをチェック'}
             checked={this.state.checked}
             onPress={() => {
               this.onPressCheckBox();
@@ -324,6 +333,17 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderWidth: 0.5,
     borderRadius: 3,
+  },
+  notesTextBox: {
+    width: '100%',
+    height: 35,
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 18,
+  },
+  notesText: {
+    color: '#FF0000',
+    width: '83%',
   },
 });
 
