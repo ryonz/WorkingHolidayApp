@@ -15,7 +15,7 @@ import WHApplyBar from '../components/WHApplyBar';
 import LoginModal from './LoginModal';
 import SubmitButton from '../components/SubmitButton';
 import Copyrights from '../elements/Copyrights';
-import { isiPhoneSE } from '../lib/windowsize';
+import { isiPhoneSE, isiPhoneX, isiPhoneEightPlus } from '../lib/windowsize';
 
 class DeleteAll extends React.Component {
   constructor(props) {
@@ -223,6 +223,7 @@ const styles = StyleSheet.create({
   },
   submitButtonBox: {
     alignSelf: 'center',
+    marginTop: isiPhoneX() ? 90 : isiPhoneEightPlus() ? 42 : 0,
   },
   submitButton: {
     position: 'absolute',

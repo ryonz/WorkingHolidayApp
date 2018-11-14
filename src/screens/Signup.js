@@ -14,7 +14,7 @@ import { StyleSheet,
 import { BlurView } from 'expo';
 import Copyrights from '../elements/Copyrights';
 import RegulationText from '../elements/RegulationText';
-import { isiPhoneSE, isiPhoneX } from '../lib/windowsize';
+import { isiPhoneSE, isiPhoneX, isiPhoneEightPlus } from '../lib/windowsize';
 
 
 class Signup extends React.Component {
@@ -314,12 +314,12 @@ const styles = StyleSheet.create({
   },
   textInputTitle: {
     fontSize: 13,
-    left:  isiPhoneSE() ? -80 : -100,
+    left:  isiPhoneSE() ? -80 : isiPhoneEightPlus() ? -116 : -100,
     paddingBottom: 6,
   },
   textInputTitlePassword: {
     fontSize: 13,
-    left:  isiPhoneSE() ? -90 : -110,
+    left:  isiPhoneSE() ? -90 : isiPhoneEightPlus() ? -126 : -110,
     paddingBottom: 6,
   },
   questionMarkBox: {
@@ -343,7 +343,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderColor: '#707070',
     marginTop: 20,
-    marginBottom: 20,
+    marginBottom:  20,
     borderWidth: 0.3,
     borderRadius: 23,
   },

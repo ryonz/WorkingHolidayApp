@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import firebase from 'firebase';
 import Copyrights from '../elements/Copyrights';
-import { isiPhoneSE, isiPhoneX } from '../lib/windowsize';
+import { isiPhoneSE, isiPhoneX, isiPhoneEightPlus } from '../lib/windowsize';
 
 class Home extends React.Component {
   state = {
@@ -340,7 +340,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     marginTop: 20,
-    marginBottom: 20,
+    marginBottom: isiPhoneX() ? 30 : isiPhoneEightPlus() ? 70 : 20,
   },
   vanqu:{
     width: 80,
@@ -354,7 +354,7 @@ const styles = StyleSheet.create({
     width: '87%',
     height:'auto',
     alignSelf: 'center',
-    top: isiPhoneX() ? 200 : 100,
+    top: isiPhoneX() ? 200 : isiPhoneEightPlus() ? 180: 100,
     borderWidth: 1,
     borderColor: '#707070',
     borderRadius: 10,

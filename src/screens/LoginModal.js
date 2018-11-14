@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import firebase from 'firebase';
 import Copyrights from '../elements/Copyrights';
-import { isiPhoneSE } from '../lib/windowsize';
+import { isiPhoneSE, isiPhoneX, isiPhoneEightPlus } from '../lib/windowsize';
 
 
 class LoginModal extends React.Component {
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 0,
     shadowOpacity: 0.1,
-    marginBottom: 49,
+    marginBottom: isiPhoneX() ? 100 : 49,
   },
   headerText: {
     fontSize: 20,
@@ -196,12 +196,13 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   textInputTitle: {
-    left: isiPhoneSE() ? -85 : -110,
+    left: isiPhoneSE() ? -85 : isiPhoneEightPlus() ? -122 : -110,
     paddingBottom: 6,
   },
   forgetPasswordBox: {
     width: '50%',
     alignSelf: 'center',
+    marginTop: isiPhoneX() ? 15 : 0,
   },
   forgetPasswordText: {
     alignSelf: 'center',
@@ -239,6 +240,7 @@ const styles = StyleSheet.create({
   },
   copyrights: {
     width: '100%',
+    marginTop: isiPhoneX() ? 25 : isiPhoneEightPlus() ? 35 : 0,
   },
 });
 

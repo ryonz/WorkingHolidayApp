@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import Copyrights from '../elements/Copyrights';
 import SubmitButton from '../components/SubmitButton';
-import { isiPhoneSE, isiPhoneX } from '../lib/windowsize';
+import { isiPhoneSE, isiPhoneX, isiPhoneEightPlus } from '../lib/windowsize';
 
 class UpdatePassword extends React.Component {
   constructor(props) {
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
   },
   textInputTitle: {
     fontSize: 13,
-    left: isiPhoneSE() ? -80 : -100,
+    left: isiPhoneSE() ? -80 : isiPhoneEightPlus() ? -115 : -100,
     paddingBottom: 6,
   },
   submitButtonBox: {
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
   copyrights: {
     position: 'absolute',
     width: '100%',
-    bottom:  isiPhoneX() ? 25 : 0,
+    bottom:  isiPhoneX() ? 40 : 0,
   },
 
 });

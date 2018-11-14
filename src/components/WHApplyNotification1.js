@@ -9,7 +9,7 @@ import {
 
 import SubmitButton from './SubmitButton';
 import Copyrights from '../elements/Copyrights';
-
+import { isiPhoneEightPlus } from '../lib/windowsize';
 
 class WHApplyNotification1 extends React.Component {
   render() {
@@ -47,7 +47,13 @@ class WHApplyNotification1 extends React.Component {
           </Text>
         </View>
 
-        <SubmitButton onPress={() => { this.props.onPress(); }}>次へ</SubmitButton>
+        <View style={styles.submitButton}>
+          <SubmitButton
+            onPress={() => { this.props.onPress(); }}
+          >
+            次へ
+          </SubmitButton>
+        </View>
 
         <View style={styles.copyrights}>
           <Copyrights />
@@ -107,8 +113,8 @@ const styles = StyleSheet.create({
   titleText: {
     color: '#626262',
     fontSize: 20,
-    paddingLeft: 15,
-    paddingRight: 15,
+    paddingLeft: isiPhoneEightPlus() ? 24 : 15,
+    paddingRight: isiPhoneEightPlus() ? 18 : 15,
     fontWeight: 'bold',
   },
   textBox: {
@@ -126,6 +132,9 @@ const styles = StyleSheet.create({
     paddingBottom: 27,
     paddingRight: 31,
     lineHeight: 25,
+  },
+  submitButton: {
+    marginBottom: isiPhoneEightPlus() ? 60 : 0,
   },
   copyrights:{
     width: '100%',

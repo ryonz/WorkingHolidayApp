@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import WHApplyBar from '../components/WHApplyBar';
 import SubmitButton from '../components/SubmitButton';
 import Copyrights from '../elements/Copyrights';
-import { isiPhoneSE } from '../lib/windowsize';
+import { isiPhoneSE, isiPhoneEightPlus } from '../lib/windowsize';
 
 
 class AfterApply1 extends React.Component {
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   titleText: {
     color: '#626262',
     fontSize: isiPhoneSE() ? 17 : 20,
-    paddingLeft: 15,
+    paddingLeft: isiPhoneEightPlus() ? 22 : 15,
     fontWeight: 'bold',
   },
   textBox: {

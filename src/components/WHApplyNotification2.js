@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Text, ScrollView, Image } from 'react-native';
 
-import WHApplyBar from './WHApplyBar';
 import SubmitButton from './SubmitButton';
 import Copyrights from '../elements/Copyrights';
+import { isiPhoneEightPlus } from '../lib/windowsize';
 
 
 class WHApplyNotification2 extends React.Component {
@@ -113,8 +113,8 @@ const styles = StyleSheet.create({
   titleText: {
     color: '#626262',
     fontSize: 20,
-    paddingLeft: 15,
-    paddingRight: 15,
+    paddingLeft: isiPhoneEightPlus() ? 24 : 15,
+    paddingRight: isiPhoneEightPlus() ? 18 : 15,
     fontWeight: 'bold',
   },
   textBox: {

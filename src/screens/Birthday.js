@@ -10,7 +10,7 @@ import {
   AsyncStorage,
 } from 'react-native';
 import Copyrights from '../elements/Copyrights';
-import { isiPhoneSE, isiPhoneX } from '../lib/windowsize';
+import { isiPhoneSE, isiPhoneX, isiPhoneEightPlus } from '../lib/windowsize';
 
 class Birthday extends React.Component {
   state = {
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   },
   textInputTitle: {
     fontSize: 13,
-    left:  isiPhoneSE() ? -72 : -93,
+    left:  isiPhoneSE() ? -72 : isiPhoneEightPlus() ? -110 : -93,
     paddingBottom: 6,
   },
   forgetPasswordText: {
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
   },
   nextButtonBox: {
     position: 'absolute',
-    bottom: 20,
+    bottom:  isiPhoneX() ? 30 : 20,
     width: '100%',
     alignItems: 'center',
   },
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
   copyrights: {
     position: 'absolute',
     width: '100%',
-    bottom:  isiPhoneX() ? 25 : 0,
+    bottom:  isiPhoneX() ? 40 : 0,
 
   },
 

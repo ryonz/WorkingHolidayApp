@@ -15,7 +15,7 @@ import firebase from 'firebase';
 import Copyrights from '../elements/Copyrights';
 import WHApplyNotification1 from '../components/WHApplyNotification1';
 import WHApplyNotification2 from '../components/WHApplyNotification2';
-import { isiPhoneSE, isiPhoneX } from '../lib/windowsize';
+import { isiPhoneSE, isiPhoneX, isiPhoneEightPlus } from '../lib/windowsize';
 
 class Login extends React.Component {
   state = {
@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
   },
   textInputTitle: {
-    left: isiPhoneSE() ? -85 : -110,
+    left: isiPhoneSE() ? -85 : isiPhoneEightPlus() ? -122 : -110,
     paddingBottom: 6,
   },
   forgetPasswordBox: {
@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
   },
   copyrights: {
     width: '100%',
-    marginTop: isiPhoneX() ? 25 : 0,
+    marginTop: isiPhoneX() ? 25 : isiPhoneEightPlus() ? 35 : 0,
   },
 });
 
