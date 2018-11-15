@@ -1,9 +1,29 @@
 import React from 'react';
-import { WebView, View, StyleSheet } from 'react-native';
+import {
+  WebView,
+  View,
+  StyleSheet,
+  Alert,
+  Modal,
+} from 'react-native';
 
 import InfoHeader from '../components/InfoHeader';
+import Indicator from '../elements/Indicator';
 
 class AboutWorkingHoliday extends React.Component {
+  state = {
+    modalVisible: true,
+  };
+
+  onLoading() {
+    this.setState({ modalVisible: false });
+  }
+
+  isError() {
+    Alert.alert('予期しない理由で表示されませんでした。再度お試しください。');
+    this.props.navigation.goBack();
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -11,7 +31,17 @@ class AboutWorkingHoliday extends React.Component {
         <WebView
           source={{ uri: 'http://canadaworkingholiday.or.jp' }}
           style={styles.webview}
+          onError={this.isError.bind(this)}
+          onLoadEnd={this.onLoading.bind(this)}
         />
+
+        <Modal
+          visible={this.state.modalVisible}
+          animationType="none"
+          transparent
+        >
+          <Indicator />;
+        </Modal>
       </View>
     );
   }

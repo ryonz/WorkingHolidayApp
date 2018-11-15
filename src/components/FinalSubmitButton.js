@@ -44,12 +44,10 @@ class FinalSubmitButton extends React.Component {
   completeButton(response) {
     let numberOfChecked = 0;
     for (i = 0; i < 15; i++) {
-      console.log(response[i][1]);
       if (response[i][1] === 'true') {
         numberOfChecked++;
       }
     }
-    console.log(numberOfChecked);
     if (numberOfChecked === 15) {
       const db = firebase.firestore();
       const { currentUser } = firebase.auth();
@@ -60,7 +58,6 @@ class FinalSubmitButton extends React.Component {
           status: 'All Forms completed!!!',
         })
         .then(() => {
-          console.log('then');
           this.props.navigation.navigate('AfterApply1');
         })
         .catch((error) => {

@@ -24,8 +24,6 @@ class Home extends React.Component {
 
   componentDidMount() {
     this.checkIfNeedOpenModal();
-    console.log('check first');
-    console.log(this.props.navigation.checked);
   }
 
   onPressAboutJpcanada() {
@@ -44,10 +42,7 @@ class Home extends React.Component {
     try {
       const isFirstOpen = await AsyncStorage.getItem('IS_FIRST_OPEN');
       if (!isFirstOpen || isFirstOpen !== 'true') {
-        console.log('Is first open');
         this.setModalVisible(true);
-      } else {
-        console.log('Is not First Open')
       }
     } catch (error) {
       console.log(error);
@@ -85,11 +80,9 @@ class Home extends React.Component {
   handleOnpress() {
     const user = firebase.auth().currentUser;
     if (user !== null) {
-      console.log(user.uid);
       this.props.navigation.navigate('WHApply');
     } else {
       this.props.navigation.navigate('Login');
-      console.log('No Login');
     }
   }
 
@@ -274,6 +267,7 @@ class Home extends React.Component {
             </TouchableOpacity>
           </View>
         </Modal>
+
       </ScrollView>
     );
   }

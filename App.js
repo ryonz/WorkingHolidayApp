@@ -22,13 +22,13 @@ import FromCanadaGovernment from './src/screens/FromCanadaGovernment';
 import Declaration from './src/screens/Declaration';
 import Agreement from './src/screens/Agreement';
 import AfterApply1 from './src/screens/AfterApply1';
-import SplashScreen from './src/screens/SplashScreen';
 import Login from './src/screens/Login';
 import Signup from './src/screens/Signup';
 import Birthday from './src/screens/Birthday';
 import Help from './src/screens/Help';
 import UpdatePassword from './src/screens/UpdatePassword';
 import DeleteAll from './src/screens/DeleteAll';
+import Indicator from './src/elements/Indicator';
 
 
 require('firebase/firestore');
@@ -49,7 +49,6 @@ const App = createStackNavigator(
     Home: { screen: Home },
     AboutJpcanada: { screen: AboutJpcanada },
     AboutWorkingHoliday: { screen: AboutWorkingHoliday },
-    Splash: { screen: SplashScreen },
     Login: { screen: Login },
     Signup: { screen: Signup },
     Birthday: { screen: Birthday },

@@ -182,7 +182,6 @@ class PersonalInfo4 extends React.Component {
           this.setState({ disableChecked: false });
         });
     } else if (checked !== false) {
-      console.log('here');
       this.setState({ checked: false });
       this.setState({ editable: true });
       this.setState({ disabled: false });

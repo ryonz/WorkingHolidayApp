@@ -42,10 +42,11 @@ class Signup extends React.Component {
     if (this.state.email !== null) {
       firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
         .then((user) => {
-          console.log('success', user);
           this.handleVerifyEmailAddress();
+          Alert.alert('確認メールを送信しました。メールは届くまでに数分かかる場合があります。')
           this.props.navigation.navigate('WHApply');
         }).catch((error) => {
+          Alert.alert('既に登録されたメールアドレスの可能性があります。');
           console.log(error);
         });
     } else if (this.state.email === null) {
@@ -57,7 +58,6 @@ class Signup extends React.Component {
     const { currentUser } = firebase.auth();
     currentUser.sendEmailVerification()
       .then(() => {
-        console.log('succes send Vertification Email');
       })
       .catch((error) => {
         console.log(error);

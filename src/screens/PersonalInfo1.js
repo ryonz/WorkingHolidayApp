@@ -61,7 +61,6 @@ class PersonalInfo1 extends React.Component {
     });
     AsyncStorage.getItem('fullname').then(text => {
       if (text !== null) {
-        console.log(text);
         this.setState({ fullname: text });
       }
     });

@@ -13,12 +13,18 @@ class AfterApply1 extends React.Component {
 
       <ScrollView style={styles.container}>
 
-        <WHApplyBar navigation={() => { this.props.navigation.goBack(); }}>
+        <WHApplyBar
+          navigation={() => { this.props.navigation.goBack(); }}
+        >
           今後の流れ
         </WHApplyBar>
 
         <View style={styles.title}>
-          <Text style={styles.titleText}>今後の流れ</Text>
+          <Text
+            style={styles.titleText}
+          >
+            今後の流れ
+          </Text>
         </View>
 
         <View style={styles.textBox}>
@@ -77,8 +83,8 @@ const styles = StyleSheet.create({
   },
   titleText: {
     color: '#626262',
-    fontSize: isiPhoneSE() ? 17 : 20,
-    paddingLeft: isiPhoneEightPlus() ? 22 : 15,
+    fontSize: isiPhoneSE() ? 16 : 20,
+    paddingLeft: isiPhoneEightPlus() ? 22 : isiPhoneSE()? 16 : 24,
     fontWeight: 'bold',
   },
   textBox: {

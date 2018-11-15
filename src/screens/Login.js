@@ -39,10 +39,7 @@ class Login extends React.Component {
     try {
       const isFirstOpen = await AsyncStorage.getItem('IS_FIRST_LOGIN_OPEN');
       if (!isFirstOpen || isFirstOpen !== 'true') {
-        console.log('Is first open');
         this.setModalVisible(true);
-      } else {
-        console.log('Is not First Open');
       }
     } catch (error) {
       console.log(error);

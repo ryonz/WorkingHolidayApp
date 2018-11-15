@@ -172,7 +172,6 @@ class PersonalInfo3 extends React.Component {
 
             <RadioButtons
               onSelect={(index, value) => {
-                console.log(index);
                 AsyncStorage.setItem('aboutVisa', value);
                 this.setState({ aboutVisa: value });
               }}

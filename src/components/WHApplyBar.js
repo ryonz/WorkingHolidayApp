@@ -15,7 +15,11 @@ class WHApplyBar extends React.Component {
       <View style={styles.container}>
 
         <View style={styles.headerHWApply}>
-          <Text style={styles.headerText}>{this.props.children}</Text>
+          <Text
+            style={styles.headerText}
+          >
+            {this.props.children}
+          </Text>
         </View>
 
         <Image

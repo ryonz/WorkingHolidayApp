@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import firebase from 'firebase';
 
+import { isiPhoneSE } from '../lib/windowsize';
+
 class HWApplyMailBar extends React.Component {
   state = {
     email: '',
@@ -46,7 +48,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   mailBarText: {
-    fontSize: 15,
+    fontSize: isiPhoneSE() ? 12 : 15,
     paddingTop: 2,
   },
 });

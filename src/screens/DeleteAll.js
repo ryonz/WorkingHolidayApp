@@ -54,12 +54,9 @@ class DeleteAll extends React.Component {
           this.setState({ modalVisible: false });
           AsyncStorage.clear();
           this.props.navigation.navigate('Home');
-          console.log('Delete All Success');
         }).catch(() => {
         });
     } else {
-      console.log('ddd');
-      console.log(user);
       this.setState({ modalVisible: false });
       this.props.navigation.navigate('Login');
     }
