@@ -9,7 +9,7 @@ import {
 
 import SubmitButton from './SubmitButton';
 import Copyrights from '../elements/Copyrights';
-import { isiPhoneSE, isiPhoneEightPlus } from '../lib/windowsize';
+import { isiPhoneSE, isiPhoneEightPlus, isiPhoneX } from '../lib/windowsize';
 
 class WHApplyNotification1 extends React.Component {
   render() {
@@ -99,11 +99,12 @@ const styles = StyleSheet.create({
     right: 18,
   },
   title: {
-    width: '33%',
+    alignSelf: 'center',
+    alignItems: 'center',
+    width: 'auto',
     height: 39,
     marginTop: 39,
     marginBottom: 36,
-    alignSelf: 'center',
     borderWidth: 1,
     borderRadius: 6,
     borderColor: '#707070',
@@ -113,9 +114,10 @@ const styles = StyleSheet.create({
   titleText: {
     color: '#626262',
     fontSize: isiPhoneSE() ? 16 : 20,
-    paddingLeft: isiPhoneEightPlus() ? 24 : isiPhoneSE()? 16 : 24,
-    paddingRight: isiPhoneEightPlus() ? 18 : 0,
+    paddingLeft: 5,
     fontWeight: 'bold',
+    marginLeft:10,
+    marginRight: 10,
   },
   textBox: {
     width: '83%',
@@ -134,7 +136,7 @@ const styles = StyleSheet.create({
     lineHeight: 25,
   },
   submitButton: {
-    marginBottom: isiPhoneEightPlus() ? 60 : 0,
+    marginBottom: isiPhoneEightPlus() ? 60 : isiPhoneX() ? 110 : 0,
   },
   copyrights:{
     width: '100%',

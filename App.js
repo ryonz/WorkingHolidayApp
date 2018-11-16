@@ -3,8 +3,6 @@ import firebase from 'firebase';
 import ENV from './env.json';
 
 import Home from './src/screens/Home';
-import AboutJpcanada from './src/screens/AboutJpcanada';
-import AboutWorkingHoliday from './src/screens/AboutWorkingHoliday';
 import WHApply from './src/screens/WHApply';
 import PersonalInfo1 from './src/screens/PersonalInfo1';
 import PersonalInfo2 from './src/screens/PersonalInfo2';
@@ -28,7 +26,6 @@ import Birthday from './src/screens/Birthday';
 import Help from './src/screens/Help';
 import UpdatePassword from './src/screens/UpdatePassword';
 import DeleteAll from './src/screens/DeleteAll';
-import Indicator from './src/elements/Indicator';
 
 
 require('firebase/firestore');
@@ -47,8 +44,6 @@ firebase.initializeApp(config);
 const App = createStackNavigator(
   {
     Home: { screen: Home },
-    AboutJpcanada: { screen: AboutJpcanada },
-    AboutWorkingHoliday: { screen: AboutWorkingHoliday },
     Login: { screen: Login },
     Signup: { screen: Signup },
     Birthday: { screen: Birthday },

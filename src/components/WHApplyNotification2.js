@@ -33,10 +33,10 @@ class WHApplyNotification2 extends React.Component {
                 が長引きますと、現在のステータス
                 （学生や観光）の有効期限までに、ワ
                 ーキングホリデーの取得とその切り替
-                えが間に合わない可能性がございます。
+                えが間に合わない可能性がございます。{'\n'}
                 対策におかれましては、必ず『お問い
                 合わせ』よりカウンセラーまでご相談
-                くださいませ。
+                くださいませ。{'\n'}
                 （※サポートチームでは対応しており
                 ません。ご了承ください。）また、日
                 本に一時帰国し、ワーキングホリデー
@@ -99,11 +99,12 @@ const styles = StyleSheet.create({
     right: 18,
   },
   title: {
+    alignSelf: 'center',
+    alignItems: 'center',
     width: '33%',
     height: 39,
     marginTop: 39,
     marginBottom: 36,
-    alignSelf: 'center',
     borderWidth: 1,
     borderRadius: 6,
     borderColor: '#707070',
@@ -113,9 +114,10 @@ const styles = StyleSheet.create({
   titleText: {
     color: '#626262',
     fontSize: isiPhoneSE() ? 16 : 20,
-    paddingLeft: isiPhoneEightPlus() ? 24 : isiPhoneSE()? 16 : 24,
-    paddingRight: isiPhoneEightPlus() ? 18 : 0,
+    paddingLeft: 5,
     fontWeight: 'bold',
+    marginLeft:10,
+    marginRight: 10,
   },
   textBox: {
     width: '83%',

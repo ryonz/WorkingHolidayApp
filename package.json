@@ -23,6 +23,7 @@
     "react-native-elements": "^0.19.1",
     "react-native-flexi-radio-button": "^0.2.2",
     "react-native-swiper": "^1.5.13",
+    "react-native-webview": "git+https://github.com/react-native-community/react-native-webview.git",
     "react-navigation": "^2.16.0"
   },
   "devDependencies": {

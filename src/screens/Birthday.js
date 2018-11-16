@@ -14,7 +14,7 @@ import { isiPhoneSE, isiPhoneX, isiPhoneEightPlus } from '../lib/windowsize';
 
 class Birthday extends React.Component {
   state = {
-    birthday: '19920101',
+    birthday: null,
   }
 
   onPressNextButton() {

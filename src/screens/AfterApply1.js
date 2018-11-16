@@ -29,17 +29,17 @@ class AfterApply1 extends React.Component {
 
         <View style={styles.textBox}>
           <Text style={styles.textBoxText}>
-            ご入力お疲れ様でした。
+            ご入力お疲れ様でした。{'\n'}
             これより入力頂きました内容を確認し
             改めてJpcanada留学センター担当カウンセラーから登録メールアドレ
-            スにメールをさせて頂きます。申請完
-            了までメールでのやり取りが続くかと思いますが、ご協力お願い致します。
+            スにメールをさせて頂きます。{'\n'}
+            申請完了までメールでのやり取りが続くかと思いますが、ご協力お願い致します。
 
             またメール到着まで
             <Text style={{ color: '#FF0000' }}>
             『ワーホリ申請について』の「フォーム送信後の流れについて」
             </Text>
-            をお読み頂き必要書類等を事前にご用意頂けますとスムーズかと思います。
+            をお読み頂き必要書類等を事前にご用意頂けますとスムーズかと思います。{'\n'}
 
             ＊ご入力頂きました内容に変更・
             修正等ある場合は直接Jpcanada留学
@@ -84,8 +84,10 @@ const styles = StyleSheet.create({
   titleText: {
     color: '#626262',
     fontSize: isiPhoneSE() ? 16 : 20,
-    paddingLeft: isiPhoneEightPlus() ? 22 : isiPhoneSE()? 16 : 24,
+    paddingLeft:isiPhoneEightPlus() ? 12 : 5,
     fontWeight: 'bold',
+    marginLeft:10,
+    marginRight: 10,
   },
   textBox: {
     width: '83%',

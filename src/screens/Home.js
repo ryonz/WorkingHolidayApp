@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Modal,
   AsyncStorage,
+  Linking,
 } from 'react-native';
 import firebase from 'firebase';
 import Copyrights from '../elements/Copyrights';
@@ -27,11 +28,11 @@ class Home extends React.Component {
   }
 
   onPressAboutJpcanada() {
-    this.props.navigation.navigate('AboutJpcanada');
+    Linking.openURL('https://agent.jpcanada.com/points/');
   }
 
   onPressAboutWorkingHoliday() {
-    this.props.navigation.navigate('AboutWorkingHoliday');
+    Linking.openURL('http://canadaworkingholiday.or.jp');
   }
 
   setModalVisible(visible) {
@@ -143,7 +144,10 @@ class Home extends React.Component {
         </View>
 
         <View style={styles.vanquBox}>
-          <Image style={styles.vanqu} source={require('../../assets/images/vanqu.png')} />
+          <Image
+            style={styles.vanqu}
+            source={require('../../assets/images/vanqu.png')}
+          />
         </View>
 
         <View style={styles.copyrights}>

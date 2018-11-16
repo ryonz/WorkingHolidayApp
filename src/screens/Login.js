@@ -19,8 +19,8 @@ import { isiPhoneSE, isiPhoneX, isiPhoneEightPlus } from '../lib/windowsize';
 
 class Login extends React.Component {
   state = {
-    email: 'user0@example.com',
-    password: '19920101',
+    email: '',
+    password: '',
     notificationModal1: false,
     notificationModal2: false,
 
