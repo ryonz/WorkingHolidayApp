@@ -78,6 +78,7 @@ class UpdatePassword extends React.Component {
             placeholder={'ryugaku-taro@exapmple.com'}
             textContentType={'emailAddress'}
             value={this.state.email}
+            underlineColorAndroid={'transparent'}
           />
         </View>
 

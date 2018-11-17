@@ -170,6 +170,7 @@ class AgreementPII extends React.Component {
               editable={this.state.editable}
               style={styles.textInput}
               multiline
+              underlineColorAndroid={'transparent'}
             />
           </View>
 

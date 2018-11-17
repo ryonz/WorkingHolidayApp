@@ -1,9 +1,15 @@
 import React from 'react';
-import { StyleSheet, View, Text, ScrollView, Image } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  Image,
+} from 'react-native';
 
 import SubmitButton from './SubmitButton';
 import Copyrights from '../elements/Copyrights';
-import { isiPhoneSE, isiPhoneEightPlus } from '../lib/windowsize';
+import { isiPhoneSE } from '../lib/windowsize';
 
 
 class WHApplyNotification2 extends React.Component {

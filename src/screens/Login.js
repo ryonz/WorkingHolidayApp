@@ -100,7 +100,11 @@ class Login extends React.Component {
         </View>
 
         <View style={styles.textInputBox}>
-          <Text style={styles.textInputTitle}>メールアドレス</Text>
+          <Text
+            style={styles.textInputTitle}
+          >
+            メールアドレス
+          </Text>
           <TextInput
             value={this.state.email}
             onChangeText={text => {
@@ -112,6 +116,7 @@ class Login extends React.Component {
             editable
             placeholder={'ryugaku-taro@exapmple.com'}
             textContentType={'emailAddress'}
+            underlineColorAndroid={'transparent'}
           />
         </View>
 
@@ -129,6 +134,7 @@ class Login extends React.Component {
             editable
             placeholder={'8文字以上16以内'}
             textContentType={'password'}
+            underlineColorAndroid={'transparent'}
           />
         </View>
 

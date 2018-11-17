@@ -1,5 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, AsyncStorage } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  AsyncStorage,
+} from 'react-native';
 import { Font } from 'expo';
 import fontAwesome from '../../assets/fonts/fa-solid-900.ttf';
 import { isiPhoneSE } from '../lib/windowsize';

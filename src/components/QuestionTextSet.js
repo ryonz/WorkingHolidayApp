@@ -21,6 +21,7 @@ class QuestionTextSet extends React.Component {
             onChangeText={this.props.onChangeText}
             value={this.props.value}
             editable={this.props.editable}
+            underlineColorAndroid={'transparent'}
           />
         </View>
       </View>

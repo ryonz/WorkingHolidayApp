@@ -87,7 +87,11 @@ class Signup extends React.Component {
       <ScrollView style={styles.container}>
 
         <View style={styles.headerHWApply}>
-          <Text style={styles.headerText}>アカウント登録２</Text>
+          <Text
+            style={styles.headerText}
+          >
+            アカウント登録２
+          </Text>
           <TouchableOpacity
             style={styles.backbutton}
             onPress={() => { this.props.navigation.goBack(); }}
@@ -115,8 +119,10 @@ class Signup extends React.Component {
         </View>
 
         <View style={styles.textInputBox}>
-          <Text style={styles.textInputTitle}>
-            メールアドレス
+          <View style={styles.textInputBoxTextline}>
+            <Text style={styles.textInputTitle}>
+              メールアドレス
+            </Text>
             <TouchableOpacity
               style={styles.questionMarkBox}
               onPress={() => { this.openMailModal(); }}
@@ -126,7 +132,7 @@ class Signup extends React.Component {
                 source={require('../../assets/images/question-mark.png')}
               />
             </TouchableOpacity>
-          </Text>
+          </View>
           <TextInput
             onChangeText={(text) => { this.setState({ email: text }); }}
             autoCapitalize="none"
@@ -136,12 +142,15 @@ class Signup extends React.Component {
             editable
             placeholder={'ryugaku-taro@exapmple.com'}
             textContentType={'emailAddress'}
+            underlineColorAndroid={'transparent'}
           />
         </View>
 
         <View style={styles.textInputBox}>
-          <Text style={styles.textInputTitlePassword}>
-            パスワード
+          <View style={styles.textInputBoxTextline}>
+            <Text style={styles.textInputTitlePassword}>
+              パスワード
+            </Text>
             <TouchableOpacity
               style={styles.questionMarkBox}
               onPress={() => { this.openPasswordModal(); }}
@@ -151,7 +160,8 @@ class Signup extends React.Component {
                 source={require('../../assets/images/question-mark.png')}
               />
             </TouchableOpacity>
-          </Text>
+          </View>
+
           <TextInput
             value={this.state.password}
             onChangeText={(text) => { this.setState({ password: text }); }}
@@ -162,6 +172,7 @@ class Signup extends React.Component {
             editable={false}
             placeholder={'8文字以上16以内'}
             textContentType={'password'}
+            underlineColorAndroid={'transparent'}
           />
         </View>
 
@@ -172,9 +183,9 @@ class Signup extends React.Component {
             style={styles.loginButton}
             onPress={this.handleSignup.bind(this)}
             editable={this.state.editable}
-            >
+          >
             <Text style={styles.loginButtonText}>同意して登録</Text>
-        </TouchableOpacity>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.copyrights}>
@@ -298,6 +309,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 12,
   },
+  textInputBoxTextline: {
+    flex: 1,
+    flexDirection: 'row',
+    width: '100%',
+  },
   textInputBoxPassword: {
     alignItems: 'center',
     marginTop: 12,
@@ -314,19 +330,18 @@ const styles = StyleSheet.create({
   },
   textInputTitle: {
     fontSize: 13,
-    left:  isiPhoneSE() ? -80 : isiPhoneEightPlus() ? -116 : -100,
+    left:  isiPhoneSE() ? 30 : isiPhoneEightPlus() ? 35 : 32,
     paddingBottom: 6,
   },
   textInputTitlePassword: {
     fontSize: 13,
-    left:  isiPhoneSE() ? -90 : isiPhoneEightPlus() ? -126 : -110,
+    left:  isiPhoneSE() ? 30 : isiPhoneEightPlus() ? 35 : 32,
     paddingBottom: 6,
   },
   questionMarkBox: {
     width: 20,
     height: 20,
-    paddingLeft: 3,
-    paddingTop: 8,
+    paddingLeft: 40,
   },
   questionMark: {
     width: 14,

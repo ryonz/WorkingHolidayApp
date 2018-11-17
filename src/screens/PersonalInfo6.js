@@ -566,6 +566,7 @@ class PersonalInfo6 extends React.Component {
               multiline
               placeholder={`開始日(入社日)、終了日(退社日)、会社名(ふりがな)、所在地、職業、役職(ポジション)、
               主な(仕事)内容`}
+              underlineColorAndroid={'transparent'}
             />
           </View>
 

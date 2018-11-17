@@ -6,11 +6,8 @@ import {
   Text,
   AsyncStorage,
   TouchableOpacity,
-  Modal,
   Alert,
 } from 'react-native';
-import { BlurView } from 'expo';
-
 
 class FinalSubmitButton extends React.Component {
   constructor(props) {

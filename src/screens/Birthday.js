@@ -14,7 +14,7 @@ import { isiPhoneSE, isiPhoneX, isiPhoneEightPlus } from '../lib/windowsize';
 
 class Birthday extends React.Component {
   state = {
-    birthday: null,
+    birthday: '19921111',
   }
 
   onPressNextButton() {
@@ -54,6 +54,7 @@ class Birthday extends React.Component {
             style={styles.textInput}
             maxLength={8}
             placeholder={'例：19920101'}
+            underlineColorAndroid={'transparent'}
           />
         </View>
 

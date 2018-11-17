@@ -68,6 +68,7 @@ class LoginModal extends React.Component {
             editable
             placeholder={'ryugaku-taro@exapmple.com'}
             textContentType={'emailAddress'}
+            underlineColorAndroid={'transparent'}
           />
         </View>
 
@@ -85,6 +86,7 @@ class LoginModal extends React.Component {
             editable
             placeholder={'8文字以上16以内'}
             textContentType={'password'}
+            underlineColorAndroid={'transparent'}
           />
         </View>
 
