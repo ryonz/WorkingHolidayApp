@@ -35,7 +35,7 @@ class FinalSubmitButton extends React.Component {
         'checked13',
         'checked14',
         'checked15',
-      ]).then(response => this.completeButton(response))
+      ]).then(response => this.completeButton(response));
   }
 
   completeButton(response) {
@@ -49,7 +49,7 @@ class FinalSubmitButton extends React.Component {
       const db = firebase.firestore();
       const { currentUser } = firebase.auth();
       db.collection(`users/${currentUser.uid}/Compreted`)
-        .doc('Form ')
+        .doc('Form')
         .set({
           date: new Date(),
           status: 'All Forms completed!!!',

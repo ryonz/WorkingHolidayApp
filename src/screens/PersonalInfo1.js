@@ -298,6 +298,7 @@ class PersonalInfo1 extends React.Component {
             onChangeText={text => {
               AsyncStorage.setItem('aboutMaridge', text);
               this.setState({ aboutMaridge: text });
+              this.handleDisable(text);
             }}
             placeholder={'例：未婚、既婚、離婚、別居、死別等'}
             value={this.state.aboutMaridge}
@@ -313,6 +314,10 @@ class PersonalInfo1 extends React.Component {
               }}
               value={this.state.fromTermOfMaridge}
               disabled={this.state.disabled}
+              onPress={() => {
+                AsyncStorage.setItem('fromTermOfMaridge', '');
+                this.setState({ fromTermOfMaridge: '' });
+              }}
             >
               婚姻期間（上記で既婚・離婚と答えた方)
             </QuestionTextBoxDate>
@@ -323,6 +328,10 @@ class PersonalInfo1 extends React.Component {
               }}
               value={this.state.ToTermOfMaridge}
               disabled={this.state.disabled}
+              onPress={() => {
+                this.setState({ ToTermOfMaridge: '' });
+                AsyncStorage.setItem('ToTermOfMaridge', '');
+              }}
             >
               から
             </QuestionTextBoxDate>
@@ -345,6 +354,10 @@ class PersonalInfo1 extends React.Component {
             }}
             value={this.state.birthdateOfSpouse}
             disabled={this.state.disabled}
+            onPress={() => {
+              this.setState({ birthdateOfSpouse: '' });
+              AsyncStorage.setItem('birthdateOfSpouse', '');
+            }}
           >
             配偶者の生年月日（西暦で）
           </QuestionTextBoxDate>
@@ -356,6 +369,10 @@ class PersonalInfo1 extends React.Component {
               }}
               value={this.state.fromTermOfExMaridge}
               disabled={this.state.disabled}
+              onPress={() => {
+                this.setState({ fromTermOfExMaridge: '' });
+                AsyncStorage.setItem('fromTermOfExMaridge', '');
+              }}
             >
               上記で回答した婚姻期間以外に、過去に婚姻歴の）{'\n'}ある方はその婚姻期間
             </QuestionTextBoxDate>
@@ -366,6 +383,10 @@ class PersonalInfo1 extends React.Component {
               }}
               value={this.state.ToTermOfExMaridge}
               disabled={this.state.disabled}
+              onPress={() => {
+                this.setState({ ToTermOfExMaridge: '' });
+                AsyncStorage.setItem('ToTermOfExMaridge', '');
+              }}
             >
               から
             </QuestionTextBoxDate>
@@ -388,6 +409,10 @@ class PersonalInfo1 extends React.Component {
             }}
             value={this.state.birthdateOfExSpouse}
             disabled={this.state.disabled}
+            onPress={() => {
+              this.setState({ birthdateOfExSpouse: '' });
+              AsyncStorage.setItem('birthdateOfExSpouse', '');
+            }}
           >
             上記の配偶者の生年月日（西暦で）
           </QuestionTextBoxDate>

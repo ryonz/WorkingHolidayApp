@@ -289,6 +289,10 @@ class PersonalInfo6 extends React.Component {
                 }}
                 value={this.state.dateOfStart1}
                 disabled={this.state.disabled}
+                onPress={() => {
+                  AsyncStorage.setItem('dateOfStart1', '');
+                  this.setState({ dateOfStart1: '' });
+                }}
               >
                 開始日(入社日)*
               </QuestionTextBoxDate>
@@ -299,6 +303,10 @@ class PersonalInfo6 extends React.Component {
                 }}
                 value={this.state.dateOfFinish1}
                 disabled={this.state.disabled}
+                onPress={() => {
+                  AsyncStorage.setItem('dateOfFinish1', '');
+                  this.setState({ dateOfFinish1: '' });
+                }}
               >
                 終了日(退社日)*
               </QuestionTextBoxDate>
@@ -376,6 +384,10 @@ class PersonalInfo6 extends React.Component {
                 }}
                 value={this.state.dateOfStart2}
                 disabled={this.state.disabled}
+                onPress={() => {
+                  AsyncStorage.setItem('dateOfStart2', '');
+                  this.setState({ dateOfStart2: '' });
+                }}
               >
                 開始日(入社日)*
               </QuestionTextBoxDate>
@@ -387,6 +399,10 @@ class PersonalInfo6 extends React.Component {
                 }}
                 value={this.state.dateOfFinish2}
                 disabled={this.state.disabled}
+                onPress={() => {
+                  AsyncStorage.setItem('dateOfFinish2', '');
+                  this.setState({ dateOfFinish2: '' });
+                }}
               >
                 終了日(退社日)*
               </QuestionTextBoxDate>
@@ -464,6 +480,10 @@ class PersonalInfo6 extends React.Component {
                 }}
                 value={this.state.dateOfStart3}
                 disabled={this.state.disabled}
+                onPress={() => {
+                  AsyncStorage.setItem('dateOfStart3', '');
+                  this.setState({ dateOfStart3: '' });
+                }}
               >
                 開始日(入社日)*
               </QuestionTextBoxDate>
@@ -475,6 +495,10 @@ class PersonalInfo6 extends React.Component {
                 }}
                 value={this.state.dateOfFinish3}
                 disabled={this.state.disabled}
+                onPress={() => {
+                  AsyncStorage.setItem('dateOfFinish3', '');
+                  this.setState({ dateOfFinish3: '' });
+                }}
               >
                 終了日(退社日)*
               </QuestionTextBoxDate>

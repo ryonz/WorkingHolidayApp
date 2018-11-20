@@ -263,6 +263,10 @@ class PersonalInfo5 extends React.Component {
               }}
               value={this.state.dateOfAdmission}
               disabled={this.state.disabled}
+              onPress={() => {
+                AsyncStorage.setItem('dateOfAdmission', '');
+                this.setState({ dateOfAdmission: '' });
+              }}
             >
               入学年月日
             </QuestionTextBoxDate>
@@ -275,6 +279,10 @@ class PersonalInfo5 extends React.Component {
               }}
               value={this.state.dateOfGraduation}
               disabled={this.state.disabled}
+              onPress={() => {
+                AsyncStorage.setItem('dateOfGraduation', '');
+                this.setState({ dateOfGraduation: '' });
+              }}
             >
               卒業予定年月日
             </QuestionTextBoxDate>
@@ -331,6 +339,10 @@ class PersonalInfo5 extends React.Component {
               }}
               value={this.state.dateOfLastAdmission}
               editable={this.state.disabled}
+              onPress={() => {
+                AsyncStorage.setItem('dateOfLastAdmission', '');
+                this.setState({ dateOfLastAdmission: '' });
+              }}
             >
               入学年月日
             </QuestionTextBoxDate>
@@ -343,6 +355,10 @@ class PersonalInfo5 extends React.Component {
               }}
               value={this.state.dateOfLastGraduation}
               disabled={this.state.disabled}
+              onPress={() => {
+                AsyncStorage.setItem('dateOfLastGraduation', '');
+                this.setState({ dateOfLastGraduation: '' });
+              }}
             >
               卒業予定年月日
             </QuestionTextBoxDate>

@@ -202,6 +202,10 @@ class FamilyInfo3 extends React.Component {
             }}
             value={this.state.birthdayOfPartner}
             disabled={this.state.disabled}
+            onPress={() => {
+              AsyncStorage.setItem('birthdayOfPartner', '');
+              this.setState({ birthdayOfPartner: '' });
+            }}
           >
             配偶者の生年月日（西暦で）
           </QuestionTextBoxDate>

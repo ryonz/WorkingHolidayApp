@@ -226,6 +226,10 @@ class PersonalInfo2 extends React.Component {
             }}
             value={this.state.startDateofcurrentAdress}
             disabled={this.state.disabled}
+            onPress={() => {
+              AsyncStorage.setItem('startDateofcurrentAdress', '');
+              this.setState({ startDateofcurrentAdress: '' });
+            }}
           >
             現住所にご自身が住み始めた日
           </QuestionTextBoxDate>

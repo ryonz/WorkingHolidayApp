@@ -246,6 +246,10 @@ class PersonalInfo4 extends React.Component {
               }}
               value={this.state.fromDurationOfVisa}
               disabled={this.state.disabled}
+              onPress={() => {
+                AsyncStorage.setItem('fromDurationOfVisa', '');
+                this.setState({ fromDurationOfVisa: '' });
+              }}
             >
               *上記で「ビザで滞在中」と回答された方。
               {'\n'}滞在期間をご回答ください。
@@ -257,6 +261,10 @@ class PersonalInfo4 extends React.Component {
               }}
               value={this.state.toDurationOfVisa}
               disabled={this.state.disabled}
+              onPress={() => {
+                AsyncStorage.setItem('toDurationOfVisa', '');
+                this.setState({ toDurationOfVisa: '' });
+              }}
             >
               から
             </QuestionTextBoxDate>
@@ -304,6 +312,10 @@ class PersonalInfo4 extends React.Component {
               }}
               value={this.state.fromDurationOfOtherCountry}
               disabled={this.state.disabled}
+              onPress={() => {
+                AsyncStorage.setItem('fromDurationOfOtherCountry', '');
+                this.setState({ fromDurationOfOtherCountry: '' });
+              }}
             >
               *「はい」と回答された方。滞在期間をご回答ください。
             </QuestionTextBoxDate>
@@ -314,6 +326,10 @@ class PersonalInfo4 extends React.Component {
               }}
               value={this.state.toDurationOfOtherCountry}
               disabled={this.state.disabled}
+              onPress={() => {
+                AsyncStorage.setItem('toDurationOfOtherCountry', '');
+                this.setState({ toDurationOfOtherCountry: '' });
+              }}
             >
               から
             </QuestionTextBoxDate>
@@ -361,6 +377,10 @@ class PersonalInfo4 extends React.Component {
               }}
               value={this.state.fromDurationOfCountryToApply}
               disabled={this.state.disabled}
+              onPress={() => {
+                AsyncStorage.setItem('fromDurationOfCountryToApply', '');
+                this.setState({ fromDurationOfCountryToApply: '' });
+              }}
             >
               *「いいえ」と回答された方。その国での滞在期間をご回答ください。
             </QuestionTextBoxDate>
@@ -371,6 +391,10 @@ class PersonalInfo4 extends React.Component {
               }}
               value={this.state.toDurationOfCountryToApply}
               disabled={this.state.disabled}
+              onPress={() => {
+                AsyncStorage.setItem('toDurationOfCountryToApply', '');
+                this.setState({ toDurationOfCountryToApply: '' });
+              }}
             >
               から
             </QuestionTextBoxDate>

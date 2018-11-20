@@ -198,6 +198,10 @@ class FamilyInfo2 extends React.Component {
             }}
             value={this.state.birthdayOfFather}
             disabled={this.state.disabled}
+            onPress={() => {
+              AsyncStorage.setItem('birthdayOfFather', '');
+              this.setState({ birthdayOfFather: '' });
+            }}
           >
             お父様の生年月日（西暦で）
           </QuestionTextBoxDate>

@@ -324,6 +324,10 @@ class FamilyInfo5 extends React.Component {
             }}
             value={this.state.birthdayOfSiblings1}
             disabled={this.state.disabled}
+            onPress={() => {
+              AsyncStorage.setItem('birthdayOfSiblings1', '');
+              this.setState({ birthdayOfSiblings1: '' });
+            }}
           >
             お子様の生年月日（西暦で）
           </QuestionTextBoxDate>
@@ -425,6 +429,10 @@ class FamilyInfo5 extends React.Component {
             }}
             value={this.state.birthdayOfSiblings2}
             disabled={this.state.disabled}
+            onPress={() => {
+              AsyncStorage.setItem('birthdayOfSiblings2', '');
+              this.setState({ birthdayOfSiblings2: '' });
+            }}
           >
             お子様の生年月日（西暦で）
           </QuestionTextBoxDate>
@@ -527,6 +535,10 @@ class FamilyInfo5 extends React.Component {
             }}
             value={this.state.birthdayOfSiblings3}
             disabled={this.state.disabled}
+            onPress={() => {
+              AsyncStorage.setItem('birthdayOfSiblings3', '');
+              this.setState({ birthdayOfSiblings3: '' });
+            }}
           >
             お子様の生年月日（西暦で）
           </QuestionTextBoxDate>

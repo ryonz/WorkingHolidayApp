@@ -187,6 +187,10 @@ class PersonalInfo3 extends React.Component {
                 this.setState({ fromDateOfStaying: date });
               }}
               value={this.state.fromDateOfStaying}
+              onPress={() => {
+                AsyncStorage.setItem('fromDateOfStaying', '');
+                this.setState({ fromDateOfStaying: '' });
+              }}
             >
               *「はい」と回答された方。滞在期間をご回答ください。
             </QuestionTextBoxDate>
@@ -197,6 +201,10 @@ class PersonalInfo3 extends React.Component {
               }}
               value={this.state.toDateOfStaying}
               disabled={this.state.disabled}
+              onPress={() => {
+                AsyncStorage.setItem('toDateOfStaying', '');
+                this.setState({ toDateOfStaying: '' });
+              }}
             >
               から
             </QuestionTextBoxDate>
@@ -222,6 +230,10 @@ class PersonalInfo3 extends React.Component {
               }}
               value={this.state.fromDateOfStayingCanada}
               disabled={this.state.disabled}
+              onPress={() => {
+                AsyncStorage.setItem('fromDateOfStayingCanada', '');
+                this.setState({ fromDateOfStayingCanada: '' });
+              }}
             >
               今回のカナダ滞在予定年月
             </QuestionTextBoxDate>
@@ -232,6 +244,10 @@ class PersonalInfo3 extends React.Component {
               }}
               value={this.state.toDateOfStayingCanada}
               disabled={this.state.disabled}
+              onPress={() => {
+                AsyncStorage.setItem('toDateOfStayingCanada', '');
+                this.setState({ toDateOfStayingCanada: '' });
+              }}
             >
               から
             </QuestionTextBoxDate>
