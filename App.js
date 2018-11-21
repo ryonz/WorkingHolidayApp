@@ -4,6 +4,7 @@ import ENV from './env.json';
 
 import Home from './src/screens/Home';
 import WHApply from './src/screens/WHApply';
+import ForUsers from './src/screens/ForUsers';
 import PersonalInfo1 from './src/screens/PersonalInfo1';
 import PersonalInfo2 from './src/screens/PersonalInfo2';
 import PersonalInfo3 from './src/screens/PersonalInfo3';
@@ -44,6 +45,7 @@ firebase.initializeApp(config);
 const App = createStackNavigator(
   {
     Home: { screen: Home },
+    ForUsers: { screen: ForUsers },
     Signup: { screen: Signup },
     Login: { screen: Login },
     Birthday: { screen: Birthday },

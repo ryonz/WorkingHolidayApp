@@ -39,32 +39,26 @@ class Signup extends React.Component {
   }
 
   handleSignup() {
-    console.log('aaa');
     this.setState({ editable: false });
     AsyncStorage.getItem('isFirstAccount')
       .then((response) => {
-        console.log('bbb');
         if (response[0][1] !== null) {
           Alert.alert('このデバイスには既にアカウントが存在します。削除してから再登録してください。')
         }
       })
       .catch(() => {
-        console.log('ccc');
         if (this.state.email !== null) {
           firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
             .then((user) => {
-              console.log('ddd');
               this.handleVerifyEmailAddress();
               Alert.alert('確認メールを送信しました。メールは届くまでに数分かかる場合があります。');
               AsyncStorage.setItem('isFirstAccount', 'This is first Account on this device.');
               this.props.navigation.navigate('WHApply');
             }).catch((error) => {
-              console.log('eee');
               Alert.alert('既に登録されたメールアドレスの可能性があります。');
               console.log(error);
             });
         } else if (this.state.email === null) {
-          console.log('fff');
           Alert.alert('メールアドレスを入力してください。');
         }
       })

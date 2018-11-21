@@ -32,7 +32,7 @@ class Home extends React.Component {
   }
 
   onPressAboutWorkingHoliday() {
-    Linking.openURL('http://canadaworkingholiday.or.jp');
+    this.props.navigation.navigate('ForUsers');
   }
 
   setModalVisible(visible) {
@@ -113,7 +113,7 @@ class Home extends React.Component {
             onPress={this.onPressAboutWorkingHoliday.bind(this)}
           >
             <Text style={styles.buttonText}>
-              ワーホリ申請について
+              初めてこのアプリを使う方へ
             </Text>
           </TouchableOpacity>
         </View>
@@ -129,7 +129,9 @@ class Home extends React.Component {
                 style={styles.applyImage}
                 source={require('../../assets/images/new-file.png')}
               />
-              <Text style={styles.buttonText}>ワーホリ申請開始</Text>
+              <Text style={styles.buttonText}>
+                ワーホリ申請開始
+              </Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -305,7 +307,7 @@ const styles = StyleSheet.create({
     borderColor: '#707070',
   },
   buttonText: {
-    fontSize: 14,
+    fontSize: isiPhoneSE() ? 12 : 14,
     fontWeight: '900',
     color: '#626262',
     paddingTop: 8,

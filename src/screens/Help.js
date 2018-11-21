@@ -7,7 +7,10 @@ class Help extends React.Component {
     return (
       <View style={styles.container}>
         <WHApplyBar navigation={() => { this.props.navigation.goBack(); }}>ヘルプ</WHApplyBar>
-        <TouchableOpacity style={styles.contentBox}>
+        <TouchableOpacity
+          style={styles.contentBox}
+          onPress={() => { this.props.navigation.navigate('ForUsers'); }}
+        >
           <Text>このアプリについて</Text>
         </TouchableOpacity>
 

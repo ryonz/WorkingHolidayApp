@@ -78,7 +78,11 @@ class DeleteAll extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <WHApplyBar navigation={() => { this.props.navigation.goBack(); }}>アカウント削除</WHApplyBar>
+        <WHApplyBar
+          navigation={() => { this.props.navigation.goBack(); }}
+        >
+          アカウント削除
+        </WHApplyBar>
 
         <View style={styles.title}>
           <Text style={styles.titleText}>アカウント削除について</Text>
@@ -216,7 +220,7 @@ const styles = StyleSheet.create({
     marginBottom: 18,
   },
   notesText:{
-    width: '83%',
+    width: '90%',
   },
   submitButtonBox: {
     alignSelf: 'center',
