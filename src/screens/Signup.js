@@ -10,6 +10,7 @@ import { StyleSheet,
   Modal,
   Alert,
   AsyncStorage,
+  KeyboardAvoidingView,
 } from 'react-native';
 import { BlurView } from 'expo';
 import Copyrights from '../elements/Copyrights';
@@ -38,20 +39,35 @@ class Signup extends React.Component {
   }
 
   handleSignup() {
+    console.log('aaa');
     this.setState({ editable: false });
-    if (this.state.email !== null) {
-      firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then((user) => {
-          this.handleVerifyEmailAddress();
-          Alert.alert('確認メールを送信しました。メールは届くまでに数分かかる場合があります。')
-          this.props.navigation.navigate('WHApply');
-        }).catch((error) => {
-          Alert.alert('既に登録されたメールアドレスの可能性があります。');
-          console.log(error);
-        });
-    } else if (this.state.email === null) {
-      Alert.alert('メールアドレスを入力してください。');
-    }
+    AsyncStorage.getItem('isFirstAccount')
+      .then((response) => {
+        console.log('bbb');
+        if (response[0][1] !== null) {
+          Alert.alert('このデバイスには既にアカウントが存在します。削除してから再登録してください。')
+        }
+      })
+      .catch(() => {
+        console.log('ccc');
+        if (this.state.email !== null) {
+          firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+            .then((user) => {
+              console.log('ddd');
+              this.handleVerifyEmailAddress();
+              Alert.alert('確認メールを送信しました。メールは届くまでに数分かかる場合があります。');
+              AsyncStorage.setItem('isFirstAccount', 'This is first Account on this device.');
+              this.props.navigation.navigate('WHApply');
+            }).catch((error) => {
+              console.log('eee');
+              Alert.alert('既に登録されたメールアドレスの可能性があります。');
+              console.log(error);
+            });
+        } else if (this.state.email === null) {
+          console.log('fff');
+          Alert.alert('メールアドレスを入力してください。');
+        }
+      })
   }
 
   handleVerifyEmailAddress() {
@@ -85,172 +101,173 @@ class Signup extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
+        <KeyboardAvoidingView>
+          <View style={styles.headerHWApply}>
+            <Text
+              style={styles.headerText}
+            >
+              アカウント登録２
+            </Text>
+            <TouchableOpacity
+              style={styles.backbutton}
+              onPress={() => { this.props.navigation.goBack(); }}
+              underlayColor="#F0F0F0"
+            >
+              <Image
+                style={styles.backbuttonImage}
+                source={require('../../assets/images/left-arrow.png')}
+              />
+            </TouchableOpacity>
+          </View>
 
-        <View style={styles.headerHWApply}>
-          <Text
-            style={styles.headerText}
-          >
-            アカウント登録２
-          </Text>
-          <TouchableOpacity
-            style={styles.backbutton}
-            onPress={() => { this.props.navigation.goBack(); }}
-            underlayColor="#F0F0F0"
-          >
-            <Image
-              style={styles.backbuttonImage}
-              source={require('../../assets/images/left-arrow.png')}
+          <View style={styles.notesBox}>
+            <Text style={styles.notesText}>
+              ※メールアドレスは一度設定すると変更ができません。ご注意ください。登録後、メールアドレスを変更する際は
+              ホーム画面の［ヘルプ＞アカウントの削除について］からアカウントを削除して再度作り直す必要があります。
+            </Text>
+          </View>
+
+          <View style={styles.notesBox}>
+            <Text style={styles.notesText}>
+              ※初期パスワードは生年月日です。変更する場合はアカウント登録後［パスワード変更］より
+              変更してください。
+            </Text>
+          </View>
+
+          <View style={styles.textInputBox}>
+            <View style={styles.textInputBoxTextline}>
+              <Text style={styles.textInputTitle}>
+                メールアドレス
+              </Text>
+              <TouchableOpacity
+                style={styles.questionMarkBox}
+                onPress={() => { this.openMailModal(); }}
+              >
+                <Image
+                  style={styles.questionMark}
+                  source={require('../../assets/images/question-mark.png')}
+                />
+              </TouchableOpacity>
+            </View>
+            <TextInput
+              onChangeText={(text) => { this.setState({ email: text }); }}
+              autoCapitalize="none"
+              autoCorrect={false}
+              style={styles.textInput}
+              value={this.state.email}
+              editable
+              placeholder={'ryugaku-taro@exapmple.com'}
+              textContentType={'emailAddress'}
+              underlineColorAndroid={'transparent'}
             />
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.notesBox}>
-          <Text style={styles.notesText}>
-            ※メールアドレスは一度設定すると変更ができません。ご注意ください。登録後、メールアドレスを変更する際は
-            ホーム画面の［ヘルプ＞アカウントの削除について］からアカウントを削除して再度作り直す必要があります。
-          </Text>
-        </View>
-
-        <View style={styles.notesBox}>
-          <Text style={styles.notesText}>
-            ※初期パスワードは生年月日です。変更する場合はアカウント登録後［パスワード変更］より
-            変更してください。
-          </Text>
-        </View>
-
-        <View style={styles.textInputBox}>
-          <View style={styles.textInputBoxTextline}>
-            <Text style={styles.textInputTitle}>
-              メールアドレス
-            </Text>
-            <TouchableOpacity
-              style={styles.questionMarkBox}
-              onPress={() => { this.openMailModal(); }}
-            >
-              <Image
-                style={styles.questionMark}
-                source={require('../../assets/images/question-mark.png')}
-              />
-            </TouchableOpacity>
           </View>
-          <TextInput
-            onChangeText={(text) => { this.setState({ email: text }); }}
-            autoCapitalize="none"
-            autoCorrect={false}
-            style={styles.textInput}
-            value={this.state.email}
-            editable
-            placeholder={'ryugaku-taro@exapmple.com'}
-            textContentType={'emailAddress'}
-            underlineColorAndroid={'transparent'}
-          />
-        </View>
 
-        <View style={styles.textInputBox}>
-          <View style={styles.textInputBoxTextline}>
-            <Text style={styles.textInputTitlePassword}>
-              パスワード
-            </Text>
+          <View style={styles.textInputBox}>
+            <View style={styles.textInputBoxTextline}>
+              <Text style={styles.textInputTitlePassword}>
+                パスワード
+              </Text>
+              <TouchableOpacity
+                style={styles.questionMarkBox}
+                onPress={() => { this.openPasswordModal(); }}
+              >
+                <Image
+                  style={styles.questionMark}
+                  source={require('../../assets/images/question-mark.png')}
+                />
+              </TouchableOpacity>
+            </View>
+
+            <TextInput
+              value={this.state.password}
+              onChangeText={(text) => { this.setState({ password: text }); }}
+              autoCapitalize="none"
+              autoCorrect={false}
+              secureTextEntry
+              style={styles.textInput}
+              editable={false}
+              placeholder={'8文字以上16以内'}
+              textContentType={'password'}
+              underlineColorAndroid={'transparent'}
+            />
+          </View>
+
+          <RegulationText />
+
+          <View style={styles.loginButtonBox}>
             <TouchableOpacity
-              style={styles.questionMarkBox}
-              onPress={() => { this.openPasswordModal(); }}
+              style={styles.loginButton}
+              onPress={this.handleSignup.bind(this)}
+              editable={this.state.editable}
             >
-              <Image
-                style={styles.questionMark}
-                source={require('../../assets/images/question-mark.png')}
-              />
+              <Text style={styles.loginButtonText}>同意して登録</Text>
             </TouchableOpacity>
           </View>
 
-          <TextInput
-            value={this.state.password}
-            onChangeText={(text) => { this.setState({ password: text }); }}
-            autoCapitalize="none"
-            autoCorrect={false}
-            secureTextEntry
-            style={styles.textInput}
-            editable={false}
-            placeholder={'8文字以上16以内'}
-            textContentType={'password'}
-            underlineColorAndroid={'transparent'}
-          />
-        </View>
+          <View style={styles.copyrights}>
+            <Copyrights />
+          </View>
 
-        <RegulationText />
-
-        <View style={styles.loginButtonBox}>
-          <TouchableOpacity
-            style={styles.loginButton}
-            onPress={this.handleSignup.bind(this)}
-            editable={this.state.editable}
+          <Modal
+            style={styles.modalBox}
+            visible={this.state.modalMailVisible}
+            animationType={'fade'}
+            transparent
           >
-            <Text style={styles.loginButtonText}>同意して登録</Text>
-          </TouchableOpacity>
-        </View>
+            <BlurView
+              style={styles.blurView}
+              tint="dark"
+            >
+              <View style={styles.modal}>
+                <Text style={styles.modalTitle}>メールアドレスについて</Text>
+                <View style={styles.modalTitleUnderbar} />
+                <Text style={styles.modalText}>
+                  ＊ワーキングホリデーの申請に際しまして、
+                  緊急に追加資料のご提示や追加でご質問を
+                  させていただくことがあります。
+                  必ず連絡が取れるメールアドレスをご登録ください。
+                  また、緊急のメールもございます。メールを受信され
+                  た際は速やかに内容を確認し、ご返信して頂きますよ
+                  うご協力をお願いいたします。
+                </Text>
+                <TouchableOpacity
+                  style={styles.modalCloseButton}
+                  onPress={() => { this.closeMailModal(); }}
+                >
+                  <Text style={styles.modalCloseButtonText}>閉じる</Text>
+                </TouchableOpacity>
+              </View>
+            </BlurView>
+          </Modal>
 
-        <View style={styles.copyrights}>
-          <Copyrights />
-        </View>
-
-        <Modal
-          style={styles.modalBox}
-          visible={this.state.modalMailVisible}
-          animationType={'fade'}
-          transparent
-        >
-          <BlurView
-            style={styles.blurView}
-            tint="dark"
+          <Modal
+            visible={this.state.modalPasswordVisible}
+            animationType={'fade'}
+            transparent
           >
-            <View style={styles.modal}>
-              <Text style={styles.modalTitle}>メールアドレスについて</Text>
-              <View style={styles.modalTitleUnderbar} />
-              <Text style={styles.modalText}>
-                ＊ワーキングホリデーの申請に際しまして、
-                緊急に追加資料のご提示や追加でご質問を
-                させていただくことがあります。
-                必ず連絡が取れるメールアドレスをご登録ください。
-                また、緊急のメールもございます。メールを受信され
-                た際は速やかに内容を確認し、ご返信して頂きますよ
-                うご協力をお願いいたします。
-              </Text>
-              <TouchableOpacity
-                style={styles.modalCloseButton}
-                onPress={() => { this.closeMailModal(); }}
-              >
-                <Text style={styles.modalCloseButtonText}>閉じる</Text>
-              </TouchableOpacity>
-            </View>
-          </BlurView>
-        </Modal>
-
-        <Modal
-          visible={this.state.modalPasswordVisible}
-          animationType={'fade'}
-          transparent
-        >
-          <BlurView
-            style={styles.blurView}
-            tint="dark"
-          >
-            <View style={styles.modal}>
-              <Text style={styles.modalTitle}>パスワードについて</Text>
-              <View style={styles.modalTitleUnderbar} />
-              <Text style={styles.modalText}>
-                ＊初期パスワードは生年月日です。変更する際はアカウント作成後、
-                ［パスワード変更］より変更してください。
-              </Text>
-              <TouchableOpacity
-                style={styles.modalPasswordCloseButton}
-                onPress={() => { this.closePasswordModal(); }}
-              >
-                <Text style={styles.modalCloseButtonText}>閉じる</Text>
-              </TouchableOpacity>
-            </View>
-          </BlurView>
-        </Modal>
-
+            <BlurView
+              style={styles.blurView}
+              tint="dark"
+            >
+              <View style={styles.modal}>
+                <Text style={styles.modalTitle}>パスワードについて</Text>
+                <View style={styles.modalTitleUnderbar} />
+                <Text style={styles.modalText}>
+                  ＊初期パスワードは生年月日です。変更する際はアカウント作成後、
+                  ［パスワード変更］より変更してください。
+                </Text>
+                <TouchableOpacity
+                  style={styles.modalPasswordCloseButton}
+                  onPress={() => { this.closePasswordModal(); }}
+                >
+                  <Text style={styles.modalCloseButtonText}>閉じる</Text>
+                </TouchableOpacity>
+              </View>
+            </BlurView>
+          </Modal>
+        </KeyboardAvoidingView>
       </ScrollView>
+
     );
   }
 }
@@ -341,6 +358,7 @@ const styles = StyleSheet.create({
   questionMarkBox: {
     width: 20,
     height: 20,
+    marginBottom: 3,
     paddingLeft: 40,
   },
   questionMark: {

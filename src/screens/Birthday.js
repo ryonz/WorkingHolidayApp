@@ -8,19 +8,25 @@ import {
   Image,
   Alert,
   AsyncStorage,
+  KeyboardAvoidingView,
 } from 'react-native';
 import Copyrights from '../elements/Copyrights';
 import { isiPhoneSE, isiPhoneX, isiPhoneEightPlus } from '../lib/windowsize';
 
 class Birthday extends React.Component {
   state = {
-    birthday: '19921111',
+    birthday: null,
   }
 
   onPressNextButton() {
+    const RegEx = /^\d{8}$/;
     if (this.state.birthday !== null) {
-      AsyncStorage.setItem('birthday', this.state.birthday);
-      this.props.navigation.navigate('Signup', this.state.birthday);
+      if (RegEx.test(this.state.birthday)) {
+        AsyncStorage.setItem('birthday', this.state.birthday);
+        this.props.navigation.navigate('Signup', this.state.birthday);
+      } else {
+        Alert.alert('生年月日が正しく入力されていません。');
+      }
     } else {
       Alert.alert('生年月日を入力してください。');
     }
@@ -29,49 +35,50 @@ class Birthday extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <KeyboardAvoidingView style={styles.container}>
+          <View style={styles.headerHWApply}>
+            <Text style={styles.headerText}>アカウント登録１</Text>
+            <TouchableOpacity
+              style={styles.backbutton}
+              onPress={() => { this.props.navigation.goBack(); }}
+              underlayColor="#F0F0F0"
+            >
+              <Image
+                style={styles.backbuttonImage}
+                source={require('../../assets/images/left-arrow.png')}
+              />
+            </TouchableOpacity>
+          </View>
 
-        <View style={styles.headerHWApply}>
-          <Text style={styles.headerText}>アカウント登録１</Text>
-          <TouchableOpacity
-            style={styles.backbutton}
-            onPress={() => { this.props.navigation.goBack(); }}
-            underlayColor="#F0F0F0"
-          >
-            <Image
-              style={styles.backbuttonImage}
-              source={require('../../assets/images/left-arrow.png')}
+          <View style={styles.textInputBox}>
+            <Text style={styles.textInputTitle}>生年月日(西暦年月日)</Text>
+            <TextInput
+              value={this.state.birthday}
+              onChangeText={(num) => { this.setState({ birthday: num }); }}
+              autoCapitalize="none"
+              autoCorrect={false}
+              style={styles.textInput}
+              maxLength={8}
+              multiline={false}
+              placeholder={'例：19920101'}
+              underlineColorAndroid={'transparent'}
             />
-          </TouchableOpacity>
-        </View>
+          </View>
 
-        <View style={styles.textInputBox}>
-          <Text style={styles.textInputTitle}>生年月日(西暦年月日)</Text>
-          <TextInput
-            value={this.state.birthday}
-            onChangeText={(num) => { this.setState({ birthday: num }); }}
-            autoCapitalize="none"
-            autoCorrect={false}
-            style={styles.textInput}
-            maxLength={8}
-            placeholder={'例：19920101'}
-            underlineColorAndroid={'transparent'}
-          />
-        </View>
+          <View style={styles.nextButtonBox}>
+            <TouchableOpacity
+              style={styles.nextButton}
+              onPress={() => { this.onPressNextButton(); }}
+            >
+              <Text style={styles.nextButtonText}>次へ</Text>
 
-        <View style={styles.nextButtonBox}>
-          <TouchableOpacity
-            style={styles.nextButton}
-            onPress={() => { this.onPressNextButton(); }}
-          >
-            <Text style={styles.nextButtonText}>次へ</Text>
+            </TouchableOpacity>
+          </View>
 
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.copyrights}>
-          <Copyrights />
-        </View>
-
+          <View style={styles.copyrights}>
+            <Copyrights />
+          </View>
+        </KeyboardAvoidingView>
       </View>
     );
   }
