@@ -1,5 +1,10 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput
+} from 'react-native';
 
 // import BasicInputTextBox from './BasicInputTextBox';
 
@@ -42,11 +47,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   questionText: {
-    width: '83%',
+    width: '95%',
     fontSize: 13,
   },
   textInputBox: {
-    width: '83%',
+    width: '95%',
     height: 30,
     marginTop: 5,
     backgroundColor: '#F4F4F4',
@@ -55,7 +60,7 @@ const styles = StyleSheet.create({
     borderColor: '#707070',
   },
   textInput: {
-    width: '88%',
+    width: '95%',
     fontSize: 13,
     color: '#000000',
     paddingTop: 6,
