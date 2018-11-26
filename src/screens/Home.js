@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   Modal,
   AsyncStorage,
-  Linking,
 } from 'react-native';
 import firebase from 'firebase';
 import Copyrights from '../elements/Copyrights';
@@ -28,7 +27,7 @@ class Home extends React.Component {
   }
 
   onPressAboutJpcanada() {
-    Linking.openURL('https://agent.jpcanada.com/points/');
+    this.props.navigation.navigate('AboutJpcanada');
   }
 
   onPressAboutWorkingHoliday() {

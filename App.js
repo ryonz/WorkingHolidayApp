@@ -5,6 +5,7 @@ import ENV from './env.json';
 import Home from './src/screens/Home';
 import WHApply from './src/screens/WHApply';
 import ForUsers from './src/screens/ForUsers';
+import AboutJpcanada from './src/screens/AboutJpcanada';
 import PersonalInfo1 from './src/screens/PersonalInfo1';
 import PersonalInfo2 from './src/screens/PersonalInfo2';
 import PersonalInfo3 from './src/screens/PersonalInfo3';
@@ -46,6 +47,7 @@ const App = createStackNavigator(
   {
     Home: { screen: Home },
     ForUsers: { screen: ForUsers },
+    AboutJpcanada: { screen: AboutJpcanada },
     Signup: { screen: Signup },
     Login: { screen: Login },
     Birthday: { screen: Birthday },

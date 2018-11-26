@@ -16,7 +16,9 @@ class SubmitButton extends React.Component {
           style={[styles.button, style]}
           onPress={() => { this.props.onPress(); }}
         >
-          <Text style={styles.buttonText}>{this.props.children}</Text>
+          <Text style={styles.buttonText}>
+            {this.props.children}
+          </Text>
         </TouchableOpacity>
 
       </View>
@@ -59,9 +61,3 @@ const styles = StyleSheet.create({
 });
 
 export default SubmitButton;
-
-/*
-position: 'absolute',
-bottom: 50,
-right: 98,
-*/

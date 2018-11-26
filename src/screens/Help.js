@@ -23,10 +23,6 @@ class Help extends React.Component {
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.contentBox}>
-          <Text>ライセンス</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.contentBox}>
           <Text>登録情報の変更・修正について</Text>
         </TouchableOpacity>
 
@@ -37,8 +33,12 @@ class Help extends React.Component {
           <Text>アカウントの削除について</Text>
         </TouchableOpacity>
 
+        <TouchableOpacity style={styles.contentBox}>
+          <Text>ライセンス</Text>
+        </TouchableOpacity>
+
         <View style={styles.contentBox}>
-          <Text>アプリのバージョン：</Text>
+          <Text>アプリのバージョン：1.0.0</Text>
         </View>
 
       </View>

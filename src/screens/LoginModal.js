@@ -16,8 +16,8 @@ import { isiPhoneSE, isiPhoneX, isiPhoneEightPlus } from '../lib/windowsize';
 
 class LoginModal extends React.Component {
   state = {
-    email: 'user0@example.com',
-    password: '19920101',
+    email: '',
+    password: '',
 
     editable: true,
   };

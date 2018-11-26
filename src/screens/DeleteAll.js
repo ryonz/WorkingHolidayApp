@@ -108,6 +108,7 @@ class DeleteAll extends React.Component {
             {'\n'}
           </Text>
         </View>
+
         <View style={styles.submitButtonBox}>
           <SubmitButton
             style={styles.submitButton}
@@ -157,7 +158,6 @@ class DeleteAll extends React.Component {
               </Text>
 
               <View style={styles.buttonBox}>
-
                 <TouchableOpacity
                   style={styles.modalButton}
                   onPress={() => { this.onPressDelete(); }}
@@ -174,7 +174,11 @@ class DeleteAll extends React.Component {
                   style={styles.modalButton}
                   onPress={() => { this.onPressCloseModal(); }}
                 >
-                  <Text style={styles.modalButtonText}>やめる</Text>
+                  <Text
+                    style={styles.modalButtonText}
+                  >
+                  やめる
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -223,12 +227,13 @@ const styles = StyleSheet.create({
     width: '90%',
   },
   submitButtonBox: {
-    alignSelf: 'center',
-    marginTop: isiPhoneX() ? 90 : isiPhoneEightPlus() ? 42 : 0,
+    alignItems: 'center',
+    width: '100%',
+    marginTop: isiPhoneSE() ? 40 : isiPhoneEightPlus() ? 80 : isiPhoneX() ? 90 : 40,
+    marginBottom: 30,
   },
   submitButton: {
-    position: 'absolute',
-    bottom: isiPhoneSE() ? 30 : 60,
+    alignItems: 'center',
     backgroundColor: '#fff',
   },
   copyrights: {
